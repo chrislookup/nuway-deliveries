@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0069)file:///C:/Users/chris/Downloads/nuway_delivery_system_v3_live_4.html -->
+<!-- saved from url=(0069)file:///C:/Users/chris/Downloads/nuway_delivery_system_v3_live_5.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System 20.04 8.32_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 20.04 8.43_files/css2" rel="stylesheet">
 <style>
 :root {
   --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
@@ -284,10 +284,10 @@ tr:hover td{background:var(--bg)}
       <!-- RUN SHEET -->
       <div class="view active" id="view-runsheet">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">5</div><div class="metric-sub">across 3 trucks</div></div>
+          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">6</div><div class="metric-sub">across 3 trucks</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
           <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
-          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">25</div><div class="metric-sub">today's capacity</div></div>
+          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">24</div><div class="metric-sub">today's capacity</div></div>
         </div>
         <div class="run-sheet-wrap">
           <div style="display:grid;grid-template-columns:72px repeat(3,1fr)">
@@ -296,17 +296,53 @@ tr:hover td{background:var(--bg)}
             <div class="rs-th">M2 — Chris B.</div>
             <div class="rs-th">FUSO — Dan R.</div>
           </div>
-          <div id="rs-body"><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">7–8am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,1)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,1)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,1)">+</span></div></div></div>
+          <div id="rs-body"><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">7–8am</div><div class="rs-cell span2"><div class="del-card cod" style="width:100%">
+          <div class="del-duration">3hr</div>
+          <div class="del-top">
+            <span class="badge badge-cod">COD</span>
+            
+            
+          </div>
+          <div class="del-name">Christopher Haddon</div>
+          <div class="del-suburb">Slacks Creek</div>
+          <div class="del-inv">55 · 56.2</div>
+          <div class="del-note">delivery notes here</div>
+          <button class="del-edit-btn" onclick="event.stopPropagation();openEditSlot(11)">Edit</button>
+        </div></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,1)">+</span></div><div class="rs-cell span2"><div class="del-card acc" style="width:100%">
+          <div class="del-duration">2hr</div>
+          <div class="del-top">
+            <span class="badge badge-acc">Account</span>
+            
+            
+          </div>
+          <div class="del-name">Jane Doe</div>
+          <div class="del-suburb">loganholme</div>
+          <div class="del-inv">655</div>
+          <div class="del-note">notes and stuff</div>
+          <button class="del-edit-btn" onclick="event.stopPropagation();openEditSlot(12)">Edit</button>
+        </div></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,1)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,1)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">1–2pm</div><div class="rs-cell"><div class="del-card paid" style="width:100%">
+          
+          <div class="del-top">
+            <span class="badge badge-paid">Paid</span>
+            
+            
+          </div>
+          <div class="del-name">chris h</div>
+          <div class="del-suburb">shailer park</div>
+          <div class="del-inv">dfd6565</div>
+          <div class="del-note">not b4 10 beside gate</div>
+          <button class="del-edit-btn" onclick="event.stopPropagation();openEditSlot(10)">Edit</button>
+        </div></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,1)">+</span></div></div></div>
         </div>
       </div>
 
       <!-- JOURNAL -->
       <div class="view" id="view-journal">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">5</div></div>
+          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">6</div></div>
           <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$56.2</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">0</div></div>
-          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">5</div></div>
+          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">6</div></div>
         </div>
         <div class="table-wrap">
           <table><thead><tr><th>#</th><th>Customer</th><th>Suburb</th><th>Invoice</th><th>Payment</th><th>COD $</th><th>Driver</th><th>Truck</th><th>Slot</th><th>Duration</th><th>Status</th></tr></thead>
@@ -320,6 +356,11 @@ tr:hover td{background:var(--bg)}
     <td class="mono">56.2</td><td>Jake T.</td>
     <td class="mono">M1</td>
     <td class="mono">7–8am</td><td class="mono">3hr</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">12</td><td style="font-weight:600">Jane Doe</td><td>loganholme</td>
+    <td class="mono">655</td><td><span class="badge badge-acc">Account</span></td>
+    <td class="mono">—</td><td>Chris B.</td>
+    <td class="mono">M2</td>
+    <td class="mono">8–9am</td><td class="mono">2hr</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">7</td><td style="font-weight:600">bob smith</td><td>dgdgdgd</td>
     <td class="mono">54545</td><td><span class="badge badge-cod">COD</span></td>
     <td class="mono">—</td><td>COD</td>
@@ -345,13 +386,76 @@ tr:hover td{background:var(--bg)}
           <div class="driver-queue">
             <div class="driver-queue-hdr">
               <div class="dq-name" id="dv-driver-name">Jake T. — M1</div>
-              <div class="dq-sub" id="dv-driver-sub">Today · 0 deliveries</div>
+              <div class="dq-sub" id="dv-driver-sub">Today · 5 deliveries</div>
             </div>
-            <div id="driver-list"></div>
+            <div id="driver-list"><div class="dq-item sel" onclick="selectDelivery(10,this)">
+      <div class="dq-row"><span class="dq-num ">1</span><span class="dq-customer">chris h</span></div>
+      <div class="dq-detail">shailer park · 1–2pm</div>
+      <div class="dq-badges">
+        <span class="badge badge-paid">Paid</span>
+        
+        
+        
+        
+      </div>
+    </div><div class="dq-item" onclick="selectDelivery(11,this)">
+      <div class="dq-row"><span class="dq-num ">2</span><span class="dq-customer">Christopher Haddon</span></div>
+      <div class="dq-detail">Slacks Creek · 7–8am</div>
+      <div class="dq-badges">
+        <span class="badge badge-cod">COD</span>
+        
+        
+        
+        <span class="badge badge-cod">56.2</span>
+      </div>
+    </div><div class="dq-item" onclick="selectDelivery(7,this)">
+      <div class="dq-row"><span class="dq-num ">3</span><span class="dq-customer">bob smith</span></div>
+      <div class="dq-detail">dgdgdgd · M1 — Jake T.</div>
+      <div class="dq-badges">
+        <span class="badge badge-cod">COD</span>
+        
+        
+        
+        
+      </div>
+    </div><div class="dq-item" onclick="selectDelivery(8,this)">
+      <div class="dq-row"><span class="dq-num ">4</span><span class="dq-customer">bob smith</span></div>
+      <div class="dq-detail">dgdgdgd · M1 — Jake T.</div>
+      <div class="dq-badges">
+        <span class="badge badge-cod">COD</span>
+        
+        
+        
+        
+      </div>
+    </div><div class="dq-item" onclick="selectDelivery(9,this)">
+      <div class="dq-row"><span class="dq-num ">5</span><span class="dq-customer">bob smith</span></div>
+      <div class="dq-detail">dgdgdgd · M2 — Chris B.</div>
+      <div class="dq-badges">
+        <span class="badge badge-cod">COD</span>
+        
+        
+        
+        
+      </div>
+    </div></div>
           </div>
-          <div id="driver-detail" class="driver-detail">
-            <div style="text-align:center;padding:40px;color:var(--text-3)">Select a delivery from the queue</div>
-          </div>
+          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle ">1</div><div class="prog-label ">Loading</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">2</div><div class="prog-label ">En route</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Delivered</div></div></div>
+    <div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid">
+      <div class="detail-item"><div class="dl">Name</div><div class="dv">chris h</div></div>
+      <div class="detail-item"><div class="dl">Invoice</div><div class="dv" style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px">dfd6565</div></div>
+      <div class="detail-item"><div class="dl">Window</div><div class="dv">1–2pm</div></div>
+      <div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-paid">Paid</span></div></div>
+    </div></div>
+    <div class="detail-section"><div class="detail-section-title">Delivery details</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:4px">shailer park</div>
+      <div style="font-size:12px;color:var(--text-3)">not b4 10 beside gate</div>
+      <div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 0405 555 555</div>
+    </div>
+    <div class="detail-section"><div class="detail-section-title">Products to load &amp; deliver</div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(10,0,this.checked)" disabled=""><span class="pname">2.5 concrete</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(10,1,this.checked)" disabled=""><span class="pname">5 bags gp</span><span class="pqty"></span></div></div>
+    <div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(10,&#39;loading&#39;)">Start loading</button></div>
+    
+    <div class="detail-section" style="opacity:0.5"><div class="detail-section-title">Site safety checklist</div><div style="font-size:12px;color:var(--text-3);padding:4px 0">Available once en route</div></div></div>
         </div>
       </div>
 
@@ -475,7 +579,7 @@ tr:hover td{background:var(--bg)}
   </div>
 </div>
 
-<div class="toast" id="toast">Loaded 5 deliveries</div>
+<div class="toast" id="toast">Loaded 6 deliveries</div>
 
 <script>
 // ═══ SUPABASE ═══
@@ -536,6 +640,8 @@ function init(){
 async function loadDeliveries(){
   try{
     DELIVERIES=await db(`deliveries?store=eq.${encodeURIComponent(currentStore)}&date=eq.${currentDate}&order=slot.asc,truck.asc`);
+    // Normalize truck to integer (DB may return string)
+    DELIVERIES.forEach(d=>{ d.truck = parseInt(d.truck) || 0; });
     document.getElementById('db-dot').className='db-dot online';
     document.getElementById('db-dot').title='Database connected';
     showToast(`Loaded ${DELIVERIES.length} deliveries`);
@@ -752,7 +858,7 @@ function updateCustomerTracker(){
 // ═══ HEAD OFFICE ═══
 async function buildHQ(){
   let all=[];
-  try{all=await db(`deliveries?date=eq.${currentDate}&order=store.asc`);}catch(e){all=[];}
+  try{all=await db(`deliveries?date=eq.${currentDate}&order=store.asc`);all.forEach(d=>{d.truck=parseInt(d.truck)||0;});}catch(e){all=[];}
   const byStore={};ALL_STORES.forEach(s=>byStore[s]=[]);
   all.forEach(d=>{if(byStore[d.store])byStore[d.store].push(d);});
   const active=ALL_STORES.filter(s=>byStore[s].length>0);

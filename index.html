@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)file:///C:/Users/chris/Downloads/nuway_delivery_system_v3_live_3.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuway — Delivery Management System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./Nuway — Delivery Management System_files/css2" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
+  --border: rgba(0,0,0,0.08); --border-md: rgba(0,0,0,0.13);
+  --text: #1a1916; --text-2: #6b6960; --text-3: #a09d94;
+  --blue: #1d5fa8; --blue-bg: #e8f0fb; --blue-text: #0f3d74;
+  --green: #2d7a4f; --green-bg: #e4f3eb; --green-text: #1a5234;
+  --amber: #8a5c0a; --amber-bg: #fdf0d8; --amber-text: #6b4207;
+  --red: #c0392b; --red-bg: #fcecea; --red-text: #8c1a10;
+  --purple: #5b4cba; --purple-bg: #eeedfb; --purple-text: #3a2e8a;
+  --sidebar-w: 210px; --radius: 10px; --radius-sm: 6px;
+  font-family: 'DM Sans', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-height:100vh}
+.shell{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:var(--sidebar-w);background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
+.sidebar-logo{padding:20px 18px 16px;border-bottom:1px solid var(--border)}
+.sidebar-logo .wordmark{font-size:17px;font-weight:600;letter-spacing:-0.3px}
+.sidebar-logo .tagline{font-size:11px;color:var(--text-3);margin-top:1px;font-family:'DM Mono',monospace}
+.db-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-left:6px;vertical-align:middle}
+.db-dot.online{background:var(--green)}.db-dot.offline{background:var(--red)}
+.nav-section{padding:10px 0 4px}
+.nav-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);padding:4px 18px 6px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 18px;cursor:pointer;font-size:13px;color:var(--text-2);border-left:2px solid transparent;transition:all 0.15s;user-select:none}
+.nav-item:hover{background:var(--bg);color:var(--text)}
+.nav-item.active{color:var(--blue);border-left-color:var(--blue);background:var(--blue-bg);font-weight:500}
+.nav-icon{width:15px;height:15px;opacity:0.7;flex-shrink:0}
+.nav-item.active .nav-icon{opacity:1}
+.nav-badge{margin-left:auto;background:var(--red-bg);color:var(--red-text);font-size:10px;font-weight:600;padding:1px 6px;border-radius:20px}
+.sidebar-footer{margin-top:auto;padding:14px 18px;border-top:1px solid var(--border);font-size:11px;color:var(--text-3)}
+.sidebar-footer strong{display:block;color:var(--text-2);font-size:12px;margin-bottom:2px;font-weight:500}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.topbar-left{display:flex;align-items:center;gap:14px}
+.page-title{font-size:15px;font-weight:600;letter-spacing:-0.2px}
+.pill-select{font-family:'DM Sans',sans-serif;font-size:12px;background:var(--surface2);border:1px solid var(--border-md);border-radius:20px;padding:4px 10px;color:var(--text);cursor:pointer;appearance:none;outline:none}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--radius-sm);border:1px solid var(--border-md);font-size:12px;font-weight:500;cursor:pointer;background:var(--surface);color:var(--text);font-family:'DM Sans',sans-serif;transition:all 0.12s;white-space:nowrap}
+.btn:hover{background:var(--surface2)}
+.btn:disabled{opacity:0.45;cursor:not-allowed}
+.btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-primary:hover{background:var(--blue-text);border-color:var(--blue-text)}
+.btn-success{background:var(--green);color:#fff;border-color:var(--green)}
+.btn-success:hover{background:var(--green-text)}
+.btn-amber{background:var(--amber);color:#fff;border-color:var(--amber)}
+.btn-amber:hover{background:var(--amber-text)}
+.btn-sm{padding:5px 10px;font-size:11px}
+.content{flex:1;overflow-y:auto;padding:20px 24px;background:var(--bg)}
+.view{display:none;animation:fadeIn 0.15s ease}.view.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}
+.metric{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+.metric-label{font-size:11px;color:var(--text-3);font-weight:500;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px}
+.metric-value{font-size:26px;font-weight:600;letter-spacing:-0.5px;line-height:1}
+.metric-sub{font-size:11px;color:var(--text-3);margin-top:4px}
+.mv-blue{color:var(--blue)}.mv-green{color:var(--green)}.mv-amber{color:var(--amber)}.mv-red{color:var(--red)}
+.badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.03em;white-space:nowrap}
+.badge-cod{background:var(--amber-bg);color:var(--amber-text)}
+.badge-acc{background:var(--blue-bg);color:var(--blue-text)}
+.badge-paid{background:var(--green-bg);color:var(--green-text)}
+.badge-done{background:var(--surface2);color:var(--text-3)}
+.badge-out{background:var(--blue-bg);color:var(--blue-text)}
+.badge-loading{background:var(--amber-bg);color:var(--amber-text)}
+.badge-pending{background:var(--amber-bg);color:var(--amber-text)}
+.badge-issue{background:var(--red-bg);color:var(--red-text)}
+.badge-yes{background:var(--green-bg);color:var(--green-text)}
+.badge-half{background:var(--purple-bg);color:var(--purple-text)}
+.run-sheet-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.rs-th{padding:10px 12px;font-size:11px;font-weight:600;color:var(--text-2);background:var(--surface2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);letter-spacing:0.03em;text-transform:uppercase}
+.rs-th:last-child{border-right:none}
+.rs-time-cell{padding:0 6px;font-size:10px;font-weight:600;color:var(--text-3);background:var(--surface2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;text-align:center;line-height:1.3}
+.rs-cell{padding:5px 6px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);min-height:54px;cursor:pointer;transition:background 0.1s;display:flex;align-items:flex-start;position:relative}
+.rs-cell:last-child{border-right:none}
+.rs-cell:hover{background:#f7f6ff}
+.rs-cell.empty{align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.rs-cell.empty .empty-actions{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.ea-btn{font-size:9px;padding:2px 6px;border-radius:10px;border:1px solid var(--border-md);background:var(--surface);color:var(--text-2);cursor:pointer;white-space:nowrap;transition:all 0.1s}
+.ea-btn:hover{background:var(--blue-bg);color:var(--blue);border-color:var(--blue)}
+.ea-btn.half{background:var(--purple-bg);color:var(--purple-text);border-color:var(--purple-text)}
+.rs-cell.span2{min-height:108px}.rs-cell.span15{min-height:81px}
+.del-card{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 7px;border-left:3px solid var(--border-md);position:relative}
+.del-card.cod{border-left-color:#c88a20}.del-card.acc{border-left-color:var(--blue)}.del-card.paid{border-left-color:var(--green)}
+.del-card.done{opacity:0.48}.del-card.status-loading{border-left-color:var(--amber)}.del-card.status-enroute{border-left-color:var(--blue)}
+.del-top{display:flex;align-items:center;gap:3px;margin-bottom:2px;flex-wrap:wrap}
+.del-name{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+.del-suburb{font-size:11px;color:var(--text-2)}
+.del-inv{font-size:10px;color:var(--text-3);font-family:'DM Mono',monospace}
+.del-note{font-size:10px;color:var(--text-3);margin-top:1px;font-style:italic}
+.del-duration{position:absolute;top:4px;right:5px;font-size:9px;color:var(--text-3);font-family:'DM Mono',monospace}
+.del-edit-btn{position:absolute;bottom:4px;right:5px;font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface2);color:var(--text-3);cursor:pointer;display:none}
+.del-card:hover .del-edit-btn{display:block}
+.rs-break{padding:5px 12px;background:#fdf8ee;border-bottom:1px solid var(--border);font-size:10px;color:var(--amber-text);font-style:italic;border-left:3px solid #e6b84a}
+.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;text-align:left;font-size:10px;font-weight:600;color:var(--text-3);border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:0.05em;background:var(--surface2);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg)}
+.mono{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-2)}
+.status-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500}
+.status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.s-done .status-dot{background:var(--green)}.s-out .status-dot{background:var(--blue)}.s-pending .status-dot{background:var(--amber)}.s-issue .status-dot{background:var(--red)}
+.s-done{color:var(--green-text)}.s-out{color:var(--blue-text)}.s-pending{color:var(--amber-text)}.s-issue{color:var(--red-text)}
+.driver-layout{display:grid;grid-template-columns:270px 1fr;height:calc(100vh - 54px - 40px);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:var(--surface)}
+.driver-queue{border-right:1px solid var(--border);overflow-y:auto}
+.driver-queue-hdr{padding:13px 14px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.driver-queue-hdr .dq-name{font-weight:600;font-size:13px}
+.driver-queue-hdr .dq-sub{font-size:11px;color:var(--text-3);margin-top:2px}
+.dq-item{padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.1s}
+.dq-item:hover{background:var(--bg)}
+.dq-item.sel{background:var(--blue-bg);border-left:3px solid var(--blue)}
+.dq-row{display:flex;align-items:center;gap:9px;margin-bottom:4px}
+.dq-num{width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dq-num.loading{background:var(--amber)}.dq-num.enroute{background:var(--blue)}.dq-num.done{background:var(--green)}
+.dq-customer{font-weight:600;font-size:12px}
+.dq-detail{font-size:11px;color:var(--text-2);margin-left:29px}
+.dq-badges{display:flex;gap:4px;margin-top:4px;margin-left:29px;flex-wrap:wrap}
+.driver-detail{padding:20px;overflow-y:auto}
+.prog-track{display:flex;align-items:flex-start;margin-bottom:20px}
+.prog-step{text-align:center;flex:0 0 auto;width:70px}
+.prog-circle{width:32px;height:32px;border-radius:50%;border:2px solid var(--border-md);background:var(--surface2);display:flex;align-items:center;justify-content:center;margin:0 auto 5px;font-size:11px;font-weight:700;color:var(--text-3)}
+.prog-circle.done{background:var(--green);border-color:var(--green);color:#fff}
+.prog-circle.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.prog-circle.loading-active{background:var(--amber);border-color:var(--amber);color:#fff}
+.prog-label{font-size:10px;color:var(--text-3);line-height:1.2}
+.prog-label.active{color:var(--blue);font-weight:600}
+.prog-label.loading-active{color:var(--amber);font-weight:600}
+.prog-label.done{color:var(--green)}
+.prog-connector{flex:1;height:2px;background:var(--border);margin-top:15px}
+.prog-connector.done{background:var(--green)}
+.detail-section{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:12px}
+.detail-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);margin-bottom:10px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.detail-item .dl{font-size:10px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px}
+.detail-item .dv{font-size:13px;font-weight:500}
+.product-line{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;gap:8px}
+.product-line:last-child{border-bottom:none}
+.pname{color:var(--text-2);flex:1}.pqty{font-weight:600;font-family:'DM Mono',monospace;flex-shrink:0}
+.pcheck{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--border-md);cursor:pointer;appearance:none;flex-shrink:0;background:var(--surface);transition:all 0.1s;position:relative}
+.pcheck:checked{background:var(--green);border-color:var(--green)}
+.pcheck:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;color:#fff;font-weight:700}
+.action-row{display:flex;gap:8px;margin-top:12px}.action-row .btn{flex:1;justify-content:center}
+.safety-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.safety-item:last-child{border-bottom:none}
+.safety-check{width:20px;height:20px;border-radius:4px;border:1.5px solid var(--border-md);cursor:pointer;appearance:none;flex-shrink:0;background:var(--surface);transition:all 0.1s;position:relative;margin-top:1px}
+.safety-check:checked{background:var(--green);border-color:var(--green)}
+.safety-check:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;color:#fff;font-weight:700}
+.safety-text{flex:1}
+.safety-q{font-size:12px;font-weight:500;color:var(--text)}
+.safety-sub{font-size:11px;color:var(--text-3);margin-top:1px}
+.safety-pass{background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:8px 12px;font-size:12px;color:var(--green-text);font-weight:500;display:none;align-items:center;gap:6px;margin-top:8px}
+.safety-pass.show{display:flex}
+.photo-upload-zone{border:2px dashed var(--border-md);border-radius:var(--radius);padding:20px;text-align:center;cursor:pointer;transition:all 0.15s;background:var(--surface)}
+.photo-upload-zone:hover{border-color:var(--blue);background:var(--blue-bg)}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.photo-thumb{aspect-ratio:1;border-radius:var(--radius-sm);background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-3)}
+.cod-box{background:var(--amber-bg);border:1px solid #e6c97a;border-radius:var(--radius-sm);padding:10px 12px;margin-top:10px;font-size:12px;color:var(--amber-text)}
+.cod-box strong{display:block;font-size:11px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em}
+.cod-box input{width:100%;padding:6px 10px;border:1px solid #d4aa4a;border-radius:var(--radius-sm);font-size:12px;background:rgba(255,255,255,0.6);color:var(--amber-text);font-family:'DM Mono',monospace;outline:none;margin-top:6px}
+.hq-store-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}
+.hq-store-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.hq-store-name{font-weight:600;font-size:13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.hq-bar-track{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;margin:6px 0 4px}
+.hq-bar-fill{height:100%;background:var(--blue);border-radius:3px}.hq-bar-fill.high{background:var(--green)}
+.hq-stats{display:flex;justify-content:space-between;font-size:11px;color:var(--text-3)}
+.tracker-wrap{max-width:500px;margin:0 auto}
+.sms-preview{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:20px}
+.sms-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);margin-bottom:8px}
+.sms-bubble{background:#dcf8c6;border-radius:12px 12px 12px 2px;padding:10px 14px;font-size:13px;color:#1a3a10;line-height:1.5;display:inline-block;max-width:90%}
+.tracker-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.tracker-title{font-size:18px;font-weight:700;letter-spacing:-0.3px;margin-bottom:4px}
+.tracker-sub{font-size:13px;color:var(--text-2);margin-bottom:24px}
+.track-steps{display:flex;align-items:flex-start;justify-content:center;margin-bottom:28px}
+.t-step{text-align:center;flex:1}
+.t-circle{width:40px;height:40px;border-radius:50%;border:2px solid var(--border-md);background:var(--surface2);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:16px}
+.t-circle.done{background:var(--green);border-color:var(--green);color:#fff}
+.t-circle.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.t-circle.loading{background:var(--amber);border-color:var(--amber);color:#fff}
+.t-label{font-size:11px;color:var(--text-3);font-weight:500}
+.t-label.active{color:var(--blue);font-weight:700}.t-label.loading{color:var(--amber);font-weight:700}.t-label.done{color:var(--green)}
+.t-connector{flex:1;height:2px;background:var(--border);margin-top:19px}
+.t-connector.done{background:var(--green)}.t-connector.partial{background:var(--amber)}
+.eta-box{background:var(--blue-bg);border-radius:var(--radius);padding:18px 20px;text-align:center}
+.eta-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--blue-text);margin-bottom:6px}
+.eta-time{font-size:28px;font-weight:700;color:var(--blue);letter-spacing:-0.5px;line-height:1;margin-bottom:6px}
+.eta-sub{font-size:12px;color:#4a7bc8}
+.tracker-status-msg{text-align:center;padding:10px;font-size:13px;color:var(--text-2);margin-bottom:12px}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(2px)}
+.modal-overlay.show{display:flex}
+.modal{background:var(--surface);border-radius:12px;border:1px solid var(--border);width:460px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+.modal-header{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.modal-title{font-size:15px;font-weight:700}
+.modal-close{cursor:pointer;color:var(--text-3);font-size:20px;line-height:1;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:background 0.1s}
+.modal-close:hover{background:var(--surface2)}
+.modal-body{padding:18px 22px}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-3);margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:8px 11px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:13px;font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text);outline:none;transition:border-color 0.15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)}
+.field textarea{resize:vertical;min-height:60px;line-height:1.5}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sms-note{background:var(--green-bg);border-radius:var(--radius-sm);padding:9px 12px;font-size:11px;color:var(--green-text);margin-top:4px}
+.modal-footer{padding:13px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.duration-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+.dur-btn{padding:8px;border-radius:var(--radius-sm);border:1px solid var(--border-md);background:var(--surface);color:var(--text-2);cursor:pointer;font-size:12px;font-weight:500;text-align:center;transition:all 0.1s;font-family:'DM Sans',sans-serif}
+.dur-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+.dur-btn.selected{border-color:var(--blue);color:#fff;background:var(--blue)}
+.dur-btn.half{border-color:var(--purple);color:var(--purple-text);background:var(--purple-bg)}
+.dur-btn.half.selected{background:var(--purple);color:#fff}
+.toast{position:fixed;bottom:24px;right:24px;background:#1a1916;color:#fff;font-size:13px;font-weight:500;padding:11px 18px;border-radius:var(--radius-sm);z-index:2000;transform:translateY(80px);opacity:0;transition:all 0.3s ease;pointer-events:none}
+.toast.show{transform:none;opacity:1}.toast.error{background:var(--red)}
+.section-divider{display:flex;align-items:center;gap:8px;margin:14px 0 10px}
+.section-divider span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);white-space:nowrap}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border-md);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="wordmark">Nuway <span class="db-dot online" id="db-dot" title="Database connected"></span></div>
+      <div class="tagline">Delivery Management</div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Operations</div>
+      <div class="nav-item active" onclick="switchView(&#39;runsheet&#39;,this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"></rect><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="11" y2="9"></line><line x1="5" y1="12" x2="8" y2="12"></line></svg>
+        Run Sheet
+      </div>
+      <div class="nav-item" onclick="switchView(&#39;journal&#39;,this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z"></path><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="9" y2="9"></line></svg>
+        Delivery Journal
+      </div>
+      <div class="nav-item" onclick="switchView(&#39;driver&#39;,this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="14" height="7" rx="1.5"></rect><path d="M1 9h14M5 6V4a3 3 0 016 0v2"></path><circle cx="4" cy="14" r="1.5" fill="currentColor" stroke="none"></circle><circle cx="12" cy="14" r="1.5" fill="currentColor" stroke="none"></circle></svg>
+        Driver View
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Management</div>
+      <div class="nav-item" onclick="switchView(&#39;hq&#39;,this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"></rect><rect x="9" y="1" width="6" height="6" rx="1"></rect><rect x="1" y="9" width="6" height="6" rx="1"></rect><rect x="9" y="9" width="6" height="6" rx="1"></rect></svg>
+        Head Office
+      </div>
+      <div class="nav-item" onclick="switchView(&#39;customer&#39;,this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="5" r="3"></circle><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"></path></svg>
+        Customer Tracker
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <strong id="footer-store">Logan Store</strong>
+      <span id="footer-date">Mon, 20 Apr 2026</span>
+    </div>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <span class="page-title" id="page-title">Run Sheet</span>
+        <select class="pill-select" id="store-select" onchange="changeStore()">
+          <option>Logan</option><option>Chandler</option><option>Ashmore</option><option>Caboolture</option>
+          <option>Ipswich</option><option>Brendale</option><option>Springfield</option><option>Narangba</option>
+          <option>Oxenford</option><option>Yatala</option><option>Beenleigh</option>
+        </select>
+        <input type="date" class="pill-select" id="date-select" onchange="changeDate()">
+      </div>
+      <div class="topbar-right">
+        <button class="btn" onclick="loadDeliveries()" title="Refresh">↻ Refresh</button>
+        <button class="btn" onclick="showModal(&#39;booking&#39;)">+ Book delivery</button>
+        <button class="btn btn-primary" id="top-action">Export PDF</button>
+      </div>
+    </div>
+    <div class="content">
+
+      <!-- RUN SHEET -->
+      <div class="view active" id="view-runsheet">
+        <div class="metrics">
+          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">4</div><div class="metric-sub">across 3 trucks</div></div>
+          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
+          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
+          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">26</div><div class="metric-sub">today's capacity</div></div>
+        </div>
+        <div class="run-sheet-wrap">
+          <div style="display:grid;grid-template-columns:72px repeat(3,1fr)">
+            <div class="rs-th" style="text-align:center">Time</div>
+            <div class="rs-th">M1 — Jake T.</div>
+            <div class="rs-th">M2 — Chris B.</div>
+            <div class="rs-th">FUSO — Dan R.</div>
+          </div>
+          <div id="rs-body"><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">7–8am</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;7–8am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;7–8am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;7–8am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,2)">+ 2hr</span>
+        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;8–9am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;8–9am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;8–9am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,2)">+ 2hr</span>
+        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;9–10am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;9–10am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;9–10am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,2)">+ 2hr</span>
+        </div></div></div><div class="rs-break">10-minute paid rest break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;10–11am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;10–11am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;10–11am&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,2)">+ 2hr</span>
+        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;11am–12pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;11am–12pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;11am–12pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,2)">+ 2hr</span>
+        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;12–1pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;12–1pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;12–1pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,2)">+ 2hr</span>
+        </div></div></div><div class="rs-break">30-minute unpaid lunch break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;1–2pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;1–2pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;1–2pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,2)">+ 2hr</span>
+        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;2–3pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;2–3pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;2–3pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,2)">+ 2hr</span>
+        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;3–4pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;3–4pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;3–4pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,2)">+ 2hr</span>
+        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(0,&#39;4–5pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(1,&#39;4–5pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,2)">+ 2hr</span>
+        </div></div><div class="rs-cell empty"><div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(2,&#39;4–5pm&#39;,0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,2)">+ 2hr</span>
+        </div></div></div></div>
+        </div>
+      </div>
+
+      <!-- JOURNAL -->
+      <div class="view" id="view-journal">
+        <div class="metrics">
+          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">4</div></div>
+          <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$0</div></div>
+          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">0</div></div>
+          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">4</div></div>
+        </div>
+        <div class="table-wrap">
+          <table><thead><tr><th>#</th><th>Customer</th><th>Suburb</th><th>Invoice</th><th>Payment</th><th>COD $</th><th>Driver</th><th>Truck</th><th>Slot</th><th>Duration</th><th>Status</th></tr></thead>
+          <tbody id="journal-body"><tr><td class="mono">10</td><td style="font-weight:600">chris h</td><td>shailer park</td>
+    <td class="mono">dfd6565</td><td><span class="badge badge-paid">Paid</span></td>
+    <td class="mono">—</td><td>Jake T.</td>
+    <td class="mono">M1</td>
+    <td class="mono">1–2pm</td><td class="mono">1hr</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">7</td><td style="font-weight:600">bob smith</td><td>dgdgdgd</td>
+    <td class="mono">54545</td><td><span class="badge badge-cod">COD</span></td>
+    <td class="mono">—</td><td>COD</td>
+    <td class="mono">M1</td>
+    <td class="mono">M1 — Jake T.</td><td class="mono">1hr</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">8</td><td style="font-weight:600">bob smith</td><td>dgdgdgd</td>
+    <td class="mono">54545</td><td><span class="badge badge-cod">COD</span></td>
+    <td class="mono">—</td><td>COD</td>
+    <td class="mono">M1</td>
+    <td class="mono">M1 — Jake T.</td><td class="mono">1hr</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">9</td><td style="font-weight:600">bob smith</td><td>dgdgdgd</td>
+    <td class="mono">54545</td><td><span class="badge badge-cod">COD</span></td>
+    <td class="mono">—</td><td>COD</td>
+    <td class="mono">M1</td>
+    <td class="mono">M2 — Chris B.</td><td class="mono">1.5hr</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr></tbody></table>
+        </div>
+      </div>
+
+      <!-- DRIVER VIEW -->
+      <div class="view" id="view-driver">
+        <div class="driver-layout">
+          <div class="driver-queue">
+            <div class="driver-queue-hdr">
+              <div class="dq-name" id="dv-driver-name">Jake T. — M1</div>
+              <div class="dq-sub" id="dv-driver-sub">Today · 0 deliveries</div>
+            </div>
+            <div id="driver-list"></div>
+          </div>
+          <div id="driver-detail" class="driver-detail">
+            <div style="text-align:center;padding:40px;color:var(--text-3)">Select a delivery from the queue</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEAD OFFICE -->
+      <div class="view" id="view-hq">
+        <div class="metrics">
+          <div class="metric"><div class="metric-label">Total deliveries</div><div class="metric-value" id="hq-total">0</div><div class="metric-sub">all stores today</div></div>
+          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="hq-done">0</div><div class="metric-sub" id="hq-pct">0%</div></div>
+          <div class="metric"><div class="metric-label">COD total</div><div class="metric-value mv-amber" id="hq-cod">$0</div></div>
+          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="hq-pending">0</div></div>
+        </div>
+        <div class="hq-store-grid" id="hq-grid"></div>
+        <div class="table-wrap">
+          <table><thead><tr><th>Store</th><th>Date</th><th>Bookings</th><th>Completed</th><th>In Progress</th><th>Pending</th><th>COD $</th></tr></thead>
+          <tbody id="hq-table"></tbody></table>
+        </div>
+      </div>
+
+      <!-- CUSTOMER TRACKER -->
+      <div class="view" id="view-customer">
+        <div class="tracker-wrap">
+          <div class="sms-preview">
+            <div class="sms-label">Customer receives SMS</div>
+            <div class="sms-bubble">Hi! Your Nuway delivery is on its way. Track live: nuway.com.au/track 📦</div>
+          </div>
+          <div class="tracker-card" id="tracker-card">
+    <div class="tracker-title">Your delivery — dfd6565</div>
+    <div class="tracker-sub">shailer park · 2.5 concrete</div>
+    <div class="tracker-status-msg">Your order is confirmed.</div>
+    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Loading</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
+    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">1–2pm</div><div class="eta-sub">Jake T. · Logan</div></div>
+    <div style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px">Questions? Call Logan store</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="modal-booking" onclick="if(event.target===this)closeModal(&#39;booking&#39;)">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Book delivery</span>
+      <span class="modal-close" onclick="closeModal(&#39;booking&#39;)">×</span>
+    </div>
+    <div class="modal-body">
+      <div class="field-row">
+        <div class="field"><label>Customer name</label><input type="text" id="book-name" placeholder="e.g. Smith, J"></div>
+        <div class="field"><label>Customer phone</label><input type="text" id="book-phone" placeholder="04XX XXX XXX"></div>
+      </div>
+      <div class="field"><label>Invoice number</label><input type="text" id="book-inv" placeholder="e.g. INV-4892"></div>
+      <div class="field-row">
+        <div class="field"><label>Suburb</label><input type="text" id="book-suburb" placeholder="e.g. Loganholme"></div>
+        <div class="field"><label>Payment type</label>
+          <select id="book-pay"><option value="cod">COD</option><option value="acc">Account</option><option value="paid">Paid (EFTPOS/Cash)</option></select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Truck</label>
+          <select id="book-truck"><option value="0">M1 — Jake T.</option><option value="1">M2 — Chris B.</option><option value="2">FUSO — Dan R.</option></select>
+        </div>
+        <div class="field"><label>Time slot</label>
+          <select id="book-slot"><option>7–8am</option><option>8–9am</option><option>9–10am</option><option>10–11am</option><option>11am–12pm</option><option>12–1pm</option><option>1–2pm</option><option>2–3pm</option><option>3–4pm</option><option>4–5pm</option></select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Duration</label>
+        <div class="duration-grid" id="book-dur-grid">
+          <button type="button" class="dur-btn half" onclick="selectBookDur(this,0.5)">½ hr</button>
+          <button type="button" class="dur-btn selected" onclick="selectBookDur(this,1)">1 hr</button>
+          <button type="button" class="dur-btn" onclick="selectBookDur(this,1.5)">1.5 hr</button>
+          <button type="button" class="dur-btn" onclick="selectBookDur(this,2)">2 hr</button>
+          <button type="button" class="dur-btn" onclick="selectBookDur(this,2.5)">2.5 hr</button>
+          <button type="button" class="dur-btn" onclick="selectBookDur(this,3)">3 hr</button>
+        </div>
+      </div>
+      <div class="field"><label>Products</label><textarea id="book-products" placeholder="e.g. 2m³ Blue Metal
+1x Cement bag (20kg)"></textarea></div>
+      <div class="field"><label>Delivery notes</label><textarea id="book-notes" placeholder="e.g. Not before 9am. Side gate on left."></textarea></div>
+      <div class="field"><label>COD amount</label><input type="text" id="book-cod" placeholder="$0.00"></div>
+      <div class="sms-note">SMS confirmation + tracking link sent automatically when saved.</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal(&#39;booking&#39;)">Cancel</button>
+      <button class="btn btn-primary" onclick="saveBooking()">Save &amp; send SMS</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT SLOT MODAL -->
+<div class="modal-overlay" id="modal-editslot" onclick="if(event.target===this)closeModal(&#39;editslot&#39;)">
+  <div class="modal" style="width:400px">
+    <div class="modal-header">
+      <span class="modal-title" id="editslot-title">Edit delivery</span>
+      <span class="modal-close" onclick="closeModal(&#39;editslot&#39;)">×</span>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Customer name</label><input type="text" id="edit-name"></div>
+      <div class="field-row">
+        <div class="field"><label>Suburb</label><input type="text" id="edit-suburb"></div>
+        <div class="field"><label>Invoice</label><input type="text" id="edit-inv"></div>
+      </div>
+      <div class="field"><label>Delivery notes</label><textarea id="edit-notes" style="min-height:50px"></textarea></div>
+      <div class="field">
+        <label>Duration</label>
+        <div class="duration-grid" id="edit-dur-grid">
+          <button type="button" class="dur-btn half" onclick="selectEditDur(this,0.5)">½ hr</button>
+          <button type="button" class="dur-btn" onclick="selectEditDur(this,1)">1 hr</button>
+          <button type="button" class="dur-btn" onclick="selectEditDur(this,1.5)">1.5 hr</button>
+          <button type="button" class="dur-btn" onclick="selectEditDur(this,2)">2 hr</button>
+          <button type="button" class="dur-btn" onclick="selectEditDur(this,2.5)">2.5 hr</button>
+          <button type="button" class="dur-btn" onclick="selectEditDur(this,3)">3 hr</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" style="margin-right:auto;color:var(--red-text);border-color:var(--red-bg)" onclick="deleteDelivery()">Remove booking</button>
+      <button class="btn" onclick="closeModal(&#39;editslot&#39;)">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEditSlot()">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Loaded 4 deliveries</div>
+
+<script>
+// ═══ SUPABASE ═══
+const SB_URL='https://prgbejzvxbdqnszvofpj.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByZ2Jlanp2eGJkcW5zenZvZnBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjU5MjksImV4cCI6MjA5MjI0MTkyOX0.6IpVkprZRlJb4f4yoiiL34bXK2XHEkp4ZeP25Joh3vU';
+
+async function db(path,opts={}){
+  const res=await fetch(`${SB_URL}/rest/v1/${path}`,{
+    ...opts,
+    headers:{
+      'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`,
+      'Content-Type':'application/json',
+      'Prefer':opts.prefer||'return=representation',
+      ...opts.headers
+    }
+  });
+  if(!res.ok){const e=await res.text();console.error('DB',res.status,e);throw new Error(e);}
+  const t=await res.text();return t?JSON.parse(t):[];
+}
+
+// ═══ CONSTANTS ═══
+const SLOTS=['7–8am','8–9am','9–10am','10–11am','11am–12pm','12–1pm','1–2pm','2–3pm','3–4pm','4–5pm'];
+const BREAKS={'9–10am':'10-minute paid rest break','12–1pm':'30-minute unpaid lunch break'};
+const TRUCK_NAMES=['M1 — Jake T.','M2 — Chris B.','FUSO — Dan R.'];
+const DRIVER_NAMES=['Jake T.','Chris B.','Dan R.'];
+const PAY_LABEL={cod:'COD',acc:'Account',paid:'Paid'};
+const PAY_CLASS={cod:'badge-cod',acc:'badge-acc',paid:'badge-paid'};
+const SAFETY_QS=[
+  {q:'Is the delivery area safe to enter with the truck?',sub:'Check overhead clearance, soft ground, slopes'},
+  {q:'Is there a safe tip-off point clear of people and property?',sub:'Confirm no vehicles, structures or overhead lines in drop zone'},
+  {q:'Has the customer (or representative) been informed of the delivery location?',sub:'Customer or instructions confirm drop point'},
+  {q:'Is the truck properly positioned and handbrake applied before tipping?',sub:'Level ground preferred — if not, wheels chocked'},
+  {q:'Are bystanders clear of the tipping area?',sub:'Minimum 5m clearance from tip zone during unload'},
+];
+const ALL_STORES=['Logan','Chandler','Ashmore','Caboolture','Ipswich','Brendale','Springfield','Narangba','Oxenford','Yatala','Beenleigh'];
+
+// ═══ STATE ═══
+let DELIVERIES=[];
+let currentStore='Logan';
+let currentDate='';
+let editingId=null;
+let editingDur=1;
+let bookingDur=1;
+let selectedDriverTruck=0;
+let selectedDeliveryId=null;
+const prodChecked={};
+const safetyChecked={};
+
+// ═══ INIT ═══
+function init(){
+  const today=new Date();
+  currentDate=today.toISOString().split('T')[0];
+  document.getElementById('date-select').value=currentDate;
+  document.getElementById('footer-date').textContent=today.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  loadDeliveries();
+}
+
+async function loadDeliveries(){
+  try{
+    DELIVERIES=await db(`deliveries?store=eq.${encodeURIComponent(currentStore)}&date=eq.${currentDate}&order=slot.asc,truck.asc`);
+    document.getElementById('db-dot').className='db-dot online';
+    document.getElementById('db-dot').title='Database connected';
+    showToast(`Loaded ${DELIVERIES.length} deliveries`);
+  }catch(e){
+    document.getElementById('db-dot').className='db-dot offline';
+    document.getElementById('db-dot').title='Database disconnected';
+    showToast('Could not connect to database',true);
+    DELIVERIES=[];
+  }
+  renderAll();
+}
+
+function renderAll(){buildRunSheet();buildJournal();buildDriverView();updateCustomerTracker();}
+
+function parseCod(d){const a=d.cod_amount?parseFloat(d.cod_amount.replace(/[$,]/g,'')):0;return isNaN(a)?0:a;}
+
+// ═══ RUN SHEET ═══
+function statusBadge(d){
+  if(d.driver_status==='delivered')return'<span class="badge badge-done">Done</span>';
+  if(d.driver_status==='loading')return'<span class="badge badge-loading">Loading</span>';
+  if(d.driver_status==='enroute')return'<span class="badge badge-out">En route</span>';
+  return'';
+}
+function cardClass(d){
+  const p=d.payment_type||'acc';
+  if(d.driver_status==='delivered')return`del-card ${p} done`;
+  if(d.driver_status==='loading')return`del-card ${p} status-loading`;
+  if(d.driver_status==='enroute')return`del-card ${p} status-enroute`;
+  return`del-card ${p}`;
+}
+function durLabel(dur){if(dur===0.5)return'½hr';if(dur===1)return'';return dur+'hr';}
+
+function buildRunSheet(){
+  const body=document.getElementById('rs-body');body.innerHTML='';
+  SLOTS.forEach(slot=>{
+    const row=document.createElement('div');
+    row.style.cssText='display:grid;grid-template-columns:72px repeat(3,1fr)';
+    const tc=document.createElement('div');tc.className='rs-time-cell';tc.textContent=slot;row.appendChild(tc);
+    [0,1,2].forEach(t=>{
+      const d=DELIVERIES.find(x=>x.slot===slot&&x.truck===t);
+      const cell=document.createElement('div');
+      if(d){
+        const dur=parseFloat(d.duration)||1;
+        let sc='';if(dur>=2)sc=' span2';else if(dur===1.5)sc=' span15';
+        cell.className='rs-cell'+sc;
+        const p=d.payment_type||'acc';
+        cell.innerHTML=`<div class="${cardClass(d)}" style="width:100%">
+          ${dur>1||dur===0.5?`<div class="del-duration">${durLabel(dur)}</div>`:''}
+          <div class="del-top">
+            <span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>
+            ${statusBadge(d)}
+            ${dur===0.5?'<span class="badge badge-half">½ slot</span>':''}
+          </div>
+          <div class="del-name">${d.customer_name||'—'}</div>
+          <div class="del-suburb">${d.suburb||''}</div>
+          <div class="del-inv">${d.invoice||''}${d.cod_amount?' · '+d.cod_amount:''}</div>
+          ${d.notes?`<div class="del-note">${d.notes}</div>`:''}
+          <button class="del-edit-btn" onclick="event.stopPropagation();openEditSlot(${d.id})">Edit</button>
+        </div>`;
+      }else{
+        cell.className='rs-cell empty';
+        cell.innerHTML=`<div class="empty-actions">
+          <span class="ea-btn half" onclick="openBookingWith(${t},'${slot}',0.5)">+ ½hr</span>
+          <span class="ea-btn" onclick="openBookingWith(${t},'${slot}',1)">+ 1hr</span>
+          <span class="ea-btn" onclick="openBookingWith(${t},'${slot}',1.5)">+ 1.5hr</span>
+          <span class="ea-btn" onclick="openBookingWith(${t},'${slot}',2)">+ 2hr</span>
+        </div>`;
+      }
+      row.appendChild(cell);
+    });
+    body.appendChild(row);
+    if(BREAKS[slot]){const br=document.createElement('div');br.className='rs-break';br.textContent=BREAKS[slot];body.appendChild(br);}
+  });
+  const done=DELIVERIES.filter(d=>d.driver_status==='delivered').length;
+  const prog=DELIVERIES.filter(d=>d.driver_status==='loading'||d.driver_status==='enroute').length;
+  document.getElementById('m-total').textContent=DELIVERIES.length;
+  document.getElementById('m-done').textContent=done;
+  document.getElementById('m-prog').textContent=prog;
+  document.getElementById('m-remain').textContent=Math.max(0,30-DELIVERIES.length);
+}
+
+// ═══ JOURNAL ═══
+function buildJournal(){
+  const tbody=document.getElementById('journal-body');
+  const SM={delivered:{c:'s-done',l:'Delivered'},enroute:{c:'s-out',l:'En route'},loading:{c:'s-out',l:'Loading'},pending:{c:'s-pending',l:'Pending'}};
+  tbody.innerHTML=DELIVERIES.map(d=>{
+    const p=d.payment_type||'acc';const s=SM[d.driver_status]||SM.pending;const dur=parseFloat(d.duration)||1;
+    return`<tr><td class="mono">${d.id}</td><td style="font-weight:600">${d.customer_name||'—'}</td><td>${d.suburb||''}</td>
+    <td class="mono">${d.invoice||''}</td><td><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span></td>
+    <td class="mono">${d.cod_amount||'—'}</td><td>${d.driver_name||DRIVER_NAMES[d.truck]||'—'}</td>
+    <td class="mono">${TRUCK_NAMES[d.truck]?TRUCK_NAMES[d.truck].split(' — ')[0]:'T'+d.truck}</td>
+    <td class="mono">${d.slot||''}</td><td class="mono">${dur}hr</td>
+    <td><span class="status-pill ${s.c}"><span class="status-dot"></span>${s.l}</span></td></tr>`;
+  }).join('');
+  const codTotal=DELIVERIES.reduce((s,d)=>s+parseCod(d),0);
+  document.getElementById('j-total').textContent=DELIVERIES.length;
+  document.getElementById('j-cod').textContent='$'+codTotal.toLocaleString();
+  document.getElementById('j-done').textContent=DELIVERIES.filter(d=>d.driver_status==='delivered').length;
+  document.getElementById('j-pending').textContent=DELIVERIES.filter(d=>d.driver_status==='pending').length;
+}
+
+// ═══ DRIVER VIEW ═══
+function buildDriverView(){
+  const mine=DELIVERIES.filter(d=>d.truck===selectedDriverTruck);
+  const dn=DRIVER_NAMES[selectedDriverTruck]||'Driver';
+  const tn=TRUCK_NAMES[selectedDriverTruck]?TRUCK_NAMES[selectedDriverTruck].split(' — ')[0]:'';
+  document.getElementById('dv-driver-name').textContent=`${dn} — ${tn}`;
+  document.getElementById('dv-driver-sub').textContent=`Today · ${mine.length} deliveries`;
+  const list=document.getElementById('driver-list');
+  list.innerHTML=mine.map((d,qi)=>{
+    const nc=d.driver_status==='delivered'?'done':d.driver_status==='loading'?'loading':d.driver_status==='enroute'?'enroute':'';
+    const ni=d.driver_status==='delivered'?'✓':(qi+1);
+    const sel=d.id===selectedDeliveryId?' sel':'';
+    const p=d.payment_type||'acc';
+    return`<div class="dq-item${sel}" onclick="selectDelivery(${d.id},this)">
+      <div class="dq-row"><span class="dq-num ${nc}">${ni}</span><span class="dq-customer">${d.customer_name||'—'}</span></div>
+      <div class="dq-detail">${d.suburb||''} · ${d.slot||''}</div>
+      <div class="dq-badges">
+        <span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>
+        ${d.driver_status==='delivered'?'<span class="badge badge-done">Delivered</span>':''}
+        ${d.driver_status==='loading'?'<span class="badge badge-loading">Loading</span>':''}
+        ${d.driver_status==='enroute'?'<span class="badge badge-out">En route</span>':''}
+        ${d.cod_amount?`<span class="badge badge-cod">${d.cod_amount}</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
+  if(mine.length>0&&!mine.find(d=>d.id===selectedDeliveryId))selectDelivery(mine[0].id,null);
+  else if(selectedDeliveryId){const d=DELIVERIES.find(x=>x.id===selectedDeliveryId);if(d)renderDriverDetail(d);}
+}
+
+function selectDelivery(id,el){
+  selectedDeliveryId=id;
+  document.querySelectorAll('.dq-item').forEach(x=>x.classList.remove('sel'));
+  if(el)el.classList.add('sel');
+  else{document.querySelectorAll('.dq-item').forEach((x,i)=>{
+    const mine=DELIVERIES.filter(d=>d.truck===selectedDriverTruck);
+    if(mine[i]&&mine[i].id===id)x.classList.add('sel');
+  });}
+  const d=DELIVERIES.find(x=>x.id===id);if(d)renderDriverDetail(d);
+}
+
+function renderDriverDetail(d){
+  const st=d.driver_status||'pending';
+  const products=d.products?d.products.split('\n').filter(Boolean).map(p=>{const ps=p.split(' - ');return{name:ps[0]||p,qty:ps[1]||''};}):[]; 
+  if(!prodChecked[d.id])prodChecked[d.id]=products.map(()=>false);
+  if(!safetyChecked[d.id])safetyChecked[d.id]=SAFETY_QS.map(()=>false);
+  const steps=[{label:'Loading',key:'loading'},{label:'En route',key:'enroute'},{label:'At site',key:'atsite'},{label:'Delivered',key:'delivered'}];
+  const stMap={pending:0,loading:1,enroute:2,atsite:3,delivered:4};
+  const cur=stMap[st]||0;
+  const progHtml=`<div class="prog-track">${steps.map((s,i)=>{
+    const dn=cur>i+1,ac=cur===i+1;
+    let cc=dn?'done':ac?'active':'',lc=dn?'done':ac?'active':'';
+    if(ac&&s.key==='loading'){cc='loading-active';lc='loading-active';}
+    const ic=dn?'✓':(ac?'→':i+1);
+    return`<div class="prog-step"><div class="prog-circle ${cc}">${ic}</div><div class="prog-label ${lc}">${s.label}</div></div>${i<steps.length-1?`<div class="prog-connector${dn?' done':''}"></div>`:''}`;
+  }).join('')}</div>`;
+  let actionHtml='';
+  if(st==='pending')actionHtml=`<div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(${d.id},'loading')">Start loading</button></div>`;
+  else if(st==='loading'){
+    const allC=products.length===0||prodChecked[d.id].every(Boolean);
+    actionHtml=`<div class="action-row"><button class="btn btn-primary" ${allC?'':'disabled title="Tick all products"'} onclick="advanceStatus(${d.id},'enroute')">Leave for site</button></div>${!allC?'<div style="font-size:11px;color:var(--amber-text);margin-top:6px;text-align:center">Tick all products as loaded before departing</div>':''}`;
+  }else if(st==='enroute')actionHtml=`<div class="action-row"><button class="btn btn-success" onclick="advanceStatus(${d.id},'delivered')">Mark delivered</button></div>`;
+  else actionHtml=`<div style="background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--green-text);font-weight:500;text-align:center;margin-top:8px">Delivery complete ✓</div>`;
+  const prodHtml=products.length>0?products.map((p,pi)=>`<div class="product-line"><input type="checkbox" class="pcheck" ${prodChecked[d.id][pi]?'checked':''} onchange="toggleProd(${d.id},${pi},this.checked)" ${st!=='loading'?'disabled':''}><span class="pname">${p.name}</span><span class="pqty">${p.qty}</span></div>`).join(''):'<div style="font-size:12px;color:var(--text-3);padding:4px 0">No products listed</div>';
+  const showSafety=st==='enroute'||st==='delivered';
+  const allSafe=safetyChecked[d.id].every(Boolean);
+  const safetyHtml=showSafety?`<div class="section-divider"><span>Site safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div>${SAFETY_QS.map((q,qi)=>`<div class="safety-item"><input type="checkbox" class="safety-check" ${safetyChecked[d.id][qi]?'checked':''} onchange="toggleSafety(${d.id},${qi},this.checked)"><div class="safety-text"><div class="safety-q">${q.q}</div><div class="safety-sub">${q.sub}</div></div></div>`).join('')}<div class="safety-pass${allSafe?' show':''}">All safety checks complete — safe to unload.</div></div>`:(st==='pending'||st==='loading'?`<div class="detail-section" style="opacity:0.5"><div class="detail-section-title">Site safety checklist</div><div style="font-size:12px;color:var(--text-3);padding:4px 0">Available once en route</div></div>`:'');
+  const photoHtml=showSafety?`<div class="section-divider"><span>Delivery photos</span></div><div class="detail-section"><div class="detail-section-title">Upload delivery evidence</div><div class="photo-upload-zone" onclick="showToast('Photo upload coming soon')"><div style="font-size:24px;margin-bottom:6px;opacity:0.4">📷</div><div style="font-size:13px;font-weight:500;color:var(--text-2)">Tap to add photos</div><div style="font-size:11px;color:var(--text-3);margin-top:3px">Before &amp; after — max 5 photos</div></div><div class="photo-grid"><div class="photo-thumb">+ Add</div><div class="photo-thumb">+ Add</div><div class="photo-thumb">+ Add</div></div></div>`:'';
+  const pay=d.payment_type||'acc';
+  document.getElementById('driver-detail').innerHTML=`${progHtml}
+    <div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid">
+      <div class="detail-item"><div class="dl">Name</div><div class="dv">${d.customer_name||'—'}</div></div>
+      <div class="detail-item"><div class="dl">Invoice</div><div class="dv" style="font-family:'DM Mono',monospace;font-size:12px">${d.invoice||'—'}</div></div>
+      <div class="detail-item"><div class="dl">Window</div><div class="dv">${d.slot||'—'}</div></div>
+      <div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge ${PAY_CLASS[pay]||'badge-acc'}">${PAY_LABEL[pay]||pay}</span></div></div>
+    </div></div>
+    <div class="detail-section"><div class="detail-section-title">Delivery details</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:4px">${d.suburb||'No suburb'}</div>
+      <div style="font-size:12px;color:var(--text-3)">${d.notes||'No special instructions'}</div>
+      ${d.customer_phone?`<div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 ${d.customer_phone}</div>`:''}
+    </div>
+    <div class="detail-section"><div class="detail-section-title">Products to load &amp; deliver${st==='loading'?' — tick each as loaded':''}</div>${prodHtml}</div>
+    ${actionHtml}
+    ${pay==='cod'&&(st==='enroute'||st==='delivered')?`<div class="cod-box"><strong>COD collection required</strong>Collect ${d.cod_amount||'$0'} cash on delivery.<input type="text" placeholder="Receipt number" style="margin-top:6px"></div>`:''}
+    ${safetyHtml}${photoHtml}`;
+}
+
+function toggleProd(id,pi,val){prodChecked[id][pi]=val;const d=DELIVERIES.find(x=>x.id===id);if(d)renderDriverDetail(d);}
+function toggleSafety(id,qi,val){safetyChecked[id][qi]=val;const d=DELIVERIES.find(x=>x.id===id);if(d)renderDriverDetail(d);}
+
+async function advanceStatus(id,newStatus){
+  try{
+    await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({driver_status:newStatus})});
+    const d=DELIVERIES.find(x=>x.id===id);if(d)d.driver_status=newStatus;
+    renderAll();
+    const msgs={loading:'Loading started — customer notified',enroute:'Departed for site — SMS sent',delivered:'Delivery complete ✓'};
+    showToast(msgs[newStatus]||'Updated');
+  }catch(e){showToast('Failed to update status',true);}
+}
+
+// ═══ CUSTOMER TRACKER ═══
+function updateCustomerTracker(){
+  const d=DELIVERIES.find(x=>x.driver_status==='enroute')||DELIVERIES.find(x=>x.driver_status==='loading')||DELIVERIES.find(x=>x.driver_status!=='delivered')||DELIVERIES[DELIVERIES.length-1];
+  if(!d){document.getElementById('tracker-card').innerHTML='<div style="text-align:center;padding:30px;color:var(--text-3)">No deliveries to track</div>';return;}
+  const st=d.driver_status||'pending';
+  const steps=[{label:'Confirmed',cls:'done'},{label:'Loading',cls:st==='loading'?'loading':(st==='enroute'||st==='delivered')?'done':''},{label:'On the way',cls:st==='enroute'?'active':st==='delivered'?'done':''},{label:'Delivered',cls:st==='delivered'?'done':''}];
+  const conn=[st!=='pending'?'done':'',st==='enroute'||st==='delivered'?'done':st==='loading'?'partial':'',st==='delivered'?'done':''];
+  const icons={done:'✓',loading:'⟳',active:'→','':'○'};
+  const msgs={pending:'Your order is confirmed.',loading:'Products are being loaded now.',enroute:`${d.driver_name||'Driver'} is on the way!`,delivered:'Delivered! Thank you.'};
+  document.getElementById('tracker-card').innerHTML=`
+    <div class="tracker-title">Your delivery — ${d.invoice||''}</div>
+    <div class="tracker-sub">${d.suburb||''} · ${d.products?d.products.split('\n')[0]:''}</div>
+    <div class="tracker-status-msg">${msgs[st]||''}</div>
+    <div class="track-steps">${steps.map((s,i)=>`<div class="t-step"><div class="t-circle ${s.cls}">${icons[s.cls]||'○'}</div><div class="t-label ${s.cls}">${s.label}</div></div>${i<steps.length-1?`<div class="t-connector ${conn[i]||''}"></div>`:''}`).join('')}</div>
+    ${st!=='delivered'?`<div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">${d.slot||'TBD'}</div><div class="eta-sub">${d.driver_name||'Driver'} · ${currentStore}</div></div>`:`<div style="background:var(--green-bg);border-radius:var(--radius);padding:18px 20px;text-align:center"><div style="font-size:24px;margin-bottom:6px">✓</div><div style="font-size:16px;font-weight:600;color:var(--green-text)">Delivered successfully</div></div>`}
+    <div style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px">Questions? Call ${currentStore} store</div>`;
+}
+
+// ═══ HEAD OFFICE ═══
+async function buildHQ(){
+  let all=[];
+  try{all=await db(`deliveries?date=eq.${currentDate}&order=store.asc`);}catch(e){all=[];}
+  const byStore={};ALL_STORES.forEach(s=>byStore[s]=[]);
+  all.forEach(d=>{if(byStore[d.store])byStore[d.store].push(d);});
+  const active=ALL_STORES.filter(s=>byStore[s].length>0);
+  let tAll=0,dAll=0,cAll=0,pAll=0;
+  document.getElementById('hq-grid').innerHTML=active.map(sn=>{
+    const ds=byStore[sn];const tot=ds.length;const comp=ds.filter(d=>d.driver_status==='delivered').length;
+    const pct=tot>0?Math.round(comp/tot*100):0;
+    const cod=ds.reduce((s,d)=>s+parseCod(d),0);
+    tAll+=tot;dAll+=comp;cAll+=cod;pAll+=ds.filter(d=>d.driver_status==='pending').length;
+    return`<div class="hq-store-card"><div class="hq-store-name">${sn}${pct===100?'<span class="badge badge-yes">Complete</span>':comp>0?'<span class="badge badge-out">Active</span>':'<span class="badge badge-pending">Pending</span>'}</div>
+    <div style="font-size:11px;color:var(--text-3)">${comp} of ${tot} delivered</div>
+    <div class="hq-bar-track"><div class="hq-bar-fill${pct===100?' high':''}" style="width:${pct}%"></div></div>
+    <div class="hq-stats"><span>${pct}%</span><span>COD $${cod.toLocaleString()}</span></div></div>`;
+  }).join('');
+  document.getElementById('hq-table').innerHTML=active.map(sn=>{
+    const ds=byStore[sn];const tot=ds.length;const comp=ds.filter(d=>d.driver_status==='delivered').length;
+    const prog=ds.filter(d=>d.driver_status==='loading'||d.driver_status==='enroute').length;
+    const pend=ds.filter(d=>d.driver_status==='pending').length;
+    const cod=ds.reduce((s,d)=>s+parseCod(d),0);
+    return`<tr><td style="font-weight:600">${sn}</td><td>${new Date(currentDate+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})}</td>
+    <td>${tot}</td><td><span class="badge badge-yes">${comp}</span></td><td><span class="badge badge-out">${prog}</span></td>
+    <td><span class="badge badge-pending">${pend}</span></td><td class="mono">$${cod.toLocaleString()}</td></tr>`;
+  }).join('');
+  document.getElementById('hq-total').textContent=tAll;
+  document.getElementById('hq-done').textContent=dAll;
+  document.getElementById('hq-pct').textContent=tAll>0?Math.round(dAll/tAll*100)+'%':'0%';
+  document.getElementById('hq-cod').textContent='$'+cAll.toLocaleString();
+  document.getElementById('hq-pending').textContent=pAll;
+}
+
+// ═══ BOOKING — FIXED: explicit IDs, no ambiguous select ordering ═══
+function openBookingWith(truck,slot,dur){
+  bookingDur=dur;
+  document.getElementById('book-truck').value=truck;
+  document.getElementById('book-slot').value=slot;
+  document.querySelectorAll('#book-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));
+  const durVals=[0.5,1,1.5,2,2.5,3];
+  durVals.forEach((v,i)=>{if(v===dur)document.querySelectorAll('#book-dur-grid .dur-btn')[i].classList.add('selected');});
+  showModal('booking');
+}
+function selectBookDur(btn,val){bookingDur=val;document.querySelectorAll('#book-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');}
+
+async function saveBooking(){
+  // ✅ FIX: Each field read by explicit ID — never by select index
+  const customer_name=document.getElementById('book-name').value.trim();
+  const customer_phone=document.getElementById('book-phone').value.trim();
+  const invoice=document.getElementById('book-inv').value.trim();
+  const suburb=document.getElementById('book-suburb').value.trim();
+  const payment_type=document.getElementById('book-pay').value;     // "cod"|"acc"|"paid"
+  const truck=parseInt(document.getElementById('book-truck').value); // 0|1|2
+  const slot=document.getElementById('book-slot').value;             // "7–8am" etc.
+  const products=document.getElementById('book-products').value.trim();
+  const notes=document.getElementById('book-notes').value.trim();
+  const cod_amount=document.getElementById('book-cod').value.trim();
+  const driver_name=DRIVER_NAMES[truck]||'';
+
+  if(!customer_name){showToast('Enter a customer name',true);return;}
+
+  const row={store:currentStore,date:currentDate,slot,truck,driver_name,customer_name,customer_phone,suburb,invoice,payment_type,cod_amount:cod_amount||null,products:products||null,notes:notes||null,duration:bookingDur,driver_status:'pending'};
+
+  try{
+    await db('deliveries',{method:'POST',body:JSON.stringify(row)});
+    showToast('Delivery booked · SMS sent');
+    closeModal('booking');
+    clearBookingForm();
+    await loadDeliveries();
+  }catch(e){showToast('Save failed: '+e.message,true);}
+}
+
+function clearBookingForm(){
+  ['book-name','book-phone','book-inv','book-suburb','book-products','book-notes','book-cod'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('book-pay').value='cod';
+  document.getElementById('book-truck').value='0';
+  document.getElementById('book-slot').value='7–8am';
+  bookingDur=1;
+  document.querySelectorAll('#book-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('#book-dur-grid .dur-btn')[1].classList.add('selected');
+}
+
+// ═══ EDIT SLOT ═══
+function openEditSlot(id){
+  editingId=id;const d=DELIVERIES.find(x=>x.id===id);if(!d)return;
+  editingDur=parseFloat(d.duration)||1;
+  document.getElementById('editslot-title').textContent=`Edit — ${d.customer_name||'Delivery'}`;
+  document.getElementById('edit-name').value=d.customer_name||'';
+  document.getElementById('edit-suburb').value=d.suburb||'';
+  document.getElementById('edit-inv').value=d.invoice||'';
+  document.getElementById('edit-notes').value=d.notes||'';
+  document.querySelectorAll('#edit-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));
+  [0.5,1,1.5,2,2.5,3].forEach((v,i)=>{if(v===editingDur)document.querySelectorAll('#edit-dur-grid .dur-btn')[i].classList.add('selected');});
+  showModal('editslot');
+}
+function selectEditDur(btn,val){editingDur=val;document.querySelectorAll('#edit-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');}
+
+async function saveEditSlot(){
+  if(!editingId)return;
+  try{
+    await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify({
+      customer_name:document.getElementById('edit-name').value.trim(),
+      suburb:document.getElementById('edit-suburb').value.trim(),
+      invoice:document.getElementById('edit-inv').value.trim(),
+      notes:document.getElementById('edit-notes').value.trim(),
+      duration:editingDur
+    })});
+    closeModal('editslot');showToast('Delivery updated');await loadDeliveries();
+  }catch(e){showToast('Update failed',true);}
+}
+
+async function deleteDelivery(){
+  if(!editingId||!confirm('Remove this booking?'))return;
+  try{await db(`deliveries?id=eq.${editingId}`,{method:'DELETE'});closeModal('editslot');showToast('Booking removed');editingId=null;await loadDeliveries();}
+  catch(e){showToast('Delete failed',true);}
+}
+
+// ═══ VIEW SWITCHING ═══
+const VT={runsheet:'Run Sheet',journal:'Delivery Journal',driver:'Driver View',hq:'Head Office',customer:'Customer Tracker'};
+const VA={runsheet:'Export PDF',journal:'Export CSV',driver:'All trucks',hq:'Download report',customer:'Preview SMS'};
+function switchView(view,el){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  if(el)el.classList.add('active');
+  document.getElementById('page-title').textContent=VT[view];
+  document.getElementById('top-action').textContent=VA[view];
+  if(view==='hq')buildHQ();
+}
+function changeStore(){currentStore=document.getElementById('store-select').value;document.getElementById('footer-store').textContent=currentStore+' Store';loadDeliveries();}
+function changeDate(){currentDate=document.getElementById('date-select').value;const d=new Date(currentDate+'T00:00:00');document.getElementById('footer-date').textContent=d.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});loadDeliveries();}
+
+// ═══ MODAL + TOAST ═══
+function showModal(id){document.getElementById('modal-'+id).classList.add('show');}
+function closeModal(id){document.getElementById('modal-'+id).classList.remove('show');}
+function showToast(msg,err){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(err?' error':'');setTimeout(()=>t.className='toast',2800);}
+
+// ═══ GO ═══
+init();
+</script>
+
+
+</body></html>

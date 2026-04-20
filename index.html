@@ -1,24 +1,13 @@
 <!DOCTYPE html>
-<!-- saved from url=(0069)file:///C:/Users/chris/Downloads/nuway_delivery_system_v3_live_5.html -->
+<!-- saved from url=(0064)file:///C:/Users/chris/Downloads/nuway_delivery_system_v4_1.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System 20.04 8.43_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 20.04 9.52_files/css2" rel="stylesheet">
 <style>
-:root {
-  --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
-  --border: rgba(0,0,0,0.08); --border-md: rgba(0,0,0,0.13);
-  --text: #1a1916; --text-2: #6b6960; --text-3: #a09d94;
-  --blue: #1d5fa8; --blue-bg: #e8f0fb; --blue-text: #0f3d74;
-  --green: #2d7a4f; --green-bg: #e4f3eb; --green-text: #1a5234;
-  --amber: #8a5c0a; --amber-bg: #fdf0d8; --amber-text: #6b4207;
-  --red: #c0392b; --red-bg: #fcecea; --red-text: #8c1a10;
-  --purple: #5b4cba; --purple-bg: #eeedfb; --purple-text: #3a2e8a;
-  --sidebar-w: 210px; --radius: 10px; --radius-sm: 6px;
-  font-family: 'DM Sans', sans-serif;
-}
+:root{--bg:#f5f4f0;--surface:#fff;--surface2:#f0efe9;--border:rgba(0,0,0,0.08);--border-md:rgba(0,0,0,0.13);--text:#1a1916;--text-2:#6b6960;--text-3:#a09d94;--blue:#1d5fa8;--blue-bg:#e8f0fb;--blue-text:#0f3d74;--green:#2d7a4f;--green-bg:#e4f3eb;--green-text:#1a5234;--amber:#8a5c0a;--amber-bg:#fdf0d8;--amber-text:#6b4207;--red:#c0392b;--red-bg:#fcecea;--red-text:#8c1a10;--purple:#5b4cba;--purple-bg:#eeedfb;--purple-text:#3a2e8a;--sidebar-w:210px;--radius:10px;--radius-sm:6px;font-family:'DM Sans',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-height:100vh}
 .shell{display:flex;height:100vh;overflow:hidden}
@@ -35,7 +24,6 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .nav-item.active{color:var(--blue);border-left-color:var(--blue);background:var(--blue-bg);font-weight:500}
 .nav-icon{width:15px;height:15px;opacity:0.7;flex-shrink:0}
 .nav-item.active .nav-icon{opacity:1}
-.nav-badge{margin-left:auto;background:var(--red-bg);color:var(--red-text);font-size:10px;font-weight:600;padding:1px 6px;border-radius:20px}
 .sidebar-footer{margin-top:auto;padding:14px 18px;border-top:1px solid var(--border);font-size:11px;color:var(--text-3)}
 .sidebar-footer strong{display:block;color:var(--text-2);font-size:12px;margin-bottom:2px;font-weight:500}
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
@@ -54,6 +42,8 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .btn-amber{background:var(--amber);color:#fff;border-color:var(--amber)}
 .btn-amber:hover{background:var(--amber-text)}
 .btn-sm{padding:5px 10px;font-size:11px}
+.btn-danger{color:var(--red-text);border-color:var(--red-bg)}
+.btn-danger:hover{background:var(--red-bg)}
 .content{flex:1;overflow-y:auto;padding:20px 24px;background:var(--bg)}
 .view{display:none;animation:fadeIn 0.15s ease}.view.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -67,6 +57,7 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .badge-cod{background:var(--amber-bg);color:var(--amber-text)}
 .badge-acc{background:var(--blue-bg);color:var(--blue-text)}
 .badge-paid{background:var(--green-bg);color:var(--green-text)}
+.badge-tba{background:var(--purple-bg);color:var(--purple-text)}
 .badge-done{background:var(--surface2);color:var(--text-3)}
 .badge-out{background:var(--blue-bg);color:var(--blue-text)}
 .badge-loading{background:var(--amber-bg);color:var(--amber-text)}
@@ -74,31 +65,46 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .badge-issue{background:var(--red-bg);color:var(--red-text)}
 .badge-yes{background:var(--green-bg);color:var(--green-text)}
 .badge-half{background:var(--purple-bg);color:var(--purple-text)}
-.run-sheet-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.rs-th{padding:10px 12px;font-size:11px;font-weight:600;color:var(--text-2);background:var(--surface2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);letter-spacing:0.03em;text-transform:uppercase}
-.rs-th:last-child{border-right:none}
-.rs-time-cell{padding:0 6px;font-size:10px;font-weight:600;color:var(--text-3);background:var(--surface2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;text-align:center;line-height:1.3}
-.rs-cell{padding:5px 6px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);min-height:54px;cursor:pointer;transition:background 0.1s;display:flex;align-items:flex-start;position:relative}
+
+/* RUN SHEET */
+.run-sheet-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto}
+.rs-header-row{display:flex;background:var(--surface2);border-bottom:1px solid var(--border)}
+.rs-time-hdr{width:72px;min-width:72px;padding:10px 6px;font-size:11px;font-weight:600;color:var(--text-2);text-align:center;text-transform:uppercase;letter-spacing:0.03em;border-right:1px solid var(--border)}
+.rs-truck-hdr{flex:1;min-width:200px;padding:8px 12px;border-right:1px solid var(--border);position:relative}
+.rs-truck-hdr:last-child{border-right:none}
+.rs-truck-hdr .th-label{font-size:11px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.03em}
+.rs-truck-hdr .th-detail{font-size:10px;color:var(--text-3);margin-top:2px;font-family:'DM Mono',monospace}
+.rs-truck-hdr .th-edit{position:absolute;top:6px;right:6px;font-size:9px;padding:2px 6px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface);color:var(--text-3);cursor:pointer;opacity:0;transition:opacity 0.15s}
+.rs-truck-hdr:hover .th-edit{opacity:1}
+.rs-truck-actions{display:flex;gap:6px;padding:6px 12px;background:var(--surface2);border-bottom:1px solid var(--border);justify-content:flex-end}
+.rs-row{display:flex;border-bottom:1px solid var(--border)}
+.rs-time-cell{width:72px;min-width:72px;padding:0 6px;font-size:10px;font-weight:600;color:var(--text-3);background:var(--surface2);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;text-align:center;line-height:1.3}
+.rs-cell{flex:1;min-width:200px;min-height:54px;padding:3px 4px;border-right:1px solid var(--border);cursor:pointer;transition:background 0.1s;position:relative;display:flex;flex-wrap:wrap;gap:2px;align-content:flex-start}
 .rs-cell:last-child{border-right:none}
 .rs-cell:hover{background:#f7f6ff}
 .rs-cell.empty{align-items:center;justify-content:center}
 .rs-cell.empty .ea-btn{font-size:16px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0;transition:all 0.15s}
 .rs-cell.empty:hover .ea-btn{opacity:1}
+.rs-cell.blocked{background:repeating-linear-gradient(135deg,transparent,transparent 4px,rgba(0,0,0,0.02) 4px,rgba(0,0,0,0.02) 8px);cursor:default;min-height:0}
+.rs-cell.blocked:hover{background:repeating-linear-gradient(135deg,transparent,transparent 4px,rgba(0,0,0,0.02) 4px,rgba(0,0,0,0.02) 8px)}
 .ea-btn{padding:2px 6px;border-radius:10px;border:1px solid var(--border-md);background:var(--surface);color:var(--text-3);cursor:pointer;white-space:nowrap;transition:all 0.1s}
 .ea-btn:hover{background:var(--blue-bg);color:var(--blue);border-color:var(--blue)}
-.rs-cell.span2{min-height:108px}.rs-cell.span15{min-height:81px}
-.del-card{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 7px;border-left:3px solid var(--border-md);position:relative}
-.del-card.cod{border-left-color:#c88a20}.del-card.acc{border-left-color:var(--blue)}.del-card.paid{border-left-color:var(--green)}
+.del-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:4px 6px;border-left:3px solid var(--border-md);position:relative;flex:1;min-width:0}
+.del-card.full-width{flex-basis:100%}
+.del-card.half-width{flex-basis:calc(50% - 2px);max-width:calc(50% - 2px)}
+.del-card.cod{border-left-color:#c88a20}.del-card.acc{border-left-color:var(--blue)}.del-card.paid{border-left-color:var(--green)}.del-card.tba{border-left-color:var(--purple)}
 .del-card.done{opacity:0.48}.del-card.status-loading{border-left-color:var(--amber)}.del-card.status-enroute{border-left-color:var(--blue)}
-.del-top{display:flex;align-items:center;gap:3px;margin-bottom:2px;flex-wrap:wrap}
-.del-name{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
-.del-suburb{font-size:11px;color:var(--text-2)}
-.del-inv{font-size:10px;color:var(--text-3);font-family:'DM Mono',monospace}
-.del-note{font-size:10px;color:var(--text-3);margin-top:1px;font-style:italic}
-.del-duration{position:absolute;top:4px;right:5px;font-size:9px;color:var(--text-3);font-family:'DM Mono',monospace}
-.del-edit-btn{position:absolute;bottom:4px;right:5px;font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface2);color:var(--text-3);cursor:pointer;display:none}
+.del-top{display:flex;align-items:center;gap:3px;margin-bottom:1px;flex-wrap:wrap}
+.del-name{font-size:11px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.del-suburb{font-size:10px;color:var(--text-2)}
+.del-inv{font-size:9px;color:var(--text-3);font-family:'DM Mono',monospace}
+.del-note{font-size:9px;color:var(--text-3);font-style:italic}
+.del-duration{position:absolute;top:3px;right:4px;font-size:8px;color:var(--text-3);font-family:'DM Mono',monospace}
+.del-edit-btn{position:absolute;bottom:2px;right:4px;font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface2);color:var(--text-3);cursor:pointer;display:none}
 .del-card:hover .del-edit-btn{display:block}
-.rs-break{padding:5px 12px;background:#fdf8ee;border-bottom:1px solid var(--border);font-size:10px;color:var(--amber-text);font-style:italic;border-left:3px solid #e6b84a}
+.rs-break{padding:4px 12px;background:#fdf8ee;border-bottom:1px solid var(--border);font-size:10px;color:var(--amber-text);font-style:italic;border-left:3px solid #e6b84a}
+
+/* JOURNAL TABLE */
 .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
 th{padding:9px 12px;text-align:left;font-size:10px;font-weight:600;color:var(--text-3);border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:0.05em;background:var(--surface2);white-space:nowrap}
@@ -108,13 +114,17 @@ tr:hover td{background:var(--bg)}
 .mono{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-2)}
 .status-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500}
 .status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.s-done .status-dot{background:var(--green)}.s-out .status-dot{background:var(--blue)}.s-pending .status-dot{background:var(--amber)}.s-issue .status-dot{background:var(--red)}
-.s-done{color:var(--green-text)}.s-out{color:var(--blue-text)}.s-pending{color:var(--amber-text)}.s-issue{color:var(--red-text)}
+.s-done .status-dot{background:var(--green)}.s-out .status-dot{background:var(--blue)}.s-pending .status-dot{background:var(--amber)}
+.s-done{color:var(--green-text)}.s-out{color:var(--blue-text)}.s-pending{color:var(--amber-text)}
+
+/* DRIVER VIEW */
 .driver-layout{display:grid;grid-template-columns:270px 1fr;height:calc(100vh - 54px - 40px);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:var(--surface)}
 .driver-queue{border-right:1px solid var(--border);overflow-y:auto}
 .driver-queue-hdr{padding:13px 14px;border-bottom:1px solid var(--border);background:var(--surface2)}
 .driver-queue-hdr .dq-name{font-weight:600;font-size:13px}
 .driver-queue-hdr .dq-sub{font-size:11px;color:var(--text-3);margin-top:2px}
+.driver-filter{padding:10px 14px;border-bottom:1px solid var(--border);background:var(--surface)}
+.driver-filter select{width:100%;padding:6px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text);outline:none}
 .dq-item{padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.1s}
 .dq-item:hover{background:var(--bg)}
 .dq-item.sel{background:var(--blue-bg);border-left:3px solid var(--blue)}
@@ -132,9 +142,7 @@ tr:hover td{background:var(--bg)}
 .prog-circle.active{background:var(--blue);border-color:var(--blue);color:#fff}
 .prog-circle.loading-active{background:var(--amber);border-color:var(--amber);color:#fff}
 .prog-label{font-size:10px;color:var(--text-3);line-height:1.2}
-.prog-label.active{color:var(--blue);font-weight:600}
-.prog-label.loading-active{color:var(--amber);font-weight:600}
-.prog-label.done{color:var(--green)}
+.prog-label.active{color:var(--blue);font-weight:600}.prog-label.loading-active{color:var(--amber);font-weight:600}.prog-label.done{color:var(--green)}
 .prog-connector{flex:1;height:2px;background:var(--border);margin-top:15px}
 .prog-connector.done{background:var(--green)}
 .detail-section{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:12px}
@@ -155,8 +163,7 @@ tr:hover td{background:var(--bg)}
 .safety-check:checked{background:var(--green);border-color:var(--green)}
 .safety-check:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;color:#fff;font-weight:700}
 .safety-text{flex:1}
-.safety-q{font-size:12px;font-weight:500;color:var(--text)}
-.safety-sub{font-size:11px;color:var(--text-3);margin-top:1px}
+.safety-q{font-size:12px;font-weight:500;color:var(--text)}.safety-sub{font-size:11px;color:var(--text-3);margin-top:1px}
 .safety-pass{background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:8px 12px;font-size:12px;color:var(--green-text);font-weight:500;display:none;align-items:center;gap:6px;margin-top:8px}
 .safety-pass.show{display:flex}
 .photo-upload-zone{border:2px dashed var(--border-md);border-radius:var(--radius);padding:20px;text-align:center;cursor:pointer;transition:all 0.15s;background:var(--surface)}
@@ -166,12 +173,16 @@ tr:hover td{background:var(--bg)}
 .cod-box{background:var(--amber-bg);border:1px solid #e6c97a;border-radius:var(--radius-sm);padding:10px 12px;margin-top:10px;font-size:12px;color:var(--amber-text)}
 .cod-box strong{display:block;font-size:11px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em}
 .cod-box input{width:100%;padding:6px 10px;border:1px solid #d4aa4a;border-radius:var(--radius-sm);font-size:12px;background:rgba(255,255,255,0.6);color:var(--amber-text);font-family:'DM Mono',monospace;outline:none;margin-top:6px}
+
+/* HEAD OFFICE */
 .hq-store-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}
 .hq-store-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
 .hq-store-name{font-weight:600;font-size:13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
 .hq-bar-track{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;margin:6px 0 4px}
 .hq-bar-fill{height:100%;background:var(--blue);border-radius:3px}.hq-bar-fill.high{background:var(--green)}
 .hq-stats{display:flex;justify-content:space-between;font-size:11px;color:var(--text-3)}
+
+/* CUSTOMER TRACKER */
 .tracker-wrap{max-width:500px;margin:0 auto}
 .sms-preview{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:20px}
 .sms-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);margin-bottom:8px}
@@ -194,9 +205,11 @@ tr:hover td{background:var(--bg)}
 .eta-time{font-size:28px;font-weight:700;color:var(--blue);letter-spacing:-0.5px;line-height:1;margin-bottom:6px}
 .eta-sub{font-size:12px;color:#4a7bc8}
 .tracker-status-msg{text-align:center;padding:10px;font-size:13px;color:var(--text-2);margin-bottom:12px}
+
+/* MODALS */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(2px)}
 .modal-overlay.show{display:flex}
-.modal{background:var(--surface);border-radius:12px;border:1px solid var(--border);width:460px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+.modal{background:var(--surface);border-radius:12px;border:1px solid var(--border);width:500px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
 .modal-header{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .modal-title{font-size:15px;font-weight:700}
 .modal-close{cursor:pointer;color:var(--text-3);font-size:20px;line-height:1;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:background 0.1s}
@@ -208,6 +221,7 @@ tr:hover td{background:var(--bg)}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)}
 .field textarea{resize:vertical;min-height:60px;line-height:1.5}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .sms-note{background:var(--green-bg);border-radius:var(--radius-sm);padding:9px 12px;font-size:11px;color:var(--green-text);margin-top:4px}
 .modal-footer{padding:13px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
 .duration-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
@@ -234,7 +248,7 @@ tr:hover td{background:var(--bg)}
     <div class="nav-section">
       <div class="nav-label">Operations</div>
       <div class="nav-item active" onclick="switchView(&#39;runsheet&#39;,this)">
-        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"></rect><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="11" y2="9"></line><line x1="5" y1="12" x2="8" y2="12"></line></svg>
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"></rect><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="11" y2="9"></line></svg>
         Run Sheet
       </div>
       <div class="nav-item" onclick="switchView(&#39;journal&#39;,this)">
@@ -242,7 +256,7 @@ tr:hover td{background:var(--bg)}
         Delivery Journal
       </div>
       <div class="nav-item" onclick="switchView(&#39;driver&#39;,this)">
-        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="14" height="7" rx="1.5"></rect><path d="M1 9h14M5 6V4a3 3 0 016 0v2"></path><circle cx="4" cy="14" r="1.5" fill="currentColor" stroke="none"></circle><circle cx="12" cy="14" r="1.5" fill="currentColor" stroke="none"></circle></svg>
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="14" height="7" rx="1.5"></rect><path d="M1 9h14M5 6V4a3 3 0 016 0v2"></path></svg>
         Driver View
       </div>
     </div>
@@ -267,146 +281,134 @@ tr:hover td{background:var(--bg)}
       <div class="topbar-left">
         <span class="page-title" id="page-title">Run Sheet</span>
         <select class="pill-select" id="store-select" onchange="changeStore()">
-          <option>Logan</option><option>Chandler</option><option>Ashmore</option><option>Caboolture</option>
-          <option>Ipswich</option><option>Brendale</option><option>Springfield</option><option>Narangba</option>
-          <option>Oxenford</option><option>Yatala</option><option>Beenleigh</option>
+          <option>Logan</option><option>Chandler</option><option>Ashmore</option><option>Redlands</option>
+          <option>Westerns</option><option>Forestdale</option><option>Mango Hill</option><option>Pine Rivers</option>
+          <option>Burpengary</option><option>Ormeau</option><option>Buderim</option>
         </select>
         <input type="date" class="pill-select" id="date-select" onchange="changeDate()">
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="loadDeliveries()" title="Refresh">↻ Refresh</button>
-        <button class="btn" onclick="showModal(&#39;booking&#39;)">+ Book delivery</button>
+        <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn btn-primary" id="top-action">Export PDF</button>
       </div>
     </div>
     <div class="content">
-
-      <!-- RUN SHEET -->
       <div class="view active" id="view-runsheet">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">6</div><div class="metric-sub">across 3 trucks</div></div>
-          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
-          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
-          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">24</div><div class="metric-sub">today's capacity</div></div>
+          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">5</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
+          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">1</div><div class="metric-sub">driver returned</div></div>
+          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">1</div><div class="metric-sub">loading or en route</div></div>
+          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">21</div><div class="metric-sub">today's capacity</div></div>
         </div>
-        <div class="run-sheet-wrap">
-          <div style="display:grid;grid-template-columns:72px repeat(3,1fr)">
-            <div class="rs-th" style="text-align:center">Time</div>
-            <div class="rs-th">M1 — Jake T.</div>
-            <div class="rs-th">M2 — Chris B.</div>
-            <div class="rs-th">FUSO — Dan R.</div>
-          </div>
-          <div id="rs-body"><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">7–8am</div><div class="rs-cell span2"><div class="del-card cod" style="width:100%">
-          <div class="del-duration">3hr</div>
-          <div class="del-top">
-            <span class="badge badge-cod">COD</span>
-            
-            
-          </div>
-          <div class="del-name">Christopher Haddon</div>
-          <div class="del-suburb">Slacks Creek</div>
-          <div class="del-inv">55 · 56.2</div>
-          <div class="del-note">delivery notes here</div>
-          <button class="del-edit-btn" onclick="event.stopPropagation();openEditSlot(11)">Edit</button>
-        </div></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,1)">+</span></div><div class="rs-cell span2"><div class="del-card acc" style="width:100%">
-          <div class="del-duration">2hr</div>
-          <div class="del-top">
-            <span class="badge badge-acc">Account</span>
-            
-            
-          </div>
-          <div class="del-name">Jane Doe</div>
-          <div class="del-suburb">loganholme</div>
-          <div class="del-inv">655</div>
-          <div class="del-note">notes and stuff</div>
-          <button class="del-edit-btn" onclick="event.stopPropagation();openEditSlot(12)">Edit</button>
-        </div></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,1)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,1)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">1–2pm</div><div class="rs-cell"><div class="del-card paid" style="width:100%">
-          
-          <div class="del-top">
-            <span class="badge badge-paid">Paid</span>
-            
-            
-          </div>
-          <div class="del-name">chris h</div>
-          <div class="del-suburb">shailer park</div>
-          <div class="del-inv">dfd6565</div>
-          <div class="del-note">not b4 10 beside gate</div>
-          <button class="del-edit-btn" onclick="event.stopPropagation();openEditSlot(10)">Edit</button>
-        </div></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,1)">+</span></div></div></div>
-        </div>
+        <div class="run-sheet-wrap" id="rs-wrap"><div class="rs-header-row">
+    <div class="rs-time-hdr">Time</div>
+    <div class="rs-truck-hdr">
+      <div class="th-label">Run 1</div>
+      <div class="th-detail">No rego</div>
+      <span class="th-edit" onclick="openTruckEdit(0)">✎</span>
+    </div><div class="rs-truck-hdr">
+      <div class="th-label">Run 2</div>
+      <div class="th-detail">No rego</div>
+      <span class="th-edit" onclick="openTruckEdit(1)">✎</span>
+    </div><div class="rs-truck-hdr">
+      <div class="th-label">Run 3</div>
+      <div class="th-detail">No rego</div>
+      <span class="th-edit" onclick="openTruckEdit(2)">✎</span>
+    </div>
+  </div><div class="rs-truck-actions">
+    <button class="btn btn-sm" onclick="addRun()">+ Add run</button>
+    <button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last run</button>
+  </div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell" style="min-width:200px;min-height:108px"><div class="del-card cod status-enroute full-width">
+            <div class="del-duration">3hr</div>
+            <div class="del-top">
+              <span class="badge badge-cod">COD</span>
+              <span class="badge badge-out">En route</span>
+            </div>
+            <div class="del-name">Christopher Haddon</div>
+            <div class="del-suburb">Slacks Creek</div>
+            <div class="del-inv">55 · 56.2</div>
+            <div class="del-note">delivery notes here</div>
+            <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(11)">Edit</button>
+          </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">8–9am</div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell" style="min-width:200px;min-height:108px"><div class="del-card acc full-width">
+            <div class="del-duration">2hr</div>
+            <div class="del-top">
+              <span class="badge badge-acc">Account</span>
+              
+            </div>
+            <div class="del-name">Jane Doe</div>
+            <div class="del-suburb">loganholme</div>
+            <div class="del-inv">655</div>
+            <div class="del-note">notes and stuff</div>
+            <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(12)">Edit</button>
+          </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div class="rs-row"><div class="rs-time-cell">9–10am</div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;)">+</span></div></div></div>
       </div>
-
-      <!-- JOURNAL -->
       <div class="view" id="view-journal">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">6</div></div>
+          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">5</div></div>
           <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$56.2</div></div>
-          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">0</div></div>
-          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">6</div></div>
+          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">1</div></div>
+          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">3</div></div>
         </div>
         <div class="table-wrap">
-          <table><thead><tr><th>#</th><th>Customer</th><th>Suburb</th><th>Invoice</th><th>Payment</th><th>COD $</th><th>Driver</th><th>Truck</th><th>Slot</th><th>Duration</th><th>Status</th></tr></thead>
-          <tbody id="journal-body"><tr><td class="mono">10</td><td style="font-weight:600">chris h</td><td>shailer park</td>
-    <td class="mono">dfd6565</td><td><span class="badge badge-paid">Paid</span></td>
-    <td class="mono">—</td><td>Jake T.</td>
-    <td class="mono">M1</td>
-    <td class="mono">1–2pm</td><td class="mono">1hr</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">11</td><td style="font-weight:600">Christopher Haddon</td><td>Slacks Creek</td>
+          <table><thead><tr><th>#</th><th>Customer</th><th>Suburb</th><th>Invoice</th><th>Payment</th><th>COD</th><th>Driver</th><th>Slot</th><th>Dur</th><th>Created by</th><th>Status</th></tr></thead>
+          <tbody id="journal-body"><tr><td class="mono">11</td><td style="font-weight:600">Christopher Haddon</td><td>Slacks Creek</td>
     <td class="mono">55</td><td><span class="badge badge-cod">COD</span></td>
     <td class="mono">56.2</td><td>Jake T.</td>
-    <td class="mono">M1</td>
     <td class="mono">7–8am</td><td class="mono">3hr</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">12</td><td style="font-weight:600">Jane Doe</td><td>loganholme</td>
+    <td>—</td>
+    <td><span class="status-pill s-out"><span class="status-dot"></span>En route</span></td></tr><tr><td class="mono">12</td><td style="font-weight:600">Jane Doe</td><td>loganholme</td>
     <td class="mono">655</td><td><span class="badge badge-acc">Account</span></td>
     <td class="mono">—</td><td>Chris B.</td>
-    <td class="mono">M2</td>
     <td class="mono">8–9am</td><td class="mono">2hr</td>
+    <td>—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">7</td><td style="font-weight:600">bob smith</td><td>dgdgdgd</td>
     <td class="mono">54545</td><td><span class="badge badge-cod">COD</span></td>
     <td class="mono">—</td><td>COD</td>
-    <td class="mono">M1</td>
     <td class="mono">M1 — Jake T.</td><td class="mono">1hr</td>
+    <td>—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">8</td><td style="font-weight:600">bob smith</td><td>dgdgdgd</td>
     <td class="mono">54545</td><td><span class="badge badge-cod">COD</span></td>
     <td class="mono">—</td><td>COD</td>
-    <td class="mono">M1</td>
     <td class="mono">M1 — Jake T.</td><td class="mono">1hr</td>
+    <td>—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">9</td><td style="font-weight:600">bob smith</td><td>dgdgdgd</td>
     <td class="mono">54545</td><td><span class="badge badge-cod">COD</span></td>
     <td class="mono">—</td><td>COD</td>
-    <td class="mono">M1</td>
     <td class="mono">M2 — Chris B.</td><td class="mono">1.5hr</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr></tbody></table>
+    <td>—</td>
+    <td><span class="status-pill s-done"><span class="status-dot"></span>Delivered</span></td></tr></tbody></table>
         </div>
       </div>
-
-      <!-- DRIVER VIEW -->
       <div class="view" id="view-driver">
         <div class="driver-layout">
           <div class="driver-queue">
             <div class="driver-queue-hdr">
-              <div class="dq-name" id="dv-driver-name">Jake T. — M1</div>
+              <div class="dq-name" id="dv-driver-name">All runs · Logan</div>
               <div class="dq-sub" id="dv-driver-sub">Today · 5 deliveries</div>
             </div>
-            <div id="driver-list"><div class="dq-item sel" onclick="selectDelivery(10,this)">
-      <div class="dq-row"><span class="dq-num ">1</span><span class="dq-customer">chris h</span></div>
-      <div class="dq-detail">shailer park · 1–2pm</div>
-      <div class="dq-badges">
-        <span class="badge badge-paid">Paid</span>
-        
-        
-        
-        
-      </div>
-    </div><div class="dq-item" onclick="selectDelivery(11,this)">
-      <div class="dq-row"><span class="dq-num ">2</span><span class="dq-customer">Christopher Haddon</span></div>
+            <div class="driver-filter">
+              <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Run 1</option><option value="1">Run 2</option><option value="2">Run 3</option></select>
+            </div>
+            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(11,this)">
+      <div class="dq-row"><span class="dq-num enroute">1</span><span class="dq-customer">Christopher Haddon</span></div>
       <div class="dq-detail">Slacks Creek · 7–8am</div>
       <div class="dq-badges">
         <span class="badge badge-cod">COD</span>
         
         
-        
+        <span class="badge badge-out">En route</span>
         <span class="badge badge-cod">56.2</span>
+      </div>
+    </div><div class="dq-item" onclick="selectDelivery(12,this)">
+      <div class="dq-row"><span class="dq-num ">2</span><span class="dq-customer">Jane Doe</span></div>
+      <div class="dq-detail">loganholme · 8–9am</div>
+      <div class="dq-badges">
+        <span class="badge badge-acc">Account</span>
+        
+        
+        
+        
       </div>
     </div><div class="dq-item" onclick="selectDelivery(7,this)">
       <div class="dq-row"><span class="dq-num ">3</span><span class="dq-customer">bob smith</span></div>
@@ -429,37 +431,35 @@ tr:hover td{background:var(--bg)}
         
       </div>
     </div><div class="dq-item" onclick="selectDelivery(9,this)">
-      <div class="dq-row"><span class="dq-num ">5</span><span class="dq-customer">bob smith</span></div>
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">bob smith</span></div>
       <div class="dq-detail">dgdgdgd · M2 — Chris B.</div>
       <div class="dq-badges">
         <span class="badge badge-cod">COD</span>
-        
+        <span class="badge badge-done">Delivered</span>
         
         
         
       </div>
     </div></div>
           </div>
-          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle ">1</div><div class="prog-label ">Loading</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">2</div><div class="prog-label ">En route</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Delivered</div></div></div>
+          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Loading</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle active">→</div><div class="prog-label active">En route</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Delivered</div></div></div>
     <div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid">
-      <div class="detail-item"><div class="dl">Name</div><div class="dv">chris h</div></div>
-      <div class="detail-item"><div class="dl">Invoice</div><div class="dv" style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px">dfd6565</div></div>
-      <div class="detail-item"><div class="dl">Window</div><div class="dv">1–2pm</div></div>
-      <div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-paid">Paid</span></div></div>
+      <div class="detail-item"><div class="dl">Name</div><div class="dv">Christopher Haddon</div></div>
+      <div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">55</div></div>
+      <div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div>
+      <div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-cod">COD</span></div></div>
     </div></div>
     <div class="detail-section"><div class="detail-section-title">Delivery details</div>
-      <div style="font-size:14px;font-weight:500;margin-bottom:4px">shailer park</div>
-      <div style="font-size:12px;color:var(--text-3)">not b4 10 beside gate</div>
-      <div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 0405 555 555</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:4px">Slacks Creek</div>
+      <div style="font-size:12px;color:var(--text-3)">delivery notes here</div>
+      <div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 0403359619</div>
     </div>
-    <div class="detail-section"><div class="detail-section-title">Products to load &amp; deliver</div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(10,0,this.checked)" disabled=""><span class="pname">2.5 concrete</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(10,1,this.checked)" disabled=""><span class="pname">5 bags gp</span><span class="pqty"></span></div></div>
-    <div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(10,&#39;loading&#39;)">Start loading</button></div>
-    
-    <div class="detail-section" style="opacity:0.5"><div class="detail-section-title">Site safety checklist</div><div style="font-size:12px;color:var(--text-3);padding:4px 0">Available once en route</div></div></div>
+    <div class="detail-section"><div class="detail-section-title">Products</div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(11,0,this.checked)" disabled=""><span class="pname">5 paver</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(11,1,this.checked)" disabled=""><span class="pname">2 cement</span><span class="pqty"></span></div></div>
+    <div class="action-row"><button class="btn btn-success" onclick="advanceStatus(11,&#39;delivered&#39;)">Mark delivered</button></div>
+    <div class="cod-box"><strong>COD collection required</strong>Collect 56.2 cash.<input type="text" placeholder="Receipt number" style="margin-top:6px"></div>
+    <div class="section-divider"><span>Site safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,0,this.checked)"><div class="safety-text"><div class="safety-q">Is the delivery area safe to enter with the truck?</div><div class="safety-sub">Check overhead clearance, soft ground, slopes</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,1,this.checked)"><div class="safety-text"><div class="safety-q">Is there a safe tip-off point clear of people and property?</div><div class="safety-sub">Confirm no vehicles, structures or overhead lines in drop zone</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,2,this.checked)"><div class="safety-text"><div class="safety-q">Has the customer (or representative) been informed of the delivery location?</div><div class="safety-sub">Customer or instructions confirm drop point</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,3,this.checked)"><div class="safety-text"><div class="safety-q">Is the truck properly positioned and handbrake applied before tipping?</div><div class="safety-sub">Level ground preferred — if not, wheels chocked</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,4,this.checked)"><div class="safety-text"><div class="safety-q">Are bystanders clear of the tipping area?</div><div class="safety-sub">Minimum 5m clearance from tip zone during unload</div></div></div><div class="safety-pass">All safety checks complete — safe to unload.</div></div></div>
         </div>
       </div>
-
-      <!-- HEAD OFFICE -->
       <div class="view" id="view-hq">
         <div class="metrics">
           <div class="metric"><div class="metric-label">Total deliveries</div><div class="metric-value" id="hq-total">0</div><div class="metric-sub">all stores today</div></div>
@@ -473,8 +473,6 @@ tr:hover td{background:var(--bg)}
           <tbody id="hq-table"></tbody></table>
         </div>
       </div>
-
-      <!-- CUSTOMER TRACKER -->
       <div class="view" id="view-customer">
         <div class="tracker-wrap">
           <div class="sms-preview">
@@ -482,23 +480,22 @@ tr:hover td{background:var(--bg)}
             <div class="sms-bubble">Hi! Your Nuway delivery is on its way. Track live: nuway.com.au/track 📦</div>
           </div>
           <div class="tracker-card" id="tracker-card">
-    <div class="tracker-title">Your delivery — dfd6565</div>
-    <div class="tracker-sub">shailer park · 2.5 concrete</div>
-    <div class="tracker-status-msg">Your order is confirmed.</div>
-    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Loading</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
-    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">1–2pm</div><div class="eta-sub">Jake T. · Logan</div></div>
-    <div style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px">Questions? Call Logan store</div></div>
+    <div class="tracker-title">Your delivery — 55</div>
+    <div class="tracker-sub">Slacks Creek</div>
+    <div class="tracker-status-msg">Jake T. is on the way!</div>
+    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Loading</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle active">→</div><div class="t-label active">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
+    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">7–8am</div><div class="eta-sub">Jake T. · Logan</div></div></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- BOOKING MODAL -->
+<!-- BOOKING / EDIT MODAL -->
 <div class="modal-overlay" id="modal-booking" onclick="if(event.target===this)closeModal(&#39;booking&#39;)">
   <div class="modal">
     <div class="modal-header">
-      <span class="modal-title">Book delivery</span>
+      <span class="modal-title" id="booking-modal-title">Book delivery</span>
       <span class="modal-close" onclick="closeModal(&#39;booking&#39;)">×</span>
     </div>
     <div class="modal-body">
@@ -510,103 +507,76 @@ tr:hover td{background:var(--bg)}
       <div class="field-row">
         <div class="field"><label>Suburb</label><input type="text" id="book-suburb" placeholder="e.g. Loganholme"></div>
         <div class="field"><label>Payment type</label>
-          <select id="book-pay"><option value="cod">COD</option><option value="acc">Account</option><option value="paid">Paid (EFTPOS/Cash)</option></select>
+          <select id="book-pay"><option value="cod">COD</option><option value="acc">Account</option><option value="paid">Paid (EFTPOS/Cash)</option><option value="tba">TBA</option></select>
         </div>
       </div>
-      <div class="field-row">
-        <div class="field"><label>Truck</label>
-          <select id="book-truck"><option value="0">M1 — Jake T.</option><option value="1">M2 — Chris B.</option><option value="2">FUSO — Dan R.</option></select>
-        </div>
+      <div class="field-row-3">
+        <div class="field"><label>Run</label><select id="book-truck"><option value="0">Run 1</option><option value="1">Run 2</option><option value="2">Run 3</option></select></div>
         <div class="field"><label>Time slot</label>
           <select id="book-slot"><option>7–8am</option><option>8–9am</option><option>9–10am</option><option>10–11am</option><option>11am–12pm</option><option>12–1pm</option><option>1–2pm</option><option>2–3pm</option><option>3–4pm</option><option>4–5pm</option></select>
         </div>
-      </div>
-      <div class="field">
-        <label>Duration</label>
-        <div class="duration-grid" id="book-dur-grid">
-          <button type="button" class="dur-btn half" onclick="selectBookDur(this,0.5)">½ hr</button>
-          <button type="button" class="dur-btn selected" onclick="selectBookDur(this,1)">1 hr</button>
-          <button type="button" class="dur-btn" onclick="selectBookDur(this,1.5)">1.5 hr</button>
-          <button type="button" class="dur-btn" onclick="selectBookDur(this,2)">2 hr</button>
-          <button type="button" class="dur-btn" onclick="selectBookDur(this,2.5)">2.5 hr</button>
-          <button type="button" class="dur-btn" onclick="selectBookDur(this,3)">3 hr</button>
+        <div class="field"><label>Duration</label>
+          <select id="book-dur"><option value="0.5">½ hr</option><option value="1" selected="">1 hr</option><option value="1.5">1.5 hr</option><option value="2">2 hr</option><option value="2.5">2.5 hr</option><option value="3">3 hr</option></select>
         </div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Driver name</label><input type="text" id="book-driver" placeholder="e.g. Jake T."></div>
+        <div class="field"><label>COD amount</label><input type="text" id="book-cod" placeholder="$0.00"></div>
       </div>
       <div class="field"><label>Products</label><textarea id="book-products" placeholder="e.g. 2m³ Blue Metal
 1x Cement bag (20kg)"></textarea></div>
       <div class="field"><label>Delivery notes</label><textarea id="book-notes" placeholder="e.g. Not before 9am. Side gate on left."></textarea></div>
-      <div class="field"><label>COD amount</label><input type="text" id="book-cod" placeholder="$0.00"></div>
+      <div class="field-row">
+        <div class="field"><label>Created by (staff)</label><input type="text" id="book-created-by" placeholder="e.g. Sarah M."></div>
+        <div class="field"><label>Status</label>
+          <select id="book-status"><option value="pending">Pending</option><option value="loading">Loading</option><option value="enroute">En route</option><option value="delivered">Delivered</option></select>
+        </div>
+      </div>
       <div class="sms-note">SMS confirmation + tracking link sent automatically when saved.</div>
     </div>
     <div class="modal-footer">
+      <button class="btn btn-danger" id="booking-delete-btn" onclick="deleteDelivery()" style="margin-right:auto;display:none">Remove</button>
       <button class="btn" onclick="closeModal(&#39;booking&#39;)">Cancel</button>
-      <button class="btn btn-primary" onclick="saveBooking()">Save &amp; send SMS</button>
+      <button class="btn btn-primary" onclick="saveBooking()">Save</button>
     </div>
   </div>
 </div>
 
-<!-- EDIT SLOT MODAL -->
-<div class="modal-overlay" id="modal-editslot" onclick="if(event.target===this)closeModal(&#39;editslot&#39;)">
-  <div class="modal" style="width:400px">
+<!-- TRUCK HEADER EDIT MODAL -->
+<div class="modal-overlay" id="modal-truck" onclick="if(event.target===this)closeModal(&#39;truck&#39;)">
+  <div class="modal" style="width:380px">
     <div class="modal-header">
-      <span class="modal-title" id="editslot-title">Edit delivery</span>
-      <span class="modal-close" onclick="closeModal(&#39;editslot&#39;)">×</span>
+      <span class="modal-title">Edit run details</span>
+      <span class="modal-close" onclick="closeModal(&#39;truck&#39;)">×</span>
     </div>
     <div class="modal-body">
-      <div class="field"><label>Customer name</label><input type="text" id="edit-name"></div>
-      <div class="field-row">
-        <div class="field"><label>Suburb</label><input type="text" id="edit-suburb"></div>
-        <div class="field"><label>Invoice</label><input type="text" id="edit-inv"></div>
-      </div>
-      <div class="field"><label>Delivery notes</label><textarea id="edit-notes" style="min-height:50px"></textarea></div>
-      <div class="field">
-        <label>Duration</label>
-        <div class="duration-grid" id="edit-dur-grid">
-          <button type="button" class="dur-btn half" onclick="selectEditDur(this,0.5)">½ hr</button>
-          <button type="button" class="dur-btn" onclick="selectEditDur(this,1)">1 hr</button>
-          <button type="button" class="dur-btn" onclick="selectEditDur(this,1.5)">1.5 hr</button>
-          <button type="button" class="dur-btn" onclick="selectEditDur(this,2)">2 hr</button>
-          <button type="button" class="dur-btn" onclick="selectEditDur(this,2.5)">2.5 hr</button>
-          <button type="button" class="dur-btn" onclick="selectEditDur(this,3)">3 hr</button>
-        </div>
-      </div>
+      <div class="field"><label>Run label</label><input type="text" id="truck-label" placeholder="e.g. Run 1"></div>
+      <div class="field"><label>Truck type</label><input type="text" id="truck-type" placeholder="e.g. M1, FUSO, Hino"></div>
+      <div class="field"><label>Truck rego</label><input type="text" id="truck-rego" placeholder="e.g. 1AB-234"></div>
+      <div class="field"><label>Driver name</label><input type="text" id="truck-driver" placeholder="e.g. Jake T."></div>
     </div>
     <div class="modal-footer">
-      <button class="btn" style="margin-right:auto;color:var(--red-text);border-color:var(--red-bg)" onclick="deleteDelivery()">Remove booking</button>
-      <button class="btn" onclick="closeModal(&#39;editslot&#39;)">Cancel</button>
-      <button class="btn btn-primary" onclick="saveEditSlot()">Save changes</button>
+      <button class="btn" onclick="closeModal(&#39;truck&#39;)">Cancel</button>
+      <button class="btn btn-primary" onclick="saveTruckHeader()">Save</button>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast">Loaded 6 deliveries</div>
+<div class="toast" id="toast"></div>
 
 <script>
 // ═══ SUPABASE ═══
-const SB_URL='https://prgbejzvxbdqnszvofpj.supabase.co';
-const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByZ2Jlanp2eGJkcW5zenZvZnBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjU5MjksImV4cCI6MjA5MjI0MTkyOX0.6IpVkprZRlJb4f4yoiiL34bXK2XHEkp4ZeP25Joh3vU';
-
-async function db(path,opts={}){
-  const res=await fetch(`${SB_URL}/rest/v1/${path}`,{
-    ...opts,
-    headers:{
-      'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`,
-      'Content-Type':'application/json',
-      'Prefer':opts.prefer||'return=representation',
-      ...opts.headers
-    }
-  });
-  if(!res.ok){const e=await res.text();console.error('DB',res.status,e);throw new Error(e);}
-  const t=await res.text();return t?JSON.parse(t):[];
-}
+const SB='https://prgbejzvxbdqnszvofpj.supabase.co';
+const SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByZ2Jlanp2eGJkcW5zenZvZnBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjU5MjksImV4cCI6MjA5MjI0MTkyOX0.6IpVkprZRlJb4f4yoiiL34bXK2XHEkp4ZeP25Joh3vU';
+async function db(p,o={}){const r=await fetch(`${SB}/rest/v1/${p}`,{...o,headers:{'apikey':SK,'Authorization':`Bearer ${SK}`,'Content-Type':'application/json','Prefer':o.prefer||'return=representation',...o.headers}});if(!r.ok){const e=await r.text();throw new Error(e);}const t=await r.text();return t?JSON.parse(t):[];}
 
 // ═══ CONSTANTS ═══
 const SLOTS=['7–8am','8–9am','9–10am','10–11am','11am–12pm','12–1pm','1–2pm','2–3pm','3–4pm','4–5pm'];
+const SLOT_IDX={};SLOTS.forEach((s,i)=>SLOT_IDX[s]=i);
 const BREAKS={'9–10am':'10-minute paid rest break','12–1pm':'30-minute unpaid lunch break'};
-const TRUCK_NAMES=['M1 — Jake T.','M2 — Chris B.','FUSO — Dan R.'];
-const DRIVER_NAMES=['Jake T.','Chris B.','Dan R.'];
-const PAY_LABEL={cod:'COD',acc:'Account',paid:'Paid'};
-const PAY_CLASS={cod:'badge-cod',acc:'badge-acc',paid:'badge-paid'};
+const PAY_LABEL={cod:'COD',acc:'Account',paid:'Paid',tba:'TBA'};
+const PAY_CLASS={cod:'badge-cod',acc:'badge-acc',paid:'badge-paid',tba:'badge-tba'};
+const ALL_STORES=['Logan','Chandler','Ashmore','Redlands','Westerns','Forestdale','Mango Hill','Pine Rivers','Burpengary','Ormeau','Buderim'];
 const SAFETY_QS=[
   {q:'Is the delivery area safe to enter with the truck?',sub:'Check overhead clearance, soft ground, slopes'},
   {q:'Is there a safe tip-off point clear of people and property?',sub:'Confirm no vehicles, structures or overhead lines in drop zone'},
@@ -614,19 +584,22 @@ const SAFETY_QS=[
   {q:'Is the truck properly positioned and handbrake applied before tipping?',sub:'Level ground preferred — if not, wheels chocked'},
   {q:'Are bystanders clear of the tipping area?',sub:'Minimum 5m clearance from tip zone during unload'},
 ];
-const ALL_STORES=['Logan','Chandler','Ashmore','Caboolture','Ipswich','Brendale','Springfield','Narangba','Oxenford','Yatala','Beenleigh'];
 
 // ═══ STATE ═══
 let DELIVERIES=[];
 let currentStore='Logan';
 let currentDate='';
 let editingId=null;
-let editingDur=1;
-let bookingDur=1;
-let selectedDriverTruck=0;
 let selectedDeliveryId=null;
+let driverFilterTruck='all';
 const prodChecked={};
 const safetyChecked={};
+
+// Truck runs config — stored in localStorage per store
+function getRunsKey(){return `nuway_runs_${currentStore}`;}
+function defaultRuns(){return [{label:'Run 1',type:'',rego:'',driver:''},{label:'Run 2',type:'',rego:'',driver:''}];}
+function getRuns(){try{const r=JSON.parse(localStorage.getItem(getRunsKey()));return r&&r.length?r:defaultRuns();}catch(e){return defaultRuns();}}
+function saveRuns(runs){localStorage.setItem(getRunsKey(),JSON.stringify(runs));}
 
 // ═══ INIT ═══
 function init(){
@@ -640,11 +613,9 @@ function init(){
 async function loadDeliveries(){
   try{
     DELIVERIES=await db(`deliveries?store=eq.${encodeURIComponent(currentStore)}&date=eq.${currentDate}&order=slot.asc,truck.asc`);
-    // Normalize truck to integer (DB may return string)
-    DELIVERIES.forEach(d=>{ d.truck = parseInt(d.truck) || 0; });
+    DELIVERIES.forEach(d=>{d.truck=parseInt(d.truck)||0;d.duration=parseFloat(d.duration)||1;});
     document.getElementById('db-dot').className='db-dot online';
     document.getElementById('db-dot').title='Database connected';
-    showToast(`Loaded ${DELIVERIES.length} deliveries`);
   }catch(e){
     document.getElementById('db-dot').className='db-dot offline';
     document.getElementById('db-dot').title='Database disconnected';
@@ -655,7 +626,6 @@ async function loadDeliveries(){
 }
 
 function renderAll(){buildRunSheet();buildJournal();buildDriverView();updateCustomerTracker();}
-
 function parseCod(d){const a=d.cod_amount?parseFloat(d.cod_amount.replace(/[$,]/g,'')):0;return isNaN(a)?0:a;}
 
 // ═══ RUN SHEET ═══
@@ -672,63 +642,259 @@ function cardClass(d){
   if(d.driver_status==='enroute')return`del-card ${p} status-enroute`;
   return`del-card ${p}`;
 }
-function durLabel(dur){if(dur===0.5)return'½hr';if(dur===1)return'';return dur+'hr';}
 
 function buildRunSheet(){
-  const body=document.getElementById('rs-body');body.innerHTML='';
-  SLOTS.forEach(slot=>{
-    const row=document.createElement('div');
-    row.style.cssText='display:grid;grid-template-columns:72px repeat(3,1fr)';
-    const tc=document.createElement('div');tc.className='rs-time-cell';tc.textContent=slot;row.appendChild(tc);
-    [0,1,2].forEach(t=>{
-      const d=DELIVERIES.find(x=>x.slot===slot&&x.truck===t);
-      const cell=document.createElement('div');
-      if(d){
-        const dur=parseFloat(d.duration)||1;
-        let sc='';if(dur>=2)sc=' span2';else if(dur===1.5)sc=' span15';
-        cell.className='rs-cell'+sc;
-        const p=d.payment_type||'acc';
-        cell.innerHTML=`<div class="${cardClass(d)}" style="width:100%">
-          ${dur>1||dur===0.5?`<div class="del-duration">${durLabel(dur)}</div>`:''}
-          <div class="del-top">
-            <span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>
-            ${statusBadge(d)}
-            ${dur===0.5?'<span class="badge badge-half">½ slot</span>':''}
-          </div>
-          <div class="del-name">${d.customer_name||'—'}</div>
-          <div class="del-suburb">${d.suburb||''}</div>
-          <div class="del-inv">${d.invoice||''}${d.cod_amount?' · '+d.cod_amount:''}</div>
-          ${d.notes?`<div class="del-note">${d.notes}</div>`:''}
-          <button class="del-edit-btn" onclick="event.stopPropagation();openEditSlot(${d.id})">Edit</button>
-        </div>`;
-      }else{
-        cell.className='rs-cell empty';
-        cell.innerHTML=`<span class="ea-btn" onclick="openBookingWith(${t},'${slot}',1)">+</span>`;
-      }
-      row.appendChild(cell);
-    });
-    body.appendChild(row);
-    if(BREAKS[slot]){const br=document.createElement('div');br.className='rs-break';br.textContent=BREAKS[slot];body.appendChild(br);}
+  const runs=getRuns();
+  const numRuns=runs.length;
+  const wrap=document.getElementById('rs-wrap');
+
+  // Build header
+  let html=`<div class="rs-header-row">
+    <div class="rs-time-hdr">Time</div>
+    ${runs.map((r,i)=>`<div class="rs-truck-hdr">
+      <div class="th-label">${r.label||'Run '+(i+1)}${r.type?' — '+r.type:''}${r.driver?' · '+r.driver:''}</div>
+      <div class="th-detail">${r.rego||'No rego'}</div>
+      <span class="th-edit" onclick="openTruckEdit(${i})">✎</span>
+    </div>`).join('')}
+  </div>`;
+
+  // Truck actions row
+  html+=`<div class="rs-truck-actions">
+    <button class="btn btn-sm" onclick="addRun()">+ Add run</button>
+    ${numRuns>1?`<button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last run</button>`:''}
+  </div>`;
+
+  // Build a map of which slots are blocked by multi-hour deliveries
+  // blocked[truck][slotIdx] = deliveryId that's occupying it
+  const blocked={};
+  for(let t=0;t<numRuns;t++) blocked[t]={};
+
+  DELIVERIES.forEach(d=>{
+    if(d.truck>=numRuns) return;
+    const si=SLOT_IDX[d.slot];
+    if(si===undefined) return;
+    const slotsNeeded=Math.ceil(d.duration);
+    for(let s=1;s<slotsNeeded;s++){
+      if(si+s<SLOTS.length) blocked[d.truck][si+s]=d.id;
+    }
   });
+
+  // Build rows
+  SLOTS.forEach((slot,si)=>{
+    // Check for break before this slot
+    if(BREAKS[slot]) html+=`<div class="rs-break">${BREAKS[slot]}</div>`;
+
+    html+=`<div class="rs-row">`;
+    html+=`<div class="rs-time-cell">${slot}</div>`;
+
+    for(let t=0;t<numRuns;t++){
+      if(blocked[t]&&blocked[t][si]){
+        // This slot is occupied by a multi-hour delivery from above
+        html+=`<div class="rs-cell blocked" style="min-width:200px"></div>`;
+        continue;
+      }
+
+      const slotDeliveries=DELIVERIES.filter(x=>x.slot===slot&&x.truck===t);
+
+      if(slotDeliveries.length===0){
+        html+=`<div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(${t},'${slot}')">+</span></div>`;
+      } else {
+        // Check if all are half-hour — show side by side
+        const allHalf=slotDeliveries.every(d=>d.duration===0.5);
+        // Calculate max duration for cell height
+        const maxDur=Math.max(...slotDeliveries.map(d=>d.duration));
+        let cellStyle='min-width:200px';
+        if(maxDur>=2) cellStyle+=';min-height:108px';
+        else if(maxDur===1.5) cellStyle+=';min-height:81px';
+
+        html+=`<div class="rs-cell" style="${cellStyle}">`;
+        slotDeliveries.forEach(d=>{
+          const p=d.payment_type||'acc';
+          const widthClass=allHalf&&slotDeliveries.length>1?'half-width':'full-width';
+          html+=`<div class="${cardClass(d)} ${widthClass}">
+            ${d.duration>1||d.duration===0.5?`<div class="del-duration">${d.duration===0.5?'½hr':d.duration+'hr'}</div>`:''}
+            <div class="del-top">
+              <span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>
+              ${statusBadge(d)}
+            </div>
+            <div class="del-name">${d.customer_name||'—'}</div>
+            <div class="del-suburb">${d.suburb||''}</div>
+            <div class="del-inv">${d.invoice||''}${d.cod_amount?' · '+d.cod_amount:''}</div>
+            ${d.notes?`<div class="del-note">${d.notes}</div>`:''}
+            <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(${d.id})">Edit</button>
+          </div>`;
+        });
+        html+=`</div>`;
+      }
+    }
+    html+=`</div>`;
+  });
+
+  wrap.innerHTML=html;
+
+  // Update metrics
   const done=DELIVERIES.filter(d=>d.driver_status==='delivered').length;
   const prog=DELIVERIES.filter(d=>d.driver_status==='loading'||d.driver_status==='enroute').length;
+  const totalSlots=numRuns*SLOTS.length;
+  const usedSlots=DELIVERIES.reduce((s,d)=>s+Math.ceil(d.duration),0);
   document.getElementById('m-total').textContent=DELIVERIES.length;
   document.getElementById('m-done').textContent=done;
   document.getElementById('m-prog').textContent=prog;
-  document.getElementById('m-remain').textContent=Math.max(0,30-DELIVERIES.length);
+  document.getElementById('m-remain').textContent=Math.max(0,totalSlots-usedSlots);
+  document.getElementById('m-trucks-sub').textContent=`across ${numRuns} runs`;
+
+  // Update booking modal truck select
+  updateTruckSelect();
+}
+
+function updateTruckSelect(){
+  const runs=getRuns();
+  const sel=document.getElementById('book-truck');
+  sel.innerHTML=runs.map((r,i)=>`<option value="${i}">${r.label||'Run '+(i+1)}${r.driver?' — '+r.driver:''}</option>`).join('');
+}
+
+// Truck run management
+function addRun(){
+  const runs=getRuns();
+  runs.push({label:'Run '+(runs.length+1),type:'',rego:'',driver:''});
+  saveRuns(runs);
+  buildRunSheet();
+  showToast('Run added');
+}
+function removeRun(){
+  const runs=getRuns();
+  if(runs.length<=1) return;
+  runs.pop();
+  saveRuns(runs);
+  buildRunSheet();
+  showToast('Run removed');
+}
+
+let editingTruckIdx=null;
+function openTruckEdit(idx){
+  editingTruckIdx=idx;
+  const runs=getRuns();
+  const r=runs[idx];
+  document.getElementById('truck-label').value=r.label||'';
+  document.getElementById('truck-type').value=r.type||'';
+  document.getElementById('truck-rego').value=r.rego||'';
+  document.getElementById('truck-driver').value=r.driver||'';
+  showModal('truck');
+}
+function saveTruckHeader(){
+  const runs=getRuns();
+  runs[editingTruckIdx]={
+    label:document.getElementById('truck-label').value.trim()||'Run '+(editingTruckIdx+1),
+    type:document.getElementById('truck-type').value.trim(),
+    rego:document.getElementById('truck-rego').value.trim(),
+    driver:document.getElementById('truck-driver').value.trim()
+  };
+  saveRuns(runs);
+  closeModal('truck');
+  buildRunSheet();
+  showToast('Run details updated');
+}
+
+// ═══ BOOKING MODAL ═══
+function openBookingModal(){
+  editingId=null;
+  document.getElementById('booking-modal-title').textContent='Book delivery';
+  document.getElementById('booking-delete-btn').style.display='none';
+  clearBookingForm();
+  showModal('booking');
+}
+function openBookingWith(truck,slot){
+  openBookingModal();
+  document.getElementById('book-truck').value=truck;
+  document.getElementById('book-slot').value=slot;
+}
+function openEditDelivery(id){
+  editingId=id;
+  const d=DELIVERIES.find(x=>x.id===id);
+  if(!d) return;
+  document.getElementById('booking-modal-title').textContent='Edit — '+d.customer_name;
+  document.getElementById('booking-delete-btn').style.display='block';
+  document.getElementById('book-name').value=d.customer_name||'';
+  document.getElementById('book-phone').value=d.customer_phone||'';
+  document.getElementById('book-inv').value=d.invoice||'';
+  document.getElementById('book-suburb').value=d.suburb||'';
+  document.getElementById('book-pay').value=d.payment_type||'cod';
+  document.getElementById('book-truck').value=d.truck;
+  document.getElementById('book-slot').value=d.slot||'7–8am';
+  document.getElementById('book-dur').value=d.duration;
+  document.getElementById('book-driver').value=d.driver_name||'';
+  document.getElementById('book-cod').value=d.cod_amount||'';
+  document.getElementById('book-products').value=d.products||'';
+  document.getElementById('book-notes').value=d.notes||'';
+  document.getElementById('book-created-by').value=d.created_by||'';
+  document.getElementById('book-status').value=d.driver_status||'pending';
+  showModal('booking');
+}
+
+async function saveBooking(){
+  const name=document.getElementById('book-name').value.trim();
+  if(!name){showToast('Enter a customer name',true);return;}
+  const runs=getRuns();
+  const truckIdx=parseInt(document.getElementById('book-truck').value);
+  const row={
+    store:currentStore,date:currentDate,
+    slot:document.getElementById('book-slot').value,
+    truck:truckIdx,
+    driver_name:document.getElementById('book-driver').value.trim()||runs[truckIdx]?.driver||'',
+    customer_name:name,
+    customer_phone:document.getElementById('book-phone').value.trim(),
+    suburb:document.getElementById('book-suburb').value.trim(),
+    invoice:document.getElementById('book-inv').value.trim(),
+    payment_type:document.getElementById('book-pay').value,
+    cod_amount:document.getElementById('book-cod').value.trim()||null,
+    products:document.getElementById('book-products').value.trim()||null,
+    notes:document.getElementById('book-notes').value.trim()||null,
+    duration:parseFloat(document.getElementById('book-dur').value),
+    driver_status:document.getElementById('book-status').value,
+    created_by:document.getElementById('book-created-by').value.trim()||null,
+    truck_type:runs[truckIdx]?.type||null,
+    truck_rego:runs[truckIdx]?.rego||null
+  };
+  try{
+    if(editingId){
+      await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify(row)});
+      showToast('Delivery updated');
+    }else{
+      await db('deliveries',{method:'POST',body:JSON.stringify(row)});
+      showToast('Delivery booked');
+    }
+    closeModal('booking');
+    clearBookingForm();
+    await loadDeliveries();
+  }catch(e){showToast('Save failed: '+e.message,true);}
+}
+
+async function deleteDelivery(){
+  if(!editingId||!confirm('Remove this booking?'))return;
+  try{await db(`deliveries?id=eq.${editingId}`,{method:'DELETE'});closeModal('booking');showToast('Booking removed');editingId=null;await loadDeliveries();}
+  catch(e){showToast('Delete failed',true);}
+}
+
+function clearBookingForm(){
+  ['book-name','book-phone','book-inv','book-suburb','book-products','book-notes','book-cod','book-driver','book-created-by'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('book-pay').value='cod';
+  document.getElementById('book-truck').value='0';
+  document.getElementById('book-slot').value='7–8am';
+  document.getElementById('book-dur').value='1';
+  document.getElementById('book-status').value='pending';
 }
 
 // ═══ JOURNAL ═══
 function buildJournal(){
-  const tbody=document.getElementById('journal-body');
   const SM={delivered:{c:'s-done',l:'Delivered'},enroute:{c:'s-out',l:'En route'},loading:{c:'s-out',l:'Loading'},pending:{c:'s-pending',l:'Pending'}};
+  const tbody=document.getElementById('journal-body');
   tbody.innerHTML=DELIVERIES.map(d=>{
-    const p=d.payment_type||'acc';const s=SM[d.driver_status]||SM.pending;const dur=parseFloat(d.duration)||1;
+    const p=d.payment_type||'acc';const s=SM[d.driver_status]||SM.pending;
     return`<tr><td class="mono">${d.id}</td><td style="font-weight:600">${d.customer_name||'—'}</td><td>${d.suburb||''}</td>
     <td class="mono">${d.invoice||''}</td><td><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span></td>
-    <td class="mono">${d.cod_amount||'—'}</td><td>${d.driver_name||DRIVER_NAMES[d.truck]||'—'}</td>
-    <td class="mono">${TRUCK_NAMES[d.truck]?TRUCK_NAMES[d.truck].split(' — ')[0]:'T'+d.truck}</td>
-    <td class="mono">${d.slot||''}</td><td class="mono">${dur}hr</td>
+    <td class="mono">${d.cod_amount||'—'}</td><td>${d.driver_name||'—'}</td>
+    <td class="mono">${d.slot||''}</td><td class="mono">${d.duration}hr</td>
+    <td>${d.created_by||'—'}</td>
     <td><span class="status-pill ${s.c}"><span class="status-dot"></span>${s.l}</span></td></tr>`;
   }).join('');
   const codTotal=DELIVERIES.reduce((s,d)=>s+parseCod(d),0);
@@ -740,11 +906,23 @@ function buildJournal(){
 
 // ═══ DRIVER VIEW ═══
 function buildDriverView(){
-  const mine=DELIVERIES.filter(d=>d.truck===selectedDriverTruck);
-  const dn=DRIVER_NAMES[selectedDriverTruck]||'Driver';
-  const tn=TRUCK_NAMES[selectedDriverTruck]?TRUCK_NAMES[selectedDriverTruck].split(' — ')[0]:'';
-  document.getElementById('dv-driver-name').textContent=`${dn} — ${tn}`;
+  // Populate filter dropdown with runs
+  const runs=getRuns();
+  const filterSel=document.getElementById('driver-filter-select');
+  filterSel.innerHTML=`<option value="all">All runs</option>`+runs.map((r,i)=>`<option value="${i}">${r.label||'Run '+(i+1)}${r.driver?' — '+r.driver:''}</option>`).join('');
+  filterSel.value=driverFilterTruck;
+  filterDriverView();
+}
+
+function filterDriverView(){
+  driverFilterTruck=document.getElementById('driver-filter-select').value;
+  const mine=driverFilterTruck==='all'?DELIVERIES:DELIVERIES.filter(d=>d.truck===parseInt(driverFilterTruck));
+  const runs=getRuns();
+  const run=driverFilterTruck!=='all'?runs[parseInt(driverFilterTruck)]:null;
+
+  document.getElementById('dv-driver-name').textContent=run?`${run.driver||run.label} — ${run.type||''}`:('All runs · '+currentStore);
   document.getElementById('dv-driver-sub').textContent=`Today · ${mine.length} deliveries`;
+
   const list=document.getElementById('driver-list');
   list.innerHTML=mine.map((d,qi)=>{
     const nc=d.driver_status==='delivered'?'done':d.driver_status==='loading'?'loading':d.driver_status==='enroute'?'enroute':'';
@@ -763,7 +941,8 @@ function buildDriverView(){
       </div>
     </div>`;
   }).join('');
-  if(mine.length>0&&!mine.find(d=>d.id===selectedDeliveryId))selectDelivery(mine[0].id,null);
+
+  if(mine.length>0&&!mine.find(d=>d.id===selectedDeliveryId)){selectDelivery(mine[0].id,null);}
   else if(selectedDeliveryId){const d=DELIVERIES.find(x=>x.id===selectedDeliveryId);if(d)renderDriverDetail(d);}
 }
 
@@ -771,45 +950,39 @@ function selectDelivery(id,el){
   selectedDeliveryId=id;
   document.querySelectorAll('.dq-item').forEach(x=>x.classList.remove('sel'));
   if(el)el.classList.add('sel');
-  else{document.querySelectorAll('.dq-item').forEach((x,i)=>{
-    const mine=DELIVERIES.filter(d=>d.truck===selectedDriverTruck);
-    if(mine[i]&&mine[i].id===id)x.classList.add('sel');
-  });}
   const d=DELIVERIES.find(x=>x.id===id);if(d)renderDriverDetail(d);
 }
 
 function renderDriverDetail(d){
   const st=d.driver_status||'pending';
-  const products=d.products?d.products.split('\n').filter(Boolean).map(p=>{const ps=p.split(' - ');return{name:ps[0]||p,qty:ps[1]||''};}):[]; 
+  const products=d.products?d.products.split('\n').filter(Boolean).map(p=>{const ps=p.split(' - ');return{name:ps[0]||p,qty:ps[1]||''};}):[];
   if(!prodChecked[d.id])prodChecked[d.id]=products.map(()=>false);
   if(!safetyChecked[d.id])safetyChecked[d.id]=SAFETY_QS.map(()=>false);
   const steps=[{label:'Loading',key:'loading'},{label:'En route',key:'enroute'},{label:'At site',key:'atsite'},{label:'Delivered',key:'delivered'}];
-  const stMap={pending:0,loading:1,enroute:2,atsite:3,delivered:4};
-  const cur=stMap[st]||0;
+  const stMap={pending:0,loading:1,enroute:2,atsite:3,delivered:4};const cur=stMap[st]||0;
   const progHtml=`<div class="prog-track">${steps.map((s,i)=>{
-    const dn=cur>i+1,ac=cur===i+1;
-    let cc=dn?'done':ac?'active':'',lc=dn?'done':ac?'active':'';
+    const dn=cur>i+1,ac=cur===i+1;let cc=dn?'done':ac?'active':'',lc=dn?'done':ac?'active':'';
     if(ac&&s.key==='loading'){cc='loading-active';lc='loading-active';}
-    const ic=dn?'✓':(ac?'→':i+1);
-    return`<div class="prog-step"><div class="prog-circle ${cc}">${ic}</div><div class="prog-label ${lc}">${s.label}</div></div>${i<steps.length-1?`<div class="prog-connector${dn?' done':''}"></div>`:''}`;
+    return`<div class="prog-step"><div class="prog-circle ${cc}">${dn?'✓':ac?'→':i+1}</div><div class="prog-label ${lc}">${s.label}</div></div>${i<steps.length-1?`<div class="prog-connector${dn?' done':''}"></div>`:''}`;
   }).join('')}</div>`;
+
   let actionHtml='';
   if(st==='pending')actionHtml=`<div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(${d.id},'loading')">Start loading</button></div>`;
-  else if(st==='loading'){
-    const allC=products.length===0||prodChecked[d.id].every(Boolean);
-    actionHtml=`<div class="action-row"><button class="btn btn-primary" ${allC?'':'disabled title="Tick all products"'} onclick="advanceStatus(${d.id},'enroute')">Leave for site</button></div>${!allC?'<div style="font-size:11px;color:var(--amber-text);margin-top:6px;text-align:center">Tick all products as loaded before departing</div>':''}`;
-  }else if(st==='enroute')actionHtml=`<div class="action-row"><button class="btn btn-success" onclick="advanceStatus(${d.id},'delivered')">Mark delivered</button></div>`;
+  else if(st==='loading'){const allC=products.length===0||prodChecked[d.id].every(Boolean);actionHtml=`<div class="action-row"><button class="btn btn-primary" ${allC?'':'disabled'} onclick="advanceStatus(${d.id},'enroute')">Leave for site</button></div>`;}
+  else if(st==='enroute')actionHtml=`<div class="action-row"><button class="btn btn-success" onclick="advanceStatus(${d.id},'delivered')">Mark delivered</button></div>`;
   else actionHtml=`<div style="background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--green-text);font-weight:500;text-align:center;margin-top:8px">Delivery complete ✓</div>`;
+
   const prodHtml=products.length>0?products.map((p,pi)=>`<div class="product-line"><input type="checkbox" class="pcheck" ${prodChecked[d.id][pi]?'checked':''} onchange="toggleProd(${d.id},${pi},this.checked)" ${st!=='loading'?'disabled':''}><span class="pname">${p.name}</span><span class="pqty">${p.qty}</span></div>`).join(''):'<div style="font-size:12px;color:var(--text-3);padding:4px 0">No products listed</div>';
+
   const showSafety=st==='enroute'||st==='delivered';
-  const allSafe=safetyChecked[d.id].every(Boolean);
-  const safetyHtml=showSafety?`<div class="section-divider"><span>Site safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div>${SAFETY_QS.map((q,qi)=>`<div class="safety-item"><input type="checkbox" class="safety-check" ${safetyChecked[d.id][qi]?'checked':''} onchange="toggleSafety(${d.id},${qi},this.checked)"><div class="safety-text"><div class="safety-q">${q.q}</div><div class="safety-sub">${q.sub}</div></div></div>`).join('')}<div class="safety-pass${allSafe?' show':''}">All safety checks complete — safe to unload.</div></div>`:(st==='pending'||st==='loading'?`<div class="detail-section" style="opacity:0.5"><div class="detail-section-title">Site safety checklist</div><div style="font-size:12px;color:var(--text-3);padding:4px 0">Available once en route</div></div>`:'');
-  const photoHtml=showSafety?`<div class="section-divider"><span>Delivery photos</span></div><div class="detail-section"><div class="detail-section-title">Upload delivery evidence</div><div class="photo-upload-zone" onclick="showToast('Photo upload coming soon')"><div style="font-size:24px;margin-bottom:6px;opacity:0.4">📷</div><div style="font-size:13px;font-weight:500;color:var(--text-2)">Tap to add photos</div><div style="font-size:11px;color:var(--text-3);margin-top:3px">Before &amp; after — max 5 photos</div></div><div class="photo-grid"><div class="photo-thumb">+ Add</div><div class="photo-thumb">+ Add</div><div class="photo-thumb">+ Add</div></div></div>`:'';
+  const allSafe=safetyChecked[d.id]?.every(Boolean);
+  const safetyHtml=showSafety?`<div class="section-divider"><span>Site safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div>${SAFETY_QS.map((q,qi)=>`<div class="safety-item"><input type="checkbox" class="safety-check" ${safetyChecked[d.id][qi]?'checked':''} onchange="toggleSafety(${d.id},${qi},this.checked)"><div class="safety-text"><div class="safety-q">${q.q}</div><div class="safety-sub">${q.sub}</div></div></div>`).join('')}<div class="safety-pass${allSafe?' show':''}">All safety checks complete — safe to unload.</div></div>`:'';
+
   const pay=d.payment_type||'acc';
   document.getElementById('driver-detail').innerHTML=`${progHtml}
-    <div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid">
+    <div class="detail-section"><div class="detail-section-title">Customer & invoice</div><div class="detail-grid">
       <div class="detail-item"><div class="dl">Name</div><div class="dv">${d.customer_name||'—'}</div></div>
-      <div class="detail-item"><div class="dl">Invoice</div><div class="dv" style="font-family:'DM Mono',monospace;font-size:12px">${d.invoice||'—'}</div></div>
+      <div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">${d.invoice||'—'}</div></div>
       <div class="detail-item"><div class="dl">Window</div><div class="dv">${d.slot||'—'}</div></div>
       <div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge ${PAY_CLASS[pay]||'badge-acc'}">${PAY_LABEL[pay]||pay}</span></div></div>
     </div></div>
@@ -818,23 +991,19 @@ function renderDriverDetail(d){
       <div style="font-size:12px;color:var(--text-3)">${d.notes||'No special instructions'}</div>
       ${d.customer_phone?`<div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 ${d.customer_phone}</div>`:''}
     </div>
-    <div class="detail-section"><div class="detail-section-title">Products to load &amp; deliver${st==='loading'?' — tick each as loaded':''}</div>${prodHtml}</div>
+    <div class="detail-section"><div class="detail-section-title">Products${st==='loading'?' — tick each as loaded':''}</div>${prodHtml}</div>
     ${actionHtml}
-    ${pay==='cod'&&(st==='enroute'||st==='delivered')?`<div class="cod-box"><strong>COD collection required</strong>Collect ${d.cod_amount||'$0'} cash on delivery.<input type="text" placeholder="Receipt number" style="margin-top:6px"></div>`:''}
-    ${safetyHtml}${photoHtml}`;
+    ${pay==='cod'&&(st==='enroute'||st==='delivered')?`<div class="cod-box"><strong>COD collection required</strong>Collect ${d.cod_amount||'$0'} cash.<input type="text" placeholder="Receipt number" style="margin-top:6px"></div>`:''}
+    ${safetyHtml}`;
 }
 
 function toggleProd(id,pi,val){prodChecked[id][pi]=val;const d=DELIVERIES.find(x=>x.id===id);if(d)renderDriverDetail(d);}
 function toggleSafety(id,qi,val){safetyChecked[id][qi]=val;const d=DELIVERIES.find(x=>x.id===id);if(d)renderDriverDetail(d);}
-
-async function advanceStatus(id,newStatus){
-  try{
-    await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({driver_status:newStatus})});
-    const d=DELIVERIES.find(x=>x.id===id);if(d)d.driver_status=newStatus;
-    renderAll();
-    const msgs={loading:'Loading started — customer notified',enroute:'Departed for site — SMS sent',delivered:'Delivery complete ✓'};
-    showToast(msgs[newStatus]||'Updated');
-  }catch(e){showToast('Failed to update status',true);}
+async function advanceStatus(id,ns){
+  try{await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({driver_status:ns})});
+  const d=DELIVERIES.find(x=>x.id===id);if(d)d.driver_status=ns;renderAll();
+  showToast({loading:'Loading started',enroute:'Departed for site',delivered:'Delivery complete ✓'}[ns]||'Updated');
+  }catch(e){showToast('Failed to update',true);}
 }
 
 // ═══ CUSTOMER TRACKER ═══
@@ -848,26 +1017,23 @@ function updateCustomerTracker(){
   const msgs={pending:'Your order is confirmed.',loading:'Products are being loaded now.',enroute:`${d.driver_name||'Driver'} is on the way!`,delivered:'Delivered! Thank you.'};
   document.getElementById('tracker-card').innerHTML=`
     <div class="tracker-title">Your delivery — ${d.invoice||''}</div>
-    <div class="tracker-sub">${d.suburb||''} · ${d.products?d.products.split('\n')[0]:''}</div>
+    <div class="tracker-sub">${d.suburb||''}</div>
     <div class="tracker-status-msg">${msgs[st]||''}</div>
     <div class="track-steps">${steps.map((s,i)=>`<div class="t-step"><div class="t-circle ${s.cls}">${icons[s.cls]||'○'}</div><div class="t-label ${s.cls}">${s.label}</div></div>${i<steps.length-1?`<div class="t-connector ${conn[i]||''}"></div>`:''}`).join('')}</div>
-    ${st!=='delivered'?`<div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">${d.slot||'TBD'}</div><div class="eta-sub">${d.driver_name||'Driver'} · ${currentStore}</div></div>`:`<div style="background:var(--green-bg);border-radius:var(--radius);padding:18px 20px;text-align:center"><div style="font-size:24px;margin-bottom:6px">✓</div><div style="font-size:16px;font-weight:600;color:var(--green-text)">Delivered successfully</div></div>`}
-    <div style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px">Questions? Call ${currentStore} store</div>`;
+    ${st!=='delivered'?`<div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">${d.slot||'TBD'}</div><div class="eta-sub">${d.driver_name||'Driver'} · ${currentStore}</div></div>`:`<div style="background:var(--green-bg);border-radius:var(--radius);padding:18px 20px;text-align:center"><div style="font-size:24px;margin-bottom:6px">✓</div><div style="font-size:16px;font-weight:600;color:var(--green-text)">Delivered successfully</div></div>`}`;
 }
 
 // ═══ HEAD OFFICE ═══
 async function buildHQ(){
-  let all=[];
-  try{all=await db(`deliveries?date=eq.${currentDate}&order=store.asc`);all.forEach(d=>{d.truck=parseInt(d.truck)||0;});}catch(e){all=[];}
+  let all=[];try{all=await db(`deliveries?date=eq.${currentDate}&order=store.asc`);all.forEach(d=>{d.truck=parseInt(d.truck)||0;});}catch(e){}
   const byStore={};ALL_STORES.forEach(s=>byStore[s]=[]);
   all.forEach(d=>{if(byStore[d.store])byStore[d.store].push(d);});
   const active=ALL_STORES.filter(s=>byStore[s].length>0);
-  let tAll=0,dAll=0,cAll=0,pAll=0;
+  let tA=0,dA=0,cA=0,pA=0;
   document.getElementById('hq-grid').innerHTML=active.map(sn=>{
     const ds=byStore[sn];const tot=ds.length;const comp=ds.filter(d=>d.driver_status==='delivered').length;
-    const pct=tot>0?Math.round(comp/tot*100):0;
-    const cod=ds.reduce((s,d)=>s+parseCod(d),0);
-    tAll+=tot;dAll+=comp;cAll+=cod;pAll+=ds.filter(d=>d.driver_status==='pending').length;
+    const pct=tot>0?Math.round(comp/tot*100):0;const cod=ds.reduce((s,d)=>s+parseCod(d),0);
+    tA+=tot;dA+=comp;cA+=cod;pA+=ds.filter(d=>d.driver_status==='pending').length;
     return`<div class="hq-store-card"><div class="hq-store-name">${sn}${pct===100?'<span class="badge badge-yes">Complete</span>':comp>0?'<span class="badge badge-out">Active</span>':'<span class="badge badge-pending">Pending</span>'}</div>
     <div style="font-size:11px;color:var(--text-3)">${comp} of ${tot} delivered</div>
     <div class="hq-bar-track"><div class="hq-bar-fill${pct===100?' high':''}" style="width:${pct}%"></div></div>
@@ -876,124 +1042,36 @@ async function buildHQ(){
   document.getElementById('hq-table').innerHTML=active.map(sn=>{
     const ds=byStore[sn];const tot=ds.length;const comp=ds.filter(d=>d.driver_status==='delivered').length;
     const prog=ds.filter(d=>d.driver_status==='loading'||d.driver_status==='enroute').length;
-    const pend=ds.filter(d=>d.driver_status==='pending').length;
-    const cod=ds.reduce((s,d)=>s+parseCod(d),0);
+    const pend=ds.filter(d=>d.driver_status==='pending').length;const cod=ds.reduce((s,d)=>s+parseCod(d),0);
     return`<tr><td style="font-weight:600">${sn}</td><td>${new Date(currentDate+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})}</td>
     <td>${tot}</td><td><span class="badge badge-yes">${comp}</span></td><td><span class="badge badge-out">${prog}</span></td>
     <td><span class="badge badge-pending">${pend}</span></td><td class="mono">$${cod.toLocaleString()}</td></tr>`;
   }).join('');
-  document.getElementById('hq-total').textContent=tAll;
-  document.getElementById('hq-done').textContent=dAll;
-  document.getElementById('hq-pct').textContent=tAll>0?Math.round(dAll/tAll*100)+'%':'0%';
-  document.getElementById('hq-cod').textContent='$'+cAll.toLocaleString();
-  document.getElementById('hq-pending').textContent=pAll;
-}
-
-// ═══ BOOKING — FIXED: explicit IDs, no ambiguous select ordering ═══
-function openBookingWith(truck,slot,dur){
-  bookingDur=dur;
-  document.getElementById('book-truck').value=truck;
-  document.getElementById('book-slot').value=slot;
-  document.querySelectorAll('#book-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));
-  const durVals=[0.5,1,1.5,2,2.5,3];
-  durVals.forEach((v,i)=>{if(v===dur)document.querySelectorAll('#book-dur-grid .dur-btn')[i].classList.add('selected');});
-  showModal('booking');
-}
-function selectBookDur(btn,val){bookingDur=val;document.querySelectorAll('#book-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');}
-
-async function saveBooking(){
-  // ✅ FIX: Each field read by explicit ID — never by select index
-  const customer_name=document.getElementById('book-name').value.trim();
-  const customer_phone=document.getElementById('book-phone').value.trim();
-  const invoice=document.getElementById('book-inv').value.trim();
-  const suburb=document.getElementById('book-suburb').value.trim();
-  const payment_type=document.getElementById('book-pay').value;     // "cod"|"acc"|"paid"
-  const truck=parseInt(document.getElementById('book-truck').value); // 0|1|2
-  const slot=document.getElementById('book-slot').value;             // "7–8am" etc.
-  const products=document.getElementById('book-products').value.trim();
-  const notes=document.getElementById('book-notes').value.trim();
-  const cod_amount=document.getElementById('book-cod').value.trim();
-  const driver_name=DRIVER_NAMES[truck]||'';
-
-  if(!customer_name){showToast('Enter a customer name',true);return;}
-
-  const row={store:currentStore,date:currentDate,slot,truck,driver_name,customer_name,customer_phone,suburb,invoice,payment_type,cod_amount:cod_amount||null,products:products||null,notes:notes||null,duration:bookingDur,driver_status:'pending'};
-
-  try{
-    await db('deliveries',{method:'POST',body:JSON.stringify(row)});
-    showToast('Delivery booked · SMS sent');
-    closeModal('booking');
-    clearBookingForm();
-    await loadDeliveries();
-  }catch(e){showToast('Save failed: '+e.message,true);}
-}
-
-function clearBookingForm(){
-  ['book-name','book-phone','book-inv','book-suburb','book-products','book-notes','book-cod'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('book-pay').value='cod';
-  document.getElementById('book-truck').value='0';
-  document.getElementById('book-slot').value='7–8am';
-  bookingDur=1;
-  document.querySelectorAll('#book-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));
-  document.querySelectorAll('#book-dur-grid .dur-btn')[1].classList.add('selected');
-}
-
-// ═══ EDIT SLOT ═══
-function openEditSlot(id){
-  editingId=id;const d=DELIVERIES.find(x=>x.id===id);if(!d)return;
-  editingDur=parseFloat(d.duration)||1;
-  document.getElementById('editslot-title').textContent=`Edit — ${d.customer_name||'Delivery'}`;
-  document.getElementById('edit-name').value=d.customer_name||'';
-  document.getElementById('edit-suburb').value=d.suburb||'';
-  document.getElementById('edit-inv').value=d.invoice||'';
-  document.getElementById('edit-notes').value=d.notes||'';
-  document.querySelectorAll('#edit-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));
-  [0.5,1,1.5,2,2.5,3].forEach((v,i)=>{if(v===editingDur)document.querySelectorAll('#edit-dur-grid .dur-btn')[i].classList.add('selected');});
-  showModal('editslot');
-}
-function selectEditDur(btn,val){editingDur=val;document.querySelectorAll('#edit-dur-grid .dur-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');}
-
-async function saveEditSlot(){
-  if(!editingId)return;
-  try{
-    await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify({
-      customer_name:document.getElementById('edit-name').value.trim(),
-      suburb:document.getElementById('edit-suburb').value.trim(),
-      invoice:document.getElementById('edit-inv').value.trim(),
-      notes:document.getElementById('edit-notes').value.trim(),
-      duration:editingDur
-    })});
-    closeModal('editslot');showToast('Delivery updated');await loadDeliveries();
-  }catch(e){showToast('Update failed',true);}
-}
-
-async function deleteDelivery(){
-  if(!editingId||!confirm('Remove this booking?'))return;
-  try{await db(`deliveries?id=eq.${editingId}`,{method:'DELETE'});closeModal('editslot');showToast('Booking removed');editingId=null;await loadDeliveries();}
-  catch(e){showToast('Delete failed',true);}
+  document.getElementById('hq-total').textContent=tA;document.getElementById('hq-done').textContent=dA;
+  document.getElementById('hq-pct').textContent=tA>0?Math.round(dA/tA*100)+'%':'0%';
+  document.getElementById('hq-cod').textContent='$'+cA.toLocaleString();document.getElementById('hq-pending').textContent=pA;
 }
 
 // ═══ VIEW SWITCHING ═══
 const VT={runsheet:'Run Sheet',journal:'Delivery Journal',driver:'Driver View',hq:'Head Office',customer:'Customer Tracker'};
-const VA={runsheet:'Export PDF',journal:'Export CSV',driver:'All trucks',hq:'Download report',customer:'Preview SMS'};
-function switchView(view,el){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('view-'+view).classList.add('active');
+const VA={runsheet:'Export PDF',journal:'Export CSV',driver:'',hq:'Download report',customer:'Preview SMS'};
+function switchView(v,el){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
   if(el)el.classList.add('active');
-  document.getElementById('page-title').textContent=VT[view];
-  document.getElementById('top-action').textContent=VA[view];
-  if(view==='hq')buildHQ();
+  document.getElementById('page-title').textContent=VT[v];
+  document.getElementById('top-action').textContent=VA[v];
+  if(v==='hq')buildHQ();
 }
 function changeStore(){currentStore=document.getElementById('store-select').value;document.getElementById('footer-store').textContent=currentStore+' Store';loadDeliveries();}
-function changeDate(){currentDate=document.getElementById('date-select').value;const d=new Date(currentDate+'T00:00:00');document.getElementById('footer-date').textContent=d.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});loadDeliveries();}
+function changeDate(){currentDate=document.getElementById('date-select').value;document.getElementById('footer-date').textContent=new Date(currentDate+'T00:00:00').toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});loadDeliveries();}
 
-// ═══ MODAL + TOAST ═══
+// ═══ UTILS ═══
 function showModal(id){document.getElementById('modal-'+id).classList.add('show');}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('show');}
 function showToast(msg,err){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(err?' error':'');setTimeout(()=>t.className='toast',2800);}
 
-// ═══ GO ═══
 init();
 </script>
 

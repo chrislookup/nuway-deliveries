@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0069)file:///C:/Users/chris/Downloads/nuway_delivery_system_v3_live_3.html -->
+<!-- saved from url=(0069)file:///C:/Users/chris/Downloads/nuway_delivery_system_v3_live_4.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 20.04 8.32_files/css2" rel="stylesheet">
 <style>
 :root {
   --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
@@ -81,11 +81,11 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .rs-cell{padding:5px 6px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);min-height:54px;cursor:pointer;transition:background 0.1s;display:flex;align-items:flex-start;position:relative}
 .rs-cell:last-child{border-right:none}
 .rs-cell:hover{background:#f7f6ff}
-.rs-cell.empty{align-items:center;justify-content:center;flex-direction:column;gap:4px}
-.rs-cell.empty .empty-actions{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
-.ea-btn{font-size:9px;padding:2px 6px;border-radius:10px;border:1px solid var(--border-md);background:var(--surface);color:var(--text-2);cursor:pointer;white-space:nowrap;transition:all 0.1s}
+.rs-cell.empty{align-items:center;justify-content:center}
+.rs-cell.empty .ea-btn{font-size:16px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0;transition:all 0.15s}
+.rs-cell.empty:hover .ea-btn{opacity:1}
+.ea-btn{padding:2px 6px;border-radius:10px;border:1px solid var(--border-md);background:var(--surface);color:var(--text-3);cursor:pointer;white-space:nowrap;transition:all 0.1s}
 .ea-btn:hover{background:var(--blue-bg);color:var(--blue);border-color:var(--blue)}
-.ea-btn.half{background:var(--purple-bg);color:var(--purple-text);border-color:var(--purple-text)}
 .rs-cell.span2{min-height:108px}.rs-cell.span15{min-height:81px}
 .del-card{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 7px;border-left:3px solid var(--border-md);position:relative}
 .del-card.cod{border-left-color:#c88a20}.del-card.acc{border-left-color:var(--blue)}.del-card.paid{border-left-color:var(--green)}
@@ -284,10 +284,10 @@ tr:hover td{background:var(--bg)}
       <!-- RUN SHEET -->
       <div class="view active" id="view-runsheet">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">4</div><div class="metric-sub">across 3 trucks</div></div>
+          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">5</div><div class="metric-sub">across 3 trucks</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
           <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
-          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">26</div><div class="metric-sub">today's capacity</div></div>
+          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">25</div><div class="metric-sub">today's capacity</div></div>
         </div>
         <div class="run-sheet-wrap">
           <div style="display:grid;grid-template-columns:72px repeat(3,1fr)">
@@ -296,167 +296,17 @@ tr:hover td{background:var(--bg)}
             <div class="rs-th">M2 — Chris B.</div>
             <div class="rs-th">FUSO — Dan R.</div>
           </div>
-          <div id="rs-body"><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">7–8am</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;7–8am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;7–8am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;7–8am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,2)">+ 2hr</span>
-        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;8–9am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;8–9am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;8–9am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,2)">+ 2hr</span>
-        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;9–10am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;9–10am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;9–10am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,2)">+ 2hr</span>
-        </div></div></div><div class="rs-break">10-minute paid rest break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;10–11am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;10–11am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;10–11am&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,2)">+ 2hr</span>
-        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;11am–12pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;11am–12pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;11am–12pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,2)">+ 2hr</span>
-        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;12–1pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;12–1pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;12–1pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,2)">+ 2hr</span>
-        </div></div></div><div class="rs-break">30-minute unpaid lunch break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;1–2pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;1–2pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;1–2pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,2)">+ 2hr</span>
-        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;2–3pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;2–3pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;2–3pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,2)">+ 2hr</span>
-        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;3–4pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;3–4pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;3–4pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,2)">+ 2hr</span>
-        </div></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(0,&#39;4–5pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(1,&#39;4–5pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,2)">+ 2hr</span>
-        </div></div><div class="rs-cell empty"><div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(2,&#39;4–5pm&#39;,0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,2)">+ 2hr</span>
-        </div></div></div></div>
+          <div id="rs-body"><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">7–8am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;,1)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;,1)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;,1)">+</span></div></div><div style="display: grid; grid-template-columns: 72px repeat(3, 1fr);"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;,1)">+</span></div><div class="rs-cell empty"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;,1)">+</span></div></div></div>
         </div>
       </div>
 
       <!-- JOURNAL -->
       <div class="view" id="view-journal">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">4</div></div>
-          <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$0</div></div>
+          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">5</div></div>
+          <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$56.2</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">0</div></div>
-          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">4</div></div>
+          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">5</div></div>
         </div>
         <div class="table-wrap">
           <table><thead><tr><th>#</th><th>Customer</th><th>Suburb</th><th>Invoice</th><th>Payment</th><th>COD $</th><th>Driver</th><th>Truck</th><th>Slot</th><th>Duration</th><th>Status</th></tr></thead>
@@ -465,6 +315,11 @@ tr:hover td{background:var(--bg)}
     <td class="mono">—</td><td>Jake T.</td>
     <td class="mono">M1</td>
     <td class="mono">1–2pm</td><td class="mono">1hr</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">11</td><td style="font-weight:600">Christopher Haddon</td><td>Slacks Creek</td>
+    <td class="mono">55</td><td><span class="badge badge-cod">COD</span></td>
+    <td class="mono">56.2</td><td>Jake T.</td>
+    <td class="mono">M1</td>
+    <td class="mono">7–8am</td><td class="mono">3hr</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">7</td><td style="font-weight:600">bob smith</td><td>dgdgdgd</td>
     <td class="mono">54545</td><td><span class="badge badge-cod">COD</span></td>
     <td class="mono">—</td><td>COD</td>
@@ -620,7 +475,7 @@ tr:hover td{background:var(--bg)}
   </div>
 </div>
 
-<div class="toast" id="toast">Loaded 4 deliveries</div>
+<div class="toast" id="toast">Loaded 5 deliveries</div>
 
 <script>
 // ═══ SUPABASE ═══
@@ -742,12 +597,7 @@ function buildRunSheet(){
         </div>`;
       }else{
         cell.className='rs-cell empty';
-        cell.innerHTML=`<div class="empty-actions">
-          <span class="ea-btn half" onclick="openBookingWith(${t},'${slot}',0.5)">+ ½hr</span>
-          <span class="ea-btn" onclick="openBookingWith(${t},'${slot}',1)">+ 1hr</span>
-          <span class="ea-btn" onclick="openBookingWith(${t},'${slot}',1.5)">+ 1.5hr</span>
-          <span class="ea-btn" onclick="openBookingWith(${t},'${slot}',2)">+ 2hr</span>
-        </div>`;
+        cell.innerHTML=`<span class="ea-btn" onclick="openBookingWith(${t},'${slot}',1)">+</span>`;
       }
       row.appendChild(cell);
     });

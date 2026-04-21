@@ -33,11 +33,11 @@ import traceback
 
 # ═══ CONFIGURATION ═══
 # Option 1: Set the path directly here (simplest)
-MDB_PATH = r"C:\RetailManager\Data\recent.mdb"
+MDB_PATH = r"C:\Users\chris\Dropbox\CHRIS' FOLDER\Delivery Run Sheet Project\Nuway Ormeau\recent.mdb"
 
 # Option 2: Set your store name here and the script will fetch
 # the DB path from Nuway's Supabase settings (if configured there)
-STORE_NAME = ""  # e.g. "Ormeau", "Logan" — leave blank to use MDB_PATH above
+STORE_NAME = "Logan"  # e.g. "Ormeau", "Logan" — leave blank to use MDB_PATH above
 
 # Supabase connection (same as the web app)
 SB_URL = "https://prgbejzvxbdqnszvofpj.supabase.co"

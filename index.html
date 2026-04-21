@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v5_3.html -->
+<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v5_4.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System 21.04 6.11pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 21.04 8.42pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -636,8 +636,10 @@ tr:hover td{background:var(--bg)}
         <div class="field"><label>Driver name</label><input type="text" id="book-driver" placeholder="e.g. Jake T."></div>
         <div class="field"><label>COD amount</label><input type="text" id="book-cod" placeholder="$0.00"></div>
       </div>
-      <div class="field"><label>Products</label><textarea id="book-products" placeholder="e.g. 2m³ Blue Metal
-1x Cement bag (20kg)"></textarea></div>
+      <div class="field"><label>Products (auto-filled from RM — add extra lines below)</label><textarea id="book-products" placeholder="e.g. 2m³ Blue Metal
+1x Cement bag (20kg)
+
+Products auto-fill from invoice lookup. Add extra items on new lines." style="min-height:80px"></textarea></div>
       <div class="field"><label>Delivery notes</label><textarea id="book-notes" placeholder="e.g. Not before 9am. Side gate on left."></textarea></div>
       <div class="field-row">
         <div class="field"><label>Created by (staff)</label><input type="text" id="book-created-by" placeholder="e.g. Sarah M."></div>
@@ -1494,7 +1496,7 @@ async function lookupInvoice(){
 
   try{
     const res = await fetch(`${RM_API_URL}/lookup?invoice=${encodeURIComponent(inv)}`,{
-      signal: AbortSignal.timeout(5000) // 5 second timeout
+      signal: AbortSignal.timeout(10000) // 10 second timeout (access-parser reads full tables)
     });
     const data = await res.json();
 
@@ -1510,22 +1512,36 @@ async function lookupInvoice(){
       return;
     }
 
-    // Auto-fill form fields (only if they have data — don't overwrite existing values with blanks)
+    // Auto-fill form fields — all remain editable after filling
+    // Customer name (surname + given_names from API, or company)
     if(data.customer_name){
-      const fullName = data.customer_name2
-        ? data.customer_name + ' ' + data.customer_name2
-        : data.customer_name;
+      let fullName = data.customer_name;
+      if(data.customer_name2) fullName += ' (' + data.customer_name2 + ')';
       document.getElementById('book-name').value = fullName;
     }
+
+    // Suburb
     if(data.suburb) document.getElementById('book-suburb').value = data.suburb;
-    if(data.phone || data.mobile){
-      document.getElementById('book-phone').value = data.mobile || data.phone;
+
+    // Phone — API now returns the RM "country" field which stores the actual contact number
+    if(data.phone) document.getElementById('book-phone').value = data.phone;
+
+    // Products — APPEND to existing text so staff can add extra lines manually
+    if(data.products){
+      const existing = document.getElementById('book-products').value.trim();
+      if(existing){
+        document.getElementById('book-products').value = existing + '\n--- From RM ---\n' + data.products;
+      }else{
+        document.getElementById('book-products').value = data.products;
+      }
     }
-    if(data.products) document.getElementById('book-products').value = data.products;
+
+    // Total / COD amount
     if(data.total && data.total > 0){
-      document.getElementById('book-cod').value = '$' + data.total.toFixed(2);
+      document.getElementById('book-cod').value = '$' + (data.total / 100).toFixed(2);
     }
-    // Map RM payment types to our system
+
+    // Payment type mapping (RM uses EFTPOS, Cash, Account, etc)
     if(data.payment_type){
       const pt = data.payment_type.toLowerCase();
       if(pt.includes('cash') || pt.includes('eftpos') || pt.includes('card'))
@@ -1535,15 +1551,24 @@ async function lookupInvoice(){
       else
         document.getElementById('book-pay').value = 'cod';
     }
-    // Build address for notes if we have it
+
+    // Build delivery address for notes field
     if(data.address){
-      const addr = [data.address, data.suburb, data.state, data.postcode].filter(Boolean).join(', ');
-      const currentNotes = document.getElementById('book-notes').value;
-      if(!currentNotes) document.getElementById('book-notes').value = addr;
+      const addrParts = [data.address, data.address2, data.suburb, data.state, data.postcode].filter(Boolean);
+      const addr = addrParts.join(', ');
+      const currentNotes = document.getElementById('book-notes').value.trim();
+      if(currentNotes){
+        document.getElementById('book-notes').value = currentNotes + '\nDelivery: ' + addr;
+      }else{
+        document.getElementById('book-notes').value = addr;
+      }
+      // If there's an attention/companyname, add that too
+      if(data.attention) document.getElementById('book-notes').value += '\nAttn: ' + data.attention;
+      if(data.companyname) document.getElementById('book-notes').value += '\nCompany: ' + data.companyname;
     }
 
     statusEl.style.color='var(--green-text)';
-    const filled = [data.customer_name?'name':'',data.suburb?'suburb':'',data.phone||data.mobile?'phone':'',data.products?'products':''].filter(Boolean);
+    const filled = [data.customer_name?'name':'',data.suburb?'suburb':'',data.phone?'phone':'',data.products?'products':'',data.address?'address':''].filter(Boolean);
     statusEl.textContent='✓ Found — filled: '+filled.join(', ');
     showToast('Invoice data loaded from Retail Manager');
 

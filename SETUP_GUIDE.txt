@@ -1,0 +1,60 @@
+NUWAY DELIVERY SYSTEM — STORE SETUP GUIDE
+==========================================
+
+FILES IN THIS FOLDER:
+  nuway_rm_api.py        — The Retail Manager lookup server (Python script)
+  start_nuway_api.bat    — Double-click this to start the server
+  SETUP_GUIDE.txt        — This file
+
+FIRST-TIME SETUP (one-off per store):
+  1. Install Python from https://python.org/downloads
+     IMPORTANT: Tick "Add Python to PATH" during installation
+
+  2. Edit nuway_rm_api.py in Notepad:
+     - Find the line: MDB_PATH = r"C:\RetailManager\Data\recent.mdb"
+     - Change it to your store's actual recent.mdb location
+     - For example: MDB_PATH = r"D:\MYOB\RetailManager\recent.mdb"
+     - OR set STORE_NAME = "Ormeau" (or your store name) and enter
+       the path in Nuway Settings page instead — the script will
+       fetch it automatically from the cloud
+
+  3. Double-click start_nuway_api.bat
+     - First time: it will install required packages (takes 30 seconds)
+     - You should see "Starting Nuway RM API server..."
+     - Leave this window open while using Nuway
+
+DAILY USE:
+  - Double-click start_nuway_api.bat when you turn on the PC
+  - Open Nuway in Chrome: https://chrislookup.github.io/nuway-deliveries/
+  - When booking a delivery, type the invoice number and click Lookup
+  - Customer details auto-fill from Retail Manager
+
+AUTO-START (optional):
+  To make the API start automatically when the PC turns on:
+  1. Press Win+R, type: shell:startup
+  2. Copy start_nuway_api.bat into that folder
+  3. Done — it will start every time Windows starts
+
+TROUBLESHOOTING:
+  "Python is not installed" 
+    → Download from python.org, tick "Add to PATH"
+
+  "Database not found"
+    → Check the MDB_PATH in nuway_rm_api.py points to the right file
+
+  "No Access ODBC driver found"
+    → Download Microsoft Access Database Engine from:
+      https://www.microsoft.com/en-us/download/details.aspx?id=54920
+
+  "Cannot reach Retail Manager API" (in the web app)
+    → Make sure start_nuway_api.bat is running (green window open)
+
+  Invoice lookup returns nothing
+    → Try the debug URL: http://localhost:5555/tables
+      This shows all tables in the database
+    → Try: http://localhost:5555/columns?table=Customer
+      This shows the column names — we may need to adjust field mapping
+
+SUPPORT:
+  The API runs on localhost only — it cannot be accessed from
+  other computers. Your Retail Manager data stays on your PC.

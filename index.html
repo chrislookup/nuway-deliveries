@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v5_1.html -->
+<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v5_3.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System 21.04 5.24pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 21.04 6.11pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -375,7 +375,7 @@ tr:hover td{background:var(--bg)}
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
-      <div class="nav-item" onclick="switchView(&#39;runsheet&#39;,this)">
+      <div class="nav-item active" onclick="switchView(&#39;runsheet&#39;,this)">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"></rect><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="11" y2="9"></line></svg>
         Run Sheet
       </div>
@@ -398,7 +398,7 @@ tr:hover td{background:var(--bg)}
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="5" r="3"></circle><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"></path></svg>
         Customer Tracker
       </div>
-      <div class="nav-item active" onclick="switchView(&#39;settings&#39;,this)">
+      <div class="nav-item" onclick="switchView(&#39;settings&#39;,this)">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"></circle><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.5 1.5M11.5 11.5L13 13M3 13l1.5-1.5M11.5 4.5L13 3"></path></svg>
         Settings
       </div>
@@ -413,7 +413,7 @@ tr:hover td{background:var(--bg)}
   <div class="main">
     <div class="topbar">
       <div class="topbar-left">
-        <span class="page-title" id="page-title">Settings</span>
+        <span class="page-title" id="page-title">Run Sheet</span>
         <select class="pill-select" id="store-select" onchange="changeStore()">
           <option>Logan</option><option>Chandler</option><option>Ashmore</option><option>Redlands</option>
           <option>Westerns</option><option>Forestdale</option><option>Mango Hill</option><option>Pine Rivers</option>
@@ -425,13 +425,13 @@ tr:hover td{background:var(--bg)}
         <button class="btn" onclick="loadDeliveries()" title="Refresh">↻ Refresh</button>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
-        <button class="btn btn-primary" id="top-action"></button>
+        <button class="btn btn-primary" id="top-action">Export PDF</button>
       </div>
     </div>
     <div class="content">
 
       <!-- --- 2c. Run Sheet view --- -->
-      <div class="view" id="view-runsheet">
+      <div class="view active" id="view-runsheet">
         <div class="metrics">
           <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">0</div><div class="metric-sub" id="m-trucks-sub">across 2 runs</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
@@ -482,25 +482,9 @@ tr:hover td{background:var(--bg)}
             </div>
             <div id="driver-list"></div>
           </div>
-          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle ">1</div><div class="prog-label ">Loading</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">2</div><div class="prog-label ">Left yard</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div>
-    <div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid">
-      <div class="detail-item"><div class="dl">Name</div><div class="dv">Chris Haddon</div></div>
-      <div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">—</div></div>
-      <div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div>
-      <div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-cod">COD</span></div></div>
-    </div><div class="detail-grid" style="margin-top:8px">
-    <div class="detail-item"><div class="dl">Loading</div><div class="dv mono">—</div></div>
-    <div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">—</div></div>
-    <div class="detail-item"><div class="dl">Left site</div><div class="dv mono">—</div></div>
-    <div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">—</div></div>
-  </div></div>
-    <div class="detail-section"><div class="detail-section-title">Delivery details</div>
-      <div style="font-size:14px;font-weight:500;margin-bottom:4px">Shailer Park</div>
-      <div style="font-size:12px;color:var(--text-3)">No special instructions</div>
-      <div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 0403359619</div>
-    </div>
-    <div class="detail-section"><div class="detail-section-title">Products</div><div style="font-size:12px;color:var(--text-3);padding:4px 0">No products listed</div></div>
-    <div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(20,&#39;loading&#39;)">Start loading</button></div></div>
+          <div id="driver-detail" class="driver-detail">
+            <div style="text-align:center;padding:40px;color:var(--text-3)">Select your run above, then pick a delivery</div>
+          </div>
         </div>
       </div>
 
@@ -534,7 +518,7 @@ tr:hover td{background:var(--bg)}
            Store configuration page. Truck/run configs saved to Supabase
            store_settings table (shared across all devices at this store).
            Also stores contact details and Retail Manager DB path. -->
-      <div class="view active" id="view-settings">
+      <div class="view" id="view-settings">
         <div style="max-width:700px">
           <div class="settings-section">
             <h3>Store Information</h3>
@@ -606,11 +590,11 @@ tr:hover td{background:var(--bg)}
 <!-- --- 2i. First-visit store selector overlay ---
      Shown on first visit (no store saved in localStorage).
      User picks their store and it's remembered for future visits. -->
-<div class="store-selector-overlay" id="store-selector" style="display: none;">
+<div class="store-selector-overlay" id="store-selector" style="display:none">
   <div class="store-selector">
     <h2>Welcome to Nuway</h2>
     <p>Select your store to get started. You can change this anytime in Settings.</p>
-    <div class="store-grid" id="store-selector-grid"><button onclick="selectMyStore(&#39;Logan&#39;)">Logan</button><button onclick="selectMyStore(&#39;Chandler&#39;)">Chandler</button><button onclick="selectMyStore(&#39;Ashmore&#39;)">Ashmore</button><button onclick="selectMyStore(&#39;Redlands&#39;)">Redlands</button><button onclick="selectMyStore(&#39;Westerns&#39;)">Westerns</button><button onclick="selectMyStore(&#39;Forestdale&#39;)">Forestdale</button><button onclick="selectMyStore(&#39;Mango Hill&#39;)">Mango Hill</button><button onclick="selectMyStore(&#39;Pine Rivers&#39;)">Pine Rivers</button><button onclick="selectMyStore(&#39;Burpengary&#39;)">Burpengary</button><button onclick="selectMyStore(&#39;Ormeau&#39;)">Ormeau</button><button onclick="selectMyStore(&#39;Buderim&#39;)">Buderim</button></div>
+    <div class="store-grid" id="store-selector-grid"></div>
   </div>
 </div>
 
@@ -629,7 +613,10 @@ tr:hover td{background:var(--bg)}
         <div class="field"><label>Customer name</label><input type="text" id="book-name" placeholder="e.g. Smith, J"></div>
         <div class="field"><label>Customer phone</label><input type="text" id="book-phone" placeholder="04XX XXX XXX"></div>
       </div>
-      <div class="field"><label>Invoice number</label><input type="text" id="book-inv" placeholder="e.g. INV-4892"></div>
+      <div class="field"><label>Invoice number</label>
+        <div style="display:flex;gap:6px"><input type="text" id="book-inv" placeholder="e.g. 41080" style="flex:1"><button type="button" class="btn btn-sm btn-primary" onclick="lookupInvoice()" id="lookup-btn">🔍 Lookup</button></div>
+        <div id="lookup-status" style="font-size:11px;margin-top:4px;display:none"></div>
+      </div>
       <div class="field-row">
         <div class="field"><label>Suburb</label><input type="text" id="book-suburb" placeholder="e.g. Loganholme"></div>
         <div class="field"><label>Payment type</label>
@@ -1484,6 +1471,103 @@ function changeDate(){currentDate=document.getElementById('date-select').value;d
 function showModal(id){document.getElementById('modal-'+id).classList.add('show');}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('show');}
 function showToast(msg,err){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(err?' error':'');setTimeout(()=>t.className='toast',2800);}
+
+/* ============================================================
+   SECTION 16: RETAIL MANAGER INTEGRATION
+   Description: Calls the local Python API server (localhost:5555)
+   to look up invoice details from Retail Manager's Access database.
+   Auto-fills the booking form with customer name, address, phone,
+   suburb, products, and payment type. Fields remain editable.
+   The API server (nuway_rm_api.py) must be running on the store PC.
+   ============================================================ */
+const RM_API_URL = 'http://localhost:5555';
+
+async function lookupInvoice(){
+  const inv = document.getElementById('book-inv').value.trim();
+  if(!inv){showToast('Enter an invoice number first',true);return;}
+
+  const statusEl = document.getElementById('lookup-status');
+  statusEl.style.display='block';
+  statusEl.style.color='var(--blue-text)';
+  statusEl.textContent='Looking up invoice '+inv+'...';
+  document.getElementById('lookup-btn').disabled=true;
+
+  try{
+    const res = await fetch(`${RM_API_URL}/lookup?invoice=${encodeURIComponent(inv)}`,{
+      signal: AbortSignal.timeout(5000) // 5 second timeout
+    });
+    const data = await res.json();
+
+    if(data.error){
+      statusEl.style.color='var(--red-text)';
+      statusEl.textContent='Error: '+data.error;
+      return;
+    }
+
+    if(!data.docket_found){
+      statusEl.style.color='var(--amber-text)';
+      statusEl.textContent='Invoice '+inv+' not found in Retail Manager';
+      return;
+    }
+
+    // Auto-fill form fields (only if they have data — don't overwrite existing values with blanks)
+    if(data.customer_name){
+      const fullName = data.customer_name2
+        ? data.customer_name + ' ' + data.customer_name2
+        : data.customer_name;
+      document.getElementById('book-name').value = fullName;
+    }
+    if(data.suburb) document.getElementById('book-suburb').value = data.suburb;
+    if(data.phone || data.mobile){
+      document.getElementById('book-phone').value = data.mobile || data.phone;
+    }
+    if(data.products) document.getElementById('book-products').value = data.products;
+    if(data.total && data.total > 0){
+      document.getElementById('book-cod').value = '$' + data.total.toFixed(2);
+    }
+    // Map RM payment types to our system
+    if(data.payment_type){
+      const pt = data.payment_type.toLowerCase();
+      if(pt.includes('cash') || pt.includes('eftpos') || pt.includes('card'))
+        document.getElementById('book-pay').value = 'paid';
+      else if(pt.includes('account') || pt.includes('charge'))
+        document.getElementById('book-pay').value = 'acc';
+      else
+        document.getElementById('book-pay').value = 'cod';
+    }
+    // Build address for notes if we have it
+    if(data.address){
+      const addr = [data.address, data.suburb, data.state, data.postcode].filter(Boolean).join(', ');
+      const currentNotes = document.getElementById('book-notes').value;
+      if(!currentNotes) document.getElementById('book-notes').value = addr;
+    }
+
+    statusEl.style.color='var(--green-text)';
+    const filled = [data.customer_name?'name':'',data.suburb?'suburb':'',data.phone||data.mobile?'phone':'',data.products?'products':''].filter(Boolean);
+    statusEl.textContent='✓ Found — filled: '+filled.join(', ');
+    showToast('Invoice data loaded from Retail Manager');
+
+  }catch(e){
+    if(e.name==='TimeoutError'||e.name==='AbortError'){
+      statusEl.style.color='var(--red-text)';
+      statusEl.textContent='Cannot reach Retail Manager API. Is nuway_rm_api.py running?';
+    }else{
+      statusEl.style.color='var(--red-text)';
+      statusEl.textContent='Connection failed — ensure the RM API is running on this PC';
+    }
+  }finally{
+    document.getElementById('lookup-btn').disabled=false;
+  }
+}
+
+// Check if RM API is available (called on settings page load)
+async function checkRmApi(){
+  try{
+    const res = await fetch(`${RM_API_URL}/health`,{signal:AbortSignal.timeout(2000)});
+    const data = await res.json();
+    return data.status==='ok';
+  }catch(e){return false;}
+}
 
 /* ============================================================
    START THE APP

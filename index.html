@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/chris/Downloads/nuway_v5.html -->
+<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v5_1.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System 21.04 7.27_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 21.04 5.24pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -334,6 +334,29 @@ tr:hover td{background:var(--bg)}
 
 /* --- 1w. Scrollbar styling --- */
 ::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border-md);border-radius:3px}
+
+/* --- 1x. First-visit store selector overlay --- */
+.store-selector-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:3000;backdrop-filter:blur(4px)}
+.store-selector{background:var(--surface);border-radius:16px;padding:40px;width:420px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+.store-selector h2{font-size:22px;font-weight:700;margin-bottom:6px}
+.store-selector p{font-size:13px;color:var(--text-2);margin-bottom:24px}
+.store-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.store-grid button{padding:12px;border:1px solid var(--border-md);border-radius:var(--radius);background:var(--surface);color:var(--text);font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.12s}
+.store-grid button:hover{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
+
+/* --- 1y. Settings page --- */
+.settings-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.settings-section h3{font-size:14px;font-weight:600;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.settings-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.settings-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.settings-row-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.settings-row label,.settings-row-3 label,.settings-row-4 label{display:block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-3);margin-bottom:4px}
+.settings-row input,.settings-row-3 input,.settings-row-4 input{width:100%;padding:7px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text);outline:none}
+.settings-row input:focus,.settings-row-3 input:focus,.settings-row-4 input:focus{border-color:var(--blue)}
+.run-config-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-bottom:8px}
+.run-config-title{font-size:12px;font-weight:600;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.run-config-title .remove-run{font-size:10px;color:var(--red-text);cursor:pointer;padding:2px 8px;border-radius:4px;border:1px solid var(--red-bg)}
+.run-config-title .remove-run:hover{background:var(--red-bg)}
 </style>
 </head>
 <body>
@@ -360,7 +383,7 @@ tr:hover td{background:var(--bg)}
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z"></path><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="9" y2="9"></line></svg>
         Delivery Journal
       </div>
-      <div class="nav-item active" onclick="switchView(&#39;driver&#39;,this)">
+      <div class="nav-item" onclick="switchView(&#39;driver&#39;,this)">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="14" height="7" rx="1.5"></rect><path d="M1 9h14M5 6V4a3 3 0 016 0v2"></path></svg>
         Driver View
       </div>
@@ -375,9 +398,13 @@ tr:hover td{background:var(--bg)}
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="5" r="3"></circle><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"></path></svg>
         Customer Tracker
       </div>
+      <div class="nav-item active" onclick="switchView(&#39;settings&#39;,this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"></circle><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.5 1.5M11.5 11.5L13 13M3 13l1.5-1.5M11.5 4.5L13 3"></path></svg>
+        Settings
+      </div>
     </div>
     <div class="sidebar-footer">
-      <strong id="footer-store">Logan Store</strong>
+      <strong id="footer-store">Chandler Store</strong>
       <span id="footer-date">Tue, 21 Apr 2026</span>
     </div>
   </aside>
@@ -386,7 +413,7 @@ tr:hover td{background:var(--bg)}
   <div class="main">
     <div class="topbar">
       <div class="topbar-left">
-        <span class="page-title" id="page-title">Driver View</span>
+        <span class="page-title" id="page-title">Settings</span>
         <select class="pill-select" id="store-select" onchange="changeStore()">
           <option>Logan</option><option>Chandler</option><option>Ashmore</option><option>Redlands</option>
           <option>Westerns</option><option>Forestdale</option><option>Mango Hill</option><option>Pine Rivers</option>
@@ -406,68 +433,31 @@ tr:hover td{background:var(--bg)}
       <!-- --- 2c. Run Sheet view --- -->
       <div class="view" id="view-runsheet">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">4</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
-          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">1</div><div class="metric-sub">driver returned</div></div>
-          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">1</div><div class="metric-sub">loading or en route</div></div>
-          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">24</div><div class="metric-sub">today's capacity</div></div>
+          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">0</div><div class="metric-sub" id="m-trucks-sub">across 2 runs</div></div>
+          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
+          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
+          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">20</div><div class="metric-sub">today's capacity</div></div>
         </div>
         <div class="run-sheet-wrap" id="rs-wrap"><div class="rs-header-row"><div class="rs-time-hdr">Time</div><div class="rs-truck-hdr">
       <div class="th-label">Run 1</div>
       <div class="th-detail">No rego</div>
-      <span class="th-status on-time">Active — Christopher Haddon</span>
+      <span class="th-status idle">No deliveries</span>
       <span class="th-edit" onclick="openTruckEdit(0)">✎</span>
     </div><div class="rs-truck-hdr">
       <div class="th-label">Run 2</div>
       <div class="th-detail">No rego</div>
-      <span class="th-status on-time">On time</span>
+      <span class="th-status idle">No deliveries</span>
       <span class="th-edit" onclick="openTruckEdit(1)">✎</span>
-    </div><div class="rs-truck-hdr">
-      <div class="th-label">Run 3</div>
-      <div class="th-detail">No rego</div>
-      <span class="th-status on-time">On time</span>
-      <span class="th-edit" onclick="openTruckEdit(2)">✎</span>
-    </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell" style="min-width:200px;min-height:108px"><div class="del-card cod full-width color-active">
-              <div class="del-duration">3hr</div>
-              <div class="del-top"><span class="badge badge-cod">COD</span><span class="badge badge-out">En route</span></div>
-              <div class="del-name">Christopher Haddon</div>
-              <div class="del-suburb">Slacks Creek</div>
-              <div class="del-inv">55 · 56.2</div>
-              <div class="del-note">delivery notes here</div>
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(11)">Edit</button>
-            </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid half-width color-completed">
-              <div class="del-duration">½hr</div>
-              <div class="del-top"><span class="badge badge-paid">Paid</span><span class="badge badge-done">Done</span></div>
-              <div class="del-name">bobby brown</div>
-              <div class="del-suburb">rochedale</div>
-              <div class="del-inv">56565</div>
-              <div class="del-note">notes local</div>
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(14)">Edit</button>
-            </div><div class="del-card acc half-width color-next">
-              <div class="del-duration">½hr</div>
-              <div class="del-top"><span class="badge badge-acc">Account</span></div>
-              <div class="del-name">Jane Doe</div>
-              <div class="del-suburb">loganholme</div>
-              <div class="del-inv">655</div>
-              <div class="del-note">notes and stuff</div>
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(12)">Edit</button>
-            </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card tba full-width color-next">
-              
-              <div class="del-top"><span class="badge badge-tba">TBA</span></div>
-              <div class="del-name">test b</div>
-              <div class="del-suburb"></div>
-              <div class="del-inv"></div>
-              
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(15)">Edit</button>
-            </div></div></div><div class="rs-row"><div class="rs-time-cell">8–9am</div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div class="rs-row"><div class="rs-time-cell">9–10am</div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;)">+</span></div></div></div>
+    </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div class="rs-row"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div></div></div>
       </div>
 
       <!-- --- 2d. Delivery Journal view --- -->
       <div class="view" id="view-journal">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">4</div></div>
-          <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$56.2</div></div>
-          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">1</div></div>
-          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">2</div></div>
+          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">0</div></div>
+          <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$0</div></div>
+          <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">0</div></div>
+          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">0</div></div>
         </div>
         <div class="table-wrap">
           <table><thead><tr>
@@ -475,83 +465,27 @@ tr:hover td{background:var(--bg)}
             <th>Driver</th><th>Slot</th><th>Dur</th><th>Loading</th><th>Out</th><th>Left site</th><th>In</th>
             <th>COD Receipt</th><th>Created by</th><th>Comments</th><th>Status</th>
           </tr></thead>
-          <tbody id="journal-body"><tr><td class="mono">11</td><td style="font-weight:600">Christopher Haddon</td><td>Slacks Creek</td>
-    <td class="mono">55</td><td><span class="badge badge-cod">COD</span></td>
-    <td class="mono">56.2</td><td>Jake T.</td>
-    <td class="mono">7–8am</td><td class="mono">3hr</td>
-    <td class="mono">—</td><td class="mono">—</td>
-    <td class="mono">—</td><td class="mono">—</td>
-    <td class="mono">—</td><td>—</td>
-    <td style="max-width:120px;font-size:10px;color:var(--text-3)">—</td>
-    <td><span class="status-pill s-out"><span class="status-dot"></span>En route</span></td></tr><tr><td class="mono">14</td><td style="font-weight:600">bobby brown</td><td>rochedale</td>
-    <td class="mono">56565</td><td><span class="badge badge-paid">Paid</span></td>
-    <td class="mono">—</td><td>john b</td>
-    <td class="mono">7–8am</td><td class="mono">0.5hr</td>
-    <td class="mono">—</td><td class="mono">—</td>
-    <td class="mono">—</td><td class="mono">—</td>
-    <td class="mono">—</td><td>chris h</td>
-    <td style="max-width:120px;font-size:10px;color:var(--text-3)">—</td>
-    <td><span class="status-pill s-done"><span class="status-dot"></span>Delivered</span></td></tr><tr><td class="mono">12</td><td style="font-weight:600">Jane Doe</td><td>loganholme</td>
-    <td class="mono">655</td><td><span class="badge badge-acc">Account</span></td>
-    <td class="mono">—</td><td>Chris B.</td>
-    <td class="mono">7–8am</td><td class="mono">0.5hr</td>
-    <td class="mono">—</td><td class="mono">—</td>
-    <td class="mono">—</td><td class="mono">—</td>
-    <td class="mono">—</td><td>—</td>
-    <td style="max-width:120px;font-size:10px;color:var(--text-3)">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr><tr><td class="mono">15</td><td style="font-weight:600">test b</td><td></td>
-    <td class="mono"></td><td><span class="badge badge-tba">TBA</span></td>
-    <td class="mono">—</td><td>—</td>
-    <td class="mono">7–8am</td><td class="mono">1hr</td>
-    <td class="mono">—</td><td class="mono">—</td>
-    <td class="mono">—</td><td class="mono">—</td>
-    <td class="mono">—</td><td>—</td>
-    <td style="max-width:120px;font-size:10px;color:var(--text-3)">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td></tr></tbody></table>
+          <tbody id="journal-body"></tbody></table>
         </div>
       </div>
 
       <!-- --- 2e. Driver View --- -->
-      <div class="view active" id="view-driver">
+      <div class="view" id="view-driver">
         <div class="driver-layout">
           <div class="driver-queue">
             <div class="driver-queue-hdr">
               <div class="dq-name" id="dv-driver-name">All runs</div>
-              <div class="dq-sub" id="dv-driver-sub">Today · 4 deliveries</div>
+              <div class="dq-sub" id="dv-driver-sub">Today · 0 deliveries</div>
             </div>
             <div class="driver-filter">
-              <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Run 1</option><option value="1">Run 2</option><option value="2">Run 3</option></select>
+              <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Run 1</option><option value="1">Run 2</option></select>
             </div>
-            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(11,this)">
-      <div class="dq-row"><span class="dq-num enroute">1</span><span class="dq-customer">Christopher Haddon</span></div>
-      <div class="dq-detail">Slacks Creek · 7–8am</div>
-      <div class="dq-badges"><span class="badge badge-cod">COD</span>
-        <span class="badge badge-out">En route</span>
-        <span class="badge badge-cod">56.2</span>
-      </div></div><div class="dq-item" onclick="selectDelivery(14,this)">
-      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">bobby brown</span></div>
-      <div class="dq-detail">rochedale · 7–8am</div>
-      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
-        <span class="badge badge-done">Delivered</span>
-        
-      </div></div><div class="dq-item" onclick="selectDelivery(12,this)">
-      <div class="dq-row"><span class="dq-num ">3</span><span class="dq-customer">Jane Doe</span></div>
-      <div class="dq-detail">loganholme · 7–8am</div>
-      <div class="dq-badges"><span class="badge badge-acc">Account</span>
-        
-        
-      </div></div><div class="dq-item" onclick="selectDelivery(15,this)">
-      <div class="dq-row"><span class="dq-num ">4</span><span class="dq-customer">test b</span></div>
-      <div class="dq-detail"> · 7–8am</div>
-      <div class="dq-badges"><span class="badge badge-tba">TBA</span>
-        
-        
-      </div></div></div>
+            <div id="driver-list"></div>
           </div>
-          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Loading</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle active">→</div><div class="prog-label active">Left yard</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div>
+          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle ">1</div><div class="prog-label ">Loading</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">2</div><div class="prog-label ">Left yard</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div>
     <div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid">
-      <div class="detail-item"><div class="dl">Name</div><div class="dv">Christopher Haddon</div></div>
-      <div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">55</div></div>
+      <div class="detail-item"><div class="dl">Name</div><div class="dv">Chris Haddon</div></div>
+      <div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">—</div></div>
       <div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div>
       <div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-cod">COD</span></div></div>
     </div><div class="detail-grid" style="margin-top:8px">
@@ -561,15 +495,12 @@ tr:hover td{background:var(--bg)}
     <div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">—</div></div>
   </div></div>
     <div class="detail-section"><div class="detail-section-title">Delivery details</div>
-      <div style="font-size:14px;font-weight:500;margin-bottom:4px">Slacks Creek</div>
-      <div style="font-size:12px;color:var(--text-3)">delivery notes here</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:4px">Shailer Park</div>
+      <div style="font-size:12px;color:var(--text-3)">No special instructions</div>
       <div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 0403359619</div>
     </div>
-    <div class="detail-section"><div class="detail-section-title">Products</div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(11,0,this.checked)" disabled=""><span class="pname">5 paver</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(11,1,this.checked)" disabled=""><span class="pname">2 cement</span><span class="pqty"></span></div></div>
-    <div class="action-row"><button class="btn btn-success" onclick="advanceStatus(11,&#39;left_site&#39;)">Arrived at site</button></div><div class="cod-box"><strong>COD collection — 56.2</strong>
-    <input type="text" id="cod-receipt-11" value="" placeholder="Receipt number (required)" onchange="saveCodReceipt(11,this.value)">
-    <div class="cod-required">⚠ Required before marking complete</div>
-  </div><div class="section-divider"><span>Safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,0,this.checked)"><div class="safety-text"><div class="safety-q">Is the delivery area safe to enter with the truck?</div><div class="safety-sub">Check overhead clearance, soft ground, slopes</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,1,this.checked)"><div class="safety-text"><div class="safety-q">Is there a safe tip-off point clear of people and property?</div><div class="safety-sub">Confirm no vehicles, structures or overhead lines in drop zone</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,2,this.checked)"><div class="safety-text"><div class="safety-q">Has the customer (or representative) been informed of the delivery location?</div><div class="safety-sub">Customer or instructions confirm drop point</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,3,this.checked)"><div class="safety-text"><div class="safety-q">Is the truck properly positioned and handbrake applied before tipping?</div><div class="safety-sub">Level ground preferred — if not, wheels chocked</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(11,4,this.checked)"><div class="safety-text"><div class="safety-q">Are bystanders clear of the tipping area?</div><div class="safety-sub">Minimum 5m clearance from tip zone during unload</div></div></div><div class="safety-pass">All safety checks complete ✓</div></div></div>
+    <div class="detail-section"><div class="detail-section-title">Products</div><div style="font-size:12px;color:var(--text-3);padding:4px 0">No products listed</div></div>
+    <div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(20,&#39;loading&#39;)">Start loading</button></div></div>
         </div>
       </div>
 
@@ -595,14 +526,91 @@ tr:hover td{background:var(--bg)}
             <div class="sms-label">Customer receives SMS</div>
             <div class="sms-bubble">Hi! Your Nuway delivery is on its way. Track live: nuway.com.au/track 📦</div>
           </div>
-          <div class="tracker-card" id="tracker-card">
-    <div class="tracker-title">Delivery — 55</div><div class="tracker-sub">Slacks Creek</div>
-    <div class="tracker-status-msg">On the way!</div>
-    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Loading</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle active">→</div><div class="t-label active">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
-    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">7–8am</div><div class="eta-sub">Jake T. · Logan</div></div></div>
+          <div class="tracker-card" id="tracker-card"><div style="text-align:center;padding:30px;color:var(--text-3)">No deliveries to track</div></div>
         </div>
       </div>
+
+      <!-- --- 2h. Settings / Admin view ---
+           Store configuration page. Truck/run configs saved to Supabase
+           store_settings table (shared across all devices at this store).
+           Also stores contact details and Retail Manager DB path. -->
+      <div class="view active" id="view-settings">
+        <div style="max-width:700px">
+          <div class="settings-section">
+            <h3>Store Information</h3>
+            <div class="settings-row">
+              <div><label>Store name</label><input type="text" id="set-store-name" disabled="" style="background:var(--surface2)"></div>
+              <div><label>Phone</label><input type="text" id="set-phone" placeholder="(07) 3000 0000"></div>
+            </div>
+            <div class="settings-row">
+              <div><label>Address</label><input type="text" id="set-address" placeholder="123 Main St, Suburb QLD 4000"></div>
+              <div><label>Email</label><input type="text" id="set-email" placeholder="store@nuway.com.au"></div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Retail Manager Integration</h3>
+            <div><label style="display:block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-3);margin-bottom:4px">Database path (recent.mdb)</label>
+            <input type="text" id="set-rm-path" placeholder="e.g. C:\RetailManager\Data\recent.mdb" style="width:100%;padding:7px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:&#39;DM Mono&#39;,monospace;background:var(--surface);color:var(--text);outline:none">
+            <div style="font-size:11px;color:var(--text-3);margin-top:4px">Used for future invoice lookup integration. Enter the full path to your store's Retail Manager database file.</div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Default Truck Runs <button class="btn btn-sm" onclick="addSettingsRun()" style="float:right">+ Add run</button></h3>
+            <div style="font-size:11px;color:var(--text-3);margin-bottom:12px">Configure the default truck runs for this store. Changes apply to all devices.</div>
+            <div id="settings-runs-list">
+    <div class="run-config-card">
+      <div class="run-config-title">
+        <span>Run 1</span>
+        <span class="remove-run" onclick="removeSettingsRun(0)">Remove</span>
+      </div>
+      <div class="settings-row-4">
+        <div><label>Label</label><input type="text" id="srun-label-0" value="Run 1" placeholder="Run 1"></div>
+        <div><label>Truck type</label><input type="text" id="srun-type-0" value="" placeholder="M1, FUSO..."></div>
+        <div><label>Rego</label><input type="text" id="srun-rego-0" value="" placeholder="1AB-234"></div>
+        <div><label>Driver</label><input type="text" id="srun-driver-0" value="" placeholder="Jake T."></div>
+      </div>
     </div>
+    <div class="run-config-card">
+      <div class="run-config-title">
+        <span>Run 2</span>
+        <span class="remove-run" onclick="removeSettingsRun(1)">Remove</span>
+      </div>
+      <div class="settings-row-4">
+        <div><label>Label</label><input type="text" id="srun-label-1" value="Run 2" placeholder="Run 2"></div>
+        <div><label>Truck type</label><input type="text" id="srun-type-1" value="" placeholder="M1, FUSO..."></div>
+        <div><label>Rego</label><input type="text" id="srun-rego-1" value="" placeholder="1AB-234"></div>
+        <div><label>Driver</label><input type="text" id="srun-driver-1" value="" placeholder="Jake T."></div>
+      </div>
+    </div></div>
+          </div>
+
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <button class="btn" onclick="loadStoreSettings()">Reset changes</button>
+            <button class="btn btn-primary" onclick="saveStoreSettings()">Save settings</button>
+          </div>
+
+          <div class="settings-section" style="margin-top:16px">
+            <h3>Change store</h3>
+            <div style="font-size:11px;color:var(--text-3);margin-bottom:8px">Switch to a different store. Your current store preference is saved in this browser.</div>
+            <button class="btn" onclick="showStoreSelector()">Change store...</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- --- 2i. First-visit store selector overlay ---
+     Shown on first visit (no store saved in localStorage).
+     User picks their store and it's remembered for future visits. -->
+<div class="store-selector-overlay" id="store-selector" style="display: none;">
+  <div class="store-selector">
+    <h2>Welcome to Nuway</h2>
+    <p>Select your store to get started. You can change this anytime in Settings.</p>
+    <div class="store-grid" id="store-selector-grid"><button onclick="selectMyStore(&#39;Logan&#39;)">Logan</button><button onclick="selectMyStore(&#39;Chandler&#39;)">Chandler</button><button onclick="selectMyStore(&#39;Ashmore&#39;)">Ashmore</button><button onclick="selectMyStore(&#39;Redlands&#39;)">Redlands</button><button onclick="selectMyStore(&#39;Westerns&#39;)">Westerns</button><button onclick="selectMyStore(&#39;Forestdale&#39;)">Forestdale</button><button onclick="selectMyStore(&#39;Mango Hill&#39;)">Mango Hill</button><button onclick="selectMyStore(&#39;Pine Rivers&#39;)">Pine Rivers</button><button onclick="selectMyStore(&#39;Burpengary&#39;)">Burpengary</button><button onclick="selectMyStore(&#39;Ormeau&#39;)">Ormeau</button><button onclick="selectMyStore(&#39;Buderim&#39;)">Buderim</button></div>
   </div>
 </div>
 
@@ -613,7 +621,7 @@ tr:hover td{background:var(--bg)}
 <div class="modal-overlay" id="modal-booking" onclick="if(event.target===this)closeModal(&#39;booking&#39;)">
   <div class="modal">
     <div class="modal-header">
-      <span class="modal-title" id="booking-modal-title">Edit — Christopher Haddon</span>
+      <span class="modal-title" id="booking-modal-title">Book delivery</span>
       <span class="modal-close" onclick="closeModal(&#39;booking&#39;)">×</span>
     </div>
     <div class="modal-body">
@@ -629,7 +637,7 @@ tr:hover td{background:var(--bg)}
         </div>
       </div>
       <div class="field-row-3">
-        <div class="field"><label>Run</label><select id="book-truck"><option value="0">Run 1</option><option value="1">Run 2</option><option value="2">Run 3</option></select></div>
+        <div class="field"><label>Run</label><select id="book-truck"><option value="0">Run 1</option><option value="1">Run 2</option></select></div>
         <div class="field"><label>Time slot</label>
           <select id="book-slot"><option>7–8am</option><option>8–9am</option><option>9–10am</option><option>10–11am</option><option>11am–12pm</option><option>12–1pm</option><option>1–2pm</option><option>2–3pm</option><option>3–4pm</option><option>4–5pm</option></select>
         </div>
@@ -658,7 +666,7 @@ tr:hover td{background:var(--bg)}
       <div class="sms-note">SMS confirmation + tracking link sent automatically when saved.</div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-danger" id="booking-delete-btn" onclick="deleteDelivery()" style="margin-right: auto; display: block;">Remove</button>
+      <button class="btn btn-danger" id="booking-delete-btn" onclick="deleteDelivery()" style="margin-right:auto;display:none">Remove</button>
       <button class="btn" onclick="closeModal(&#39;booking&#39;)">Cancel</button>
       <button class="btn btn-primary" onclick="saveBooking()">Save</button>
     </div>
@@ -676,7 +684,7 @@ tr:hover td{background:var(--bg)}
     </div>
     <div class="modal-body">
       <div class="field-row-3">
-        <div class="field"><label>Run</label><select id="unavail-truck"><option value="0">Run 1</option><option value="1">Run 2</option><option value="2">Run 3</option></select></div>
+        <div class="field"><label>Run</label><select id="unavail-truck"><option value="0">Run 1</option><option value="1">Run 2</option></select></div>
         <div class="field"><label>Start slot</label>
           <select id="unavail-slot"><option>7–8am</option><option>8–9am</option><option>9–10am</option><option>10–11am</option><option>11am–12pm</option><option>12–1pm</option><option>1–2pm</option><option>2–3pm</option><option>3–4pm</option><option>4–5pm</option></select>
         </div>
@@ -774,14 +782,33 @@ let currentDate='';
 let editingId=null;        // Currently editing delivery ID (null = new booking)
 let selectedDeliveryId=null;// Selected delivery in driver view
 let driverFilterTruck='all';// Driver view filter
+let storeSettings=null;     // Current store's settings from Supabase
 const prodChecked={};       // Product checkbox state per delivery
 const safetyChecked={};     // Safety checkbox state per delivery
 
-// Truck runs config — stored in localStorage per store
-function getRunsKey(){return`nuway_runs_${currentStore}`;}
+// Truck runs — loaded from Supabase store_settings table (shared across devices)
 function defaultRuns(){return[{label:'Run 1',type:'',rego:'',driver:''},{label:'Run 2',type:'',rego:'',driver:''}];}
-function getRuns(){try{const r=JSON.parse(localStorage.getItem(getRunsKey()));return r&&r.length?r:defaultRuns();}catch(e){return defaultRuns();}}
-function saveRuns(runs){localStorage.setItem(getRunsKey(),JSON.stringify(runs));}
+function getRuns(){
+  if(storeSettings&&storeSettings.trucks&&storeSettings.trucks.length>0)return storeSettings.trucks;
+  return defaultRuns();
+}
+async function saveRuns(runs){
+  if(storeSettings){storeSettings.trucks=runs;}
+  try{await db(`store_settings?store=eq.${encodeURIComponent(currentStore)}`,{method:'PATCH',body:JSON.stringify({trucks:runs,updated_at:new Date().toISOString()})});}
+  catch(e){console.error('Failed to save runs',e);}
+}
+async function loadStoreSettings(){
+  try{
+    const res=await db(`store_settings?store=eq.${encodeURIComponent(currentStore)}`);
+    storeSettings=res[0]||null;
+    if(!storeSettings){
+      // Create default settings for this store
+      const res2=await db('store_settings',{method:'POST',body:JSON.stringify({store:currentStore,trucks:defaultRuns()})});
+      storeSettings=res2[0]||{store:currentStore,trucks:defaultRuns()};
+    }
+  }catch(e){storeSettings={store:currentStore,trucks:defaultRuns()};}
+  renderSettingsPage();
+}
 
 /* ============================================================
    SECTION 6: INITIALIZATION & DATA LOADING
@@ -793,6 +820,37 @@ function init(){
   currentDate=today.toISOString().split('T')[0];
   document.getElementById('date-select').value=currentDate;
   document.getElementById('footer-date').textContent=today.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+
+  // Check if store has been selected before (remembered in localStorage)
+  const savedStore=localStorage.getItem('nuway_my_store');
+  if(savedStore&&ALL_STORES.includes(savedStore)){
+    currentStore=savedStore;
+    document.getElementById('store-select').value=currentStore;
+    document.getElementById('footer-store').textContent=currentStore+' Store';
+    startApp();
+  }else{
+    // First visit — show store selector
+    showStoreSelector();
+  }
+}
+
+function showStoreSelector(){
+  const grid=document.getElementById('store-selector-grid');
+  grid.innerHTML=ALL_STORES.map(s=>`<button onclick="selectMyStore('${s}')">${s}</button>`).join('');
+  document.getElementById('store-selector').style.display='flex';
+}
+
+function selectMyStore(store){
+  currentStore=store;
+  localStorage.setItem('nuway_my_store',store);
+  document.getElementById('store-select').value=store;
+  document.getElementById('footer-store').textContent=store+' Store';
+  document.getElementById('store-selector').style.display='none';
+  startApp();
+}
+
+async function startApp(){
+  await loadStoreSettings();
   loadDeliveries();
 }
 async function loadDeliveries(){
@@ -987,8 +1045,8 @@ function updateTruckSelects(){
     if(sel)sel.innerHTML=runs.map((r,i)=>`<option value="${i}">${r.label||'Run '+(i+1)}${r.driver?' — '+r.driver:''}</option>`).join('');
   });
 }
-function addRun(){const runs=getRuns();runs.push({label:'Run '+(runs.length+1),type:'',rego:'',driver:''});saveRuns(runs);buildRunSheet();showToast('Run added');}
-function removeRun(){const runs=getRuns();if(runs.length<=1)return;runs.pop();saveRuns(runs);buildRunSheet();showToast('Run removed');}
+async function addRun(){const runs=getRuns();runs.push({label:'Run '+(runs.length+1),type:'',rego:'',driver:''});await saveRuns(runs);buildRunSheet();showToast('Run added');}
+async function removeRun(){const runs=getRuns();if(runs.length<=1)return;runs.pop();await saveRuns(runs);buildRunSheet();showToast('Run removed');}
 let editingTruckIdx=null;
 function openTruckEdit(idx){
   editingTruckIdx=idx;const r=getRuns()[idx];
@@ -998,10 +1056,10 @@ function openTruckEdit(idx){
   document.getElementById('truck-driver').value=r.driver||'';
   showModal('truck');
 }
-function saveTruckHeader(){
+async function saveTruckHeader(){
   const runs=getRuns();
   runs[editingTruckIdx]={label:document.getElementById('truck-label').value.trim()||'Run '+(editingTruckIdx+1),type:document.getElementById('truck-type').value.trim(),rego:document.getElementById('truck-rego').value.trim(),driver:document.getElementById('truck-driver').value.trim()};
-  saveRuns(runs);closeModal('truck');buildRunSheet();showToast('Run updated');
+  await saveRuns(runs);closeModal('truck');buildRunSheet();showToast('Run updated');
 }
 
 /* ============================================================
@@ -1329,8 +1387,8 @@ async function buildHQ(){
    Description: Sidebar navigation, store/date changes,
    modal show/hide, and toast notifications.
    ============================================================ */
-const VT={runsheet:'Run Sheet',journal:'Delivery Journal',driver:'Driver View',hq:'Head Office',customer:'Customer Tracker'};
-const VA={runsheet:'Export PDF',journal:'Export CSV',driver:'',hq:'Download report',customer:'Preview SMS'};
+const VT={runsheet:'Run Sheet',journal:'Delivery Journal',driver:'Driver View',hq:'Head Office',customer:'Customer Tracker',settings:'Settings'};
+const VA={runsheet:'Export PDF',journal:'Export CSV',driver:'',hq:'Download report',customer:'Preview SMS',settings:''};
 function switchView(v,el){
   document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
@@ -1339,8 +1397,89 @@ function switchView(v,el){
   document.getElementById('page-title').textContent=VT[v];
   document.getElementById('top-action').textContent=VA[v];
   if(v==='hq')buildHQ();
+  if(v==='settings')renderSettingsPage();
 }
-function changeStore(){currentStore=document.getElementById('store-select').value;document.getElementById('footer-store').textContent=currentStore+' Store';loadDeliveries();}
+
+/* ============================================================
+   SECTION 15: SETTINGS / ADMIN PAGE
+   Description: Store configuration page. Manages:
+   - Store contact details (phone, address, email)
+   - Retail Manager database path for future integration
+   - Default truck runs (saved to Supabase store_settings)
+   All settings are shared across devices via Supabase.
+   ============================================================ */
+function renderSettingsPage(){
+  const s=storeSettings||{};
+  document.getElementById('set-store-name').value=currentStore;
+  document.getElementById('set-phone').value=s.phone||'';
+  document.getElementById('set-address').value=s.address||'';
+  document.getElementById('set-email').value=s.email||'';
+  document.getElementById('set-rm-path').value=s.rm_db_path||'';
+  renderSettingsRuns();
+}
+
+function renderSettingsRuns(){
+  const runs=getRuns();
+  const list=document.getElementById('settings-runs-list');
+  list.innerHTML=runs.map((r,i)=>`
+    <div class="run-config-card">
+      <div class="run-config-title">
+        <span>${r.label||'Run '+(i+1)}</span>
+        ${runs.length>1?`<span class="remove-run" onclick="removeSettingsRun(${i})">Remove</span>`:''}
+      </div>
+      <div class="settings-row-4">
+        <div><label>Label</label><input type="text" id="srun-label-${i}" value="${r.label||''}" placeholder="Run ${i+1}"></div>
+        <div><label>Truck type</label><input type="text" id="srun-type-${i}" value="${r.type||''}" placeholder="M1, FUSO..."></div>
+        <div><label>Rego</label><input type="text" id="srun-rego-${i}" value="${r.rego||''}" placeholder="1AB-234"></div>
+        <div><label>Driver</label><input type="text" id="srun-driver-${i}" value="${r.driver||''}" placeholder="Jake T."></div>
+      </div>
+    </div>`).join('');
+}
+
+function addSettingsRun(){
+  const runs=getRuns();
+  runs.push({label:'Run '+(runs.length+1),type:'',rego:'',driver:''});
+  if(storeSettings)storeSettings.trucks=runs;
+  renderSettingsRuns();
+}
+
+function removeSettingsRun(idx){
+  const runs=getRuns();
+  if(runs.length<=1)return;
+  runs.splice(idx,1);
+  if(storeSettings)storeSettings.trucks=runs;
+  renderSettingsRuns();
+}
+
+async function saveStoreSettings(){
+  // Collect run configs from form inputs
+  const runEls=document.querySelectorAll('.run-config-card');
+  const trucks=Array.from(runEls).map((el,i)=>({
+    label:document.getElementById('srun-label-'+i)?.value.trim()||'Run '+(i+1),
+    type:document.getElementById('srun-type-'+i)?.value.trim()||'',
+    rego:document.getElementById('srun-rego-'+i)?.value.trim()||'',
+    driver:document.getElementById('srun-driver-'+i)?.value.trim()||''
+  }));
+
+  const update={
+    phone:document.getElementById('set-phone').value.trim()||null,
+    address:document.getElementById('set-address').value.trim()||null,
+    email:document.getElementById('set-email').value.trim()||null,
+    rm_db_path:document.getElementById('set-rm-path').value.trim()||null,
+    trucks:trucks,
+    updated_at:new Date().toISOString()
+  };
+
+  try{
+    await db(`store_settings?store=eq.${encodeURIComponent(currentStore)}`,{method:'PATCH',body:JSON.stringify(update)});
+    if(storeSettings){Object.assign(storeSettings,update);}
+    buildRunSheet();
+    showToast('Settings saved — all devices updated');
+  }catch(e){
+    showToast('Failed to save settings',true);
+  }
+}
+function changeStore(){currentStore=document.getElementById('store-select').value;document.getElementById('footer-store').textContent=currentStore+' Store';localStorage.setItem('nuway_my_store',currentStore);loadStoreSettings().then(()=>loadDeliveries());}
 function changeDate(){currentDate=document.getElementById('date-select').value;document.getElementById('footer-date').textContent=new Date(currentDate+'T00:00:00').toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});loadDeliveries();}
 function showModal(id){document.getElementById('modal-'+id).classList.add('show');}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('show');}

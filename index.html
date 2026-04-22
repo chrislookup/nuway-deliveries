@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v5_12.html -->
+<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v5_13.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System 22.04 9.6pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 22.04 9.56pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -850,11 +850,9 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
    ============================================================ */
 const SB='https://prgbejzvxbdqnszvofpj.supabase.co';
 const SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByZ2Jlanp2eGJkcW5zenZvZnBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjU5MjksImV4cCI6MjA5MjI0MTkyOX0.6IpVkprZRlJb4f4yoiiL34bXK2XHEkp4ZeP25Joh3vU';
-// Twilio SMS config
-const TWILIO_SID='AC2766ac2c7c1e64d355170830ab43319a';
-const TWILIO_TOKEN='72874668c4104a50df11b171974813c5';
-const TWILIO_FROM='+61XXXXXXXXX'; // TODO: Replace with your AU number once approved
-const TWILIO_ENABLED=false; // Set to true once AU number is active
+// Twilio SMS — routed through Supabase Edge Function (credentials stored securely as secrets)
+const SMS_ENDPOINT=SB+'/functions/v1/send-sms';
+const SMS_ENABLED=false; // Set to true once AU number is active
 const SLOTS=['7–8am','8–9am','9–10am','10–11am','11am–12pm','12–1pm','1–2pm','2–3pm','3–4pm','4–5pm'];
 const SLOT_IDX={};SLOTS.forEach((s,i)=>SLOT_IDX[s]=i);
 const BREAKS={'9–10am':'10-minute paid rest break','12–1pm':'30-minute unpaid lunch break'};
@@ -1854,25 +1852,20 @@ async function checkRmApi(){
    1. Booking confirmed — includes date, time, products, address, store contact
    2. Loading started — brief notification
    3. Left yard / on the way — includes driver name
-   SMS only sends if TWILIO_ENABLED=true and customer phone exists.
+   SMS only sends if SMS_ENABLED=true and customer phone exists.
    ============================================================ */
 async function sendSMS(to, message){
-  if(!TWILIO_ENABLED){console.log('SMS disabled:',message);return{success:false,reason:'disabled'};}
+  if(!SMS_ENABLED){console.log('SMS disabled:',message);return{success:false,reason:'disabled'};}
   if(!to){return{success:false,reason:'no phone'};}
-  // Format Australian phone to E.164
-  let phone=to.replace(/[\s\-()]/g,'');
-  if(phone.startsWith('04'))phone='+61'+phone.substring(1);
-  else if(phone.startsWith('4')&&phone.length===9)phone='+61'+phone;
-  else if(!phone.startsWith('+'))phone='+61'+phone;
   try{
-    const res=await fetch(`https://api.twilio.com/2010-04-01/Accounts/${TWILIO_SID}/Messages.json`,{
+    const res=await fetch(SMS_ENDPOINT,{
       method:'POST',
-      headers:{'Content-Type':'application/x-www-form-urlencoded','Authorization':'Basic '+btoa(TWILIO_SID+':'+TWILIO_TOKEN)},
-      body:new URLSearchParams({To:phone,From:TWILIO_FROM,Body:message})
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+SK},
+      body:JSON.stringify({to:to,message:message})
     });
     const data=await res.json();
-    if(data.sid){console.log('SMS sent:',data.sid);return{success:true,sid:data.sid};}
-    else{console.error('SMS error:',data.message);return{success:false,reason:data.message};}
+    if(data.success){console.log('SMS sent:',data.sid);return{success:true,sid:data.sid};}
+    else{console.error('SMS error:',data.error);return{success:false,reason:data.error};}
   }catch(e){console.error('SMS failed:',e);return{success:false,reason:e.message};}
 }
 

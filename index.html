@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v5_13.html -->
+<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v5_14.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System 22.04 9.56pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 220.04 10.05pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -459,15 +459,15 @@ tr:hover td{background:var(--bg)}
       <!-- --- 2c. Run Sheet view --- -->
       <div class="view active" id="view-runsheet">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">1</div><div class="metric-sub" id="m-trucks-sub">across 4 runs</div></div>
+          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">3</div><div class="metric-sub" id="m-trucks-sub">across 4 runs</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
-          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
-          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">39</div><div class="metric-sub">today's capacity</div></div>
+          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">2</div><div class="metric-sub">loading or en route</div></div>
+          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">37</div><div class="metric-sub">today's capacity</div></div>
         </div>
         <div class="run-sheet-wrap" id="rs-wrap"><div class="rs-header-row"><div class="rs-time-hdr">Time</div><div class="rs-truck-hdr">
       <div class="th-label">Mini — 3.5 ton · dave</div>
       <div class="th-detail">123abc</div>
-      <span class="th-status idle">No deliveries</span>
+      <span class="th-status behind">Behind — CHARLIE ASH (ASH GROUP PTY LTD)</span>
       <span class="th-edit" onclick="openTruckEdit(0)">✎</span>
     </div><div class="rs-truck-hdr">
       <div class="th-label">Fuso — 13 ton</div>
@@ -477,16 +477,32 @@ tr:hover td{background:var(--bg)}
     </div><div class="rs-truck-hdr">
       <div class="th-label">Run 3</div>
       <div class="th-detail">No rego</div>
-      <span class="th-status behind">Behind schedule</span>
+      <span class="th-status behind">Behind — Christopher Haddon</span>
       <span class="th-edit" onclick="openTruckEdit(2)">✎</span>
     </div><div class="rs-truck-hdr">
       <div class="th-label">Run 4 — hire drive · bob</div>
       <div class="th-detail">hire</div>
       <span class="th-status idle">No deliveries</span>
       <span class="th-edit" onclick="openTruckEdit(3)">✎</span>
-    </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;7–8am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;8–9am&#39;)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div class="rs-row"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;9–10am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;10–11am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;12–1pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell" style="min-width:200px"><div class="del-card cod full-width color-next">
+    </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell" style="min-width:200px"><div class="del-card acc full-width color-active">
               
-              <div class="del-top"><span class="badge badge-cod">COD</span><span class="badge" style="background:#fdf8e0;color:#8a7a0a">Next up</span></div>
+              <div class="del-top"><span class="badge badge-acc">Account</span><span class="badge badge-out">En route</span></div>
+              <div class="del-name">CHARLIE ASH (ASH GROUP PTY LTD)</div>
+              <div class="del-suburb">ORMEAU</div>
+              <div class="del-inv">40999</div>
+              
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(33)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;7–8am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;8–9am&#39;)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div class="rs-row"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;9–10am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width color-next">
+              
+              <div class="del-top"><span class="badge badge-paid">Paid</span><span class="badge" style="background:#fdf8e0;color:#8a7a0a">Next up</span></div>
+              <div class="del-name">CHARLIE ASH (ASH GROUP PTY LTD)</div>
+              <div class="del-suburb">ORMEAU</div>
+              <div class="del-inv">40999</div>
+              
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(34)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;10–11am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;12–1pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell" style="min-width:200px"><div class="del-card cod full-width color-active">
+              
+              <div class="del-top"><span class="badge badge-cod">COD</span><span class="badge badge-out">En route</span></div>
               <div class="del-name">Christopher Haddon</div>
               <div class="del-suburb">Slacks Creek</div>
               <div class="del-inv"> · 69</div>
@@ -498,7 +514,7 @@ tr:hover td{background:var(--bg)}
       <!-- --- 2d. Delivery Journal view --- -->
       <div class="view" id="view-journal">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">1</div></div>
+          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">3</div></div>
           <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$69</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">0</div></div>
           <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">1</div></div>
@@ -524,11 +540,11 @@ tr:hover td{background:var(--bg)}
     <td class="mono">—</td>
     <td class="mono">1–2pm</td>
     <td class="mono">1hr</td>
+    <td class="mono">10:03 pm</td>
+    <td class="mono">10:03 pm</td>
     <td class="mono">—</td>
     <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td><span class="status-pill s-out"><span class="status-dot"></span>En route</span></td>
     <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
     </tr><tr id="jx-13" style="display:none;background:var(--surface2)">
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
@@ -548,6 +564,82 @@ tr:hover td{background:var(--bg)}
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0403359619</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
       </div>
+    </td></tr><tr onclick="toggleJournalExpand(34)" style="cursor:pointer">
+    <td class="mono">34</td>
+    <td class="mono">3151</td>
+    <td style="font-weight:600">CHARLIE ASH (ASH GROUP PTY LTD)</td>
+    <td>ORMEAU</td>
+    <td class="mono">40999</td>
+    <td><span class="badge badge-paid">Paid</span></td>
+    <td class="mono">—</td>
+    <td>CHRIS</td>
+    <td>dave</td>
+    <td>3.5 ton</td>
+    <td class="mono">123abc</td>
+    <td class="mono">10–11am</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-34" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>60 ORMEAU RIDGE ROAD, ORMEAU, QLD, 4207</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x ORMEAU<br>10.0 x GP CEMENT 20KG<br>1.0 x CONCRETE BLEND 10MM</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0434 003 918</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+    </td></tr><tr onclick="toggleJournalExpand(33)" style="cursor:pointer">
+    <td class="mono">33</td>
+    <td class="mono">3151</td>
+    <td style="font-weight:600">CHARLIE ASH (ASH GROUP PTY LTD)</td>
+    <td>ORMEAU</td>
+    <td class="mono">40999</td>
+    <td><span class="badge badge-acc">Account</span></td>
+    <td class="mono">—</td>
+    <td>CHRIS</td>
+    <td>dave</td>
+    <td>3.5 ton</td>
+    <td class="mono">123abc</td>
+    <td class="mono">7–8am</td>
+    <td class="mono">1hr</td>
+    <td class="mono">9:58 pm</td>
+    <td class="mono">10:02 pm</td>
+    <td class="mono">10:02 pm</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-out"><span class="status-dot"></span>En route</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-33" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>60 ORMEAU RIDGE ROAD, ORMEAU, QLD, 4207</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x ORMEAU<br>10.0 x GP CEMENT 20KG<br>1.0 x CONCRETE BLEND 10MM</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0403359619</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>Yes</div>
+      </div>
     </td></tr></tbody></table>
         </div>
       </div>
@@ -558,21 +650,35 @@ tr:hover td{background:var(--bg)}
           <div class="driver-queue">
             <div class="driver-queue-hdr">
               <div class="dq-name" id="dv-driver-name">All runs</div>
-              <div class="dq-sub" id="dv-driver-sub">Today · 1 deliveries</div>
+              <div class="dq-sub" id="dv-driver-sub">Today · 3 deliveries</div>
             </div>
             <div class="driver-filter">
               <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Mini — dave</option><option value="1">Fuso</option><option value="2">Run 3</option><option value="3">Run 4 — bob</option></select>
             </div>
-            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(13,this)">
-      <div class="dq-row"><span class="dq-num ">1</span><span class="dq-customer">Christopher Haddon</span></div>
-      <div class="dq-detail">Slacks Creek · 1–2pm</div>
-      <div class="dq-badges"><span class="badge badge-cod">COD</span>
+            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(33,this)">
+      <div class="dq-row"><span class="dq-num enroute">1</span><span class="dq-customer">CHARLIE ASH (ASH GROUP PTY LTD)</span></div>
+      <div class="dq-detail">ORMEAU · 7–8am</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        <span class="badge badge-out">En route</span>
+        <span class="badge badge-out">Current</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(34,this)">
+      <div class="dq-row"><span class="dq-num ">2</span><span class="dq-customer">CHARLIE ASH (ASH GROUP PTY LTD)</span></div>
+      <div class="dq-detail">ORMEAU · 10–11am</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge" style="background:#fdf8e0;color:#8a7a0a">Next up</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(13,this)">
+      <div class="dq-row"><span class="dq-num enroute">3</span><span class="dq-customer">Christopher Haddon</span></div>
+      <div class="dq-detail">Slacks Creek · 1–2pm</div>
+      <div class="dq-badges"><span class="badge badge-cod">COD</span>
+        <span class="badge badge-out">En route</span>
+        <span class="badge badge-out">Current</span>
         <span class="badge badge-cod">69</span>
       </div></div></div>
           </div>
-          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle ">1</div><div class="prog-label ">Loading</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">2</div><div class="prog-label ">Left yard</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div><div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">Christopher Haddon</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">1–2pm</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-cod">COD</span></div></div></div><div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">—</div></div></div></div><div class="detail-section"><div class="detail-section-title">Delivery details</div><div style="font-size:13px;color:var(--text-2);margin-bottom:4px">Slacks Creek</div><div style="font-size:12px;color:var(--text-3)">dege</div><div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 0403359619</div><div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Products</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">test 4</div></div></div><div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(13,&#39;loading&#39;)">Start loading</button></div></div>
+          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Loading</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle active">→</div><div class="prog-label active">Left yard</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div><div style="text-align:right;margin-bottom:8px"><button class="btn btn-sm btn-danger" onclick="if(confirm(&#39;Go back to previous stage?&#39;))advanceStatus(33,&#39;loading&#39;)">↩ Undo</button></div><div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">CHARLIE ASH (ASH GROUP PTY LTD)</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">40999</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-acc">Account</span></div></div><div class="detail-item"><div class="dl">Sales</div><div class="dv">CHRIS</div></div></div><div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">9:58 pm</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">10:02 pm</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">10:02 pm</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">—</div></div></div></div><div class="detail-section"><div class="detail-section-title">Delivery details</div><div style="font-size:14px;font-weight:500;margin-bottom:4px">60 ORMEAU RIDGE ROAD, ORMEAU, QLD, 4207</div><div style="font-size:13px;color:var(--text-2);margin-bottom:4px">ORMEAU</div><div style="font-size:12px;color:var(--text-3)">No special instructions</div><div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 0403359619</div><div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Products</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x ORMEAU</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">10.0 x GP CEMENT 20KG</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x CONCRETE BLEND 10MM</div></div></div><div class="detail-section"><div class="detail-section-title">Products loaded</div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(33,0,this.checked)" disabled=""><span class="pname">1.0 x ORMEAU</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(33,1,this.checked)" disabled=""><span class="pname">10.0 x GP CEMENT 20KG</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(33,2,this.checked)" disabled=""><span class="pname">1.0 x CONCRETE BLEND 10MM</span><span class="pqty"></span></div></div><div class="action-row"><button class="btn btn-success" onclick="advanceStatus(33,&#39;left_site&#39;)">Arrived at site</button></div></div>
         </div>
       </div>
 
@@ -600,8 +706,8 @@ tr:hover td{background:var(--bg)}
           </div>
           <div class="tracker-card" id="tracker-card">
     <div class="tracker-title">Delivery — </div><div class="tracker-sub">Slacks Creek</div>
-    <div class="tracker-status-msg">Order confirmed.</div>
-    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Loading</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
+    <div class="tracker-status-msg">On the way!</div>
+    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Loading</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle active">→</div><div class="t-label active">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
     <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">1–2pm</div><div class="eta-sub">Dan R. · Logan</div></div></div>
         </div>
       </div>
@@ -1451,7 +1557,7 @@ function renderDriverDetail(d){
   const showCod=d.payment_type==='cod'&&['enroute','left_site','returning','delivered'].includes(st);
   const codHtml=showCod?`<div class="cod-box"><strong>COD collection \u2014 ${d.cod_amount||'$0'}</strong><input type="text" value="${d.cod_receipt||''}" placeholder="Receipt number (required)" onchange="saveCodReceipt(${d.id},this.value)">${!d.cod_receipt?'<div class="cod-required">\u26A0 Required before completing</div>':''}</div>`:'';
   // Safety
-  const showSafety=['enroute','left_site','returning','delivered'].includes(st);
+  const showSafety=['left_site','returning','delivered'].includes(st);
   const allSafe=safetyChecked[d.id]?.every(Boolean);
   const safetyHtml=showSafety?`<div class="section-divider"><span>Safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div>${SAFETY_QS.map((q,qi)=>`<div class="safety-item"><input type="checkbox" class="safety-check" ${safetyChecked[d.id][qi]?'checked':''} onchange="toggleSafety(${d.id},${qi},this.checked)"><div class="safety-text"><div class="safety-q">${q.q}</div><div class="safety-sub">${q.sub}</div></div></div>`).join('')}<div class="safety-pass${allSafe?' show':''}">All checks complete</div></div>`:'';
   // Waiver
@@ -1481,10 +1587,10 @@ function renderDriverDetail(d){
     body+=`<div class="action-row"><button class="btn btn-primary" ${allC?'':'disabled'} onclick="advanceStatus(${d.id},'enroute')">Leave for delivery</button></div>`;
   }else if(st==='enroute'){
     body+=`<div class="detail-section"><div class="detail-section-title">Products loaded</div>${prodHtml}</div>`;
-    body+=safetyHtml+waiverHtml;
     body+=`<div class="action-row"><button class="btn btn-success" onclick="advanceStatus(${d.id},'left_site')">Arrived at site</button></div>`;
   }else if(st==='left_site'){
     body+=`<div class="detail-section"><div class="detail-section-title">Products</div>${prodHtml}</div>`;
+    body+=safetyHtml+waiverHtml;
     body+=codHtml+photoHtml+compHtml;
     body+=`<div class="action-row"><button class="btn" style="background:var(--purple);color:#fff;border-color:var(--purple)" onclick="advanceStatus(${d.id},'returning')">Left site \u2014 returning</button></div>`;
   }else if(st==='returning'){

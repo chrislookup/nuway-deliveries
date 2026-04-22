@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v5_8.html -->
+<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v5_9.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System 22.04 7.14pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System big change 22.04 7.50pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -375,7 +375,7 @@ tr:hover td{background:var(--bg)}
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
-      <div class="nav-item active" onclick="switchView(&#39;runsheet&#39;,this)">
+      <div class="nav-item" onclick="switchView(&#39;runsheet&#39;,this)">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"></rect><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="11" y2="9"></line></svg>
         Run Sheet
       </div>
@@ -383,7 +383,7 @@ tr:hover td{background:var(--bg)}
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z"></path><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="9" y2="9"></line></svg>
         Delivery Journal
       </div>
-      <div class="nav-item" onclick="switchView(&#39;driver&#39;,this)">
+      <div class="nav-item active" onclick="switchView(&#39;driver&#39;,this)">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="14" height="7" rx="1.5"></rect><path d="M1 9h14M5 6V4a3 3 0 016 0v2"></path></svg>
         Driver View
       </div>
@@ -405,7 +405,7 @@ tr:hover td{background:var(--bg)}
     </div>
     <div class="sidebar-footer">
       <strong id="footer-store">Logan Store</strong>
-      <span id="footer-date">Wed, 22 Apr 2026</span>
+      <span id="footer-date">Thu, 23 Apr 2026</span>
     </div>
   </aside>
 
@@ -413,7 +413,7 @@ tr:hover td{background:var(--bg)}
   <div class="main">
     <div class="topbar">
       <div class="topbar-left">
-        <span class="page-title" id="page-title">Run Sheet</span>
+        <span class="page-title" id="page-title">Driver View</span>
         <select class="pill-select" id="store-select" onchange="changeStore()">
           <option>Logan</option><option>Chandler</option><option>Ashmore</option><option>Redlands</option>
           <option>Westerns</option><option>Forestdale</option><option>Mango Hill</option><option>Pine Rivers</option>
@@ -425,23 +425,23 @@ tr:hover td{background:var(--bg)}
         <button class="btn" onclick="loadDeliveries()" title="Refresh">↻ Refresh</button>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
-        <button class="btn btn-primary" id="top-action">Export PDF</button>
+        <button class="btn btn-primary" id="top-action"></button>
       </div>
     </div>
     <div class="content">
 
       <!-- --- 2c. Run Sheet view --- -->
-      <div class="view active" id="view-runsheet">
+      <div class="view" id="view-runsheet">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">1</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
+          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">4</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
-          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
-          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">29</div><div class="metric-sub">today's capacity</div></div>
+          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">1</div><div class="metric-sub">loading or en route</div></div>
+          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">26</div><div class="metric-sub">today's capacity</div></div>
         </div>
         <div class="run-sheet-wrap" id="rs-wrap"><div class="rs-header-row"><div class="rs-time-hdr">Time</div><div class="rs-truck-hdr">
       <div class="th-label">Mini — 3.5 ton · dave</div>
       <div class="th-detail">123abc</div>
-      <span class="th-status idle">No deliveries</span>
+      <span class="th-status behind">Behind — JACK ALLEN (G.ALLEN &amp; SONS)</span>
       <span class="th-edit" onclick="openTruckEdit(0)">✎</span>
     </div><div class="rs-truck-hdr">
       <div class="th-label">Fuso — 13 ton</div>
@@ -451,26 +451,50 @@ tr:hover td{background:var(--bg)}
     </div><div class="rs-truck-hdr">
       <div class="th-label">Run 3</div>
       <div class="th-detail">No rego</div>
-      <span class="th-status behind">Behind schedule</span>
+      <span class="th-status idle">No deliveries</span>
       <span class="th-edit" onclick="openTruckEdit(2)">✎</span>
-    </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">8–9am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div class="rs-row"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell" style="min-width:200px"><div class="del-card cod full-width color-next">
+    </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell" style="min-width:200px"><div class="del-card cod full-width color-active">
+              
+              <div class="del-top"><span class="badge badge-cod">COD</span><span class="badge badge-out">Left site</span></div>
+              <div class="del-name">JACK ALLEN (G.ALLEN &amp; SONS)</div>
+              <div class="del-suburb">ORMEAU HILLS</div>
+              <div class="del-inv">40968</div>
+              <div class="del-note">Drop on geo fab at top driveway, thanks</div>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(27)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;7–8am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;7–8am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">8–9am</div><div class="rs-cell" style="min-width:200px"><div class="del-card cod full-width ">
               
               <div class="del-top"><span class="badge badge-cod">COD</span></div>
-              <div class="del-name">Christopher Haddon</div>
-              <div class="del-suburb">Slacks Creek</div>
-              <div class="del-inv"> · 69</div>
-              <div class="del-note">dege</div>
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(13)">Edit</button>
-            </div></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;)">+</span></div></div></div>
+              <div class="del-name">CHARLIE ASH (ASH GROUP PTY LTD)</div>
+              <div class="del-suburb">ORMEAU</div>
+              <div class="del-inv">40999</div>
+              
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(28)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;8–9am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div class="rs-row"><div class="rs-time-cell">9–10am</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;9–10am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell" style="min-width:200px"><div class="del-card cod full-width color-next">
+              <div class="del-duration">½hr</div>
+              <div class="del-top"><span class="badge badge-cod">COD</span><span class="badge" style="background:#fdf8e0;color:#8a7a0a">Next up</span></div>
+              <div class="del-name">test b</div>
+              <div class="del-suburb"></div>
+              <div class="del-inv"></div>
+              
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(30)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell" style="min-width:200px"><div class="del-card cod full-width ">
+              
+              <div class="del-top"><span class="badge badge-cod">COD</span></div>
+              <div class="del-name">test a</div>
+              <div class="del-suburb"></div>
+              <div class="del-inv"></div>
+              
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(29)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;)">+</span></div></div></div>
       </div>
 
       <!-- --- 2d. Delivery Journal view --- -->
       <div class="view" id="view-journal">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">1</div></div>
-          <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$69</div></div>
+          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">4</div></div>
+          <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$0</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">0</div></div>
-          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">1</div></div>
+          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">3</div></div>
         </div>
         <div class="table-wrap">
           <table><thead><tr>
@@ -479,32 +503,32 @@ tr:hover td{background:var(--bg)}
             <th>Loading</th><th>Out</th><th>Left</th><th>In</th>
             <th>Status</th><th></th>
           </tr></thead>
-          <tbody id="journal-body"><tr onclick="toggleJournalExpand(13)" style="cursor:pointer">
-    <td class="mono">13</td>
+          <tbody id="journal-body"><tr onclick="toggleJournalExpand(30)" style="cursor:pointer">
+    <td class="mono">30</td>
     <td class="mono">—</td>
-    <td style="font-weight:600">Christopher Haddon</td>
-    <td>Slacks Creek</td>
+    <td style="font-weight:600">test b</td>
+    <td></td>
     <td class="mono"></td>
     <td><span class="badge badge-cod">COD</span></td>
-    <td class="mono">69</td>
-    <td>—</td>
-    <td>Dan R.</td>
-    <td>—</td>
     <td class="mono">—</td>
-    <td class="mono">1–2pm</td>
-    <td class="mono">1hr</td>
+    <td>—</td>
+    <td>dave</td>
+    <td>3.5 ton</td>
+    <td class="mono">123abc</td>
+    <td class="mono">10–11am</td>
+    <td class="mono">0.5hr</td>
     <td class="mono">—</td>
     <td class="mono">—</td>
     <td class="mono">—</td>
     <td class="mono">—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
     <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-13" style="display:none;background:var(--surface2)">
+    </tr><tr id="jx-30" style="display:none;background:var(--surface2)">
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>dege</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>test 4</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>dege</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
@@ -514,54 +538,169 @@ tr:hover td{background:var(--bg)}
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0403359619</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>Yes</div>
+      </div>
+    </td></tr><tr onclick="toggleJournalExpand(29)" style="cursor:pointer">
+    <td class="mono">29</td>
+    <td class="mono">—</td>
+    <td style="font-weight:600">test a</td>
+    <td></td>
+    <td class="mono"></td>
+    <td><span class="badge badge-cod">COD</span></td>
+    <td class="mono">—</td>
+    <td>—</td>
+    <td>dave</td>
+    <td>3.5 ton</td>
+    <td class="mono">123abc</td>
+    <td class="mono">12–1pm</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-29" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>Yes</div>
+      </div>
+    </td></tr><tr onclick="toggleJournalExpand(27)" style="cursor:pointer">
+    <td class="mono">27</td>
+    <td class="mono">1557</td>
+    <td style="font-weight:600">JACK ALLEN (G.ALLEN &amp; SONS)</td>
+    <td>ORMEAU HILLS</td>
+    <td class="mono">40968</td>
+    <td><span class="badge badge-cod">COD</span></td>
+    <td class="mono">—</td>
+    <td>CHRIS</td>
+    <td>dave</td>
+    <td>3.5 ton</td>
+    <td class="mono">123abc</td>
+    <td class="mono">7–8am</td>
+    <td class="mono">1hr</td>
+    <td class="mono">7:31 pm</td>
+    <td class="mono">7:34 pm</td>
+    <td class="mono">7:34 pm</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-returning"><span class="status-dot"></span>Left site</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-27" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>8 MCGARTH COURT, ORMEAU HILLS, QLD, 4208</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x ORMEAU HILLS<br>2.5 x TUMBLE SANDSTONE 20-40MM</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>Drop on geo fab at top driveway, thanks</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0478 103 827</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>Yes</div>
+      </div>
+    </td></tr><tr onclick="toggleJournalExpand(28)" style="cursor:pointer">
+    <td class="mono">28</td>
+    <td class="mono">3151</td>
+    <td style="font-weight:600">CHARLIE ASH (ASH GROUP PTY LTD)</td>
+    <td>ORMEAU</td>
+    <td class="mono">40999</td>
+    <td><span class="badge badge-cod">COD</span></td>
+    <td class="mono">—</td>
+    <td>CHRIS</td>
+    <td>dave</td>
+    <td>3.5 ton</td>
+    <td class="mono">123abc</td>
+    <td class="mono">8–9am</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-28" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>60 ORMEAU RIDGE ROAD, ORMEAU, QLD, 4207</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x ORMEAU<br>10.0 x GP CEMENT 20KG<br>1.0 x CONCRETE BLEND 10MM</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0434 003 918</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>Yes</div>
       </div>
     </td></tr></tbody></table>
         </div>
       </div>
 
       <!-- --- 2e. Driver View --- -->
-      <div class="view" id="view-driver">
+      <div class="view active" id="view-driver">
         <div class="driver-layout">
           <div class="driver-queue">
             <div class="driver-queue-hdr">
               <div class="dq-name" id="dv-driver-name">All runs</div>
-              <div class="dq-sub" id="dv-driver-sub">Today · 1 deliveries</div>
+              <div class="dq-sub" id="dv-driver-sub">Today · 4 deliveries</div>
             </div>
             <div class="driver-filter">
               <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Mini — dave</option><option value="1">Fuso</option><option value="2">Run 3</option></select>
             </div>
-            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(13,this)">
-      <div class="dq-row"><span class="dq-num ">1</span><span class="dq-customer">Christopher Haddon</span></div>
-      <div class="dq-detail">Slacks Creek · 1–2pm</div>
+            <div id="driver-list"><div class="dq-item sel" onclick="selectDelivery(27,this)">
+      <div class="dq-row"><span class="dq-num left_site">1</span><span class="dq-customer">JACK ALLEN (G.ALLEN &amp; SONS)</span></div>
+      <div class="dq-detail">ORMEAU HILLS · 7–8am</div>
+      <div class="dq-badges"><span class="badge badge-cod">COD</span>
+        <span class="badge badge-out">Left site</span>
+        <span class="badge badge-out">Current</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(28,this)">
+      <div class="dq-row"><span class="dq-num ">2</span><span class="dq-customer">CHARLIE ASH (ASH GROUP PTY LTD)</span></div>
+      <div class="dq-detail">ORMEAU · 8–9am</div>
       <div class="dq-badges"><span class="badge badge-cod">COD</span>
         
-        <span class="badge badge-cod">69</span>
+        <span class="badge" style="background:#fdf8e0;color:#8a7a0a">Next up</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(30,this)">
+      <div class="dq-row"><span class="dq-num ">3</span><span class="dq-customer">test b</span></div>
+      <div class="dq-detail"> · 10–11am</div>
+      <div class="dq-badges"><span class="badge badge-cod">COD</span>
+        
+        <span class="badge badge-issue">Behind</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(29,this)">
+      <div class="dq-row"><span class="dq-num ">4</span><span class="dq-customer">test a</span></div>
+      <div class="dq-detail"> · 12–1pm</div>
+      <div class="dq-badges"><span class="badge badge-cod">COD</span>
+        
+        <span class="badge badge-issue">Behind</span>
+        
       </div></div></div>
           </div>
-          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle ">1</div><div class="prog-label ">Loading</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">2</div><div class="prog-label ">Left yard</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div>
-    <div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid">
-      <div class="detail-item"><div class="dl">Name</div><div class="dv">Christopher Haddon</div></div>
-      <div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">—</div></div>
-      <div class="detail-item"><div class="dl">Window</div><div class="dv">1–2pm</div></div>
-      <div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-cod">COD</span></div></div>
-      
-      
-    </div><div class="detail-grid" style="margin-top:8px">
-    <div class="detail-item"><div class="dl">Loading</div><div class="dv mono">—</div></div>
-    <div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">—</div></div>
-    <div class="detail-item"><div class="dl">Left site</div><div class="dv mono">—</div></div>
-    <div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">—</div></div>
-  </div></div>
-    <div class="detail-section"><div class="detail-section-title">Delivery details</div>
-      
-      <div style="font-size:13px;color:var(--text-2);margin-bottom:4px">Slacks Creek</div>
-      <div style="font-size:12px;color:var(--text-3)">dege</div>
-      <div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 0403359619</div>
-    </div>
-    <div class="detail-section"><div class="detail-section-title">Products</div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(13,0,this.checked)" disabled=""><span class="pname">test 4</span><span class="pqty"></span></div></div>
-    <div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(13,&#39;loading&#39;)">Start loading</button></div></div>
+          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Loading</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Left yard</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle active">→</div><div class="prog-label active">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div><div style="text-align:right;margin-bottom:8px"><button class="btn btn-sm btn-danger" onclick="if(confirm(&#39;Go back to previous stage?&#39;))advanceStatus(27,&#39;enroute&#39;)">↩ Undo</button></div><div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">JACK ALLEN (G.ALLEN &amp; SONS)</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">40968</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-cod">COD</span></div></div><div class="detail-item"><div class="dl">Sales</div><div class="dv">CHRIS</div></div></div><div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">7:31 pm</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">7:34 pm</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">7:34 pm</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">—</div></div></div></div><div class="detail-section"><div class="detail-section-title">Delivery details</div><div style="font-size:14px;font-weight:500;margin-bottom:4px">8 MCGARTH COURT, ORMEAU HILLS, QLD, 4208</div><div style="font-size:13px;color:var(--text-2);margin-bottom:4px">ORMEAU HILLS</div><div style="font-size:12px;color:var(--text-3)">Drop on geo fab at top driveway, thanks</div><div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 0478 103 827</div></div><div class="detail-section"><div class="detail-section-title">Products</div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(27,0,this.checked)" disabled=""><span class="pname">1.0 x ORMEAU HILLS</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(27,1,this.checked)" disabled=""><span class="pname">2.5 x TUMBLE SANDSTONE 20-40MM</span><span class="pqty"></span></div></div><div class="cod-box"><strong>COD collection — $0</strong><input type="text" value="" placeholder="Receipt number (required)" onchange="saveCodReceipt(27,this.value)"><div class="cod-required">⚠ Required before completing</div></div><div class="section-divider"><span>Photos</span></div><div class="detail-section"><div style="border:2px dashed var(--border-md);border-radius:var(--radius);padding:16px;text-align:center;cursor:pointer;background:var(--surface)" onclick="showToast(&#39;Photo upload coming soon&#39;)"><div style="font-size:20px;opacity:0.4">📷</div><div style="font-size:12px;color:var(--text-2)">Tap to add photos</div></div></div><div class="section-divider"><span>Completion notes</span></div><div class="detail-section"><textarea style="width:100%;min-height:50px;padding:8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:&#39;DM Sans&#39;,sans-serif;resize:vertical" placeholder="Delivery notes..." onchange="saveDriverField(27,&#39;completion_notes&#39;,this.value)"></textarea></div><div class="action-row"><button class="btn" style="background:var(--purple);color:#fff;border-color:var(--purple)" onclick="advanceStatus(27,&#39;returning&#39;)">Left site — returning</button></div></div>
         </div>
       </div>
 
@@ -588,10 +727,10 @@ tr:hover td{background:var(--bg)}
             <div class="sms-bubble">Hi! Your Nuway delivery is on its way. Track live: nuway.com.au/track 📦</div>
           </div>
           <div class="tracker-card" id="tracker-card">
-    <div class="tracker-title">Delivery — </div><div class="tracker-sub">Slacks Creek</div>
-    <div class="tracker-status-msg">Order confirmed.</div>
-    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Loading</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
-    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">1–2pm</div><div class="eta-sub">Dan R. · Logan</div></div></div>
+    <div class="tracker-title">Delivery — 40968</div><div class="tracker-sub">ORMEAU HILLS</div>
+    <div class="tracker-status-msg">At your site.</div>
+    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Loading</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle active">→</div><div class="t-label active">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
+    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">7–8am</div><div class="eta-sub">dave · Logan</div></div></div>
         </div>
       </div>
 
@@ -714,7 +853,7 @@ tr:hover td{background:var(--bg)}
       <div class="field-row">
         <div class="field"><label>Suburb</label><input type="text" id="book-suburb" placeholder="e.g. Loganholme"></div>
         <div class="field"><label>Payment type</label>
-          <select id="book-pay"><option value="cod">COD</option><option value="acc">Account</option><option value="paid">Paid (EFTPOS/Cash)</option><option value="tba">TBA</option></select>
+          <select id="book-pay"><option value="">— Select —</option><option value="cod">COD</option><option value="acc">Account</option><option value="paid">Paid (EFTPOS/Cash)</option><option value="tba">TBA</option></select>
         </div>
       </div>
       <div class="field"><label>Delivery address</label><input type="text" id="book-address" placeholder="e.g. 25 Buenavista St, Logan Village QLD 4127"></div>
@@ -1055,7 +1194,6 @@ function buildRunSheet(){
       if(slotDels.length===0){
         html+=`<div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(${t},'${slot}')">+</span></div>`;
       }else{
-        const allHalf=slotDels.every(d=>d.duration===0.5);
         const maxDur=Math.max(...slotDels.map(d=>d.duration));
         let style='min-width:200px';
         if(maxDur>=2)style+=';min-height:108px';else if(maxDur===1.5)style+=';min-height:81px';
@@ -1071,11 +1209,12 @@ function buildRunSheet(){
             </div>`;
           }else{
             const p=d.payment_type||'acc';
-            const wc=allHalf&&slotDels.length>1?'half-width':'full-width';
+            // Show side-by-side if 2 deliveries in same slot (regardless of duration)
+            const wc=slotDels.length>=2?'half-width':'full-width';
             const cc=getCardColorClass(d,DELIVERIES);
             html+=`<div class="${cardClass(d)} ${wc} ${cc}">
               ${d.duration>1||d.duration===0.5?`<div class="del-duration">${d.duration===0.5?'½hr':d.duration+'hr'}</div>`:''}
-              <div class="del-top"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>${statusBadge(d)}</div>
+              <div class="del-top"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>${statusBadge(d)}${cc==='color-next'?'<span class="badge" style="background:#fdf8e0;color:#8a7a0a">Next up</span>':''}</div>
               <div class="del-name">${d.customer_name||'—'}</div>
               <div class="del-suburb">${d.suburb||''}</div>
               <div class="del-inv">${d.invoice||''}${d.cod_amount?' · '+d.cod_amount:''}</div>
@@ -1189,15 +1328,28 @@ function openEditDelivery(id){
 async function saveBooking(){
   const name=document.getElementById('book-name').value.trim();
   if(!name&&!editingId){showToast('Enter a customer name',true);return;}
+  const payType=document.getElementById('book-pay').value;
+  if(!payType){showToast('Select a payment type',true);return;}
+  // COD amount mandatory when payment is COD
+  if(payType==='cod'&&!document.getElementById('book-cod').value.trim()){showToast('Enter COD amount for COD payments',true);return;}
   const runs=getRuns();const ti=parseInt(document.getElementById('book-truck').value);
+  const slot=document.getElementById('book-slot').value;
+  // Check for slot conflict (only on new bookings)
+  if(!editingId){
+    const existing=DELIVERIES.filter(x=>x.slot===slot&&x.truck===ti&&x.entry_type!=='unavailable');
+    if(existing.length>=2){showToast('This slot already has 2 deliveries — maximum reached',true);return;}
+    if(existing.length===1){
+      if(!confirm(`This slot already has a delivery for ${existing[0].customer_name||'another customer'}. Book a second delivery in this slot?`))return;
+    }
+  }
   const row={
     store:currentStore,date:currentDate,
-    slot:document.getElementById('book-slot').value,
+    slot:slot,
     truck:ti,driver_name:document.getElementById('book-driver').value.trim()||runs[ti]?.driver||'',
     customer_name:name,customer_phone:document.getElementById('book-phone').value.trim(),
     suburb:document.getElementById('book-suburb').value.trim(),
     invoice:document.getElementById('book-inv').value.trim(),
-    payment_type:document.getElementById('book-pay').value,
+    payment_type:payType,
     cod_amount:document.getElementById('book-cod').value.trim()||null,
     products:document.getElementById('book-products').value.trim()||null,
     notes:document.getElementById('book-notes').value.trim()||null,
@@ -1207,7 +1359,6 @@ async function saveBooking(){
     comments:document.getElementById('book-comments').value.trim()||null,
     truck_type:runs[ti]?.type||null,truck_rego:runs[ti]?.rego||null,
     entry_type:'delivery',
-    // New fields
     customer_id_rm:document.getElementById('book-custid').value.trim()||null,
     sales_person:document.getElementById('book-salesperson').value.trim()||null,
     delivery_address:document.getElementById('book-address').value.trim()||null,
@@ -1216,7 +1367,6 @@ async function saveBooking(){
     if(editingId){
       await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify(row)});showToast('Updated');
     }else{
-      // New booking — ask about SMS
       const sendSms=confirm('Booking saved! Send SMS notification to customer?');
       row.sms_sent=sendSms;
       await db('deliveries',{method:'POST',body:JSON.stringify(row)});
@@ -1231,7 +1381,7 @@ async function deleteDelivery(){
 }
 function clearBookingForm(){
   ['book-name','book-phone','book-inv','book-suburb','book-products','book-notes','book-cod','book-driver','book-created-by','book-comments','book-custid','book-salesperson','book-address'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('book-pay').value='cod';document.getElementById('book-truck').value='0';
+  document.getElementById('book-pay').value='';document.getElementById('book-truck').value='0';
   document.getElementById('book-slot').value='7–8am';document.getElementById('book-dur').value='1';
   document.getElementById('book-status').value='pending';
 }
@@ -1341,21 +1491,38 @@ function buildDriverView(){
 }
 function filterDriverView(){
   driverFilterTruck=document.getElementById('driver-filter-select').value;
-  const mine=driverFilterTruck==='all'?DELIVERIES.filter(d=>d.entry_type!=='unavailable'):DELIVERIES.filter(d=>d.truck===parseInt(driverFilterTruck)&&d.entry_type!=='unavailable');
+  let mine=driverFilterTruck==='all'?DELIVERIES.filter(d=>d.entry_type!=='unavailable'):DELIVERIES.filter(d=>d.truck===parseInt(driverFilterTruck)&&d.entry_type!=='unavailable');
+  // Sort by time slot order
+  mine.sort((a,b)=>(SLOT_IDX[a.slot]||0)-(SLOT_IDX[b.slot]||0));
   const runs=getRuns();const run=driverFilterTruck!=='all'?runs[parseInt(driverFilterTruck)]:null;
   document.getElementById('dv-driver-name').textContent=run?`${run.driver||run.label} — ${run.type||''}`:'All runs';
   document.getElementById('dv-driver-sub').textContent=`Today · ${mine.length} deliveries`;
+  // Determine which delivery is "current" and "next"
+  const activeIdx=mine.findIndex(d=>['loading','enroute','left_site','returning'].includes(d.driver_status));
+  const firstPendingIdx=mine.findIndex(d=>d.driver_status==='pending');
   const list=document.getElementById('driver-list');
   list.innerHTML=mine.map((d,qi)=>{
     const nc=d.driver_status==='delivered'?'done':['loading','enroute','left_site','returning'].includes(d.driver_status)?d.driver_status:'';
     const ni=d.driver_status==='delivered'?'✓':(qi+1);
     const sel=d.id===selectedDeliveryId?' sel':'';
     const p=d.payment_type||'acc';
+    // Status label for overview
+    let schedLabel='';
+    if(['loading','enroute','left_site','returning'].includes(d.driver_status)){
+      schedLabel='<span class="badge badge-out">Current</span>';
+    }else if(d.driver_status==='pending'&&qi===firstPendingIdx){
+      schedLabel='<span class="badge" style="background:#fdf8e0;color:#8a7a0a">Next up</span>';
+    }else if(d.driver_status==='pending'){
+      const slotHour=getSlotHour(d.slot);const nowHour=new Date().getHours();
+      if(nowHour>slotHour)schedLabel='<span class="badge badge-issue">Behind</span>';
+      else schedLabel='<span class="badge badge-yes">On time</span>';
+    }
     return`<div class="dq-item${sel}" onclick="selectDelivery(${d.id},this)">
       <div class="dq-row"><span class="dq-num ${nc}">${ni}</span><span class="dq-customer">${d.customer_name||'—'}</span></div>
       <div class="dq-detail">${d.suburb||''} · ${d.slot||''}</div>
       <div class="dq-badges"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>
         ${d.driver_status!=='pending'?`<span class="badge badge-${d.driver_status==='delivered'?'done':'out'}">${STATUS_LABEL[d.driver_status]||d.driver_status}</span>`:''}
+        ${schedLabel}
         ${d.cod_amount?`<span class="badge badge-cod">${d.cod_amount}</span>`:''}
       </div></div>`;
   }).join('');
@@ -1371,122 +1538,73 @@ function selectDelivery(id,el){
 
 function renderDriverDetail(d){
   const st=d.driver_status||'pending';
-  const products=d.products?d.products.split('\n').filter(Boolean).map(p=>{const ps=p.split(' - ');return{name:ps[0]||p,qty:ps[1]||''};}):[];
+  const products=d.products?d.products.split('\n').filter(Boolean).map(p=>{const ps=p.split(' - ');return{name:ps[0]||p,qty:ps[1]||''};}):[]; 
   if(!prodChecked[d.id])prodChecked[d.id]=products.map(()=>false);
   if(!safetyChecked[d.id])safetyChecked[d.id]=SAFETY_QS.map(()=>false);
-
-  // Progress tracker — 6 steps
-  const steps=[{k:'loading',l:'Loading'},{k:'enroute',l:'Left yard'},{k:'left_site',l:'At site'},{k:'returning',l:'Left site'},{k:'returning2',l:'Returning'},{k:'delivered',l:'Complete'}];
+  const runs=getRuns();const run=runs[d.truck]||{};
   const stIdx=STATUS_ORDER.indexOf(st);
+  // Progress tracker
+  const steps=[{k:'loading',l:'Loading'},{k:'enroute',l:'Left yard'},{k:'left_site',l:'At site'},{k:'returning',l:'Left site'},{k:'returning2',l:'Returning'},{k:'delivered',l:'Complete'}];
   const progHtml=`<div class="prog-track">${steps.map((s,i)=>{
-    const stepIdx=i<4?i+1:i; // map step index to status order
-    const dn=stIdx>=stepIdx+1,ac=stIdx===stepIdx;
+    const si2=i<4?i+1:i;const dn=stIdx>=si2+1,ac=stIdx===si2;
     let cc=dn?'done':ac?'active':'',lc=cc;
     if(ac&&s.k==='loading'){cc='loading-active';lc='loading-active';}
-    return`<div class="prog-step"><div class="prog-circle ${cc}">${dn?'✓':ac?'→':i+1}</div><div class="prog-label ${lc}">${s.l}</div></div>${i<steps.length-1?`<div class="prog-connector${dn?' done':''}"></div>`:''}`;
+    return`<div class="prog-step"><div class="prog-circle ${cc}">${dn?'\u2713':ac?'\u2192':i+1}</div><div class="prog-label ${lc}">${s.l}</div></div>${i<steps.length-1?`<div class="prog-connector${dn?' done':''}"></div>`:''}`;
   }).join('')}</div>`;
-
-  // Action buttons based on current status
-  let actionHtml='';
-  if(st==='pending')actionHtml=`<div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(${d.id},'loading')">Start loading</button></div>`;
-  else if(st==='loading'){
-    const allC=products.length===0||prodChecked[d.id].every(Boolean);
-    actionHtml=`<div class="action-row"><button class="btn btn-primary" ${allC?'':'disabled'} onclick="advanceStatus(${d.id},'enroute')">Leave for delivery</button></div>`;
-  }else if(st==='enroute')actionHtml=`<div class="action-row"><button class="btn btn-success" onclick="advanceStatus(${d.id},'left_site')">Arrived at site</button></div>`;
-  else if(st==='left_site')actionHtml=`<div class="action-row"><button class="btn" style="background:var(--purple);color:#fff;border-color:var(--purple)" onclick="advanceStatus(${d.id},'returning')">Left site — returning</button></div>`;
-  else if(st==='returning'){
-    // Check COD receipt requirement
-    const needsReceipt=d.payment_type==='cod'&&!d.cod_receipt;
-    actionHtml=`<div class="action-row"><button class="btn btn-success" ${needsReceipt?'disabled title="Enter COD receipt number first"':''} onclick="advanceStatus(${d.id},'delivered')">Mark complete (arrived yard)</button></div>`;
-    if(needsReceipt)actionHtml+=`<div style="font-size:11px;color:var(--red-text);margin-top:6px;text-align:center;font-weight:600">⚠ Enter COD receipt number before completing</div>`;
-  }else actionHtml=`<div style="background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--green-text);font-weight:500;text-align:center;margin-top:8px">Delivery complete ✓</div>`;
-
+  // Undo button
+  const prev={loading:'pending',enroute:'loading',left_site:'enroute',returning:'left_site',delivered:'returning'};
+  const undoHtml=prev[st]?`<div style="text-align:right;margin-bottom:8px"><button class="btn btn-sm btn-danger" onclick="if(confirm('Go back to previous stage?'))advanceStatus(${d.id},'${prev[st]}')">\u21A9 Undo</button></div>`:'';
+  // Product HTML
   const prodHtml=products.length>0?products.map((p,pi)=>`<div class="product-line"><input type="checkbox" class="pcheck" ${prodChecked[d.id][pi]?'checked':''} onchange="toggleProd(${d.id},${pi},this.checked)" ${st!=='loading'?'disabled':''}><span class="pname">${p.name}</span><span class="pqty">${p.qty}</span></div>`).join(''):'<div style="font-size:12px;color:var(--text-3);padding:4px 0">No products listed</div>';
-
-  // COD receipt box — shown when enroute onwards for COD payments
+  // COD box
   const showCod=d.payment_type==='cod'&&['enroute','left_site','returning','delivered'].includes(st);
-  const codHtml=showCod?`<div class="cod-box"><strong>COD collection — ${d.cod_amount||'$0'}</strong>
-    <input type="text" id="cod-receipt-${d.id}" value="${d.cod_receipt||''}" placeholder="Receipt number (required)" onchange="saveCodReceipt(${d.id},this.value)">
-    ${!d.cod_receipt?'<div class="cod-required">⚠ Required before marking complete</div>':''}
-  </div>`:'';
-
-  // Safety checklist
+  const codHtml=showCod?`<div class="cod-box"><strong>COD collection \u2014 ${d.cod_amount||'$0'}</strong><input type="text" value="${d.cod_receipt||''}" placeholder="Receipt number (required)" onchange="saveCodReceipt(${d.id},this.value)">${!d.cod_receipt?'<div class="cod-required">\u26A0 Required before completing</div>':''}</div>`:'';
+  // Safety
   const showSafety=['enroute','left_site','returning','delivered'].includes(st);
   const allSafe=safetyChecked[d.id]?.every(Boolean);
-  const safetyHtml=showSafety?`<div class="section-divider"><span>Safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div>${SAFETY_QS.map((q,qi)=>`<div class="safety-item"><input type="checkbox" class="safety-check" ${safetyChecked[d.id][qi]?'checked':''} onchange="toggleSafety(${d.id},${qi},this.checked)"><div class="safety-text"><div class="safety-q">${q.q}</div><div class="safety-sub">${q.sub}</div></div></div>`).join('')}<div class="safety-pass${allSafe?' show':''}">All safety checks complete ✓</div></div>`:'';
-
-  // Damage waiver section — shown after safety checklist
-  const showWaiver=['enroute','left_site','returning','delivered'].includes(st);
-  const waiverHtml=showWaiver?`<div class="section-divider"><span>Damage waiver</span></div>
-    <div class="detail-section">
-      <div class="detail-section-title">Does this delivery require a damage waiver?</div>
-      <div class="safety-item" style="border:none;padding:6px 0">
-        <input type="checkbox" class="safety-check" id="waiver-${d.id}" onchange="toggleWaiver(${d.id},this.checked)" ${d.damage_waiver==='yes'?'checked':''}>
-        <div class="safety-text">
-          <div class="safety-q">Yes — damage waiver required</div>
-          <div class="safety-sub">Tick if soft ground, overhead cables, narrow access, uneven surfaces, or other hazards identified. Customer must sign waiver before delivery proceeds.</div>
-        </div>
-      </div>
-      <div id="waiver-detail-${d.id}" style="display:${d.damage_waiver==='yes'?'block':'none'};margin-top:8px;background:var(--amber-bg);border:1px solid #e6c97a;border-radius:var(--radius-sm);padding:10px 12px;font-size:11px;color:var(--amber-text);line-height:1.6">
-        <strong style="display:block;margin-bottom:6px">DELIVERY ONSITE WAIVER</strong>
-        By proceeding, the customer accepts liability for potential costs including:
-        <ul style="margin:6px 0 6px 16px">
-          <li>Vehicle bogging on soft/wet/loose ground (tow costs $1000+)</li>
-          <li>Stock left on council land/road/footpath (council fines)</li>
-          <li>Ground debris on road surface upon exiting (council fines)</li>
-          <li>Damage to owner's property and/or Nuway truck</li>
-          <li>Damage to utilities above or below ground</li>
-        </ul>
-        <div style="margin-top:6px"><strong>Customer name:</strong> <input type="text" style="width:60%;padding:4px 8px;border:1px solid #d4aa4a;border-radius:4px;font-size:11px;background:rgba(255,255,255,0.6)" id="waiver-name-${d.id}" value="${d.waiver_customer_name||''}" onchange="saveDriverField(${d.id},'waiver_customer_name',this.value)" placeholder="Full name"></div>
-        <div style="margin-top:4px;font-size:10px;color:var(--text-3)">Note: Physical signature to be collected on paper form. Digital record saved here.</div>
-      </div>
-    </div>`:'';
-  const times=`<div class="detail-grid" style="margin-top:8px">
-    <div class="detail-item"><div class="dl">Loading</div><div class="dv mono">${d.time_loading||'—'}</div></div>
-    <div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">${d.time_out||'—'}</div></div>
-    <div class="detail-item"><div class="dl">Left site</div><div class="dv mono">${d.time_left_site||'—'}</div></div>
-    <div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">${d.time_in||'—'}</div></div>
-  </div>`;
-
-  // Pre-departure notes (driver fills before leaving yard)
-  const showPreDep=['loading','enroute','left_site','returning','delivered'].includes(st);
-  const preDepHtml=showPreDep?`<div class="section-divider"><span>Pre-departure notes</span></div>
-    <div class="detail-section"><textarea style="width:100%;min-height:50px;padding:8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical" placeholder="Any notes before leaving yard..." id="predep-${d.id}" onchange="saveDriverField(${d.id},'pre_departure_notes',this.value)">${d.pre_departure_notes||''}</textarea></div>`:'';
-
-  // Completion notes (driver fills before marking delivered)
-  const showCompNotes=['left_site','returning','delivered'].includes(st);
-  const compNotesHtml=showCompNotes?`<div class="section-divider"><span>Completion notes</span></div>
-    <div class="detail-section"><textarea style="width:100%;min-height:50px;padding:8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical" placeholder="Notes on delivery (condition, placement, issues)..." id="compnotes-${d.id}" onchange="saveDriverField(${d.id},'completion_notes',this.value)">${d.completion_notes||''}</textarea></div>`:'';
-
-  // Photo upload section
-  const showPhotos=['enroute','left_site','returning','delivered'].includes(st);
-  const photoHtml=showPhotos?`<div class="section-divider"><span>Delivery photos</span></div>
-    <div class="detail-section"><div class="detail-section-title">Upload delivery evidence</div>
-      <div style="border:2px dashed var(--border-md);border-radius:var(--radius);padding:16px;text-align:center;cursor:pointer;transition:all 0.15s;background:var(--surface)" onclick="showToast('Photo upload coming soon — will use device camera')">
-        <div style="font-size:24px;margin-bottom:6px;opacity:0.4">📷</div>
-        <div style="font-size:13px;font-weight:500;color:var(--text-2)">Tap to add photos</div>
-        <div style="font-size:11px;color:var(--text-3);margin-top:3px">Before & after delivery — max 5 photos</div>
-      </div>
-    </div>`:'';
-
-  const pay=d.payment_type||'acc';
-  document.getElementById('driver-detail').innerHTML=`${progHtml}
-    <div class="detail-section"><div class="detail-section-title">Customer & invoice</div><div class="detail-grid">
-      <div class="detail-item"><div class="dl">Name</div><div class="dv">${d.customer_name||'—'}</div></div>
-      <div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">${d.invoice||'—'}</div></div>
-      <div class="detail-item"><div class="dl">Window</div><div class="dv">${d.slot||'—'}</div></div>
-      <div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge ${PAY_CLASS[pay]}">${PAY_LABEL[pay]||pay}</span></div></div>
-      ${d.sales_person?`<div class="detail-item"><div class="dl">Sales person</div><div class="dv">${d.sales_person}</div></div>`:''}
-      ${d.customer_id_rm?`<div class="detail-item"><div class="dl">Customer ID</div><div class="dv mono">${d.customer_id_rm}</div></div>`:''}
-    </div>${times}</div>
-    <div class="detail-section"><div class="detail-section-title">Delivery details</div>
-      ${d.delivery_address?`<div style="font-size:14px;font-weight:500;margin-bottom:4px">${d.delivery_address}</div>`:''}
-      <div style="font-size:13px;color:var(--text-2);margin-bottom:4px">${d.suburb||'No suburb'}</div>
-      <div style="font-size:12px;color:var(--text-3)">${d.notes||'No special instructions'}</div>
-      ${d.customer_phone?`<div style="font-size:12px;color:var(--text-2);margin-top:4px">📞 ${d.customer_phone}</div>`:''}
-    </div>
-    <div class="detail-section"><div class="detail-section-title">Products${st==='loading'?' — tick each as loaded':''}</div>${prodHtml}</div>
-    ${preDepHtml}${actionHtml}${codHtml}${safetyHtml}${waiverHtml}${photoHtml}${compNotesHtml}`;
+  const safetyHtml=showSafety?`<div class="section-divider"><span>Safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div>${SAFETY_QS.map((q,qi)=>`<div class="safety-item"><input type="checkbox" class="safety-check" ${safetyChecked[d.id][qi]?'checked':''} onchange="toggleSafety(${d.id},${qi},this.checked)"><div class="safety-text"><div class="safety-q">${q.q}</div><div class="safety-sub">${q.sub}</div></div></div>`).join('')}<div class="safety-pass${allSafe?' show':''}">All checks complete</div></div>`:'';
+  // Waiver
+  const waiverHtml=showSafety?`<div class="section-divider"><span>Damage waiver</span></div><div class="detail-section"><div class="safety-item" style="border:none;padding:6px 0"><input type="checkbox" class="safety-check" onchange="toggleWaiver(${d.id},this.checked)" ${d.damage_waiver==='yes'?'checked':''}><div class="safety-text"><div class="safety-q">Damage waiver required</div><div class="safety-sub">Tick if hazards identified</div></div></div><div id="waiver-detail-${d.id}" style="display:${d.damage_waiver==='yes'?'block':'none'};margin-top:8px;background:var(--amber-bg);border:1px solid #e6c97a;border-radius:var(--radius-sm);padding:10px 12px;font-size:11px;color:var(--amber-text)"><strong>WAIVER:</strong> Customer accepts liability for bogging, council fines, property damage, utility damage.<br><strong>Name:</strong> <input type="text" style="width:50%;padding:4px 8px;border:1px solid #d4aa4a;border-radius:4px;font-size:11px;background:rgba(255,255,255,0.6)" value="${d.waiver_customer_name||''}" onchange="saveDriverField(${d.id},'waiver_customer_name',this.value)" placeholder="Full name"></div></div>`:'';
+  // Timestamps
+  const times=`<div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">${d.time_loading||'\u2014'}</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">${d.time_out||'\u2014'}</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">${d.time_left_site||'\u2014'}</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">${d.time_in||'\u2014'}</div></div></div>`;
+  // Pre-dep notes
+  const preDepHtml=['loading','enroute','left_site','returning','delivered'].includes(st)?`<div class="section-divider"><span>Pre-departure notes</span></div><div class="detail-section"><textarea style="width:100%;min-height:50px;padding:8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical" placeholder="Notes before leaving..." onchange="saveDriverField(${d.id},'pre_departure_notes',this.value)">${d.pre_departure_notes||''}</textarea></div>`:'';
+  // Completion notes
+  const compHtml=['left_site','returning','delivered'].includes(st)?`<div class="section-divider"><span>Completion notes</span></div><div class="detail-section"><textarea style="width:100%;min-height:50px;padding:8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical" placeholder="Delivery notes..." onchange="saveDriverField(${d.id},'completion_notes',this.value)">${d.completion_notes||''}</textarea></div>`:'';
+  // Photo
+  const photoHtml=['enroute','left_site','returning','delivered'].includes(st)?`<div class="section-divider"><span>Photos</span></div><div class="detail-section"><div style="border:2px dashed var(--border-md);border-radius:var(--radius);padding:16px;text-align:center;cursor:pointer;background:var(--surface)" onclick="showToast('Photo upload coming soon')"><div style="font-size:20px;opacity:0.4">\uD83D\uDCF7</div><div style="font-size:12px;color:var(--text-2)">Tap to add photos</div></div></div>`:'';
+  // Truck confirm (loading only)
+  const truckHtml=st==='loading'?`<div class="section-divider"><span>Confirm truck & driver</span></div><div class="detail-section"><div class="detail-grid"><div><div class="dl">Truck type</div><input type="text" style="width:100%;padding:6px 8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px" value="${d.truck_type||run.type||''}" onchange="saveDriverField(${d.id},'truck_type',this.value)"></div><div><div class="dl">Rego</div><input type="text" style="width:100%;padding:6px 8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px" value="${d.truck_rego||run.rego||''}" onchange="saveDriverField(${d.id},'truck_rego',this.value)"></div><div><div class="dl">Driver</div><input type="text" style="width:100%;padding:6px 8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px" value="${d.driver_name||run.driver||''}" onchange="saveDriverField(${d.id},'driver_name',this.value)"></div></div></div>`:'';
+  const pay=d.payment_type||'';
+  // ═══ ASSEMBLE BY STAGE ═══
+  let body=progHtml+undoHtml;
+  body+=`<div class="detail-section"><div class="detail-section-title">Customer & invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">${d.customer_name||'\u2014'}</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">${d.invoice||'\u2014'}</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">${d.slot||'\u2014'}</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv">${pay?`<span class="badge ${PAY_CLASS[pay]||''}">${PAY_LABEL[pay]||pay}</span>`:'\u2014'}</div></div>${d.sales_person?`<div class="detail-item"><div class="dl">Sales</div><div class="dv">${d.sales_person}</div></div>`:''}</div>${times}</div>`;
+  body+=`<div class="detail-section"><div class="detail-section-title">Delivery details</div>${d.delivery_address?`<div style="font-size:14px;font-weight:500;margin-bottom:4px">${d.delivery_address}</div>`:''}<div style="font-size:13px;color:var(--text-2);margin-bottom:4px">${d.suburb||'No suburb'}</div><div style="font-size:12px;color:var(--text-3)">${d.notes||'No special instructions'}</div>${d.customer_phone?`<div style="font-size:12px;color:var(--text-2);margin-top:4px">\uD83D\uDCDE ${d.customer_phone}</div>`:''}</div>`;
+  if(st==='pending'){
+    body+=`<div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(${d.id},'loading')">Start loading</button></div>`;
+  }else if(st==='loading'){
+    body+=truckHtml;
+    body+=`<div class="detail-section"><div class="detail-section-title">Products \u2014 tick as loaded</div>${prodHtml}</div>`;
+    body+=preDepHtml;
+    const allC=products.length===0||prodChecked[d.id].every(Boolean);
+    body+=`<div class="action-row"><button class="btn btn-primary" ${allC?'':'disabled'} onclick="advanceStatus(${d.id},'enroute')">Leave for delivery</button></div>`;
+  }else if(st==='enroute'){
+    body+=`<div class="detail-section"><div class="detail-section-title">Products loaded</div>${prodHtml}</div>`;
+    body+=safetyHtml+waiverHtml;
+    body+=`<div class="action-row"><button class="btn btn-success" onclick="advanceStatus(${d.id},'left_site')">Arrived at site</button></div>`;
+  }else if(st==='left_site'){
+    body+=`<div class="detail-section"><div class="detail-section-title">Products</div>${prodHtml}</div>`;
+    body+=codHtml+photoHtml+compHtml;
+    body+=`<div class="action-row"><button class="btn" style="background:var(--purple);color:#fff;border-color:var(--purple)" onclick="advanceStatus(${d.id},'returning')">Left site \u2014 returning</button></div>`;
+  }else if(st==='returning'){
+    body+=codHtml;
+    const nr=d.payment_type==='cod'&&!d.cod_receipt;
+    body+=`<div class="action-row"><button class="btn btn-success" ${nr?'disabled':''} onclick="advanceStatus(${d.id},'delivered')">Mark complete (arrived yard)</button></div>`;
+    if(nr)body+=`<div style="font-size:11px;color:var(--red-text);margin-top:6px;text-align:center;font-weight:600">\u26A0 Enter COD receipt first</div>`;
+  }else{
+    body+=`<div style="background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--green-text);font-weight:500;text-align:center;margin-top:8px">Delivery complete \u2713</div>`;
+  }
+  document.getElementById('driver-detail').innerHTML=body;
 }
 
 function toggleProd(id,pi,val){prodChecked[id][pi]=val;const d=DELIVERIES.find(x=>x.id===id);if(d)renderDriverDetail(d);}

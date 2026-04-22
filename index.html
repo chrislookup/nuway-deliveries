@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v5_10.html -->
+<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v5_12.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./Nuway — Delivery Management System 22.04 8.29pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 22.04 9.6pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -850,6 +850,11 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
    ============================================================ */
 const SB='https://prgbejzvxbdqnszvofpj.supabase.co';
 const SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByZ2Jlanp2eGJkcW5zenZvZnBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjU5MjksImV4cCI6MjA5MjI0MTkyOX0.6IpVkprZRlJb4f4yoiiL34bXK2XHEkp4ZeP25Joh3vU';
+// Twilio SMS config
+const TWILIO_SID='AC2766ac2c7c1e64d355170830ab43319a';
+const TWILIO_TOKEN='72874668c4104a50df11b171974813c5';
+const TWILIO_FROM='+61XXXXXXXXX'; // TODO: Replace with your AU number once approved
+const TWILIO_ENABLED=false; // Set to true once AU number is active
 const SLOTS=['7–8am','8–9am','9–10am','10–11am','11am–12pm','12–1pm','1–2pm','2–3pm','3–4pm','4–5pm'];
 const SLOT_IDX={};SLOTS.forEach((s,i)=>SLOT_IDX[s]=i);
 const BREAKS={'9–10am':'10-minute paid rest break','12–1pm':'30-minute unpaid lunch break'};
@@ -1251,10 +1256,14 @@ async function saveBooking(){
     if(editingId){
       await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify(row)});showToast('Updated');
     }else{
-      const sendSms=confirm('Booking saved! Send SMS notification to customer?');
+      const sendSms=confirm('Send SMS notification to customer?');
       row.sms_sent=sendSms;
       await db('deliveries',{method:'POST',body:JSON.stringify(row)});
-      showToast(sendSms?'Booked — SMS will be sent':'Booked — no SMS');
+      if(sendSms&&row.customer_phone){
+        await sendBookingSMS(row);
+      }else{
+        showToast(sendSms?'Booked — no phone number for SMS':'Booked — no SMS');
+      }
     }
     closeModal('booking');clearBookingForm();await loadDeliveries();
   }catch(e){showToast('Save failed',true);}
@@ -1531,6 +1540,14 @@ async function advanceStatus(id,ns){
     if(d){d.driver_status=ns;if(timeField[ns])d[timeField[ns]]=update[timeField[ns]];}
     renderAll();
     showToast(STATUS_LABEL[ns]||'Updated');
+    // Send SMS notifications at key stages (ask first)
+    if(d&&d.customer_phone){
+      if(ns==='loading'){
+        if(confirm('Send SMS to customer? "Your delivery is being loaded now"'))sendLoadingSMS(d);
+      }else if(ns==='enroute'){
+        if(confirm('Send SMS to customer? "Your delivery is on its way"'))sendEnRouteSMS(d);
+      }
+    }
   }catch(e){showToast('Failed',true);}
 }
 
@@ -1829,6 +1846,75 @@ async function checkRmApi(){
     const data = await res.json();
     return data.status==='ok';
   }catch(e){return false;}
+}
+
+/* ============================================================
+   SECTION 16b: SMS INTEGRATION (Twilio)
+   Description: Sends SMS notifications to customers at key stages:
+   1. Booking confirmed — includes date, time, products, address, store contact
+   2. Loading started — brief notification
+   3. Left yard / on the way — includes driver name
+   SMS only sends if TWILIO_ENABLED=true and customer phone exists.
+   ============================================================ */
+async function sendSMS(to, message){
+  if(!TWILIO_ENABLED){console.log('SMS disabled:',message);return{success:false,reason:'disabled'};}
+  if(!to){return{success:false,reason:'no phone'};}
+  // Format Australian phone to E.164
+  let phone=to.replace(/[\s\-()]/g,'');
+  if(phone.startsWith('04'))phone='+61'+phone.substring(1);
+  else if(phone.startsWith('4')&&phone.length===9)phone='+61'+phone;
+  else if(!phone.startsWith('+'))phone='+61'+phone;
+  try{
+    const res=await fetch(`https://api.twilio.com/2010-04-01/Accounts/${TWILIO_SID}/Messages.json`,{
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded','Authorization':'Basic '+btoa(TWILIO_SID+':'+TWILIO_TOKEN)},
+      body:new URLSearchParams({To:phone,From:TWILIO_FROM,Body:message})
+    });
+    const data=await res.json();
+    if(data.sid){console.log('SMS sent:',data.sid);return{success:true,sid:data.sid};}
+    else{console.error('SMS error:',data.message);return{success:false,reason:data.message};}
+  }catch(e){console.error('SMS failed:',e);return{success:false,reason:e.message};}
+}
+
+// Format date for SMS display
+function formatDateForSMS(dateStr){
+  try{const d=new Date(dateStr+'T00:00:00');return d.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short'});}
+  catch(e){return dateStr;}
+}
+
+// SMS 1: Booking confirmation
+async function sendBookingSMS(delivery){
+  const s=storeSettings||{};
+  const storeName=currentStore;
+  const storePhone=s.phone||'';
+  const date=formatDateForSMS(delivery.date||currentDate);
+  const products=(delivery.products||'').split('\n').filter(Boolean).slice(0,3).join(', ');
+  const addr=delivery.delivery_address||delivery.suburb||'';
+  let msg=`Hi${delivery.customer_name?' '+delivery.customer_name.split(' ')[0]:''}! Your Nuway delivery is booked for ${date}, ${delivery.slot||'TBD'}.`;
+  if(products)msg+=` Products: ${products}.`;
+  if(addr)msg+=` Delivery to: ${addr}.`;
+  if(storePhone)msg+=` Questions? Call ${storeName} on ${storePhone}.`;
+  msg+=` - Nuway ${storeName}`;
+  const result=await sendSMS(delivery.customer_phone,msg);
+  if(result.success)showToast('SMS sent to customer');
+  else if(result.reason==='disabled')showToast('SMS recorded (sending not yet active)');
+  else showToast('SMS failed: '+result.reason,true);
+  return result;
+}
+
+// SMS 2: Loading started
+async function sendLoadingSMS(delivery){
+  const storeName=currentStore;
+  let msg=`Hi${delivery.customer_name?' '+delivery.customer_name.split(' ')[0]:''}! Your Nuway delivery is being loaded now. We'll let you know when it's on its way. - Nuway ${storeName}`;
+  return await sendSMS(delivery.customer_phone,msg);
+}
+
+// SMS 3: Left yard / on the way
+async function sendEnRouteSMS(delivery){
+  const storeName=currentStore;
+  const driver=delivery.driver_name||'Your driver';
+  let msg=`Hi${delivery.customer_name?' '+delivery.customer_name.split(' ')[0]:''}! Your delivery is on its way. Driver: ${driver}. - Nuway ${storeName}`;
+  return await sendSMS(delivery.customer_phone,msg);
 }
 
 /* ============================================================

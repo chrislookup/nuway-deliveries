@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v6_4.html -->
+<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v6_9.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="file:///C:/Users/chris/Downloads/Nuway%20%E2%80%94%20Delivery%20Management%20System%20220.04%2010.05pm_files/css2" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Nuway — Delivery Management System 23.04 4.05pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -255,15 +256,15 @@ tr:hover td{background:var(--bg)}
 .pcheck:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;color:#fff;font-weight:700}
 .action-row{display:flex;gap:8px;margin-top:12px}.action-row .btn{flex:1;justify-content:center}
 
-/* --- 1p. Safety checklist --- */
-.safety-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+/* --- 1p. Safety checklist (checkbox site assessment) --- */
+.safety-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
 .safety-item:last-child{border-bottom:none}
-.safety-check{width:20px;height:20px;border-radius:4px;border:1.5px solid var(--border-md);cursor:pointer;appearance:none;flex-shrink:0;background:var(--surface);transition:all 0.1s;position:relative;margin-top:1px}
+.safety-check{width:22px;height:22px;border-radius:4px;border:1.5px solid var(--border-md);cursor:pointer;appearance:none;flex-shrink:0;background:var(--surface);transition:all 0.1s;position:relative;margin-top:1px}
 .safety-check:checked{background:var(--green);border-color:var(--green)}
-.safety-check:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;color:#fff;font-weight:700}
-.safety-text{flex:1}
-.safety-q{font-size:12px;font-weight:500;color:var(--text)}.safety-sub{font-size:11px;color:var(--text-3);margin-top:1px}
-.safety-pass{background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:8px 12px;font-size:12px;color:var(--green-text);font-weight:500;display:none;align-items:center;gap:6px;margin-top:8px}
+.safety-check:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:13px;color:#fff;font-weight:700}
+.safety-q{font-size:13px;font-weight:500;color:var(--text)}
+.safety-sub{font-size:11px;color:var(--text-3);margin-top:2px;line-height:1.4}
+.safety-pass{background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--green-text);font-weight:600;display:none;align-items:center;gap:6px;margin-top:10px;text-align:center;justify-content:center}
 .safety-pass.show{display:flex}
 
 /* --- 1q. COD collection box --- */
@@ -373,6 +374,7 @@ tr:hover td{background:var(--bg)}
   .product-line{padding:10px 0;font-size:14px}
   .safety-q{font-size:14px}
   .safety-sub{font-size:12px}
+  .safety-check{width:26px;height:26px}
 }
 
 /* --- 1x4. Truck confirm mandatory styling --- */
@@ -433,7 +435,7 @@ tr:hover td{background:var(--bg)}
     <div class="sidebar-logo">
       <div class="wordmark">Nuway <span class="db-dot online" id="db-dot" title="Connected"></span></div>
       <div class="tagline">Delivery Management</div>
-      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v6.4 · 23 Apr 2026</div>
+      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v6.6 · 23 Apr 2026</div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
@@ -485,10 +487,10 @@ tr:hover td{background:var(--bg)}
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
-        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">3:26:00 pm</span>
+        <span id="last-refresh" style="font-size: 10px; color: var(--text-3); font-family: &quot;DM Mono&quot;, monospace; white-space: nowrap;">4:05:44 pm</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
-        <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
+        <button class="btn btn-primary" id="top-action" onclick="handleTopAction()" style="">Export PDF</button>
       </div>
     </div>
     <div class="content">
@@ -554,14 +556,6 @@ tr:hover td{background:var(--bg)}
               
               <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(37)">Edit</button>
             </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;9–10am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell" style="min-width:200px"><div class="del-card cod half-width color-completed">
-              
-              <div class="del-top"><span class="badge badge-cod">COD</span><span class="badge badge-done">Done</span></div>
-              <div class="del-name">JACK ALLEN (G.ALLEN &amp; SONS)</div>
-              <div class="del-suburb">ORMEAU HILLS</div>
-              <div class="del-inv">40968 · 45</div>
-              <div class="del-note">Drop on geo fab at top driveway, thanks</div>
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(27)">Edit</button>
-            </div><div class="del-card cod half-width color-completed">
               <div class="del-duration">½hr</div>
               <div class="del-top"><span class="badge badge-cod">COD</span><span class="badge badge-done">Done</span></div>
               <div class="del-name">test b</div>
@@ -569,6 +563,14 @@ tr:hover td{background:var(--bg)}
               <div class="del-inv"></div>
               
               <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(30)">Edit</button>
+            </div><div class="del-card cod half-width color-completed">
+              
+              <div class="del-top"><span class="badge badge-cod">COD</span><span class="badge badge-done">Done</span></div>
+              <div class="del-name">JACK ALLEN (G.ALLEN &amp; SONS)</div>
+              <div class="del-suburb">ORMEAU HILLS</div>
+              <div class="del-inv">40968 · 45</div>
+              <div class="del-note">Drop on geo fab at top driveway, thanks</div>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(27)">Edit</button>
             </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;10–11am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(3,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell" style="min-width:200px"><div class="del-card cod full-width color-completed">
               
               <div class="del-top"><span class="badge badge-cod">COD</span><span class="badge badge-done">Done</span></div>
@@ -1024,7 +1026,7 @@ tr:hover td{background:var(--bg)}
             <div class="driver-filter">
               <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Mini — dave</option><option value="1">Fuso</option><option value="2">Run 3</option><option value="3">Run 4</option></select>
             </div>
-            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(28,this)">
+            <div id="driver-list"><div class="dq-item sel" onclick="selectDelivery(28,this)">
       <div class="dq-row"><span class="dq-num left_site">1</span><span class="dq-customer">CHARLIE ASH (ASH GROUP PTY LTD)</span></div>
       <div class="dq-detail">ORMEAU · 7–8am</div>
       <div class="dq-badges"><span class="badge badge-cod">COD</span>
@@ -1052,13 +1054,6 @@ tr:hover td{background:var(--bg)}
         <span class="badge badge-out">Loading</span>
         <span class="badge badge-out">Current</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(27,this)">
-      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">JACK ALLEN (G.ALLEN &amp; SONS)</span></div>
-      <div class="dq-detail">ORMEAU HILLS · 10–11am</div>
-      <div class="dq-badges"><span class="badge badge-cod">COD</span>
-        <span class="badge badge-done">Delivered</span>
-        
-        <span class="badge badge-cod">45</span>
       </div></div><div class="dq-item" onclick="selectDelivery(30,this)">
       <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">test b</span></div>
       <div class="dq-detail"> · 10–11am</div>
@@ -1066,6 +1061,13 @@ tr:hover td{background:var(--bg)}
         <span class="badge badge-done">Delivered</span>
         
         
+      </div></div><div class="dq-item" onclick="selectDelivery(27,this)">
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">JACK ALLEN (G.ALLEN &amp; SONS)</span></div>
+      <div class="dq-detail">ORMEAU HILLS · 10–11am</div>
+      <div class="dq-badges"><span class="badge badge-cod">COD</span>
+        <span class="badge badge-done">Delivered</span>
+        
+        <span class="badge badge-cod">45</span>
       </div></div><div class="dq-item" onclick="selectDelivery(29,this)">
       <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">test a</span></div>
       <div class="dq-detail"> · 12–1pm</div>
@@ -1096,7 +1098,7 @@ tr:hover td{background:var(--bg)}
         
       </div></div></div>
           </div>
-          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Loading</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Left yard</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle active">→</div><div class="prog-label active">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div><div style="text-align:right;margin-bottom:8px"><button class="btn btn-sm btn-danger" onclick="if(confirm(&#39;Go back to previous stage?&#39;))advanceStatus(28,&#39;enroute&#39;)">↩ Undo</button></div><div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">CHARLIE ASH (ASH GROUP PTY LTD)</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">40999</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-cod">COD</span></div></div><div class="detail-item"><div class="dl">Sales</div><div class="dv">CHRIS</div></div></div><div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">8:00 pm</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">8:00 pm</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">3:14 pm</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">8:00 pm</div></div></div></div><div class="detail-section"><div class="detail-section-title">Delivery details</div><a href="https://www.google.com/maps/search/?api=1&amp;query=60%20ORMEAU%20RIDGE%20ROAD%2C%20ORMEAU%2C%20QLD%2C%204207" target="_blank" style="font-size:14px;font-weight:500;margin-bottom:4px;display:block;color:var(--blue);text-decoration:none" onclick="event.stopPropagation()">60 ORMEAU RIDGE ROAD, ORMEAU, QLD, 4207 <span style="font-size:11px;opacity:0.7">📍 Maps</span></a><div style="font-size:13px;color:var(--text-2);margin-bottom:4px">ORMEAU</div><div style="font-size:12px;color:var(--text-3)">No special instructions</div><a href="tel:+61434003918" style="font-size:14px;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:8px 12px;background:var(--blue-bg);border-radius:var(--radius-sm);font-weight:500" onclick="event.stopPropagation()">📞 0434 003 918</a><div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Products</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x ORMEAU</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">10.0 x GP CEMENT 20KG</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x CONCRETE BLEND 10MM</div></div></div><div class="detail-section"><div class="detail-section-title">Products</div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(28,0,this.checked)" disabled=""><span class="pname">1.0 x ORMEAU</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(28,1,this.checked)" disabled=""><span class="pname">10.0 x GP CEMENT 20KG</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(28,2,this.checked)" disabled=""><span class="pname">1.0 x CONCRETE BLEND 10MM</span><span class="pqty"></span></div></div><div class="section-divider"><span>Safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,0,this.checked)"><div class="safety-text"><div class="safety-q">Is the delivery area safe to enter with the truck?</div><div class="safety-sub">Check overhead clearance, soft ground, slopes</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,1,this.checked)"><div class="safety-text"><div class="safety-q">Is there a safe tip-off point clear of people and property?</div><div class="safety-sub">Confirm no vehicles, structures or overhead lines in drop zone</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,2,this.checked)"><div class="safety-text"><div class="safety-q">Has the customer (or representative) been informed of the delivery location?</div><div class="safety-sub">Customer or instructions confirm drop point</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,3,this.checked)"><div class="safety-text"><div class="safety-q">Is the truck properly positioned and handbrake applied before tipping?</div><div class="safety-sub">Level ground preferred — if not, wheels chocked</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,4,this.checked)"><div class="safety-text"><div class="safety-q">Are bystanders clear of the tipping area?</div><div class="safety-sub">Minimum 5m clearance from tip zone during unload</div></div></div><div class="safety-pass">All checks complete</div></div><div class="section-divider"><span>Damage waiver</span></div><div class="detail-section"><div class="safety-item" style="border:none;padding:6px 0"><input type="checkbox" class="safety-check" onchange="toggleWaiver(28,this.checked)"><div class="safety-text"><div class="safety-q">Damage waiver required</div><div class="safety-sub">Tick if hazards identified</div></div></div><div id="waiver-detail-28" style="display:none;margin-top:8px;background:var(--amber-bg);border:1px solid #e6c97a;border-radius:var(--radius-sm);padding:10px 12px;font-size:11px;color:var(--amber-text)"><strong>WAIVER:</strong> Customer accepts liability for bogging, council fines, property damage, utility damage.<br><strong>Name:</strong> <input type="text" style="width:50%;padding:4px 8px;border:1px solid #d4aa4a;border-radius:4px;font-size:11px;background:rgba(255,255,255,0.6)" value="" onchange="saveDriverField(28,&#39;waiver_customer_name&#39;,this.value)" placeholder="Full name"></div></div><div class="cod-box"><strong>COD collection — 99</strong><input type="text" value="454" placeholder="Receipt number (required)" onchange="saveCodReceipt(28,this.value)"></div><div class="section-divider"><span>Photos (0/6)</span></div><div class="detail-section">
+          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Loading</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Left yard</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle active">→</div><div class="prog-label active">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div><div style="text-align:right;margin-bottom:8px"><button class="btn btn-sm btn-danger" onclick="if(confirm(&#39;Go back to previous stage?&#39;))advanceStatus(28,&#39;enroute&#39;)">↩ Undo</button></div><div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">CHARLIE ASH (ASH GROUP PTY LTD)</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">40999</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-cod">COD</span></div></div><div class="detail-item"><div class="dl">Sales</div><div class="dv">CHRIS</div></div></div><div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">8:00 pm</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">8:00 pm</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">3:14 pm</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">8:00 pm</div></div></div></div><div class="detail-section"><div class="detail-section-title">Delivery details</div><a href="https://www.google.com/maps/search/?api=1&amp;query=60%20ORMEAU%20RIDGE%20ROAD%2C%20ORMEAU%2C%20QLD%2C%204207" target="_blank" style="font-size:14px;font-weight:500;margin-bottom:4px;display:block;color:var(--blue);text-decoration:none" onclick="event.stopPropagation()">60 ORMEAU RIDGE ROAD, ORMEAU, QLD, 4207 <span style="font-size:11px;opacity:0.7">📍 Maps</span></a><div style="font-size:13px;color:var(--text-2);margin-bottom:4px">ORMEAU</div><div style="font-size:12px;color:var(--text-3)">No special instructions</div><a href="tel:+61434003918" style="font-size:14px;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:8px 12px;background:var(--blue-bg);border-radius:var(--radius-sm);font-weight:500" onclick="event.stopPropagation()">📞 0434 003 918</a><div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Products</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x ORMEAU</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">10.0 x GP CEMENT 20KG</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x CONCRETE BLEND 10MM</div></div></div><div class="detail-section"><div class="detail-section-title">Products</div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(28,0,this.checked)" disabled=""><span class="pname">1.0 x ORMEAU</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(28,1,this.checked)" disabled=""><span class="pname">10.0 x GP CEMENT 20KG</span><span class="pqty"></span></div><div class="product-line"><input type="checkbox" class="pcheck" onchange="toggleProd(28,2,this.checked)" disabled=""><span class="pname">1.0 x CONCRETE BLEND 10MM</span><span class="pqty"></span></div></div><div class="section-divider"><span>Site safety assessment</span></div><div class="detail-section"><div class="detail-section-title">Tick each item after checking</div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,0,this.checked)"><div><div class="safety-q">1. Has there been a lot of rain? Is the ground soft?</div><div class="safety-sub">If yes — advise customer of potential damage. Suggest alternative location or complete damage waiver.</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,1,this.checked)"><div><div class="safety-q">2. Are there overhead features? (roofs, cables, fittings)</div><div class="safety-sub">If yes — do not proceed under obstructions. Reposition or suggest alternative drop point.</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,2,this.checked)"><div><div class="safety-q">3. Are there congested or narrow areas?</div><div class="safety-sub">If yes — assess clearance. Suggest alternative access or drop point if too tight.</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,3,this.checked)"><div><div class="safety-q">4. Are there any blind spots?</div><div class="safety-sub">If yes — use a spotter. Ask customer to guide you if needed.</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,4,this.checked)"><div><div class="safety-q">5. Are entrance surfaces even and clear? (not driving off edge of concrete/paved driveway)</div><div class="safety-sub">If no — advise customer of potential damage. Suggest alternative location or complete damage waiver.</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,5,this.checked)"><div><div class="safety-q">6. Are there overhead power lines near the tipping area?</div><div class="safety-sub">If yes — must maintain 3m clearance from power lines. Suggest another location.</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,6,this.checked)"><div><div class="safety-q">7. Is there sufficient space to tip the load?</div><div class="safety-sub">If no — advise customer and suggest a more suitable location.</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,7,this.checked)"><div><div class="safety-q">8. Is the ground level enough to tip safely?</div><div class="safety-sub">If no — advise customer the ground is not safe. Suggest alternative location.</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,8,this.checked)"><div><div class="safety-q">9. Are there pedestrians nearby?</div><div class="safety-sub">If yes — ask customer to act as spotter to keep people clear of the truck.</div></div></div><div class="safety-item"><input type="checkbox" class="safety-check" onchange="toggleSafety(28,9,this.checked)"><div><div class="safety-q">10. Any other hazards on site? (animals, debris, etc.)</div><div class="safety-sub">If yes — ask customer to remove/isolate hazard or suggest different location.</div></div></div><div class="safety-pass">All checks complete — safe to unload</div></div><div class="section-divider"><span>Delivery waiver</span></div><div class="detail-section"><div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0"><input type="checkbox" class="safety-check" onchange="toggleWaiver(28,this.checked)" checked=""><div><div class="safety-q">Delivery waiver required</div><div style="font-size:11px;color:var(--text-3)">Tick if any hazards were identified during site assessment</div></div></div><div id="waiver-detail-28" style="display:block"><div id="waiver-form-28" style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-top:10px"><div style="text-align:center;font-size:16px;font-weight:700;margin-bottom:12px;text-transform:uppercase">Delivery Waiver</div><div style="font-size:12px;margin-bottom:10px;line-height:1.6"><strong>Nuway Driver and/or Representative:</strong> <input type="text" id="waiver-driver-28" style="border:none;border-bottom:1px solid #999;font-size:12px;padding:2px 4px;width:50%;font-family:inherit" value="dave" onchange="saveWaiverData(28)"> have advised me that by delivering this order, it may compromise Nuway and incur third party costs. This may include but not limited to government department's fines or independent contractor's/utility costs.</div><div style="font-size:12px;margin-bottom:12px;line-height:1.5">By signing this document, I accept full liability and costs for the items nominated below, and indemnify Nuway in full with regard to the same.</div><div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12px;line-height:1.4"><input type="checkbox" class="safety-check" id="waiver-hz-28-0" onchange="saveWaiverData(28)"><div>Possible bogging of vehicle due to soft, wet or loose ground. (Tow costs upwards of $1000 plus, hourly rate of Nuway truck).</div></div><div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12px;line-height:1.4"><input type="checkbox" class="safety-check" id="waiver-hz-28-1" onchange="saveWaiverData(28)"><div>Instructions to leave stock on Council land, road or footpath (Council statutory fine).</div></div><div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12px;line-height:1.4"><input type="checkbox" class="safety-check" id="waiver-hz-28-2" onchange="saveWaiverData(28)"><div>Mud, sticky clay or ground debris that may adhere to tyres and road surface upon exiting (Council statutory fine) — tyres and road to be cleaned by owner.</div></div><div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12px;line-height:1.4"><input type="checkbox" class="safety-check" id="waiver-hz-28-3" onchange="saveWaiverData(28)"><div>Possible damage to the owner's property and/or Nuway truck. e.g. Utilities above or below ground etc.</div></div><div style="margin-top:14px;display:grid;gap:10px"><div><strong style="font-size:11px">Customer Name in Full:</strong><input type="text" id="waiver-custname-28" style="width:100%;padding:6px 8px;border:1px solid var(--border-md);border-radius:4px;font-size:13px;margin-top:4px" value="" onchange="saveWaiverData(28)" placeholder="Full name"></div><div><strong style="font-size:11px">Address:</strong><input type="text" id="waiver-addr-28" style="width:100%;padding:6px 8px;border:1px solid var(--border-md);border-radius:4px;font-size:13px;margin-top:4px" value="60 ORMEAU RIDGE ROAD, ORMEAU, QLD, 4207" onchange="saveWaiverData(28)" placeholder="Delivery address"></div></div><div style="margin-top:14px"><strong style="font-size:11px">Customer Signature:</strong><div style="margin-top:4px;position:relative"><canvas id="waiver-sig-cust-28" width="400" height="100" style="width:100%;height:100px;border:1px solid var(--border-md);border-radius:4px;background:#fafaf8;touch-action:none;cursor:crosshair"></canvas><button onclick="clearSigCanvas(&#39;waiver-sig-cust-28&#39;)" style="position:absolute;top:4px;right:4px;font-size:10px;padding:2px 8px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface);color:var(--text-3);cursor:pointer">Clear</button></div></div><div style="margin-top:10px"><strong style="font-size:11px">Witnessed by Nuway Driver:</strong><div style="margin-top:4px;position:relative"><canvas id="waiver-sig-driver-28" width="400" height="100" style="width:100%;height:100px;border:1px solid var(--border-md);border-radius:4px;background:#fafaf8;touch-action:none;cursor:crosshair"></canvas><button onclick="clearSigCanvas(&#39;waiver-sig-driver-28&#39;)" style="position:absolute;top:4px;right:4px;font-size:10px;padding:2px 8px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface);color:var(--text-3);cursor:pointer">Clear</button></div></div><div style="margin-top:14px;text-align:center"><button class="btn btn-success" style="width:100%;padding:12px;font-size:14px" onclick="captureWaiverAsPhoto(28)">Save waiver &amp; add to photos</button></div></div></div></div><div class="cod-box"><strong>COD collection — 99</strong><input type="text" value="454" placeholder="Receipt number (required)" onchange="saveCodReceipt(28,this.value)"></div><div class="section-divider"><span>Photos (0/6)</span></div><div class="detail-section">
     <div class="detail-section-title">Delivery evidence</div>
     
     <div style="position:relative">
@@ -1399,11 +1401,26 @@ const ALL_STORES=['Logan','Chandler','Ashmore','Redlands','Westerns','Forestdale
 const STATUS_ORDER=['pending','loading','enroute','left_site','returning','delivered'];
 const STATUS_LABEL={pending:'Pending',loading:'Loading',enroute:'En route',left_site:'Left site',returning:'Returning',delivered:'Delivered'};
 const SAFETY_QS=[
-  {q:'Is the delivery area safe to enter with the truck?',sub:'Check overhead clearance, soft ground, slopes'},
-  {q:'Is there a safe tip-off point clear of people and property?',sub:'Confirm no vehicles, structures or overhead lines in drop zone'},
-  {q:'Has the customer (or representative) been informed of the delivery location?',sub:'Customer or instructions confirm drop point'},
-  {q:'Is the truck properly positioned and handbrake applied before tipping?',sub:'Level ground preferred — if not, wheels chocked'},
-  {q:'Are bystanders clear of the tipping area?',sub:'Minimum 5m clearance from tip zone during unload'},
+  {q:'Has there been a lot of rain? Is the ground soft?',
+   sub:'If yes — advise customer of potential damage. Suggest alternative location or complete damage waiver.'},
+  {q:'Are there overhead features? (roofs, cables, fittings)',
+   sub:'If yes — do not proceed under obstructions. Reposition or suggest alternative drop point.'},
+  {q:'Are there congested or narrow areas?',
+   sub:'If yes — assess clearance. Suggest alternative access or drop point if too tight.'},
+  {q:'Are there any blind spots?',
+   sub:'If yes — use a spotter. Ask customer to guide you if needed.'},
+  {q:'Are entrance surfaces even and clear? (not driving off edge of concrete/paved driveway)',
+   sub:'If no — advise customer of potential damage. Suggest alternative location or complete damage waiver.'},
+  {q:'Are there overhead power lines near the tipping area?',
+   sub:'If yes — must maintain 3m clearance from power lines. Suggest another location.'},
+  {q:'Is there sufficient space to tip the load?',
+   sub:'If no — advise customer and suggest a more suitable location.'},
+  {q:'Is the ground level enough to tip safely?',
+   sub:'If no — advise customer the ground is not safe. Suggest alternative location.'},
+  {q:'Are there pedestrians nearby?',
+   sub:'If yes — ask customer to act as spotter to keep people clear of the truck.'},
+  {q:'Any other hazards on site? (animals, debris, etc.)',
+   sub:'If yes — ask customer to remove/isolate hazard or suggest different location.'},
 ];
 
 /* ============================================================
@@ -2067,12 +2084,55 @@ function renderDriverDetail(d){
   // COD box
   const showCod=d.payment_type==='cod'&&['enroute','left_site','returning','delivered'].includes(st);
   const codHtml=showCod?`<div class="cod-box"><strong>COD collection \u2014 ${d.cod_amount||'$0'}</strong><input type="text" value="${d.cod_receipt||''}" placeholder="Receipt number (required)" onchange="saveCodReceipt(${d.id},this.value)">${!d.cod_receipt?'<div class="cod-required">\u26A0 Required before completing</div>':''}</div>`:'';
-  // Safety
+  // Safety checklist — simple tick-off, saved as array of true/false to Supabase
   const showSafety=['left_site','returning','delivered'].includes(st);
-  const allSafe=safetyChecked[d.id]?.every(Boolean);
-  const safetyHtml=showSafety?`<div class="section-divider"><span>Safety checklist</span></div><div class="detail-section"><div class="detail-section-title">Complete before unloading</div>${SAFETY_QS.map((q,qi)=>`<div class="safety-item"><input type="checkbox" class="safety-check" ${safetyChecked[d.id][qi]?'checked':''} onchange="toggleSafety(${d.id},${qi},this.checked)"><div class="safety-text"><div class="safety-q">${q.q}</div><div class="safety-sub">${q.sub}</div></div></div>`).join('')}<div class="safety-pass${allSafe?' show':''}">All checks complete</div></div>`:'';
-  // Waiver
-  const waiverHtml=showSafety?`<div class="section-divider"><span>Damage waiver</span></div><div class="detail-section"><div class="safety-item" style="border:none;padding:6px 0"><input type="checkbox" class="safety-check" onchange="toggleWaiver(${d.id},this.checked)" ${d.damage_waiver==='yes'?'checked':''}><div class="safety-text"><div class="safety-q">Damage waiver required</div><div class="safety-sub">Tick if hazards identified</div></div></div><div id="waiver-detail-${d.id}" style="display:${d.damage_waiver==='yes'?'block':'none'};margin-top:8px;background:var(--amber-bg);border:1px solid #e6c97a;border-radius:var(--radius-sm);padding:10px 12px;font-size:11px;color:var(--amber-text)"><strong>WAIVER:</strong> Customer accepts liability for bogging, council fines, property damage, utility damage.<br><strong>Name:</strong> <input type="text" style="width:50%;padding:4px 8px;border:1px solid #d4aa4a;border-radius:4px;font-size:11px;background:rgba(255,255,255,0.6)" value="${d.waiver_customer_name||''}" onchange="saveDriverField(${d.id},'waiver_customer_name',this.value)" placeholder="Full name"></div></div>`:'';
+  if(!safetyChecked[d.id])safetyChecked[d.id]=SAFETY_QS.map(function(){return false;});
+  while(safetyChecked[d.id].length<SAFETY_QS.length)safetyChecked[d.id].push(false);
+  var allSafe=safetyChecked[d.id].every(function(v){return v===true;});
+  var safetyItems='';
+  if(showSafety){
+    for(var qi=0;qi<SAFETY_QS.length;qi++){
+      var q=SAFETY_QS[qi];
+      var ck=safetyChecked[d.id][qi]?' checked':'';
+      safetyItems+='<div class="safety-item"><input type="checkbox" class="safety-check"'+ck+' onchange="toggleSafety('+d.id+','+qi+',this.checked)"><div><div class="safety-q">'+(qi+1)+'. '+q.q+'</div><div class="safety-sub">'+q.sub+'</div></div></div>';
+    }
+  }
+  var safetyHtml=showSafety?'<div class="section-divider"><span>Site safety assessment</span></div><div class="detail-section"><div class="detail-section-title">Tick each item after checking</div>'+safetyItems+'<div class="safety-pass'+(allSafe?' show':'')+'">All checks complete — safe to unload</div></div>':'';
+  // Waiver — full delivery waiver form
+  var waiverHtml='';
+  if(showSafety){
+    var wShow=d.damage_waiver==='yes'?'block':'none';
+    var wChk=d.damage_waiver==='yes'?' checked':'';
+    waiverHtml='<div class="section-divider"><span>Delivery waiver</span></div>'
+    +'<div class="detail-section">'
+    +'<div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0">'
+    +'<input type="checkbox" class="safety-check" onchange="toggleWaiver('+d.id+',this.checked)"'+wChk+'>'
+    +'<div><div class="safety-q">Delivery waiver required</div>'
+    +'<div style="font-size:11px;color:var(--text-3)">Tick if any hazards were identified during site assessment</div></div></div>'
+    +'<div id="waiver-detail-'+d.id+'" style="display:'+wShow+'">'
+    +'<div id="waiver-form-'+d.id+'" style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-top:10px">'
+    +'<div style="text-align:center;font-size:16px;font-weight:700;margin-bottom:12px;text-transform:uppercase">Delivery Waiver</div>'
+    +'<div style="font-size:12px;margin-bottom:10px;line-height:1.6"><strong>Nuway Driver and/or Representative:</strong> '
+    +'<input type="text" id="waiver-driver-'+d.id+'" style="border:none;border-bottom:1px solid #999;font-size:12px;padding:2px 4px;width:50%;font-family:inherit" value="'+(d.driver_name||'').replace(/"/g,'&quot;')+'" onchange="saveWaiverData('+d.id+')">'
+    +' have advised me that by delivering this order, it may compromise Nuway and incur third party costs. This may include but not limited to government department\'s fines or independent contractor\'s/utility costs.</div>'
+    +'<div style="font-size:12px;margin-bottom:12px;line-height:1.5">By signing this document, I accept full liability and costs for the items nominated below, and indemnify Nuway in full with regard to the same.</div>'
+    +'<div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12px;line-height:1.4"><input type="checkbox" class="safety-check" id="waiver-hz-'+d.id+'-0" onchange="saveWaiverData('+d.id+')"><div>Possible bogging of vehicle due to soft, wet or loose ground. (Tow costs upwards of $1000 plus, hourly rate of Nuway truck).</div></div>'
+    +'<div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12px;line-height:1.4"><input type="checkbox" class="safety-check" id="waiver-hz-'+d.id+'-1" onchange="saveWaiverData('+d.id+')"><div>Instructions to leave stock on Council land, road or footpath (Council statutory fine).</div></div>'
+    +'<div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12px;line-height:1.4"><input type="checkbox" class="safety-check" id="waiver-hz-'+d.id+'-2" onchange="saveWaiverData('+d.id+')"><div>Mud, sticky clay or ground debris that may adhere to tyres and road surface upon exiting (Council statutory fine) — tyres and road to be cleaned by owner.</div></div>'
+    +'<div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12px;line-height:1.4"><input type="checkbox" class="safety-check" id="waiver-hz-'+d.id+'-3" onchange="saveWaiverData('+d.id+')"><div>Possible damage to the owner\'s property and/or Nuway truck. e.g. Utilities above or below ground etc.</div></div>'
+    +'<div style="margin-top:14px;display:grid;gap:10px">'
+    +'<div><strong style="font-size:11px">Customer Name in Full:</strong><input type="text" id="waiver-custname-'+d.id+'" style="width:100%;padding:6px 8px;border:1px solid var(--border-md);border-radius:4px;font-size:13px;margin-top:4px" value="'+(d.waiver_customer_name||'').replace(/"/g,'&quot;')+'" onchange="saveWaiverData('+d.id+')" placeholder="Full name"></div>'
+    +'<div><strong style="font-size:11px">Address:</strong><input type="text" id="waiver-addr-'+d.id+'" style="width:100%;padding:6px 8px;border:1px solid var(--border-md);border-radius:4px;font-size:13px;margin-top:4px" value="'+(d.delivery_address||d.suburb||'').replace(/"/g,'&quot;')+'" onchange="saveWaiverData('+d.id+')" placeholder="Delivery address"></div>'
+    +'</div>'
+    +'<div style="margin-top:14px"><strong style="font-size:11px">Customer Signature:</strong>'
+    +'<div style="margin-top:4px;position:relative"><canvas id="waiver-sig-cust-'+d.id+'" width="400" height="100" style="width:100%;height:100px;border:1px solid var(--border-md);border-radius:4px;background:#fafaf8;touch-action:none;cursor:crosshair"></canvas>'
+    +'<button onclick="clearSigCanvas(\'waiver-sig-cust-'+d.id+'\')" style="position:absolute;top:4px;right:4px;font-size:10px;padding:2px 8px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface);color:var(--text-3);cursor:pointer">Clear</button></div></div>'
+    +'<div style="margin-top:10px"><strong style="font-size:11px">Witnessed by Nuway Driver:</strong>'
+    +'<div style="margin-top:4px;position:relative"><canvas id="waiver-sig-driver-'+d.id+'" width="400" height="100" style="width:100%;height:100px;border:1px solid var(--border-md);border-radius:4px;background:#fafaf8;touch-action:none;cursor:crosshair"></canvas>'
+    +'<button onclick="clearSigCanvas(\'waiver-sig-driver-'+d.id+'\')" style="position:absolute;top:4px;right:4px;font-size:10px;padding:2px 8px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface);color:var(--text-3);cursor:pointer">Clear</button></div></div>'
+    +'<div style="margin-top:14px;text-align:center"><button class="btn btn-success" style="width:100%;padding:12px;font-size:14px" onclick="captureWaiverAsPhoto('+d.id+')">Save waiver &amp; add to photos</button></div>'
+    +'</div></div></div>';
+  }
   // Timestamps
   const times=`<div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">${d.time_loading||'\u2014'}</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">${d.time_out||'\u2014'}</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">${d.time_left_site||'\u2014'}</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">${d.time_in||'\u2014'}</div></div></div>`;
   // Pre-dep notes
@@ -2146,8 +2206,8 @@ function renderDriverDetail(d){
   document.getElementById('driver-detail').innerHTML=body;
 }
 
-function toggleProd(id,pi,val){prodChecked[id][pi]=val;const d=DELIVERIES.find(x=>x.id===id);if(d)renderDriverDetail(d);}
-function toggleSafety(id,qi,val){safetyChecked[id][qi]=val;const d=DELIVERIES.find(x=>x.id===id);if(d)renderDriverDetail(d);}
+function toggleProd(id,pi,val){prodChecked[id][pi]=val;var d=DELIVERIES.find(function(x){return x.id===id;});if(d)renderDriverDetail(d);}
+function toggleSafety(id,qi,val){if(!safetyChecked[id])safetyChecked[id]=SAFETY_QS.map(function(){return false;});safetyChecked[id][qi]=val;var d=DELIVERIES.find(function(x){return x.id===id;});if(d)renderDriverDetail(d);}
 
 // Save COD receipt number immediately when typed
 async function saveCodReceipt(id,val){
@@ -2167,9 +2227,143 @@ async function saveDriverField(id,field,val){
 
 // Toggle damage waiver checkbox + show/hide detail
 function toggleWaiver(id,checked){
-  const el=document.getElementById('waiver-detail-'+id);
+  var el=document.getElementById('waiver-detail-'+id);
   if(el)el.style.display=checked?'block':'none';
   saveDriverField(id,'damage_waiver',checked?'yes':'no');
+  // Init signature canvases after showing
+  if(checked)setTimeout(function(){initSigCanvas('waiver-sig-cust-'+id);initSigCanvas('waiver-sig-driver-'+id);},100);
+}
+
+// Save waiver form data to delivery record
+function saveWaiverData(id){
+  var name=document.getElementById('waiver-custname-'+id);
+  if(name)saveDriverField(id,'waiver_customer_name',name.value);
+}
+
+// ── Signature canvas drawing ──
+var sigState={};
+function initSigCanvas(canvasId){
+  var c=document.getElementById(canvasId);
+  if(!c||sigState[canvasId])return;
+  var ctx=c.getContext('2d');
+  // Set actual pixel size to match CSS size
+  var rect=c.getBoundingClientRect();
+  c.width=rect.width*2;c.height=rect.height*2;
+  ctx.scale(2,2);
+  ctx.strokeStyle='#1a1916';ctx.lineWidth=2;ctx.lineCap='round';ctx.lineJoin='round';
+  var drawing=false;var lastX=0;var lastY=0;
+  function getPos(e){
+    var r=c.getBoundingClientRect();
+    var t=e.touches?e.touches[0]:e;
+    return{x:t.clientX-r.left,y:t.clientY-r.top};
+  }
+  function start(e){e.preventDefault();drawing=true;var p=getPos(e);lastX=p.x;lastY=p.y;}
+  function move(e){if(!drawing)return;e.preventDefault();var p=getPos(e);ctx.beginPath();ctx.moveTo(lastX,lastY);ctx.lineTo(p.x,p.y);ctx.stroke();lastX=p.x;lastY=p.y;}
+  function stop(){drawing=false;}
+  c.addEventListener('mousedown',start);c.addEventListener('mousemove',move);c.addEventListener('mouseup',stop);c.addEventListener('mouseleave',stop);
+  c.addEventListener('touchstart',start,{passive:false});c.addEventListener('touchmove',move,{passive:false});c.addEventListener('touchend',stop);
+  sigState[canvasId]=true;
+}
+function clearSigCanvas(canvasId){
+  var c=document.getElementById(canvasId);
+  if(!c)return;
+  var ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+}
+
+// ── Capture waiver form as image and upload to photos ──
+async function captureWaiverAsPhoto(deliveryId){
+  var formEl=document.getElementById('waiver-form-'+deliveryId);
+  if(!formEl){showToast('Waiver form not found',true);return;}
+  var d=DELIVERIES.find(function(x){return x.id===deliveryId;});
+  if(!d){return;}
+  // Use canvas to render the form as an image
+  try{
+    showToast('Capturing waiver...');
+    // Create a canvas from the form HTML
+    var canvas=document.createElement('canvas');
+    var w=formEl.offsetWidth;var h=formEl.offsetHeight;
+    canvas.width=w*2;canvas.height=h*2;
+    var ctx=canvas.getContext('2d');
+    ctx.scale(2,2);
+    ctx.fillStyle='#ffffff';ctx.fillRect(0,0,w,h);
+    // Serialize form to SVG foreignObject for rendering
+    var html=formEl.outerHTML;
+    // Replace inputs with their values for the snapshot
+    var tempDiv=formEl.cloneNode(true);
+    var inputs=tempDiv.querySelectorAll('input[type="text"]');
+    inputs.forEach(function(inp){
+      var span=document.createElement('span');
+      span.style.cssText='border-bottom:1px solid #999;padding:2px 4px;font-size:12px;font-family:inherit;min-width:100px;display:inline-block';
+      span.textContent=inp.value||'';
+      inp.parentNode.replaceChild(span,inp);
+    });
+    // Replace buttons with nothing
+    var btns=tempDiv.querySelectorAll('button');
+    btns.forEach(function(b){b.remove();});
+    // Copy signature canvases as images
+    var canvases=formEl.querySelectorAll('canvas');
+    var cloneCanvases=tempDiv.querySelectorAll('canvas');
+    for(var ci=0;ci<canvases.length;ci++){
+      try{
+        var img=document.createElement('img');
+        img.src=canvases[ci].toDataURL('image/png');
+        img.style.cssText='width:100%;height:100px;border:1px solid #ccc;border-radius:4px;display:block';
+        cloneCanvases[ci].parentNode.replaceChild(img,cloneCanvases[ci]);
+      }catch(ce){}
+    }
+    // Remove the save button div
+    var lastDiv=tempDiv.querySelector('div:last-child');
+    if(lastDiv&&lastDiv.querySelector('.btn-success'))lastDiv.remove();
+    // Render via SVG foreignObject
+    var svgData='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+      +'<foreignObject width="100%" height="100%">'
+      +'<div xmlns="http://www.w3.org/1999/xhtml" style="font-family:sans-serif;font-size:12px;padding:16px;background:#fff">'
+      +tempDiv.innerHTML
+      +'</div></foreignObject></svg>';
+    var svgBlob=new Blob([svgData],{type:'image/svg+xml;charset=utf-8'});
+    var svgUrl=URL.createObjectURL(svgBlob);
+    var img2=new Image();
+    img2.onload=async function(){
+      ctx.drawImage(img2,0,0,w,h);
+      URL.revokeObjectURL(svgUrl);
+      canvas.toBlob(async function(blob){
+        if(!blob){showToast('Failed to capture waiver',true);return;}
+        // Upload as a photo
+        var storeName=(currentStore||'store').replace(/\\s+/g,'_');
+        var inv=(d.invoice||'delivery_'+deliveryId).replace(/[^a-zA-Z0-9_-]/g,'');
+        var existing=d.photo_urls?JSON.parse(typeof d.photo_urls==='string'?d.photo_urls:'[]'):[];
+        var idx=existing.length+1;
+        var fileName=storeName+'/'+inv+'_waiver_'+idx+'.jpg';
+        try{
+          var res=await fetch(SB+'/storage/v1/object/'+PHOTO_BUCKET+'/'+fileName,{
+            method:'POST',
+            headers:{'Authorization':'Bearer '+SK,'apikey':SK,'Content-Type':'image/jpeg','x-upsert':'true'},
+            body:blob
+          });
+          if(!res.ok){showToast('Upload failed',true);return;}
+          var publicUrl=SB+'/storage/v1/object/public/'+PHOTO_BUCKET+'/'+fileName;
+          existing.push(publicUrl);
+          var urlsJson=JSON.stringify(existing);
+          await db('deliveries?id=eq.'+deliveryId,{method:'PATCH',body:JSON.stringify({photo_urls:urlsJson})});
+          d.photo_urls=urlsJson;
+          renderDriverDetail(d);
+          showToast('Waiver saved to photos');
+        }catch(ue){showToast('Upload failed',true);}
+      },'image/jpeg',0.9);
+    };
+    img2.onerror=function(){
+      URL.revokeObjectURL(svgUrl);
+      // Fallback: just save waiver data without image
+      showToast('Could not capture image — waiver data saved');
+      saveWaiverData(deliveryId);
+    };
+    img2.src=svgUrl;
+  }catch(e){
+    console.error('Waiver capture error:',e);
+    showToast('Capture failed — waiver data saved');
+    saveWaiverData(deliveryId);
+  }
 }
 
 // ── Photo upload to Supabase Storage ──

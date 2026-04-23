@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v6_2.html -->
+<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v6_3.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -433,11 +433,11 @@ tr:hover td{background:var(--bg)}
     <div class="sidebar-logo">
       <div class="wordmark">Nuway <span class="db-dot online" id="db-dot" title="Connected"></span></div>
       <div class="tagline">Delivery Management</div>
-      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v6.2 · 23 Apr 2026</div>
+      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v6.3 · 23 Apr 2026</div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
-      <div class="nav-item" onclick="switchView(&#39;runsheet&#39;,this)">
+      <div class="nav-item active" onclick="switchView(&#39;runsheet&#39;,this)">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"></rect><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="11" y2="9"></line></svg>
         Run Sheet
       </div>
@@ -445,7 +445,7 @@ tr:hover td{background:var(--bg)}
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z"></path><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="9" y2="9"></line></svg>
         Delivery Journal
       </div>
-      <div class="nav-item active" onclick="switchView(&#39;driver&#39;,this)">
+      <div class="nav-item" onclick="switchView(&#39;driver&#39;,this)">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="14" height="7" rx="1.5"></rect><path d="M1 9h14M5 6V4a3 3 0 016 0v2"></path></svg>
         Driver View
       </div>
@@ -475,7 +475,7 @@ tr:hover td{background:var(--bg)}
   <div class="main">
     <div class="topbar">
       <div class="topbar-left">
-        <span class="page-title" id="page-title">Driver View</span>
+        <span class="page-title" id="page-title">Run Sheet</span>
         <select class="pill-select" id="store-select" onchange="changeStore()">
           <option>Logan</option><option>Chandler</option><option>Ashmore</option><option>Redlands</option>
           <option>Westerns</option><option>Forestdale</option><option>Mango Hill</option><option>Pine Rivers</option>
@@ -484,16 +484,17 @@ tr:hover td{background:var(--bg)}
         <input type="date" class="pill-select" id="date-select" onchange="changeDate()">
       </div>
       <div class="topbar-right">
-        <button class="btn" onclick="loadDeliveries()" title="Refresh">↻ Refresh</button>
+        <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
+        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">3:00:39 pm</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
-        <button class="btn btn-primary" id="top-action" onclick="handleTopAction()" style="display: none;"></button>
+        <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
       </div>
     </div>
     <div class="content">
 
       <!-- --- 2c. Run Sheet view --- -->
-      <div class="view" id="view-runsheet">
+      <div class="view active" id="view-runsheet">
         <div class="metrics">
           <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">9</div><div class="metric-sub" id="m-trucks-sub">across 4 runs</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">3</div><div class="metric-sub">driver returned</div></div>
@@ -957,7 +958,7 @@ tr:hover td{background:var(--bg)}
       </div>
 
       <!-- --- 2e. Driver View --- -->
-      <div class="view active" id="view-driver">
+      <div class="view" id="view-driver">
         <div class="driver-layout">
           <div class="driver-queue">
             <div class="driver-queue-hdr">
@@ -967,7 +968,7 @@ tr:hover td{background:var(--bg)}
             <div class="driver-filter">
               <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Mini — dave</option><option value="1">Fuso</option><option value="2">Run 3</option><option value="3">Run 4 — bob</option></select>
             </div>
-            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(28,this)">
+            <div id="driver-list"><div class="dq-item sel" onclick="selectDelivery(28,this)">
       <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">CHARLIE ASH (ASH GROUP PTY LTD)</span></div>
       <div class="dq-detail">ORMEAU · 7–8am</div>
       <div class="dq-badges"><span class="badge badge-cod">COD</span>
@@ -1293,7 +1294,7 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast">Data refreshed</div>
 
 <!-- ============================================================
      SECTION 3-13: JAVASCRIPT
@@ -1423,7 +1424,8 @@ function selectMyStore(store){
 
 async function startApp(){
   await loadStoreSettings();
-  loadDeliveries();
+  await loadDeliveries();
+  startAutoRefresh();
 }
 async function loadDeliveries(){
   try{
@@ -1437,8 +1439,57 @@ async function loadDeliveries(){
     showToast('DB connection failed',true);DELIVERIES=[];
   }
   renderAll();
+  updateRefreshTimestamp();
 }
 function renderAll(){buildRunSheet();buildJournal();buildDriverView();updateCustomerTracker();}
+
+// --- Auto-refresh: polls Supabase every 45 seconds ---
+let autoRefreshTimer=null;
+const AUTO_REFRESH_MS=45000; // 45 seconds
+
+function startAutoRefresh(){
+  stopAutoRefresh();
+  autoRefreshTimer=setInterval(()=>{
+    // Silent refresh — don't show toast, just reload data
+    silentRefresh();
+  },AUTO_REFRESH_MS);
+}
+function stopAutoRefresh(){
+  if(autoRefreshTimer){clearInterval(autoRefreshTimer);autoRefreshTimer=null;}
+}
+async function silentRefresh(){
+  try{
+    const fresh=await db(`deliveries?store=eq.${encodeURIComponent(currentStore)}&date=eq.${currentDate}&order=slot.asc,truck.asc`);
+    fresh.forEach(d=>{d.truck=parseInt(d.truck)||0;d.duration=parseFloat(d.duration)||1;});
+    // Only re-render if data actually changed
+    if(JSON.stringify(fresh.map(d=>d.id+'_'+d.driver_status+'_'+d.updated_at))!==JSON.stringify(DELIVERIES.map(d=>d.id+'_'+d.driver_status+'_'+d.updated_at))){
+      DELIVERIES=fresh;
+      renderAll();
+      flashRefreshBtn();
+    }
+    document.getElementById('db-dot').className='db-dot online';
+    updateRefreshTimestamp();
+  }catch(e){
+    document.getElementById('db-dot').className='db-dot offline';
+  }
+}
+function manualRefresh(){
+  const btn=document.getElementById('refresh-btn');
+  btn.disabled=true;btn.textContent='↻ ...';
+  loadDeliveries().then(()=>{
+    btn.disabled=false;btn.textContent='↻ Refresh';
+    showToast('Data refreshed');
+    startAutoRefresh(); // reset the timer
+  });
+}
+function updateRefreshTimestamp(){
+  const el=document.getElementById('last-refresh');
+  if(el)el.textContent=new Date().toLocaleTimeString('en-AU',{hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true});
+}
+function flashRefreshBtn(){
+  const el=document.getElementById('last-refresh');
+  if(el){el.style.color='var(--green)';setTimeout(()=>{el.style.color='var(--text-3)';},2000);}
+}
 function parseCod(d){const a=d.cod_amount?parseFloat(d.cod_amount.replace(/[$,]/g,'')):0;return isNaN(a)?0:a;}
 function now12(){return new Date().toLocaleTimeString('en-AU',{hour:'numeric',minute:'2-digit',hour12:true});}
 // Format phone for display: 0412 345 678 or 07 3000 0000
@@ -2202,8 +2253,8 @@ async function saveStoreSettings(){
     showToast('Failed to save settings',true);
   }
 }
-function changeStore(){currentStore=document.getElementById('store-select').value;document.getElementById('footer-store').textContent=currentStore+' Store';localStorage.setItem('nuway_my_store',currentStore);loadStoreSettings().then(()=>loadDeliveries());}
-function changeDate(){currentDate=document.getElementById('date-select').value;document.getElementById('footer-date').textContent=new Date(currentDate+'T00:00:00').toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});loadDeliveries();}
+function changeStore(){currentStore=document.getElementById('store-select').value;document.getElementById('footer-store').textContent=currentStore+' Store';localStorage.setItem('nuway_my_store',currentStore);loadStoreSettings().then(()=>loadDeliveries().then(()=>startAutoRefresh()));}
+function changeDate(){currentDate=document.getElementById('date-select').value;document.getElementById('footer-date').textContent=new Date(currentDate+'T00:00:00').toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});loadDeliveries().then(()=>startAutoRefresh());}
 function showModal(id){document.getElementById('modal-'+id).classList.add('show');}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('show');}
 function showToast(msg,err){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(err?' error':'');setTimeout(()=>t.className='toast',2800);}

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0057)file:///C:/Users/Chris%20Haddon/Downloads/nuway_v7_2.html -->
+<!-- saved from url=(0057)file:///C:/Users/Chris%20Haddon/Downloads/nuway_v7_3.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Nuway — Delivery Management System 27.04 1.52pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 27.04 2.00pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -435,7 +435,7 @@ tr:hover td{background:var(--bg)}
     <div class="sidebar-logo">
       <div class="wordmark">Nuway <span class="db-dot online" id="db-dot" title="Connected"></span></div>
       <div class="tagline">Delivery Management</div>
-      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v7.5 · 28 Apr 2026</div>
+      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v7.6 · 28 Apr 2026</div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
@@ -485,7 +485,7 @@ tr:hover td{background:var(--bg)}
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
-        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">1:51:57 pm</span>
+        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">2:00:34 pm</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
         <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
@@ -504,7 +504,7 @@ tr:hover td{background:var(--bg)}
         <div class="run-sheet-wrap" id="rs-wrap"><div class="rs-header-row"><div class="rs-time-hdr">Time</div><div class="rs-truck-hdr">
       <div class="th-label">Mini 1 — 3.5 ton · Russell</div>
       <div class="th-detail">XB11LY</div>
-      <span class="th-status on-time">On time</span>
+      <span class="th-status behind">Behind schedule</span>
       <span class="th-edit" onclick="openTruckEdit(0)">✎</span>
     </div><div class="rs-truck-hdr">
       <div class="th-label">Mini 2 — 3.5 ton · John P</div>
@@ -512,9 +512,9 @@ tr:hover td{background:var(--bg)}
       <span class="th-status behind">Behind schedule</span>
       <span class="th-edit" onclick="openTruckEdit(1)">✎</span>
     </div><div class="rs-truck-hdr">
-      <div class="th-label">Run 3</div>
+      <div class="th-label">Run 3 test back — test truck</div>
       <div class="th-detail">No rego</div>
-      <span class="th-status on-time">On time</span>
+      <span class="th-status behind">Behind schedule</span>
       <span class="th-edit" onclick="openTruckEdit(2)">✎</span>
     </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width color-next">
               
@@ -1254,7 +1254,7 @@ Attn: KAYNE HANLEY</div>
               <div class="dq-sub" id="dv-driver-sub">Today · 15 deliveries</div>
             </div>
             <div class="driver-filter">
-              <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3</option></select>
+              <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3 test back</option></select>
             </div>
             <div id="driver-list"><div class="dq-item" onclick="selectDelivery(81,this)">
       <div class="dq-row"><span class="dq-num ">1</span><span class="dq-customer">KAYNE HANLEY (FOREFRONT RESTORATION)</span></div>
@@ -1352,14 +1352,14 @@ Attn: KAYNE HANLEY</div>
       <div class="dq-detail">BAHRS SCRUB · 1–2pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
-        <span class="badge badge-yes">On time</span>
+        <span class="badge badge-issue">Behind</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(93,this)">
       <div class="dq-row"><span class="dq-num ">15</span><span class="dq-customer">WENJUN LIU (SOLE TRADER)</span></div>
       <div class="dq-detail">SLACKS · 1–2pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
-        <span class="badge badge-yes">On time</span>
+        <span class="badge badge-issue">Behind</span>
         
       </div></div></div>
           </div>
@@ -1451,6 +1451,18 @@ Attn: KAYNE HANLEY</div><a href="tel:+61402706164" style="font-size:14px;color:v
         <div><label>Rego</label><input type="text" id="srun-rego-1" value="XB04SH" placeholder="1AB-234"></div>
         <div><label>Driver</label><input type="text" id="srun-driver-1" value="John P" placeholder="Jake T."></div>
       </div>
+    </div>
+    <div class="run-config-card">
+      <div class="run-config-title">
+        <span>Fuso</span>
+        <span class="remove-run" onclick="removeSettingsRun(2)">Remove</span>
+      </div>
+      <div class="settings-row-4">
+        <div><label>Label</label><input type="text" id="srun-label-2" value="Fuso" placeholder="Run 3"></div>
+        <div><label>Truck type</label><input type="text" id="srun-type-2" value="13 ton" placeholder="M1, FUSO..."></div>
+        <div><label>Rego</label><input type="text" id="srun-rego-2" value="123abc" placeholder="1AB-234"></div>
+        <div><label>Driver</label><input type="text" id="srun-driver-2" value="" placeholder="Jake T."></div>
+      </div>
     </div></div>
           </div>
 
@@ -1521,7 +1533,7 @@ Attn: KAYNE HANLEY</div><a href="tel:+61402706164" style="font-size:14px;color:v
       </div>
       <div class="field"><label>Delivery address</label><input type="text" id="book-address" placeholder="e.g. 25 Buenavista St, Logan Village QLD 4127"></div>
       <div class="field-row-3">
-        <div class="field"><label>Run</label><select id="book-truck"><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3</option></select></div>
+        <div class="field"><label>Run</label><select id="book-truck"><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3 test back</option></select></div>
         <div class="field"><label>Time slot</label>
           <select id="book-slot"><option>7–8am</option><option>8–9am</option><option>9–10am</option><option>10–11am</option><option>11am–12pm</option><option>12–1pm</option><option>1–2pm</option><option>2–3pm</option><option>3–4pm</option><option>4–5pm</option></select>
         </div>
@@ -1571,7 +1583,7 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
     </div>
     <div class="modal-body">
       <div class="field-row-3">
-        <div class="field"><label>Run</label><select id="unavail-truck"><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3</option></select></div>
+        <div class="field"><label>Run</label><select id="unavail-truck"><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3 test back</option></select></div>
         <div class="field"><label>Start slot</label>
           <select id="unavail-slot"><option>7–8am</option><option>8–9am</option><option>9–10am</option><option>10–11am</option><option>11am–12pm</option><option>12–1pm</option><option>1–2pm</option><option>2–3pm</option><option>3–4pm</option><option>4–5pm</option></select>
         </div>
@@ -2928,7 +2940,7 @@ function renderSettingsPage(){
 }
 
 function renderSettingsRuns(){
-  const runs=getRuns();
+  const runs=getDefaultRuns();
   const list=document.getElementById('settings-runs-list');
   list.innerHTML=runs.map((r,i)=>`
     <div class="run-config-card">
@@ -2946,14 +2958,14 @@ function renderSettingsRuns(){
 }
 
 function addSettingsRun(){
-  const runs=getRuns();
+  const runs=getDefaultRuns();
   runs.push({label:'Run '+(runs.length+1),type:'',rego:'',driver:''});
   if(storeSettings)storeSettings.trucks=runs;
   renderSettingsRuns();
 }
 
 function removeSettingsRun(idx){
-  const runs=getRuns();
+  const runs=getDefaultRuns();
   if(runs.length<=1)return;
   runs.splice(idx,1);
   if(storeSettings)storeSettings.trucks=runs;

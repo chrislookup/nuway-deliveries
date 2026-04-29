@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0045)file:///C:/Users/User/Downloads/nuway_v7.html -->
+<!-- saved from url=(0047)file:///C:/Users/User/Downloads/nuway_v7_1.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Nuway — Delivery Management System 30.04 9.11am_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 30.04 9.31am_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -487,11 +487,11 @@ tr:hover td{background:var(--bg)}
         </select>
         <input type="date" class="pill-select" id="date-select" onchange="changeDate()" autocomplete="off">
         <span id="date-display" style="font-size: 14px; font-weight: 600; white-space: nowrap; letter-spacing: -0.2px; color: var(--green);">Wednesday 29th April</span>
-        <button id="date-today-btn" class="btn btn-sm" style="display: none; margin-left: 4px;" onclick="goToToday()">Select today</button>
+        <button id="date-today-btn" class="btn btn-sm" style="display:none;margin-left:4px" onclick="goToToday()">Select today</button>
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
-        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">9:10:39 am</span>
+        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">9:31:31 am</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
         <button class="btn btn-primary" id="top-action" onclick="handleTopAction()" style="display: none;"></button>
@@ -1387,64 +1387,134 @@ tr:hover td{background:var(--bg)}
         <div class="driver-layout">
           <div class="driver-queue">
             <div class="driver-queue-hdr">
-              <div class="dq-name" id="dv-driver-name">Russell — 3.5 ton</div>
-              <div class="dq-sub" id="dv-driver-sub">Today · 8 deliveries</div>
+              <div class="dq-name" id="dv-driver-name">All runs</div>
+              <div class="dq-sub" id="dv-driver-sub">Today · 18 deliveries</div>
               <div id="dv-store-info" style="margin-top:6px;font-size:11px"><a href="https://www.google.com/maps/search/?api=1&amp;query=488%20Loganlea%20Rd%2C%20Slacks%20Creek%2C%20QLD%2C%204127" target="_blank" style="color:var(--blue);text-decoration:none">📍 488 Loganlea Rd, Slacks Creek, QLD, 4127</a><br><a href="tel:+61738088442" style="color:var(--blue);text-decoration:none">📞 0738088442</a></div>
             </div>
             <div class="driver-filter">
               <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3</option></select>
             </div>
-            <div id="driver-list"><div class="dq-item sel" onclick="selectDelivery(145,this)">
+            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(145,this)">
       <div class="dq-row"><span class="dq-num ">1</span><span class="dq-customer">SMITH TILING SERVICES</span></div>
       <div class="dq-detail">ROCHEDALE · 7–8am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span>
         
+      </div></div><div class="dq-item" onclick="selectDelivery(105,this)">
+      <div class="dq-row"><span class="dq-num ">2</span><span class="dq-customer">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</span></div>
+      <div class="dq-detail">PARK RIDGE · 7–8am</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        
+        <span class="badge badge-issue">Behind</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(107,this)">
+      <div class="dq-row"><span class="dq-num ">3</span><span class="dq-customer">MARK HARNETT</span></div>
+      <div class="dq-detail">CORNUBIA · 7–8am</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
+        
+        <span class="badge badge-issue">Behind</span>
+        
       </div></div><div class="dq-item" onclick="selectDelivery(103,this)">
-      <div class="dq-row"><span class="dq-num ">2</span><span class="dq-customer">AUSTRALIAN OUTDOOR LIVING++</span></div>
+      <div class="dq-row"><span class="dq-num ">4</span><span class="dq-customer">AUSTRALIAN OUTDOOR LIVING++</span></div>
       <div class="dq-detail">UPPER MT GRAVATT · 8–9am</div>
       <div class="dq-badges"><span class="badge badge-acc">Account</span>
         
         <span class="badge badge-issue">Behind</span>
         
+      </div></div><div class="dq-item" onclick="selectDelivery(109,this)">
+      <div class="dq-row"><span class="dq-num ">5</span><span class="dq-customer">VITAL PLUMBING</span></div>
+      <div class="dq-detail">WATERFORD WEST · 8–9am</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
+        
+        <span class="badge badge-issue">Behind</span>
+        
       </div></div><div class="dq-item" onclick="selectDelivery(146,this)">
-      <div class="dq-row"><span class="dq-num ">3</span><span class="dq-customer">GEORGE LUO</span></div>
+      <div class="dq-row"><span class="dq-num ">6</span><span class="dq-customer">GEORGE LUO</span></div>
       <div class="dq-detail">SPRINGWOOD · 9–10am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-yes">On time</span>
         
+      </div></div><div class="dq-item" onclick="selectDelivery(153,this)">
+      <div class="dq-row"><span class="dq-num ">7</span><span class="dq-customer">MY FIBREGLASS POOL EASY</span></div>
+      <div class="dq-detail">PARK RIDGE · 9–10am</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(147,this)">
+      <div class="dq-row"><span class="dq-num ">8</span><span class="dq-customer">MICHAEL MATTHEWS (MICKSCAPES)</span></div>
+      <div class="dq-detail">SPRINGWOOD · 9–10am</div>
+      <div class="dq-badges"><span class="badge badge-cod">COD</span>
+        
+        <span class="badge badge-yes">On time</span>
+        <span class="badge badge-cod">547.40</span>
       </div></div><div class="dq-item" onclick="selectDelivery(154,this)">
-      <div class="dq-row"><span class="dq-num ">4</span><span class="dq-customer">SATNAN SANGH</span></div>
+      <div class="dq-row"><span class="dq-num ">9</span><span class="dq-customer">SATNAN SANGH</span></div>
       <div class="dq-detail">UNDERWOOD · 10–11am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-yes">On time</span>
         
+      </div></div><div class="dq-item" onclick="selectDelivery(156,this)">
+      <div class="dq-row"><span class="dq-num ">10</span><span class="dq-customer">peter Pantelas</span></div>
+      <div class="dq-detail">yarrabillba · 10–11am</div>
+      <div class="dq-badges"><span class="badge badge-tba">TBA</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(149,this)">
+      <div class="dq-row"><span class="dq-num ">11</span><span class="dq-customer">JOHN PAUL COLLEGE ++</span></div>
+      <div class="dq-detail">DAISY HILL · 10–11am</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
       </div></div><div class="dq-item" onclick="selectDelivery(151,this)">
-      <div class="dq-row"><span class="dq-num ">5</span><span class="dq-customer">TAFE QLD BRISBANE,GOLD COAST, EAST COAST ++</span></div>
+      <div class="dq-row"><span class="dq-num ">12</span><span class="dq-customer">TAFE QLD BRISBANE,GOLD COAST, EAST COAST ++</span></div>
+      <div class="dq-detail">MT GRAVATT · 11am–12pm</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(152,this)">
+      <div class="dq-row"><span class="dq-num ">13</span><span class="dq-customer">TAFE QLD BRISBANE,GOLD COAST, EAST COAST ++</span></div>
       <div class="dq-detail">MT GRAVATT · 11am–12pm</div>
       <div class="dq-badges"><span class="badge badge-acc">Account</span>
         
         <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(160,this)">
-      <div class="dq-row"><span class="dq-num ">6</span><span class="dq-customer">got to go home</span></div>
+      <div class="dq-row"><span class="dq-num ">14</span><span class="dq-customer">got to go home</span></div>
       <div class="dq-detail"> · 12–1pm</div>
       <div class="dq-badges"><span class="badge badge-tba">TBA</span>
         
         <span class="badge badge-yes">On time</span>
         
+      </div></div><div class="dq-item" onclick="selectDelivery(158,this)">
+      <div class="dq-row"><span class="dq-num ">15</span><span class="dq-customer">nuway redlands pup</span></div>
+      <div class="dq-detail"> · 12–1pm</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
       </div></div><div class="dq-item" onclick="selectDelivery(163,this)">
-      <div class="dq-row"><span class="dq-num ">7</span><span class="dq-customer">BARRY TYSON (BTC CONCRETING)</span></div>
+      <div class="dq-row"><span class="dq-num ">16</span><span class="dq-customer">BARRY TYSON (BTC CONCRETING)</span></div>
       <div class="dq-detail">ROCHEDALE S0UTH · 1–2pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-yes">On time</span>
         
+      </div></div><div class="dq-item" onclick="selectDelivery(159,this)">
+      <div class="dq-row"><span class="dq-num ">17</span><span class="dq-customer">JEFF BURROWS (WAGGIE PTY LTD)</span></div>
+      <div class="dq-detail">WATERFORD WEST · 1–2pm</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
       </div></div><div class="dq-item" onclick="selectDelivery(161,this)">
-      <div class="dq-row"><span class="dq-num ">8</span><span class="dq-customer">gone home</span></div>
+      <div class="dq-row"><span class="dq-num ">18</span><span class="dq-customer">gone home</span></div>
       <div class="dq-detail"> · 3–4pm</div>
       <div class="dq-badges"><span class="badge badge-tba">TBA</span>
         
@@ -1577,6 +1647,7 @@ tr:hover td{background:var(--bg)}
           </div>
           <div id="guide-staff" class="detail-section" style="padding: 20px; line-height: 1.8; display: block;">
             <h3 style="color:var(--blue);margin-bottom:12px">Staff User Guide</h3>
+            <div style="position:relative;padding-bottom:56.25%;height:0;margin-bottom:20px;border-radius:var(--radius);overflow:hidden"><iframe src="./Nuway — Delivery Management System 30.04 9.31am_files/h5N3ppANjV0.html" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen=""></iframe></div>
             <h4>Getting Started</h4>
             <p>Open the app in Chrome or Edge. Select your store on first visit. The Run Sheet is your main daily view showing all deliveries across truck runs.</p>
             <h4 style="margin-top:16px">Booking a Delivery</h4>
@@ -1596,6 +1667,7 @@ tr:hover td{background:var(--bg)}
           </div>
           <div id="guide-driver" class="detail-section" style="padding: 20px; line-height: 1.8; display: none;">
             <h3 style="color:var(--blue);margin-bottom:12px">Driver Guide</h3>
+            <div style="position:relative;padding-bottom:56.25%;height:0;margin-bottom:20px;border-radius:var(--radius);overflow:hidden"><iframe src="./Nuway — Delivery Management System 30.04 9.31am_files/HVPmDTZ7m_g.html" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen=""></iframe></div>
             <h4>Getting Started</h4>
             <p>Open Chrome on your tablet and go to the app URL. Select your store on first visit. Tap <strong>Driver View</strong> in the sidebar. Select your truck from the dropdown.</p>
             <h4 style="margin-top:16px">Before You Start</h4>
@@ -1628,7 +1700,7 @@ tr:hover td{background:var(--bg)}
      Shown on first visit (no store saved in localStorage).
      User picks their store and it's remembered for future visits. -->
 <!-- --- PIN Gate --- -->
-<div class="store-selector-overlay" id="pin-gate" style="display: none;">
+<div class="store-selector-overlay" id="pin-gate" style="display:none">
   <div class="store-selector" style="max-width:360px">
     <h2 style="margin-bottom:4px">Nuway Deliveries</h2>
     <p style="font-size:13px;color:var(--text-2);margin-bottom:20px">Enter your staff PIN to continue</p>
@@ -1653,7 +1725,7 @@ tr:hover td{background:var(--bg)}
 <div class="modal-overlay" id="modal-booking" onclick="if(event.target===this)closeModal(&#39;booking&#39;)">
   <div class="modal">
     <div class="modal-header">
-      <span class="modal-title" id="booking-modal-title">Edit — banking</span>
+      <span class="modal-title" id="booking-modal-title">Book delivery</span>
       <span class="modal-close" onclick="closeModal(&#39;booking&#39;)">×</span>
     </div>
     <div class="modal-body">
@@ -1706,7 +1778,7 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
       <div class="sms-note">On clicking Save, you will be given the option to send an SMS notification to the customer.</div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-danger" id="booking-delete-btn" onclick="deleteDelivery()" style="margin-right: auto; display: block;">Remove</button>
+      <button class="btn btn-danger" id="booking-delete-btn" onclick="deleteDelivery()" style="margin-right:auto;display:none">Remove</button>
       <button class="btn" onclick="closeModal(&#39;booking&#39;)">Cancel</button>
       <button class="btn btn-primary" onclick="saveBooking()">Save</button>
     </div>
@@ -1765,7 +1837,7 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
   </div>
 </div>
 
-<div class="toast" id="toast">Removed</div>
+<div class="toast" id="toast"></div>
 
 <!-- ============================================================
      SECTION 3-13: JAVASCRIPT

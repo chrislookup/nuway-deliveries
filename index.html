@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v7_5.html -->
+<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v7_7.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Nuway — Delivery Management System 7.05.2026 7.25pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 08.05.26 8.21_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -440,7 +440,7 @@ tr:hover td{background:var(--bg)}
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
-      <div class="nav-item" onclick="switchView(&#39;runsheet&#39;,this)">
+      <div class="nav-item active" onclick="switchView(&#39;runsheet&#39;,this)">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"></rect><line x1="5" y1="6" x2="11" y2="6"></line><line x1="5" y1="9" x2="11" y2="9"></line></svg>
         Run Sheet
       </div>
@@ -464,14 +464,14 @@ tr:hover td{background:var(--bg)}
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"></circle><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.5 1.5M11.5 11.5L13 13M3 13l1.5-1.5M11.5 4.5L13 3"></path></svg>
         Settings
       </div>
-      <div class="nav-item active" onclick="switchView(&#39;guide&#39;,this)">
+      <div class="nav-item" onclick="switchView(&#39;guide&#39;,this)">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 2h12v12H2z"></path><path d="M5 5h6M5 8h6M5 11h4"></path></svg>
         User Guide
       </div>
     </div>
     <div class="sidebar-footer">
       <strong id="footer-store">Logan Store</strong>
-      <span id="footer-date">Thu, 7 May 2026</span>
+      <span id="footer-date">Fri, 8 May 2026</span>
     </div>
   </aside>
 
@@ -479,7 +479,7 @@ tr:hover td{background:var(--bg)}
   <div class="main">
     <div class="topbar">
       <div class="topbar-left">
-        <span class="page-title" id="page-title">User Guide</span>
+        <span class="page-title" id="page-title">Run Sheet</span>
         <select class="pill-select" id="store-select" onchange="changeStore()">
           <option>Logan</option><option>Chandler</option><option>Ashmore</option><option>Redlands</option>
           <option>Westerns</option><option>Forestdale</option><option>Mango Hill</option><option>Pine Rivers</option>
@@ -491,16 +491,16 @@ tr:hover td{background:var(--bg)}
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
-        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">7:25:08 pm</span>
+        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">8:33:56 am</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
-        <button class="btn btn-primary" id="top-action" onclick="handleTopAction()" style="display: none;"></button>
+        <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
       </div>
     </div>
     <div class="content">
 
       <!-- --- 2c. Run Sheet view --- -->
-      <div class="view" id="view-runsheet">
+      <div class="view active" id="view-runsheet">
         <div class="metrics">
           <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">13</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
@@ -510,17 +510,17 @@ tr:hover td{background:var(--bg)}
         <div class="run-sheet-wrap" id="rs-wrap"><div class="rs-header-row"><div class="rs-time-hdr">Time</div><div class="rs-truck-hdr">
       <div class="th-label">Mini 1 — 3.5 ton · Russell</div>
       <div class="th-detail">XB11LY</div>
-      <span class="th-status behind">Behind schedule</span>
+      <span class="th-status on-time">On time</span>
       <span class="th-edit" onclick="openTruckEdit(0)">✎</span>
     </div><div class="rs-truck-hdr">
       <div class="th-label">Mini 2 — 3.5 ton · John P</div>
       <div class="th-detail">XB04SH</div>
-      <span class="th-status behind">Behind schedule</span>
+      <span class="th-status on-time">On time</span>
       <span class="th-edit" onclick="openTruckEdit(1)">✎</span>
     </div><div class="rs-truck-hdr">
       <div class="th-label">Fuso — 13 ton</div>
       <div class="th-detail">XB93UV</div>
-      <span class="th-status behind">Behind schedule</span>
+      <span class="th-status on-time">On time</span>
       <span class="th-edit" onclick="openTruckEdit(2)">✎</span>
     </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell" style="min-width:200px"><div class="del-card acc full-width color-next">
               
@@ -1185,70 +1185,70 @@ tr:hover td{background:var(--bg)}
       <div class="dq-detail">PARK RIDGE · 8–9am</div>
       <div class="dq-badges"><span class="badge badge-acc">Account</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(267,this)">
       <div class="dq-row"><span class="dq-num ">5</span><span class="dq-customer">Matthew Duncan</span></div>
       <div class="dq-detail">springwood · 8–9am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(277,this)">
       <div class="dq-row"><span class="dq-num ">6</span><span class="dq-customer">AUSTRALIAN LAWN CONCEPTS ++</span></div>
       <div class="dq-detail">STRETTON · 8–9am</div>
       <div class="dq-badges"><span class="badge badge-acc">Account</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(275,this)">
       <div class="dq-row"><span class="dq-num ">7</span><span class="dq-customer">JULIAN ROSE (LONG LIFE FENCING AND RETAINING)</span></div>
       <div class="dq-detail">WISHART · 9–10am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(289,this)">
       <div class="dq-row"><span class="dq-num ">8</span><span class="dq-customer">MATTHEW DUNCAN (DUNCAN PLUMBING SOLUTIONS)</span></div>
       <div class="dq-detail">SPRINGWOOD · 9–10am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(291,this)">
       <div class="dq-row"><span class="dq-num ">9</span><span class="dq-customer">SUPER SLEEPER PICKUP</span></div>
       <div class="dq-detail"> · 10–11am</div>
       <div class="dq-badges"><span class="badge badge-tba">TBA</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(290,this)">
       <div class="dq-row"><span class="dq-num ">10</span><span class="dq-customer">CHRIS ISTED</span></div>
       <div class="dq-detail">BETHANIA · 10–11am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(279,this)">
       <div class="dq-row"><span class="dq-num ">11</span><span class="dq-customer">MEEDS BRENT (BAM PLUMBING)</span></div>
       <div class="dq-detail">TANAH MERAH · 10–11am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(293,this)">
       <div class="dq-row"><span class="dq-num ">12</span><span class="dq-customer">ROBERT HANCOCK</span></div>
       <div class="dq-detail">KINGSTON · 11am–12pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div><div class="dq-item" onclick="selectDelivery(292,this)">
       <div class="dq-row"><span class="dq-num ">13</span><span class="dq-customer">AMELIA YANG</span></div>
       <div class="dq-detail">SPRINGWOOD · 12–1pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-yes">On time</span>
         
       </div></div></div>
           </div>
@@ -1368,14 +1368,14 @@ tr:hover td{background:var(--bg)}
       </div>
 
       <!-- --- User Guide view --- -->
-      <div class="view active" id="view-guide">
+      <div class="view" id="view-guide">
         <div style="max-width:800px;margin:0 auto">
           <h2 style="margin-bottom:16px;color:var(--blue)">User Guide</h2>
           <div style="display:flex;gap:8px;margin-bottom:20px">
             <button class="btn btn-primary" id="guide-tab-staff" onclick="showGuideTab(&#39;staff&#39;)">Staff Guide</button>
             <button class="btn" id="guide-tab-driver" onclick="showGuideTab(&#39;driver&#39;)">Driver Guide</button>
           </div>
-          <div id="guide-staff" class="detail-section" style="padding: 20px; line-height: 1.8; display: block;">
+          <div id="guide-staff" class="detail-section" style="padding:20px;line-height:1.8">
             <h3 style="color:var(--blue);margin-bottom:12px">Staff User Guide</h3>
             <video controls="" playsinline="" style="width:100%;border-radius:var(--radius);margin-bottom:20px;background:#000" preload="metadata">
               <source src="https://nuway.com.au/wp-content/uploads/Video/Delivery%20Management%20Sales%20Guide.mp4" type="video/mp4">
@@ -1398,7 +1398,7 @@ tr:hover td{background:var(--bg)}
             • Never delete a completed delivery — edit it instead<br>
             • Settings changes only affect future dates without existing bookings</p>
           </div>
-          <div id="guide-driver" class="detail-section" style="padding: 20px; line-height: 1.8; display: none;">
+          <div id="guide-driver" class="detail-section" style="padding:20px;line-height:1.8;display:none">
             <h3 style="color:var(--blue);margin-bottom:12px">Driver Guide</h3>
             <video controls="" playsinline="" style="width:100%;border-radius:var(--radius);margin-bottom:20px;background:#000" preload="metadata">
               <source src="https://nuway.com.au/wp-content/uploads/Video/Delivery%20Management%20System%20Driver%20Guide.mp4" type="video/mp4">
@@ -1822,7 +1822,18 @@ const AUTO_REFRESH_MS=45000; // 45 seconds
 function startAutoRefresh(){
   stopAutoRefresh();
   autoRefreshTimer=setInterval(()=>{
-    // Silent refresh — don't show toast, just reload data
+    // Check if date has rolled over to a new day
+    const realToday=new Date().toISOString().split('T')[0];
+    if(currentDate!==realToday&&currentDate<realToday){
+      // Date has changed — auto-switch to today
+      currentDate=realToday;
+      document.getElementById('date-select').value=realToday;
+      document.getElementById('footer-date').textContent=new Date().toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+      updateDateDisplay();
+      loadDeliveries();
+      return;
+    }
+    // Normal silent refresh
     silentRefresh();
   },AUTO_REFRESH_MS);
 }

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/chris/Downloads/nuway_v7_7.html -->
+<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v7_11.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Nuway — Delivery Management System 08.05.26 8.21_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 8.05.26 8.44am_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -436,7 +436,7 @@ tr:hover td{background:var(--bg)}
     <div class="sidebar-logo">
       <div class="wordmark">Nuway <span class="db-dot online" id="db-dot" title="Connected"></span></div>
       <div class="tagline">Delivery Management</div>
-      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v7.8 · 30 Apr 2026</div>
+      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v7.9 · 8 May 2026</div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
@@ -486,12 +486,12 @@ tr:hover td{background:var(--bg)}
           <option>Burpengary</option><option>Ormeau</option><option>Buderim</option>
         </select>
         <input type="date" class="pill-select" id="date-select" onchange="changeDate()" autocomplete="off">
-        <span id="date-display" style="font-size: 14px; font-weight: 600; white-space: nowrap; letter-spacing: -0.2px; color: var(--green);">Thursday 7th May</span>
+        <span id="date-display" style="font-size: 14px; font-weight: 600; white-space: nowrap; letter-spacing: -0.2px; color: var(--green);">Friday 8th May</span>
         <button id="date-today-btn" class="btn btn-sm" style="display:none;margin-left:4px" onclick="goToToday()">Select today</button>
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
-        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">8:33:56 am</span>
+        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">8:43:52 am</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
         <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
@@ -502,10 +502,10 @@ tr:hover td{background:var(--bg)}
       <!-- --- 2c. Run Sheet view --- -->
       <div class="view active" id="view-runsheet">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">13</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
+          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">15</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">0</div><div class="metric-sub">driver returned</div></div>
           <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
-          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">14</div><div class="metric-sub">today's capacity</div></div>
+          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">12</div><div class="metric-sub">today's capacity</div></div>
         </div>
         <div class="run-sheet-wrap" id="rs-wrap"><div class="rs-header-row"><div class="rs-time-hdr">Time</div><div class="rs-truck-hdr">
       <div class="th-label">Mini 1 — 3.5 ton · Russell</div>
@@ -518,116 +518,140 @@ tr:hover td{background:var(--bg)}
       <span class="th-status on-time">On time</span>
       <span class="th-edit" onclick="openTruckEdit(1)">✎</span>
     </div><div class="rs-truck-hdr">
-      <div class="th-label">Fuso — 13 ton</div>
-      <div class="th-detail">XB93UV</div>
+      <div class="th-label">Run 3 — FUSO</div>
+      <div class="th-detail">No rego</div>
       <span class="th-status on-time">On time</span>
       <span class="th-edit" onclick="openTruckEdit(2)">✎</span>
-    </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell" style="min-width:200px"><div class="del-card acc full-width color-next">
+    </div></div><div class="rs-truck-actions"><button class="btn btn-sm" onclick="addRun()">+ Add run</button><button class="btn btn-sm btn-danger" onclick="removeRun()">− Remove last</button></div><div class="rs-row"><div class="rs-time-cell">7–8am</div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width color-next">
               
-              <div class="del-top"><span class="badge badge-acc">Account</span><span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span></div>
-              <div class="del-name">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</div>
-              <div class="del-suburb">PARK RIDGE</div>
-              <div class="del-inv">1045003</div>
-              <div class="del-note">po: address</div>
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(192)">Edit</button>
-            </div></div><div class="rs-cell" style="min-width:200px;min-height:108px"><div class="del-card paid full-width color-next">
-              <div class="del-duration">2hr</div>
               <div class="del-top"><span class="badge badge-paid">Paid</span><span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span></div>
-              <div class="del-name">BOYD LOCKETT</div>
-              <div class="del-suburb">DAISY HILL</div>
-              <div class="del-inv">1045520</div>
+              <div class="del-name">HARLEY WHINCOP (WHINCOP CONSTRUCTIONS)</div>
+              <div class="del-suburb">WATERFORD</div>
+              <div class="del-inv">1045903</div>
               
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(252)">Edit</button>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(196)">Edit</button>
             </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width color-next">
               
               <div class="del-top"><span class="badge badge-paid">Paid</span><span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span></div>
-              <div class="del-name">CHENGXIN HOME</div>
-              <div class="del-suburb">HOLMVIEW</div>
-              <div class="del-inv">1045850</div>
+              <div class="del-name">MARK STRONG</div>
+              <div class="del-suburb">KURABY</div>
+              <div class="del-inv">1044461</div>
+              <div class="del-note">3 car drive way please drop in single car drive way which is on the left hand side // please call customer before dropping</div>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(259)">Edit</button>
+            </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width color-next">
               
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(288)">Edit</button>
-            </div></div></div><div class="rs-row"><div class="rs-time-cell">8–9am</div><div class="rs-cell" style="min-width:200px"><div class="del-card acc full-width ">
+              <div class="del-top"><span class="badge badge-paid">Paid</span><span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span></div>
+              <div class="del-name">JACKSON LUSCOMBE (LEGACY CIVIL)</div>
+              <div class="del-suburb">WOODRIDGE</div>
+              <div class="del-inv">1045994</div>
               
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(296)">Edit</button>
+            </div></div></div><div class="rs-row"><div class="rs-time-cell">8–9am</div><div class="rs-cell" style="min-width:200px;min-height:108px"><div class="del-card acc full-width ">
+              <div class="del-duration">2hr</div>
               <div class="del-top"><span class="badge badge-acc">Account</span></div>
               <div class="del-name">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</div>
-              <div class="del-suburb">PARK RIDGE</div>
-              <div class="del-inv">1045005</div>
+              <div class="del-suburb">YARRABILBA</div>
+              <div class="del-inv">1045006</div>
               <div class="del-note">po: address</div>
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(194)">Edit</button>
-            </div></div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell" style="min-width:200px;min-height:108px"><div class="del-card acc full-width ">
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(197)">Edit</button>
+            </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
+              
+              <div class="del-top"><span class="badge badge-paid">Paid</span></div>
+              <div class="del-name">SHAHIDA KHAN</div>
+              <div class="del-suburb">MEADOWBROOK</div>
+              <div class="del-inv">1045038</div>
+              
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(260)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;8–9am&#39;)">+</span></div></div><div class="rs-break">10-minute paid rest break</div><div class="rs-row"><div class="rs-time-cell">9–10am</div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
+              
+              <div class="del-top"><span class="badge badge-paid">Paid</span></div>
+              <div class="del-name">ANNETTE WISER</div>
+              <div class="del-suburb">RUNCORN</div>
+              <div class="del-inv">1045902</div>
+              
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(294)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;9–10am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell" style="min-width:200px;min-height:108px"><div class="del-card acc full-width ">
               <div class="del-duration">2hr</div>
+              <div class="del-top"><span class="badge badge-acc">Account</span></div>
+              <div class="del-name">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</div>
+              <div class="del-suburb">YARRABILBA</div>
+              <div class="del-inv">1045007</div>
+              <div class="del-note">po: address</div>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(198)">Edit</button>
+            </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
+              
+              <div class="del-top"><span class="badge badge-paid">Paid</span></div>
+              <div class="del-name">WILLPLAY</div>
+              <div class="del-suburb">ROCHEALE</div>
+              <div class="del-inv">1045981</div>
+              
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(297)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;10–11am&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell" style="min-width:200px"><div class="del-card acc full-width ">
+              
+              <div class="del-top"><span class="badge badge-acc">Account</span></div>
+              <div class="del-name">NUWAY RM FOR DEBTORS ++</div>
+              <div class="del-suburb">UNDERWOOD</div>
+              <div class="del-inv">1045811</div>
+              <div class="del-note">TRUE BLUE YARD MAINTENANCE // PO: NONE</div>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(284)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell" style="min-width:200px"><div class="del-card acc full-width ">
+              
+              <div class="del-top"><span class="badge badge-acc">Account</span></div>
+              <div class="del-name">BRENTON BRADY (BE LANDSCAPE CONSTRUCTION PL ++)</div>
+              <div class="del-suburb">CALAMVALE</div>
+              <div class="del-inv">1045983</div>
+              <div class="del-note">ORDERED BY MARCUS // PO: VINCENT STREET CALAMVALE</div>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(301)">Edit</button>
+            </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card acc full-width ">
+              
               <div class="del-top"><span class="badge badge-acc">Account</span></div>
               <div class="del-name">AUSTRALIAN LAWN CONCEPTS ++</div>
               <div class="del-suburb">STRETTON</div>
-              <div class="del-inv">1045666</div>
-              <div class="del-note">PSL // CALL SCOTT WHEN LEAVING YARD 0411 700 881</div>
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(277)">Edit</button>
-            </div></div></div><div class="rs-break">10-minute paid rest break</div><div class="rs-row"><div class="rs-time-cell">9–10am</div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
+              <div class="del-inv">1045999</div>
+              <div class="del-note">PERSON ORDERING: LACHY // EXTRA FOR STRETTON JOB</div>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(298)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
               
               <div class="del-top"><span class="badge badge-paid">Paid</span></div>
-              <div class="del-name">JULIAN ROSE (LONG LIFE FENCING AND RETAINING)</div>
-              <div class="del-suburb">WISHART</div>
-              <div class="del-inv">1045814</div>
+              <div class="del-name">ABBAS KAMELI</div>
+              <div class="del-suburb">LOGAN CENTRAL</div>
+              <div class="del-inv">1046008</div>
               
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(275)">Edit</button>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(302)">Edit</button>
             </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
               
               <div class="del-top"><span class="badge badge-paid">Paid</span></div>
-              <div class="del-name">MATTHEW DUNCAN (DUNCAN PLUMBING SOLUTIONS)</div>
-              <div class="del-suburb">SPRINGWOOD</div>
-              <div class="del-inv">1045593</div>
-              
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(289)">Edit</button>
-            </div></div><div class="rs-cell blocked" style="min-width:200px"></div></div><div class="rs-row"><div class="rs-time-cell">10–11am</div><div class="rs-cell" style="min-width:200px"><div class="del-card tba full-width ">
-              
-              <div class="del-top"><span class="badge badge-tba">TBA</span></div>
-              <div class="del-name">SUPER SLEEPER PICKUP</div>
-              <div class="del-suburb"></div>
-              <div class="del-inv"></div>
-              
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(291)">Edit</button>
-            </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
+              <div class="del-name">YUAN ZHANG (BENFATTO TRADE SERVICE PTY LTD)</div>
+              <div class="del-suburb">LOGANLEA</div>
+              <div class="del-inv">1045984</div>
+              <div class="del-note">please call when loading up - DELIVER AS LATE AS POSSIBLE PLEASE</div>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(299)">Edit</button>
+            </div></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
               
               <div class="del-top"><span class="badge badge-paid">Paid</span></div>
-              <div class="del-name">CHRIS ISTED</div>
-              <div class="del-suburb">BETHANIA</div>
-              <div class="del-inv">1045839</div>
-              
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(290)">Edit</button>
-            </div></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
-              
-              <div class="del-top"><span class="badge badge-paid">Paid</span></div>
-              <div class="del-name">MEEDS BRENT (BAM PLUMBING)</div>
+              <div class="del-name">AMY WHELAN</div>
               <div class="del-suburb">TANAH MERAH</div>
-              <div class="del-inv">1045758</div>
+              <div class="del-inv">1045757</div>
               
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(279)">Edit</button>
-            </div></div></div><div class="rs-row"><div class="rs-time-cell">11am–12pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;11am–12pm&#39;)">+</span></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
-              
-              <div class="del-top"><span class="badge badge-paid">Paid</span></div>
-              <div class="del-name">ROBERT HANCOCK</div>
-              <div class="del-suburb">KINGSTON</div>
-              <div class="del-inv">1045838</div>
-              
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(293)">Edit</button>
-            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;11am–12pm&#39;)">+</span></div></div><div class="rs-break">30-minute unpaid lunch break</div><div class="rs-row"><div class="rs-time-cell">12–1pm</div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(295)">Edit</button>
+            </div></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
               
               <div class="del-top"><span class="badge badge-paid">Paid</span></div>
-              <div class="del-name">AMELIA YANG</div>
-              <div class="del-suburb">SPRINGWOOD</div>
-              <div class="del-inv">1045942</div>
-              
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(292)">Edit</button>
-            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;12–1pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;12–1pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;1–2pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;1–2pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;)">+</span></div></div></div>
+              <div class="del-name">ARIE WOLTHUIS</div>
+              <div class="del-suburb">ROCHEDALE SOUTH</div>
+              <div class="del-inv">1045978</div>
+              <div class="del-note">place where the yellow recycling bin is placed</div>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(300)">Edit</button>
+            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;)">+</span></div></div></div>
       </div>
 
       <!-- --- 2d. Delivery Journal view --- -->
       <div class="view" id="view-journal">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">13</div></div>
+          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">15</div></div>
           <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$0</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">0</div></div>
-          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">13</div></div>
+          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">15</div></div>
         </div>
         <div class="table-wrap">
           <table><thead><tr>
@@ -636,13 +660,13 @@ tr:hover td{background:var(--bg)}
             <th>Loading</th><th>Out</th><th>Left</th><th>In</th>
             <th>Status</th><th></th>
           </tr></thead>
-          <tbody id="journal-body"><tr onclick="toggleJournalExpand(192)" style="cursor:pointer">
-    <td class="mono">192</td>
-    <td class="mono">2974</td>
-    <td style="font-weight:600">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</td>
-    <td>PARK RIDGE</td>
-    <td class="mono">1045003</td>
-    <td><span class="badge badge-acc">Account</span></td>
+          <tbody id="journal-body"><tr onclick="toggleJournalExpand(196)" style="cursor:pointer">
+    <td class="mono">196</td>
+    <td class="mono">30895</td>
+    <td style="font-weight:600">HARLEY WHINCOP (WHINCOP CONSTRUCTIONS)</td>
+    <td>WATERFORD</td>
+    <td class="mono">1045903</td>
+    <td><span class="badge badge-paid">Paid</span></td>
     <td class="mono">—</td>
     <td>EVAN</td>
     <td>Russell</td>
@@ -656,11 +680,128 @@ tr:hover td{background:var(--bg)}
     <td class="mono">—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
     <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-192" style="display:none;background:var(--surface2)">
+    </tr><tr id="jx-196" style="display:none;background:var(--surface2)">
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>LOT 77 FARIHA WAY, PARK RIDGE, QLD, 4151</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x FINE BEDDING SAND (TOP DRESS)<br>1.0 x PARK RIDGE DELIVERY</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>12 BOW STREET, WATERFORD, QLD</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x PAVER BEDDING SAND<br>1.0 x WATERFORD DELIVERY<br>6.0 x GP CEMENT 20KG</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0403 922 022</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(259)" style="cursor:pointer">
+    <td class="mono">259</td>
+    <td class="mono">30832</td>
+    <td style="font-weight:600">MARK STRONG</td>
+    <td>KURABY</td>
+    <td class="mono">1044461</td>
+    <td><span class="badge badge-paid">Paid</span></td>
+    <td class="mono">—</td>
+    <td>CHLO</td>
+    <td>John P</td>
+    <td>3.5 ton</td>
+    <td class="mono">XB04SH</td>
+    <td class="mono">7–8am</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-259" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>30 GREEN HAVEN CRST, KURABY, QLD, 4112</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x KURABY DELIVERY<br>2.0 x RIVERBANK PEBBLE 20MM<br>1.0 x AMEX/DINERS 3% SURCHARGE</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>3 car drive way please drop in single car drive way which is on the left hand side // please call customer before dropping</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0427 515 180</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(296)" style="cursor:pointer">
+    <td class="mono">296</td>
+    <td class="mono">30899</td>
+    <td style="font-weight:600">JACKSON LUSCOMBE (LEGACY CIVIL)</td>
+    <td>WOODRIDGE</td>
+    <td class="mono">1045994</td>
+    <td><span class="badge badge-paid">Paid</span></td>
+    <td class="mono">—</td>
+    <td>HOATH</td>
+    <td>—</td>
+    <td>FUSO</td>
+    <td class="mono">—</td>
+    <td class="mono">7–8am</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-296" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>23 MACQUARIE STREET, WOODRIDGE, QLD, 4114</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x WOODRIDGE DELVERY<br>6.0 x DRAINAGE GRAVEL 5MM</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0427 941 770</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(197)" style="cursor:pointer">
+    <td class="mono">197</td>
+    <td class="mono">2974</td>
+    <td style="font-weight:600">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</td>
+    <td>YARRABILBA</td>
+    <td class="mono">1045006</td>
+    <td><span class="badge badge-acc">Account</span></td>
+    <td class="mono">—</td>
+    <td>EVAN</td>
+    <td>Russell</td>
+    <td>3.5 ton</td>
+    <td class="mono">XB11LY</td>
+    <td class="mono">8–9am</td>
+    <td class="mono">2hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-197" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>LOT 122 EDGE DRIVE, YARRABILBA, QLD, 4151</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x YARRABILBA DELIVERY<br>1.0 x FINE BEDDING SAND (TOP DRESS)</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>po: address</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
@@ -675,96 +816,18 @@ tr:hover td{background:var(--bg)}
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
       </div>
       
-    </td></tr><tr onclick="toggleJournalExpand(252)" style="cursor:pointer">
-    <td class="mono">252</td>
-    <td class="mono">6024</td>
-    <td style="font-weight:600">BOYD LOCKETT</td>
-    <td>DAISY HILL</td>
-    <td class="mono">1045520</td>
+    </td></tr><tr onclick="toggleJournalExpand(260)" style="cursor:pointer">
+    <td class="mono">260</td>
+    <td class="mono">8173</td>
+    <td style="font-weight:600">SHAHIDA KHAN</td>
+    <td>MEADOWBROOK</td>
+    <td class="mono">1045038</td>
     <td><span class="badge badge-paid">Paid</span></td>
     <td class="mono">—</td>
-    <td>EVAN</td>
+    <td>PAGE</td>
     <td>John P</td>
     <td>3.5 ton</td>
     <td class="mono">XB04SH</td>
-    <td class="mono">7–8am</td>
-    <td class="mono">2hr</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
-    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-252" style="display:none;background:var(--surface2)">
-    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>7 DENTON COURT, DAISY HILL, QLD, 4127</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>5.0 x CYPRESS MULCH<br>1.0 x DAISY HILL DELIVERY</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0416 044 803</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
-      </div>
-      
-    </td></tr><tr onclick="toggleJournalExpand(288)" style="cursor:pointer">
-    <td class="mono">288</td>
-    <td class="mono">30366</td>
-    <td style="font-weight:600">CHENGXIN HOME</td>
-    <td>HOLMVIEW</td>
-    <td class="mono">1045850</td>
-    <td><span class="badge badge-paid">Paid</span></td>
-    <td class="mono">—</td>
-    <td>HOATH</td>
-    <td>—</td>
-    <td>13 ton</td>
-    <td class="mono">XB93UV</td>
-    <td class="mono">7–8am</td>
-    <td class="mono">1hr</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
-    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-288" style="display:none;background:var(--surface2)">
-    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>45 KANIMBLA STREET, HOLMVIEW, QLD</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x HOLMVIEW DELIVERY<br>8.0 x UNDERTURF MIX</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0451 047 889</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
-      </div>
-      
-    </td></tr><tr onclick="toggleJournalExpand(194)" style="cursor:pointer">
-    <td class="mono">194</td>
-    <td class="mono">2974</td>
-    <td style="font-weight:600">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</td>
-    <td>PARK RIDGE</td>
-    <td class="mono">1045005</td>
-    <td><span class="badge badge-acc">Account</span></td>
-    <td class="mono">—</td>
-    <td>EVAN</td>
-    <td>Russell</td>
-    <td>3.5 ton</td>
-    <td class="mono">XB11LY</td>
     <td class="mono">8–9am</td>
     <td class="mono">1hr</td>
     <td class="mono">—</td>
@@ -773,11 +836,89 @@ tr:hover td{background:var(--bg)}
     <td class="mono">—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
     <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-194" style="display:none;background:var(--surface2)">
+    </tr><tr id="jx-260" style="display:none;background:var(--surface2)">
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>LOT 28 ZAFFAR, PARK RIDGE, QLD, 4151</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x PARK RIDGE DELIVERY<br>1.0 x FINE BEDDING SAND (TOP DRESS)</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>31 LAKES ENTRANCE, MEADOWBROOK, QLD, 4131</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x MEADOWBROOK DELIVERY<br>1.0 x OVERTURF PREMIUM ORGANIC</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0425 614 013</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(294)" style="cursor:pointer">
+    <td class="mono">294</td>
+    <td class="mono">30894</td>
+    <td style="font-weight:600">ANNETTE WISER</td>
+    <td>RUNCORN</td>
+    <td class="mono">1045902</td>
+    <td><span class="badge badge-paid">Paid</span></td>
+    <td class="mono">—</td>
+    <td>KATE</td>
+    <td>John P</td>
+    <td>3.5 ton</td>
+    <td class="mono">XB04SH</td>
+    <td class="mono">9–10am</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-294" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>54 SIRETT STREET, RUNCORN, QLD</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x ROAD BASE (2.4) 1/2 M3<br>1.0 x SPLIT DELIVERY FEE<br>1.0 x PAVER BEDDING SAND 1/4 M3<br>1.0 x UNDER 1 METRE DELIVERY SURCHARGE<br>1.0 x RUNCORN DELIVERY</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0400 738 431</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(198)" style="cursor:pointer">
+    <td class="mono">198</td>
+    <td class="mono">2974</td>
+    <td style="font-weight:600">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</td>
+    <td>YARRABILBA</td>
+    <td class="mono">1045007</td>
+    <td><span class="badge badge-acc">Account</span></td>
+    <td class="mono">—</td>
+    <td>EVAN</td>
+    <td>Russell</td>
+    <td>3.5 ton</td>
+    <td class="mono">XB11LY</td>
+    <td class="mono">10–11am</td>
+    <td class="mono">2hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-198" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>LOT 118 OBERON CRES, YARRABILBA, QLD, 4151</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x FINE BEDDING SAND (TOP DRESS)<br>1.0 x YARRABILBA DELIVERY</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>po: address</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
@@ -792,19 +933,19 @@ tr:hover td{background:var(--bg)}
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
       </div>
       
-    </td></tr><tr onclick="toggleJournalExpand(267)" style="cursor:pointer">
-    <td class="mono">267</td>
-    <td class="mono">30875</td>
-    <td style="font-weight:600">Matthew Duncan</td>
-    <td>springwood</td>
-    <td class="mono"></td>
+    </td></tr><tr onclick="toggleJournalExpand(297)" style="cursor:pointer">
+    <td class="mono">297</td>
+    <td class="mono">28890</td>
+    <td style="font-weight:600">WILLPLAY</td>
+    <td>ROCHEALE</td>
+    <td class="mono">1045981</td>
     <td><span class="badge badge-paid">Paid</span></td>
     <td class="mono">—</td>
-    <td>Zo</td>
+    <td>GRAMMATICO</td>
     <td>John P</td>
     <td>3.5 ton</td>
     <td class="mono">XB04SH</td>
-    <td class="mono">8–9am</td>
+    <td class="mono">10–11am</td>
     <td class="mono">1hr</td>
     <td class="mono">—</td>
     <td class="mono">—</td>
@@ -812,11 +953,11 @@ tr:hover td{background:var(--bg)}
     <td class="mono">—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
     <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-267" style="display:none;background:var(--surface2)">
+    </tr><tr id="jx-297" style="display:none;background:var(--surface2)">
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>5 Rholanda Crescent</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.5 x drainage gravel 20mm recycled</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>660 ROCHEDALE ROAD, ROCHEALE, QLD</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>2.0 x ROAD BASE (2.4)<br>1.0 x ROCHEDALE DELIVERY</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
@@ -827,253 +968,19 @@ tr:hover td{background:var(--bg)}
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0449 204 759</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>Yes</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0434 510 344</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
       </div>
       
-    </td></tr><tr onclick="toggleJournalExpand(277)" style="cursor:pointer">
-    <td class="mono">277</td>
-    <td class="mono">2349</td>
-    <td style="font-weight:600">AUSTRALIAN LAWN CONCEPTS ++</td>
-    <td>STRETTON</td>
-    <td class="mono">1045666</td>
+    </td></tr><tr onclick="toggleJournalExpand(284)" style="cursor:pointer">
+    <td class="mono">284</td>
+    <td class="mono">3715</td>
+    <td style="font-weight:600">NUWAY RM FOR DEBTORS ++</td>
+    <td>UNDERWOOD</td>
+    <td class="mono">1045811</td>
     <td><span class="badge badge-acc">Account</span></td>
     <td class="mono">—</td>
     <td>EVAN</td>
-    <td>—</td>
-    <td>13 ton</td>
-    <td class="mono">XB93UV</td>
-    <td class="mono">8–9am</td>
-    <td class="mono">2hr</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
-    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-277" style="display:none;background:var(--surface2)">
-    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>3 REAGAN PLACE, DEAN- 0417 908 628, STRETTON, QLD, 4275</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>8.0 x UNDERTURF MIX</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>PSL // CALL SCOTT WHEN LEAVING YARD 0411 700 881</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>5541 7000</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>Yes</div>
-      </div>
-      
-    </td></tr><tr onclick="toggleJournalExpand(275)" style="cursor:pointer">
-    <td class="mono">275</td>
-    <td class="mono">1799</td>
-    <td style="font-weight:600">JULIAN ROSE (LONG LIFE FENCING AND RETAINING)</td>
-    <td>WISHART</td>
-    <td class="mono">1045814</td>
-    <td><span class="badge badge-paid">Paid</span></td>
-    <td class="mono">—</td>
-    <td>HOATH</td>
-    <td>Russell</td>
-    <td>3.5 ton</td>
-    <td class="mono">XB11LY</td>
-    <td class="mono">9–10am</td>
-    <td class="mono">1hr</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
-    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-275" style="display:none;background:var(--surface2)">
-    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>5 SAINT CLAIR CRESCENT, WISHART, QLD</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x WISHART DELIVERY<br>1.0 x DECO SCREENED 1/2 M3<br>5.0 x BUILDERS CEMENT 20KG<br>1.0 x UNDER 1 METRE DELIVERY SURCHARGE</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0408 450 798</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>Yes</div>
-      </div>
-      
-    </td></tr><tr onclick="toggleJournalExpand(289)" style="cursor:pointer">
-    <td class="mono">289</td>
-    <td class="mono">30875</td>
-    <td style="font-weight:600">MATTHEW DUNCAN (DUNCAN PLUMBING SOLUTIONS)</td>
-    <td>SPRINGWOOD</td>
-    <td class="mono">1045593</td>
-    <td><span class="badge badge-paid">Paid</span></td>
-    <td class="mono">—</td>
-    <td>ZO</td>
-    <td>John P</td>
-    <td>3.5 ton</td>
-    <td class="mono">XB04SH</td>
-    <td class="mono">9–10am</td>
-    <td class="mono">1hr</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
-    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-289" style="display:none;background:var(--surface2)">
-    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>5 RHOLANDA CRESCENT, SPRINGWOOD, QLD, 4160</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x SPRINGWOOD DELIVERY<br>1.5 x DRAINAGE GRAVEL 20MM RECYCLED</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0449 204 759</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
-      </div>
-      
-    </td></tr><tr onclick="toggleJournalExpand(291)" style="cursor:pointer">
-    <td class="mono">291</td>
-    <td class="mono">—</td>
-    <td style="font-weight:600">SUPER SLEEPER PICKUP</td>
-    <td></td>
-    <td class="mono"></td>
-    <td><span class="badge badge-tba">TBA</span></td>
-    <td class="mono">—</td>
-    <td>—</td>
-    <td>Russell</td>
-    <td>3.5 ton</td>
-    <td class="mono">XB11LY</td>
-    <td class="mono">10–11am</td>
-    <td class="mono">1hr</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
-    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-291" style="display:none;background:var(--surface2)">
-    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
-      </div>
-      
-    </td></tr><tr onclick="toggleJournalExpand(290)" style="cursor:pointer">
-    <td class="mono">290</td>
-    <td class="mono">30885</td>
-    <td style="font-weight:600">CHRIS ISTED</td>
-    <td>BETHANIA</td>
-    <td class="mono">1045839</td>
-    <td><span class="badge badge-paid">Paid</span></td>
-    <td class="mono">—</td>
-    <td>HOATH</td>
-    <td>John P</td>
-    <td>3.5 ton</td>
-    <td class="mono">XB04SH</td>
-    <td class="mono">10–11am</td>
-    <td class="mono">1hr</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
-    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-290" style="display:none;background:var(--surface2)">
-    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>4 BORAX COURT, BETHANIA, QLD, 4205</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>2.0 x CYPRESS CHIP GRADE A<br>1.0 x BETHANIA DELIVERY<br>32.0 x CLASSIC WALL CANYON<br>1.0 x DELIVERY FEE VARIABLE</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0410 472 131</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
-      </div>
-      
-    </td></tr><tr onclick="toggleJournalExpand(279)" style="cursor:pointer">
-    <td class="mono">279</td>
-    <td class="mono">28221</td>
-    <td style="font-weight:600">MEEDS BRENT (BAM PLUMBING)</td>
-    <td>TANAH MERAH</td>
-    <td class="mono">1045758</td>
-    <td><span class="badge badge-paid">Paid</span></td>
-    <td class="mono">—</td>
-    <td>EVAN</td>
-    <td>—</td>
-    <td>13 ton</td>
-    <td class="mono">XB93UV</td>
-    <td class="mono">10–11am</td>
-    <td class="mono">1hr</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
-    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-279" style="display:none;background:var(--surface2)">
-    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>71 SEWELL RD, TANAH MERAH, QLD, 4123</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>3.0 x DRAINAGE GRAVEL 5MM<br>1.0 x TANAH MERAH DELIVERY</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0487 887 110</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
-      </div>
-      
-    </td></tr><tr onclick="toggleJournalExpand(293)" style="cursor:pointer">
-    <td class="mono">293</td>
-    <td class="mono">1158</td>
-    <td style="font-weight:600">ROBERT HANCOCK</td>
-    <td>KINGSTON</td>
-    <td class="mono">1045838</td>
-    <td><span class="badge badge-paid">Paid</span></td>
-    <td class="mono">—</td>
-    <td>DEIANEIRA</td>
     <td>John P</td>
     <td>3.5 ton</td>
     <td class="mono">XB04SH</td>
@@ -1085,12 +992,12 @@ tr:hover td{background:var(--bg)}
     <td class="mono">—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
     <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-293" style="display:none;background:var(--surface2)">
+    </tr><tr id="jx-284" style="display:none;background:var(--surface2)">
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>23 COLLIN COURT, KINGSTON, QLD, 4114</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>8.0 x DRAINAGE GRAVEL 40MM RECYCLED<br>1.0 x KINGSTON</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>1/74 KINGSTON RD, DULUX TRADE, UNDERWOOD, QLD, 4118</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>2.5 x TUMBLED SANDSTONE 50-100MM<br>1.0 x UNDERWOOD DELIVERY</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>TRUE BLUE YARD MAINTENANCE // PO: NONE</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
@@ -1100,19 +1007,19 @@ tr:hover td{background:var(--bg)}
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0434 079 360</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>3800 5433</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
       </div>
       
-    </td></tr><tr onclick="toggleJournalExpand(292)" style="cursor:pointer">
-    <td class="mono">292</td>
-    <td class="mono">30897</td>
-    <td style="font-weight:600">AMELIA YANG</td>
-    <td>SPRINGWOOD</td>
-    <td class="mono">1045942</td>
-    <td><span class="badge badge-paid">Paid</span></td>
+    </td></tr><tr onclick="toggleJournalExpand(301)" style="cursor:pointer">
+    <td class="mono">301</td>
+    <td class="mono">9492</td>
+    <td style="font-weight:600">BRENTON BRADY (BE LANDSCAPE CONSTRUCTION PL ++)</td>
+    <td>CALAMVALE</td>
+    <td class="mono">1045983</td>
+    <td><span class="badge badge-acc">Account</span></td>
     <td class="mono">—</td>
-    <td>HOATH</td>
+    <td>EVAN</td>
     <td>Russell</td>
     <td>3.5 ton</td>
     <td class="mono">XB11LY</td>
@@ -1124,11 +1031,89 @@ tr:hover td{background:var(--bg)}
     <td class="mono">—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
     <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-292" style="display:none;background:var(--surface2)">
+    </tr><tr id="jx-301" style="display:none;background:var(--surface2)">
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>137 SPRINGWOOD ROAD, SPRINGWOOD, QLD, 4127</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x SPRINGWOOD DELIVERY<br>1.0 x PINE BARK NUGGETS 25MM</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>50 VINCENT STREET, CORNER GRANGE STREET, CALAMVALE, QLD, 4205</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>2.5 x TWILIGHT CRUSH 20-30MM<br>1.0 x CALAMVALE</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>ORDERED BY MARCUS // PO: VINCENT STREET CALAMVALE</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0473 012 537 BRENTON</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(298)" style="cursor:pointer">
+    <td class="mono">298</td>
+    <td class="mono">2349</td>
+    <td style="font-weight:600">AUSTRALIAN LAWN CONCEPTS ++</td>
+    <td>STRETTON</td>
+    <td class="mono">1045999</td>
+    <td><span class="badge badge-acc">Account</span></td>
+    <td class="mono">—</td>
+    <td>HOATH</td>
+    <td>John P</td>
+    <td>3.5 ton</td>
+    <td class="mono">XB04SH</td>
+    <td class="mono">12–1pm</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-298" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>3 REAGAN PLACE, STRETTON, QLD, 4275</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x STRETTON DELIVERY<br>0.5 x UNDERTURF MIX</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>PERSON ORDERING: LACHY // EXTRA FOR STRETTON JOB</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>5541 7000</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(302)" style="cursor:pointer">
+    <td class="mono">302</td>
+    <td class="mono">22122</td>
+    <td style="font-weight:600">ABBAS KAMELI</td>
+    <td>LOGAN CENTRAL</td>
+    <td class="mono">1046008</td>
+    <td><span class="badge badge-paid">Paid</span></td>
+    <td class="mono">—</td>
+    <td>EVAN</td>
+    <td>John P</td>
+    <td>3.5 ton</td>
+    <td class="mono">XB04SH</td>
+    <td class="mono">1–2pm</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-302" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>18A EWING RD, LOGAN CENTRAL</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>1.0 x FINE BEDDING SAND (TOP DRESS)<br>30.0 x ONEMIX POST HOLE MIX 20KG<br>1.0 x LOGAN CENTRAL DELVERY</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
@@ -1139,7 +1124,124 @@ tr:hover td{background:var(--bg)}
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0401 583 207</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0413 767 354</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(299)" style="cursor:pointer">
+    <td class="mono">299</td>
+    <td class="mono">2778</td>
+    <td style="font-weight:600">YUAN ZHANG (BENFATTO TRADE SERVICE PTY LTD)</td>
+    <td>LOGANLEA</td>
+    <td class="mono">1045984</td>
+    <td><span class="badge badge-paid">Paid</span></td>
+    <td class="mono">—</td>
+    <td>KATE</td>
+    <td>—</td>
+    <td>FUSO</td>
+    <td class="mono">—</td>
+    <td class="mono">1–2pm</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-299" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>2 KRAATZ AVE, LOGANLEA, QLD, 4131</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>4.0 x DRAINAGE GRAVEL 20MM BLUE METAL<br>10.0 x ONEMIX MORTAR 20KG<br>1.0 x LOGANLEA DELIVERY</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>please call when loading up - DELIVER AS LATE AS POSSIBLE PLEASE</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0401 536 588</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(295)" style="cursor:pointer">
+    <td class="mono">295</td>
+    <td class="mono">30881</td>
+    <td style="font-weight:600">AMY WHELAN</td>
+    <td>TANAH MERAH</td>
+    <td class="mono">1045757</td>
+    <td><span class="badge badge-paid">Paid</span></td>
+    <td class="mono">—</td>
+    <td>BELLAMY</td>
+    <td>—</td>
+    <td>FUSO</td>
+    <td class="mono">—</td>
+    <td class="mono">2–3pm</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-295" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>113 POHON DRIVE, TANAH MERAH, QLD</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>3.0 x DRAINAGE GRAVEL 10MM BLUE METAL<br>1.0 x TANAH MERAH DELIVERY<br>28.0 x ONEMIX CONCRETE 20KG</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0434 442 056</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
+      </div>
+      
+    </td></tr><tr onclick="toggleJournalExpand(300)" style="cursor:pointer">
+    <td class="mono">300</td>
+    <td class="mono">2883</td>
+    <td style="font-weight:600">ARIE WOLTHUIS</td>
+    <td>ROCHEDALE SOUTH</td>
+    <td class="mono">1045978</td>
+    <td><span class="badge badge-paid">Paid</span></td>
+    <td class="mono">—</td>
+    <td>KATE</td>
+    <td>John P</td>
+    <td>3.5 ton</td>
+    <td class="mono">XB04SH</td>
+    <td class="mono">3–4pm</td>
+    <td class="mono">1hr</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td class="mono">—</td>
+    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
+    </tr><tr id="jx-300" style="display:none;background:var(--surface2)">
+    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>6 ARTEMIS COURT, ROCHEDALE SOUTH, QLD, 4123</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>2.0 x UNDERTURF MIX<br>1.0 x ROCHEDALE SOUTH DELIVERY</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>place where the yellow recycling bin is placed</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0468 889 199</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
       </div>
       
@@ -1153,106 +1255,120 @@ tr:hover td{background:var(--bg)}
           <div class="driver-queue">
             <div class="driver-queue-hdr">
               <div class="dq-name" id="dv-driver-name">All runs</div>
-              <div class="dq-sub" id="dv-driver-sub">Today · 13 deliveries</div>
+              <div class="dq-sub" id="dv-driver-sub">Today · 15 deliveries</div>
               <div id="dv-store-info" style="margin-top:6px;font-size:11px"><a href="https://www.google.com/maps/search/?api=1&amp;query=488%20Loganlea%20Rd%2C%20Slacks%20Creek%2C%20QLD%2C%204127" target="_blank" style="color:var(--blue);text-decoration:none">📍 488 Loganlea Rd, Slacks Creek, QLD, 4127</a><br><a href="tel:+61738088442" style="color:var(--blue);text-decoration:none">📞 0738088442</a></div>
             </div>
             <div class="driver-filter">
-              <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Fuso</option></select>
+              <select id="driver-filter-select" onchange="filterDriverView()"><option value="all">All runs</option><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3</option></select>
             </div>
-            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(192,this)">
-      <div class="dq-row"><span class="dq-num ">1</span><span class="dq-customer">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</span></div>
-      <div class="dq-detail">PARK RIDGE · 7–8am</div>
-      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+            <div id="driver-list"><div class="dq-item" onclick="selectDelivery(196,this)">
+      <div class="dq-row"><span class="dq-num ">1</span><span class="dq-customer">HARLEY WHINCOP (WHINCOP CONSTRUCTIONS)</span></div>
+      <div class="dq-detail">WATERFORD · 7–8am</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(252,this)">
-      <div class="dq-row"><span class="dq-num ">2</span><span class="dq-customer">BOYD LOCKETT</span></div>
-      <div class="dq-detail">DAISY HILL · 7–8am</div>
+      </div></div><div class="dq-item" onclick="selectDelivery(259,this)">
+      <div class="dq-row"><span class="dq-num ">2</span><span class="dq-customer">MARK STRONG</span></div>
+      <div class="dq-detail">KURABY · 7–8am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-issue">Behind</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(288,this)">
-      <div class="dq-row"><span class="dq-num ">3</span><span class="dq-customer">CHENGXIN HOME</span></div>
-      <div class="dq-detail">HOLMVIEW · 7–8am</div>
+      </div></div><div class="dq-item" onclick="selectDelivery(296,this)">
+      <div class="dq-row"><span class="dq-num ">3</span><span class="dq-customer">JACKSON LUSCOMBE (LEGACY CIVIL)</span></div>
+      <div class="dq-detail">WOODRIDGE · 7–8am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-issue">Behind</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(194,this)">
+      </div></div><div class="dq-item" onclick="selectDelivery(197,this)">
       <div class="dq-row"><span class="dq-num ">4</span><span class="dq-customer">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</span></div>
-      <div class="dq-detail">PARK RIDGE · 8–9am</div>
+      <div class="dq-detail">YARRABILBA · 8–9am</div>
       <div class="dq-badges"><span class="badge badge-acc">Account</span>
         
         <span class="badge badge-yes">On time</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(267,this)">
-      <div class="dq-row"><span class="dq-num ">5</span><span class="dq-customer">Matthew Duncan</span></div>
-      <div class="dq-detail">springwood · 8–9am</div>
+      </div></div><div class="dq-item" onclick="selectDelivery(260,this)">
+      <div class="dq-row"><span class="dq-num ">5</span><span class="dq-customer">SHAHIDA KHAN</span></div>
+      <div class="dq-detail">MEADOWBROOK · 8–9am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-yes">On time</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(277,this)">
-      <div class="dq-row"><span class="dq-num ">6</span><span class="dq-customer">AUSTRALIAN LAWN CONCEPTS ++</span></div>
-      <div class="dq-detail">STRETTON · 8–9am</div>
+      </div></div><div class="dq-item" onclick="selectDelivery(294,this)">
+      <div class="dq-row"><span class="dq-num ">6</span><span class="dq-customer">ANNETTE WISER</span></div>
+      <div class="dq-detail">RUNCORN · 9–10am</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(198,this)">
+      <div class="dq-row"><span class="dq-num ">7</span><span class="dq-customer">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</span></div>
+      <div class="dq-detail">YARRABILBA · 10–11am</div>
       <div class="dq-badges"><span class="badge badge-acc">Account</span>
         
         <span class="badge badge-yes">On time</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(275,this)">
-      <div class="dq-row"><span class="dq-num ">7</span><span class="dq-customer">JULIAN ROSE (LONG LIFE FENCING AND RETAINING)</span></div>
-      <div class="dq-detail">WISHART · 9–10am</div>
+      </div></div><div class="dq-item" onclick="selectDelivery(297,this)">
+      <div class="dq-row"><span class="dq-num ">8</span><span class="dq-customer">WILLPLAY</span></div>
+      <div class="dq-detail">ROCHEALE · 10–11am</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-yes">On time</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(289,this)">
-      <div class="dq-row"><span class="dq-num ">8</span><span class="dq-customer">MATTHEW DUNCAN (DUNCAN PLUMBING SOLUTIONS)</span></div>
-      <div class="dq-detail">SPRINGWOOD · 9–10am</div>
+      </div></div><div class="dq-item" onclick="selectDelivery(284,this)">
+      <div class="dq-row"><span class="dq-num ">9</span><span class="dq-customer">NUWAY RM FOR DEBTORS ++</span></div>
+      <div class="dq-detail">UNDERWOOD · 11am–12pm</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(301,this)">
+      <div class="dq-row"><span class="dq-num ">10</span><span class="dq-customer">BRENTON BRADY (BE LANDSCAPE CONSTRUCTION PL ++)</span></div>
+      <div class="dq-detail">CALAMVALE · 12–1pm</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(298,this)">
+      <div class="dq-row"><span class="dq-num ">11</span><span class="dq-customer">AUSTRALIAN LAWN CONCEPTS ++</span></div>
+      <div class="dq-detail">STRETTON · 12–1pm</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        
+        <span class="badge badge-yes">On time</span>
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(302,this)">
+      <div class="dq-row"><span class="dq-num ">12</span><span class="dq-customer">ABBAS KAMELI</span></div>
+      <div class="dq-detail">LOGAN CENTRAL · 1–2pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-yes">On time</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(291,this)">
-      <div class="dq-row"><span class="dq-num ">9</span><span class="dq-customer">SUPER SLEEPER PICKUP</span></div>
-      <div class="dq-detail"> · 10–11am</div>
-      <div class="dq-badges"><span class="badge badge-tba">TBA</span>
-        
-        <span class="badge badge-yes">On time</span>
-        
-      </div></div><div class="dq-item" onclick="selectDelivery(290,this)">
-      <div class="dq-row"><span class="dq-num ">10</span><span class="dq-customer">CHRIS ISTED</span></div>
-      <div class="dq-detail">BETHANIA · 10–11am</div>
+      </div></div><div class="dq-item" onclick="selectDelivery(299,this)">
+      <div class="dq-row"><span class="dq-num ">13</span><span class="dq-customer">YUAN ZHANG (BENFATTO TRADE SERVICE PTY LTD)</span></div>
+      <div class="dq-detail">LOGANLEA · 1–2pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-yes">On time</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(279,this)">
-      <div class="dq-row"><span class="dq-num ">11</span><span class="dq-customer">MEEDS BRENT (BAM PLUMBING)</span></div>
-      <div class="dq-detail">TANAH MERAH · 10–11am</div>
+      </div></div><div class="dq-item" onclick="selectDelivery(295,this)">
+      <div class="dq-row"><span class="dq-num ">14</span><span class="dq-customer">AMY WHELAN</span></div>
+      <div class="dq-detail">TANAH MERAH · 2–3pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-yes">On time</span>
         
-      </div></div><div class="dq-item" onclick="selectDelivery(293,this)">
-      <div class="dq-row"><span class="dq-num ">12</span><span class="dq-customer">ROBERT HANCOCK</span></div>
-      <div class="dq-detail">KINGSTON · 11am–12pm</div>
-      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
-        
-        <span class="badge badge-yes">On time</span>
-        
-      </div></div><div class="dq-item" onclick="selectDelivery(292,this)">
-      <div class="dq-row"><span class="dq-num ">13</span><span class="dq-customer">AMELIA YANG</span></div>
-      <div class="dq-detail">SPRINGWOOD · 12–1pm</div>
+      </div></div><div class="dq-item" onclick="selectDelivery(300,this)">
+      <div class="dq-row"><span class="dq-num ">15</span><span class="dq-customer">ARIE WOLTHUIS</span></div>
+      <div class="dq-detail">ROCHEDALE SOUTH · 3–4pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
         
         <span class="badge badge-yes">On time</span>
         
       </div></div></div>
           </div>
-          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle ">1</div><div class="prog-label ">Loading</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">2</div><div class="prog-label ">Left yard</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div><div style="background:var(--blue);color:#fff;border-radius:var(--radius);padding:12px 16px;margin-bottom:12px;font-size:16px;font-weight:700;text-align:center;letter-spacing:-0.3px">Delivery for Thursday 7 May 2026</div><div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">1045003</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-acc">Account</span></div></div><div class="detail-item"><div class="dl">Sales</div><div class="dv">EVAN</div></div></div><div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">—</div></div></div></div><div class="detail-section"><div class="detail-section-title">Delivery details</div><a href="https://www.google.com/maps/search/?api=1&amp;query=LOT%2077%20FARIHA%20WAY%2C%20PARK%20RIDGE%2C%20QLD%2C%204151" target="_blank" style="font-size:14px;font-weight:500;margin-bottom:4px;display:block;color:var(--blue);text-decoration:none" onclick="event.stopPropagation()">LOT 77 FARIHA WAY, PARK RIDGE, QLD, 4151 <span style="font-size:11px;opacity:0.7">📍 Maps</span></a><div style="font-size:13px;color:var(--text-2);margin-bottom:4px">PARK RIDGE</div><div style="font-size:12px;color:var(--text-3)">po: address</div><a href="tel:+61400303920" style="font-size:14px;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:8px 12px;background:var(--blue-bg);border-radius:var(--radius-sm);font-weight:500" onclick="event.stopPropagation()">📞 0400 303 920</a><div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Products</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x FINE BEDDING SAND (TOP DRESS)</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x PARK RIDGE DELIVERY</div></div></div><div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(192,&#39;loading&#39;)">Start loading</button></div></div>
+          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle ">1</div><div class="prog-label ">Loading</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">2</div><div class="prog-label ">Left yard</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">3</div><div class="prog-label ">At site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">4</div><div class="prog-label ">Left site</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">5</div><div class="prog-label ">Returning</div></div><div class="prog-connector"></div><div class="prog-step"><div class="prog-circle ">6</div><div class="prog-label ">Complete</div></div></div><div style="background:var(--blue);color:#fff;border-radius:var(--radius);padding:12px 16px;margin-bottom:12px;font-size:16px;font-weight:700;text-align:center;letter-spacing:-0.3px">Delivery for Friday 8 May 2026</div><div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">HARLEY WHINCOP (WHINCOP CONSTRUCTIONS)</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">1045903</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-paid">Paid</span></div></div><div class="detail-item"><div class="dl">Sales</div><div class="dv">EVAN</div></div></div><div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">—</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">—</div></div></div></div><div class="detail-section"><div class="detail-section-title">Delivery details</div><a href="https://www.google.com/maps/search/?api=1&amp;query=12%20BOW%20STREET%2C%20WATERFORD%2C%20QLD" target="_blank" style="font-size:14px;font-weight:500;margin-bottom:4px;display:block;color:var(--blue);text-decoration:none" onclick="event.stopPropagation()">12 BOW STREET, WATERFORD, QLD <span style="font-size:11px;opacity:0.7">📍 Maps</span></a><div style="font-size:13px;color:var(--text-2);margin-bottom:4px">WATERFORD</div><div style="font-size:12px;color:var(--text-3)">No special instructions</div><a href="tel:+61403922022" style="font-size:14px;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:8px 12px;background:var(--blue-bg);border-radius:var(--radius-sm);font-weight:500" onclick="event.stopPropagation()">📞 0403 922 022</a><div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Products</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x PAVER BEDDING SAND</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x WATERFORD DELIVERY</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">6.0 x GP CEMENT 20KG</div></div></div><div class="action-row"><button class="btn btn-amber" onclick="advanceStatus(196,&#39;loading&#39;)">Start loading</button></div></div>
         </div>
       </div>
 
@@ -1279,10 +1395,10 @@ tr:hover td{background:var(--bg)}
             <div class="sms-bubble">Hi! Your Nuway delivery is on its way. Track live: nuway.com.au/track 📦</div>
           </div>
           <div class="tracker-card" id="tracker-card">
-    <div class="tracker-title">Delivery — </div><div class="tracker-sub"></div>
+    <div class="tracker-title">Delivery — 1046008</div><div class="tracker-sub">LOGAN CENTRAL</div>
     <div class="tracker-status-msg">Order confirmed.</div>
     <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Loading</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
-    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">10–11am</div><div class="eta-sub">Russell · Logan</div></div></div>
+    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">1–2pm</div><div class="eta-sub">John P · Logan</div></div></div>
         </div>
       </div>
 
@@ -1482,7 +1598,7 @@ tr:hover td{background:var(--bg)}
       </div>
       <div class="field"><label>Delivery address</label><input type="text" id="book-address" placeholder="e.g. 25 Buenavista St, Logan Village QLD 4127"></div>
       <div class="field-row-3">
-        <div class="field"><label>Run</label><select id="book-truck"><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Fuso</option></select></div>
+        <div class="field"><label>Run</label><select id="book-truck"><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3</option></select></div>
         <div class="field"><label>Time slot</label>
           <select id="book-slot"><option>7–8am</option><option>8–9am</option><option>9–10am</option><option>10–11am</option><option>11am–12pm</option><option>12–1pm</option><option>1–2pm</option><option>2–3pm</option><option>3–4pm</option><option>4–5pm</option></select>
         </div>
@@ -1532,7 +1648,7 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
     </div>
     <div class="modal-body">
       <div class="field-row-3">
-        <div class="field"><label>Run</label><select id="unavail-truck"><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Fuso</option></select></div>
+        <div class="field"><label>Run</label><select id="unavail-truck"><option value="0">Mini 1 — Russell</option><option value="1">Mini 2 — John P</option><option value="2">Run 3</option></select></div>
         <div class="field"><label>Start slot</label>
           <select id="unavail-slot"><option>7–8am</option><option>8–9am</option><option>9–10am</option><option>10–11am</option><option>11am–12pm</option><option>12–1pm</option><option>1–2pm</option><option>2–3pm</option><option>3–4pm</option><option>4–5pm</option></select>
         </div>
@@ -1650,6 +1766,7 @@ async function db(p,o={}){
 let DELIVERIES=[];
 let currentStore='Logan';
 let currentDate='';
+function getLocalToday(){const t=new Date();return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;}
 let editingId=null;        // Currently editing delivery ID (null = new booking)
 let selectedDeliveryId=null;// Selected delivery in driver view
 let driverFilterTruck='all';// Driver view filter
@@ -1711,9 +1828,12 @@ async function loadStoreSettings(){
    ============================================================ */
 function init(){
   restoreSidebar();
-  // Always default to today's date on load/refresh
+  // Always default to today's date on load/refresh (LOCAL time, not UTC)
   const today=new Date();
-  currentDate=today.toISOString().split('T')[0];
+  const yyyy=today.getFullYear();
+  const mm=String(today.getMonth()+1).padStart(2,'0');
+  const dd=String(today.getDate()).padStart(2,'0');
+  currentDate=`${yyyy}-${mm}-${dd}`;
   document.getElementById('date-select').value=currentDate;
   document.getElementById('footer-date').textContent=today.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
   updateDateDisplay();
@@ -1823,7 +1943,7 @@ function startAutoRefresh(){
   stopAutoRefresh();
   autoRefreshTimer=setInterval(()=>{
     // Check if date has rolled over to a new day
-    const realToday=new Date().toISOString().split('T')[0];
+    const realToday=getLocalToday();
     if(currentDate!==realToday&&currentDate<realToday){
       // Date has changed — auto-switch to today
       currentDate=realToday;
@@ -1906,7 +2026,7 @@ function getRunStatus(truckIdx){
   const done=mine.filter(d=>d.driver_status==='delivered').length;
   if(done===mine.length)return{status:'idle',text:'All complete'};
   // Only show behind for today — future dates are never behind
-  const today=new Date().toISOString().split('T')[0];
+  const today=getLocalToday();
   if(currentDate>today)return{status:'on-time',text:'Scheduled'};
   const active=mine.find(d=>['loading','enroute','left_site','returning'].includes(d.driver_status));
   if(!active){
@@ -2366,7 +2486,7 @@ function filterDriverView(){
       schedLabel='<span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span>';
     }else if(d.driver_status==='pending'){
       const slotHour=getSlotHour(d.slot);const nowHour=new Date().getHours();
-      const today=new Date().toISOString().split('T')[0];
+      const today=getLocalToday();
       if(currentDate<=today&&nowHour>slotHour)schedLabel='<span class="badge badge-issue">Behind</span>';
       else schedLabel='<span class="badge badge-yes">On time</span>';
     }
@@ -2989,14 +3109,15 @@ function updateDateDisplay(){
   const month=d.toLocaleDateString('en-AU',{month:'long'});
   const el=document.getElementById('date-display');
   const btn=document.getElementById('date-today-btn');
-  const today=new Date().toISOString().split('T')[0];
+  const today=getLocalToday();
   const isToday=currentDate===today;
   el.textContent=weekday+' '+day+suffix+' '+month;
   el.style.color=isToday?'var(--green)':'var(--red)';
   btn.style.display=isToday?'none':'inline-flex';
 }
 function goToToday(){
-  const today=new Date().toISOString().split('T')[0];
+  const t=new Date();
+  const today=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
   currentDate=today;
   document.getElementById('date-select').value=today;
   document.getElementById('footer-date').textContent=new Date().toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'});

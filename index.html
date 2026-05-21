@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v7_16.html -->
+<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v7_17.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Nuway — Delivery Management System 21.05.26 2.38pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 21.05.26 2.59pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -437,7 +437,7 @@ tr:hover td{background:var(--bg)}
     <div class="sidebar-logo">
       <div class="wordmark">Nuway <span class="db-dot online" id="db-dot" title="Connected"></span></div>
       <div class="tagline">Delivery Management</div>
-      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v8.3 · 21 May 2026</div>
+      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v8.5 · 21 May 2026</div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
@@ -492,7 +492,7 @@ tr:hover td{background:var(--bg)}
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
-        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">2:38:15 pm</span>
+        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">2:59:37 pm</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
         <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
@@ -888,7 +888,7 @@ tr:hover td{background:var(--bg)}
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0425 124 835</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
       </div>
-      <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px"><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Elapsed time</strong><br><span style="font-size:14px;font-weight:600;color:var(--blue)">6hr 11min</span> <span style="color:var(--text-3);font-size:10px">(in progress)</span></div>
+      <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px"><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Elapsed time</strong><br><span style="font-size:14px;font-weight:600;color:var(--blue)">6hr 32min</span> <span style="color:var(--text-3);font-size:10px">(in progress)</span></div>
       
     </td></tr><tr onclick="toggleJournalExpand(567)" style="cursor:pointer;">
     <td class="mono">567</td>
@@ -1208,7 +1208,7 @@ tr:hover td{background:var(--bg)}
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>0422 415 807</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
       </div>
-      <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px"><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Elapsed time</strong><br><span style="font-size:14px;font-weight:600;color:var(--blue)">3hr 14min</span> <span style="color:var(--text-3);font-size:10px">(in progress)</span></div>
+      <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px"><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Elapsed time</strong><br><span style="font-size:14px;font-weight:600;color:var(--blue)">3hr 35min</span> <span style="color:var(--text-3);font-size:10px">(in progress)</span></div>
       
     </td></tr><tr onclick="toggleJournalExpand(580)" style="cursor:pointer;">
     <td class="mono">580</td>
@@ -3011,10 +3011,17 @@ function renderDriverDetail(d){
     <div id="photo-upload-status-${d.id}" style="display:none;text-align:center;padding:8px;font-size:12px;color:var(--blue);font-weight:500"></div>
   </div>`:'';
   // Truck confirm (loading only) — fields are mandatory before proceeding
-  const truckHtml=st==='loading'?`<div class="section-divider"><span>Confirm truck & driver</span></div><div class="detail-section" id="truck-confirm-section"><div class="detail-section-title">Required before departing</div><div class="detail-grid"><div><div class="dl">Truck type <span style="color:var(--red)">*</span></div><input type="text" id="tc-type-${d.id}" style="width:100%;padding:8px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:13px" value="${d.truck_type||run.type||''}" onchange="saveDriverField(${d.id},'truck_type',this.value);renderDriverDetail(DELIVERIES.find(x=>x.id===${d.id}))" placeholder="e.g. M1, FUSO (required)"></div><div><div class="dl">Rego <span style="color:var(--red)">*</span></div><input type="text" id="tc-rego-${d.id}" style="width:100%;padding:8px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:13px" value="${d.truck_rego||run.rego||''}" onchange="saveDriverField(${d.id},'truck_rego',this.value);renderDriverDetail(DELIVERIES.find(x=>x.id===${d.id}))" placeholder="e.g. 1AB-234 (required)"></div><div><div class="dl">Driver <span style="color:var(--red)">*</span></div><input type="text" id="tc-driver-${d.id}" style="width:100%;padding:8px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:13px" value="${d.driver_name||run.driver||''}" onchange="saveDriverField(${d.id},'driver_name',this.value);renderDriverDetail(DELIVERIES.find(x=>x.id===${d.id}))" placeholder="e.g. Jake T. (required)"></div></div></div>`:'';
+  const truckHtml=st==='loading'?`<div class="section-divider"><span>Confirm truck & driver</span></div><div class="detail-section" id="truck-confirm-section"><div class="detail-section-title">Required before departing</div><div class="detail-grid"><div><div class="dl">Truck type <span style="color:var(--red)">*</span></div><input type="text" id="tc-type-${d.id}" style="width:100%;padding:8px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:13px" value="${d.truck_type||run.type||''}" oninput="DELIVERIES.find(x=>x.id===${d.id}).truck_type=this.value.trim()" onchange="saveDriverField(${d.id},'truck_type',this.value)" placeholder="e.g. M1, FUSO (required)"></div><div><div class="dl">Rego <span style="color:var(--red)">*</span></div><input type="text" id="tc-rego-${d.id}" style="width:100%;padding:8px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:13px" value="${d.truck_rego||run.rego||''}" oninput="DELIVERIES.find(x=>x.id===${d.id}).truck_rego=this.value.trim()" onchange="saveDriverField(${d.id},'truck_rego',this.value)" placeholder="e.g. 1AB-234 (required)"></div><div><div class="dl">Driver <span style="color:var(--red)">*</span></div><input type="text" id="tc-driver-${d.id}" style="width:100%;padding:8px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:13px" value="${d.driver_name||run.driver||''}" oninput="DELIVERIES.find(x=>x.id===${d.id}).driver_name=this.value.trim()" onchange="saveDriverField(${d.id},'driver_name',this.value)" placeholder="e.g. Jake T. (required)"></div></div></div>`:'';
   // Check if truck fields are filled (for loading stage gate)
-  const truckType=d.truck_type||run.type||'';const truckRego=d.truck_rego||run.rego||'';const driverName=d.driver_name||run.driver||'';
-  const truckConfirmed=!!(truckType.trim()&&truckRego.trim()&&driverName.trim());
+  // Read truck confirm values from DOM if inputs exist (they have live typed values)
+  // Fall back to d.field then run defaults
+  const tcTypeEl=document.getElementById('tc-type-'+d.id);
+  const tcRegoEl=document.getElementById('tc-rego-'+d.id);
+  const tcDriverEl=document.getElementById('tc-driver-'+d.id);
+  const truckType=tcTypeEl?tcTypeEl.value.trim():(d.truck_type||run.type||'');
+  const truckRego=tcRegoEl?tcRegoEl.value.trim():(d.truck_rego||run.rego||'');
+  const driverName=tcDriverEl?tcDriverEl.value.trim():(d.driver_name||run.driver||'');
+  const truckConfirmed=!!(truckType&&truckRego&&driverName);
   const pay=d.payment_type||'';
   // ═══ ASSEMBLE BY STAGE ═══
   // Delivery date banner

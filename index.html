@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v7_21.html -->
+<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v7_23.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Nuway — Delivery Management System 25.05.26 6.26pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 25.05.26 7.04pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -129,6 +129,7 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .badge-tba{background:var(--purple-bg);color:var(--purple-text)}
 .badge-banking{background:#e0e7f0;color:#3a5070}
 .badge-checkpay{background:#fce4ec;color:#880e4f}
+.badge-pickup{background:#e8eaf6;color:#283593}
 .badge-done{background:var(--surface2);color:var(--text-3)}
 .badge-out{background:var(--blue-bg);color:var(--blue-text)}
 .badge-loading{background:var(--amber-bg);color:var(--amber-text)}
@@ -166,8 +167,8 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .rs-cell.empty .ea-btn{font-size:16px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0;transition:all 0.15s}
 .rs-cell.empty:hover .ea-btn{opacity:1}
 /* Blocked cells: occupied by a multi-hour delivery from above */
-.rs-cell.blocked{background:repeating-linear-gradient(135deg,transparent,transparent 4px,rgba(0,0,0,0.02) 4px,rgba(0,0,0,0.02) 8px);cursor:default;min-height:0}
-.rs-cell.blocked:hover{background:repeating-linear-gradient(135deg,transparent,transparent 4px,rgba(0,0,0,0.02) 4px,rgba(0,0,0,0.02) 8px)}
+.rs-cell.blocked{background:repeating-linear-gradient(135deg,#f0efe9,#f0efe9 6px,#ddd9d0 6px,#ddd9d0 12px);cursor:default;min-height:0;opacity:0.7}
+.rs-cell.blocked:hover{background:repeating-linear-gradient(135deg,#f0efe9,#f0efe9 6px,#ddd9d0 6px,#ddd9d0 12px)}
 /* Unavailable cells: truck not available (service, etc) - shown in red */
 .rs-cell.unavailable{background:var(--red-bg);cursor:default;min-height:0;align-items:center;justify-content:center}
 .rs-cell.unavailable:hover{background:var(--red-bg)}
@@ -328,6 +329,20 @@ tr:hover td{background:var(--bg)}
 .modal-footer{padding:13px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
 
 /* --- 1u. Toast notifications --- */
+/* Custom dialog — replaces browser confirm/alert for better tablet UX */
+.nw-dialog-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:5000;backdrop-filter:blur(2px)}
+.nw-dialog{background:var(--surface);border-radius:16px;width:90%;max-width:440px;padding:28px 24px 20px;box-shadow:0 20px 60px rgba(0,0,0,0.25);text-align:center}
+.nw-dialog-msg{font-size:18px;font-weight:500;color:var(--text);line-height:1.5;margin-bottom:24px;padding:0 8px}
+.nw-dialog-btns{display:flex;gap:12px;justify-content:center}
+.nw-dialog-btns button{flex:1;padding:16px 20px;font-size:16px;font-weight:600;border-radius:var(--radius);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;min-height:54px}
+.nw-dialog-btns .nw-ok{background:var(--blue);color:#fff}
+.nw-dialog-btns .nw-ok:active{background:var(--blue-text)}
+.nw-dialog-btns .nw-cancel{background:var(--surface2);color:var(--text-2);border:1px solid var(--border-md)}
+.nw-dialog-btns .nw-cancel:active{background:var(--border)}
+.nw-dialog-btns .nw-yes{background:var(--green);color:#fff}
+.nw-dialog-btns .nw-yes:active{background:var(--green-text)}
+.nw-dialog-btns .nw-no{background:var(--surface2);color:var(--text-2);border:1px solid var(--border-md)}
+
 .toast{position:fixed;bottom:24px;right:24px;background:#1a1916;color:#fff;font-size:13px;font-weight:500;padding:11px 18px;border-radius:var(--radius-sm);z-index:2000;transform:translateY(80px);opacity:0;transition:all 0.3s ease;pointer-events:none}
 .toast.show{transform:none;opacity:1}.toast.error{background:var(--red)}
 
@@ -493,7 +508,7 @@ tr:hover td{background:var(--bg)}
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
-        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">6:26:11 pm</span>
+        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">7:03:50 pm</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
         <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
@@ -504,15 +519,15 @@ tr:hover td{background:var(--bg)}
       <!-- --- 2c. Run Sheet view --- -->
       <div class="view active" id="view-runsheet">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">14</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
+          <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">13</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">12</div><div class="metric-sub">driver returned</div></div>
-          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">1</div><div class="metric-sub">loading or en route</div></div>
+          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
           <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">14</div><div class="metric-sub">today's capacity</div></div>
         </div>
         <div class="run-sheet-wrap" id="rs-wrap"><div class="rs-header-row"><div class="rs-time-hdr">Time</div><div class="rs-truck-hdr">
       <div class="th-label">Mini 1 — 3.5 ton · RUSSELL</div>
       <div class="th-detail">XB04SH · 0492 877 733</div>
-      <span class="th-status behind">Behind — test check</span>
+      <span class="th-status behind">Behind schedule</span>
       <span class="th-edit" onclick="openTruckEdit(0)">✎</span>
     </div><div class="rs-truck-hdr">
       <div class="th-label">Mini 2 — 3.5 ton · John</div>
@@ -613,8 +628,8 @@ tr:hover td{background:var(--bg)}
               <div class="del-note">PO: 28826-che358054 // Delivery via Logan store for customer.
 Attn: Jack Chen</div>
               <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(687)">Edit</button>
-            </div></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell" style="min-width:200px"><div class="del-card banking full-width color-next">
-              
+            </div></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell" style="min-width:200px;min-height:108px"><div class="del-card banking full-width color-next">
+              <div class="del-duration">2hr</div>
               <div class="del-top"><span class="badge badge-banking">Banking</span><span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span></div>
               <div class="del-name">BANKING</div>
               <div class="del-suburb"></div>
@@ -630,21 +645,13 @@ Attn: Jack Chen</div>
               <div class="del-note">6311-LOW80609 // DELIVERY 1-2PM
 Attn: DAVID LOWTH</div>
               <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(688)">Edit</button>
-            </div></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell" style="min-width:200px"><div class="del-card checkpay full-width color-active">
-              
-              <div class="del-top"><span class="badge badge-checkpay">Check Payment</span><span class="badge badge-out">En route</span></div>
-              <div class="del-name">test check</div>
-              <div class="del-suburb"></div>
-              <div class="del-inv"></div>
-              <div class="del-note">[SEE OFFICE BEFORE LOADING]</div>
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(708)">Edit</button>
-            </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;)">+</span></div></div></div>
+            </div></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;)">+</span></div></div></div>
       </div>
 
       <!-- --- 2d. Delivery Journal view --- -->
       <div class="view" id="view-journal">
         <div class="metrics">
-          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">14</div></div>
+          <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">13</div></div>
           <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$0</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">12</div></div>
           <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">1</div></div>
@@ -1138,46 +1145,6 @@ Attn: DAVID LOWTH</div>
       </div>
       
       
-    </td></tr><tr onclick="toggleJournalExpand(708)" style="cursor:pointer;background:rgba(29,95,168,0.06)">
-    <td class="mono">708</td>
-    <td class="mono">—</td>
-    <td style="font-weight:600">test check</td>
-    <td></td>
-    <td class="mono"></td>
-    <td><span class="badge badge-checkpay">Check Payment</span></td>
-    <td class="mono">—</td>
-    <td>—</td>
-    <td>RUSSELL</td>
-    <td>3.5 ton</td>
-    <td class="mono">XB04SH</td>
-    <td class="mono">3–4pm</td>
-    <td class="mono">1hr</td>
-    <td class="mono">6:19 pm</td>
-    <td class="mono">6:21 pm</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-out"><span class="status-dot"></span>En route</span></td>
-    <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-708" style="display:none;background:var(--surface2)">
-    <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>[SEE OFFICE BEFORE LOADING]</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>[SEE OFFICE BEFORE LOADING]</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Pre-departure notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Completion notes</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Comments</strong><br>—</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
-      </div>
-      <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px"><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Elapsed time</strong><br><span style="font-size:14px;font-weight:600;color:var(--blue)">7min</span> <span style="color:var(--text-3);font-size:10px">(in progress)</span></div>
-      
     </td></tr><tr onclick="toggleJournalExpand(697)" style="cursor:pointer;">
     <td class="mono">697</td>
     <td class="mono">—</td>
@@ -1191,7 +1158,7 @@ Attn: DAVID LOWTH</div>
     <td>3.5 ton</td>
     <td class="mono">XB04SH</td>
     <td class="mono">1–2pm</td>
-    <td class="mono">1hr</td>
+    <td class="mono">2hr</td>
     <td class="mono">—</td>
     <td class="mono">—</td>
     <td class="mono">—</td>
@@ -1228,7 +1195,7 @@ Attn: DAVID LOWTH</div>
           <div class="driver-queue">
             <div class="driver-queue-hdr">
               <div class="dq-name" id="dv-driver-name">All runs</div>
-              <div class="dq-sub" id="dv-driver-sub">Today · 14 deliveries</div>
+              <div class="dq-sub" id="dv-driver-sub">Today · 13 deliveries</div>
               <div id="dv-store-info" style="margin-top:6px;font-size:11px"><a href="https://www.google.com/maps/search/?api=1&amp;query=488%20Loganlea%20Rd%2C%20Slacks%20Creek%2C%20QLD%2C%204127" target="_blank" style="color:var(--blue);text-decoration:none">📍 488 Loganlea Rd, Slacks Creek, QLD, 4127</a><br><a href="tel:+61738088442" style="color:var(--blue);text-decoration:none">📞 0738088442</a></div>
             </div>
             <div class="driver-filter">
@@ -1338,17 +1305,9 @@ Attn: DAVID LOWTH</div>
         
         
         
-      </div></div><div class="dq-item" onclick="selectDelivery(708,this)">
-      <div class="dq-row"><span class="dq-num enroute">14</span><span class="dq-customer">test check</span></div>
-      <div class="dq-detail"> · 3–4pm</div>
-      <div class="dq-badges"><span class="badge badge-checkpay">Check Payment</span>
-        <span class="badge badge-out">En route</span>
-        <span class="badge badge-out">Current</span>
-        
-        
       </div></div></div>
           </div>
-          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Loading</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Left yard</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">At site</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Left site</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Returning</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle active">→</div><div class="prog-label active">Complete</div></div></div><div style="text-align:right;margin-bottom:8px"><button class="btn btn-sm btn-danger" onclick="if(confirm(&#39;Go back to previous stage?&#39;))advanceStatus(512,&#39;returning&#39;)">↩ Undo</button></div><div style="background:var(--blue);color:#fff;border-radius:var(--radius);padding:12px 16px;margin-bottom:12px;font-size:16px;font-weight:700;text-align:center;letter-spacing:-0.3px">Delivery for Monday 25 May 2026</div><div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">1046898</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-acc">Account</span></div></div><div class="detail-item"><div class="dl">Sales</div><div class="dv">CHLO</div></div></div><div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">6:37 am</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">6:37 am</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">7:16 am</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">7:31 am</div></div></div></div><div class="detail-section"><div class="detail-section-title">Delivery details</div><a href="https://www.google.com/maps/search/?api=1&amp;query=LOT%20128%20SALMOR%20STREET%2C%20PARKRIDGE%2C%20QLD%2C%204151" target="_blank" style="font-size:14px;font-weight:500;margin-bottom:4px;display:block;color:var(--blue);text-decoration:none" onclick="event.stopPropagation()">LOT 128 SALMOR STREET, PARKRIDGE, QLD, 4151 <span style="font-size:11px;opacity:0.7">📍 Maps</span></a><div style="font-size:13px;color:var(--text-2);margin-bottom:4px">PARKRIDGE</div><div style="font-size:13px;color:var(--text);font-weight:500;padding:8px 10px;background:var(--amber-bg);border-radius:var(--radius-sm);border-left:3px solid var(--amber);margin:6px 0">MICHAEL - 0400 303 920</div><a href="tel:+61412341965" style="font-size:14px;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:8px 12px;background:var(--blue-bg);border-radius:var(--radius-sm);font-weight:500" onclick="event.stopPropagation()">📞 0412 341 965</a><div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Products</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x FINE BEDDING SAND (TOP DRESS)</div></div></div><div style="background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--green-text);font-weight:500;text-align:center;margin-top:8px">Delivery complete ✓</div></div>
+          <div id="driver-detail" class="driver-detail"><div class="prog-track"><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Loading</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Left yard</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">At site</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Left site</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle done">✓</div><div class="prog-label done">Returning</div></div><div class="prog-connector done"></div><div class="prog-step"><div class="prog-circle active">→</div><div class="prog-label active">Complete</div></div></div><div style="text-align:right;margin-bottom:8px"><button class="btn btn-sm btn-danger" onclick="nwConfirm(&#39;Go back to previous stage?&#39;,&#39;Yes, undo&#39;,&#39;Cancel&#39;).then(ok=&gt;{if(ok)advanceStatus(512,&#39;returning&#39;)})">↩ Undo</button></div><div style="background:var(--blue);color:#fff;border-radius:var(--radius);padding:12px 16px;margin-bottom:12px;font-size:16px;font-weight:700;text-align:center;letter-spacing:-0.3px">Delivery for Monday 25 May 2026</div><div class="detail-section"><div class="detail-section-title">Customer &amp; invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">1046898</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">7–8am</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv"><span class="badge badge-acc">Account</span></div></div><div class="detail-item"><div class="dl">Sales</div><div class="dv">CHLO</div></div></div><div class="detail-grid" style="margin-top:8px"><div class="detail-item"><div class="dl">Loading</div><div class="dv mono">6:37 am</div></div><div class="detail-item"><div class="dl">Left yard</div><div class="dv mono">6:37 am</div></div><div class="detail-item"><div class="dl">Left site</div><div class="dv mono">7:16 am</div></div><div class="detail-item"><div class="dl">Back at yard</div><div class="dv mono">7:31 am</div></div></div></div><div class="detail-section"><div class="detail-section-title">Delivery details</div><a href="https://www.google.com/maps/search/?api=1&amp;query=LOT%20128%20SALMOR%20STREET%2C%20PARKRIDGE%2C%20QLD%2C%204151" target="_blank" style="font-size:14px;font-weight:500;margin-bottom:4px;display:block;color:var(--blue);text-decoration:none" onclick="event.stopPropagation()">LOT 128 SALMOR STREET, PARKRIDGE, QLD, 4151 <span style="font-size:11px;opacity:0.7">📍 Maps</span></a><div style="font-size:13px;color:var(--text-2);margin-bottom:4px">PARKRIDGE</div><div style="font-size:13px;color:var(--text);font-weight:500;padding:8px 10px;background:var(--amber-bg);border-radius:var(--radius-sm);border-left:3px solid var(--amber);margin:6px 0">MICHAEL - 0400 303 920</div><a href="tel:+61412341965" style="font-size:14px;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:8px 12px;background:var(--blue-bg);border-radius:var(--radius-sm);font-weight:500" onclick="event.stopPropagation()">📞 0412 341 965</a><div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Products</div><div style="font-size:12px;color:var(--text-2);padding:1px 0">1.0 x FINE BEDDING SAND (TOP DRESS)</div></div></div><div style="background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--green-text);font-weight:500;text-align:center;margin-top:8px">Delivery complete ✓</div></div>
         </div>
       </div>
 
@@ -1376,9 +1335,9 @@ Attn: DAVID LOWTH</div>
           </div>
           <div class="tracker-card" id="tracker-card">
     <div class="tracker-title">Delivery — </div><div class="tracker-sub"></div>
-    <div class="tracker-status-msg">On the way!</div>
-    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Loading</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle active">→</div><div class="t-label active">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
-    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">3–4pm</div><div class="eta-sub">RUSSELL · Logan</div></div></div>
+    <div class="tracker-status-msg">Order confirmed.</div>
+    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Loading</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
+    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">1–2pm</div><div class="eta-sub">JOSH · Logan</div></div></div>
         </div>
       </div>
 
@@ -1605,7 +1564,7 @@ Attn: DAVID LOWTH</div>
       <div class="field-row">
         <div class="field"><label>Suburb</label><input type="text" id="book-suburb" placeholder="e.g. Loganholme"></div>
         <div class="field"><label>Payment type</label>
-          <select id="book-pay" onchange="onPaymentTypeChange()"><option value="">— Select —</option><option value="cod">COD</option><option value="acc">Account</option><option value="paid">Paid (EFTPOS/Cash)</option><option value="banking">Banking</option><option value="checkpay">Check Payment</option><option value="tba">TBA</option></select>
+          <select id="book-pay" onchange="onPaymentTypeChange()"><option value="">— Select —</option><option value="cod">COD</option><option value="acc">Account</option><option value="paid">Paid (EFTPOS/Cash)</option><option value="banking">Banking</option><option value="checkpay">Check Payment</option><option value="pickup">Pick Up</option><option value="tba">TBA</option></select>
         </div>
       </div>
       <div class="field"><label>Delivery address</label><input type="text" id="book-address" placeholder="e.g. 25 Buenavista St, Logan Village QLD 4127"></div>
@@ -1718,6 +1677,12 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
 </div>
 
 <div class="toast" id="toast"></div>
+<div class="nw-dialog-overlay" id="nw-dialog" style="display:none">
+  <div class="nw-dialog">
+    <div class="nw-dialog-msg" id="nw-dialog-msg"></div>
+    <div class="nw-dialog-btns" id="nw-dialog-btns"></div>
+  </div>
+</div>
 
 <!-- ============================================================
      SECTION 3-13: JAVASCRIPT
@@ -1740,8 +1705,8 @@ const SMS_ENABLED=true; // AU number active: +61 485 050 508
 const SLOTS=['7–8am','8–9am','9–10am','10–11am','11am–12pm','12–1pm','1–2pm','2–3pm','3–4pm','4–5pm'];
 const SLOT_IDX={};SLOTS.forEach((s,i)=>SLOT_IDX[s]=i);
 const BREAKS={'9–10am':'10-minute paid rest break','12–1pm':'30-minute unpaid lunch break'};
-const PAY_LABEL={cod:'COD',acc:'Account',paid:'Paid',tba:'TBA',banking:'Banking',checkpay:'Check Payment'};
-const PAY_CLASS={cod:'badge-cod',acc:'badge-acc',paid:'badge-paid',tba:'badge-tba',banking:'badge-banking',checkpay:'badge-checkpay'};
+const PAY_LABEL={cod:'COD',acc:'Account',paid:'Paid',tba:'TBA',banking:'Banking',checkpay:'Check Payment',pickup:'Pick Up'};
+const PAY_CLASS={cod:'badge-cod',acc:'badge-acc',paid:'badge-paid',tba:'badge-tba',banking:'badge-banking',checkpay:'badge-checkpay',pickup:'badge-pickup'};
 const ALL_STORES=['Logan','Chandler','Ashmore','Redlands','Westerns','Forestdale','Mango Hill','Pine Rivers','Burpengary','Ormeau','Buderim'];
 // Driver workflow states in order
 const STATUS_ORDER=['pending','loading','enroute','left_site','returning','delivered'];
@@ -2415,7 +2380,7 @@ async function saveBooking(){
     if(editingId){
       await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify(row)});showToast(bookDate!==currentDate?'Moved to '+bookDate:'Updated');
     }else{
-      const sendSms=confirm('Send SMS notification to customer?');
+      const sendSms=await nwConfirm('Send SMS notification to customer?','Yes, send SMS','No SMS');
       row.sms_sent=sendSms;
       await db('deliveries',{method:'POST',body:JSON.stringify(row)});
       if(sendSms&&row.customer_phone){
@@ -2428,7 +2393,14 @@ async function saveBooking(){
   }catch(e){console.error('Save failed:',e.message||e);showToast('Save failed: '+(e.message||'unknown error'),true);}
 }
 async function deleteDelivery(){
-  if(!editingId||!confirm('Remove this entry?'))return;
+  if(!editingId)return;
+  const d=DELIVERIES.find(x=>x.id===editingId);
+  // If delivery has any logged times, require manager PIN
+  if(d&&(d.time_loading||d.time_out||d.time_left_site||d.time_in)){
+    const pin=prompt('This delivery has logged times.\n\nEnter manager PIN to delete:');
+    if(pin!=='4207'){showToast('Incorrect PIN — deletion blocked',true);return;}
+  }
+  if(!await nwConfirm('Remove this entry? This cannot be undone.','Yes, remove','Cancel'))return;
   try{await db(`deliveries?id=eq.${editingId}`,{method:'DELETE'});closeModal('booking');editingId=null;await loadDeliveries();showToast('Removed');}catch(e){showToast('Delete failed',true);}
 }
 function clearBookingForm(){
@@ -2444,8 +2416,11 @@ function clearBookingForm(){
 }
 // Banking payment type handler
 function onPaymentTypeChange(){
-  if(document.getElementById('book-pay').value==='banking'){
+  const val=document.getElementById('book-pay').value;
+  if(val==='banking'){
     alert('Banking selected — record each banking bag number (one per line) in the Products section.');
+  }else if(val==='pickup'){
+    alert('Pick Up selected — add the PO number in Comments and record the pick up address in the Delivery Address field.');
   }
 }
 // Duration warning for >1hr
@@ -2750,7 +2725,7 @@ function renderDriverDetail(d){
   }).join('')}</div>`;
   // Undo button
   const prev={loading:'pending',enroute:'loading',left_site:'enroute',returning:'left_site',delivered:'returning'};
-  const undoHtml=prev[st]?`<div style="text-align:right;margin-bottom:8px"><button class="btn btn-sm btn-danger" onclick="if(confirm('Go back to previous stage?'))advanceStatus(${d.id},'${prev[st]}')">\u21A9 Undo</button></div>`:'';
+  const undoHtml=prev[st]?`<div style="text-align:right;margin-bottom:8px"><button class="btn btn-sm btn-danger" onclick="nwConfirm('Go back to previous stage?','Yes, undo','Cancel').then(ok=>{if(ok)advanceStatus(${d.id},'${prev[st]}')})">\u21A9 Undo</button></div>`:'';
   // Product HTML
   const prodHtml=products.length>0?products.map((p,pi)=>`<div class="product-line"><input type="checkbox" class="pcheck" ${prodChecked[d.id][pi]?'checked':''} onchange="toggleProd(${d.id},${pi},this.checked)" ${st!=='loading'?'disabled':''}><span class="pname">${p.name}</span><span class="pqty">${p.qty}</span></div>`).join(''):'<div style="font-size:12px;color:var(--text-3);padding:4px 0">No products listed</div>';
   // COD box — now shows after left_site (receipt given at store, not on site)
@@ -3094,7 +3069,7 @@ async function uploadPhotos(deliveryId,files){
 }
 
 async function removePhoto(deliveryId,photoIdx){
-  if(!confirm('Remove this photo?'))return;
+  nwConfirm('Remove this photo?','Yes, remove','Cancel').then(async ok=>{if(!ok)return;
   const d=DELIVERIES.find(x=>x.id===deliveryId);if(!d)return;
   const urls=d.photo_urls?JSON.parse(typeof d.photo_urls==='string'?d.photo_urls:'[]'):[];
   if(photoIdx<0||photoIdx>=urls.length)return;
@@ -3116,6 +3091,7 @@ async function removePhoto(deliveryId,photoIdx){
     renderDriverDetail(d);
     showToast('Photo removed');
   }catch(e){showToast('Failed to update',true);}
+  });
 }
 
 // Compress image for upload (max dimension, quality 0-1)
@@ -3147,7 +3123,7 @@ async function advanceStatus(id,ns){
 
   // Change 9: See office warning on Start loading
   if(ns==='loading'&&d&&(d.notes||'').includes('[SEE OFFICE')){
-    if(!confirm('⚠ This delivery requires you to SEE THE OFFICE before loading. Have you done this?'))return;
+    if(!await nwConfirm('⚠ This delivery requires you to SEE THE OFFICE before loading.\n\nHave you done this?','Yes, continue','Go back'))return;
   }
 
   // Capture truck confirm fields IMMEDIATELY before any async/render
@@ -3164,8 +3140,8 @@ async function advanceStatus(id,ns){
     if(capturedDriver)update.driver_name=capturedDriver;
     // Change 8: COD and Check Payment reminder on Leave for delivery
     if(d&&(d.payment_type==='cod'||d.payment_type==='checkpay')){
-      const msg=d.payment_type==='cod'?'Reminder: This is a COD delivery. Make sure you have change for collection.':'Reminder: This is a Check Payment delivery. Confirm this order has been paid before delivery.';
-      alert(msg);
+      const msg=d.payment_type==='cod'?'💰 This is a COD delivery.\n\nMake sure you have change for collection.':'✅ This is a Check Payment delivery.\n\nConfirm this order has been paid before delivery.';
+      await nwAlert(msg,'Got it');
     }
   }
 
@@ -3210,9 +3186,9 @@ async function advanceStatus(id,ns){
     if(!window._smsSent[id])window._smsSent[id]={};
     if(d&&d.customer_phone){
       if(ns==='loading'&&!window._smsSent[id].loading){
-        if(confirm('Send SMS to customer? "Your delivery is being loaded now"')){sendLoadingSMS(d);window._smsSent[id].loading=true;}
+        if(await nwConfirm('📱 Send SMS to customer?\n\n"Your delivery is being loaded now"','Yes, send','No thanks')){sendLoadingSMS(d);window._smsSent[id].loading=true;}
       }else if(ns==='enroute'&&!window._smsSent[id].enroute){
-        if(confirm('Send SMS to customer? "Your delivery is on its way"')){sendEnRouteSMS(d);window._smsSent[id].enroute=true;}
+        if(await nwConfirm('📱 Send SMS to customer?\n\n"Your delivery is on its way"','Yes, send','No thanks')){sendEnRouteSMS(d);window._smsSent[id].enroute=true;}
       }
     }
   }catch(e){
@@ -3413,6 +3389,29 @@ function goToToday(){
 function showModal(id){document.getElementById('modal-'+id).classList.add('show');}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('show');}
 function showToast(msg,err){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(err?' error':'');setTimeout(()=>t.className='toast',2800);}
+
+// Custom large dialog — replaces browser confirm() and alert() for tablet UX
+function nwConfirm(msg,yesLabel,noLabel){
+  return new Promise(resolve=>{
+    const overlay=document.getElementById('nw-dialog');
+    document.getElementById('nw-dialog-msg').textContent=msg;
+    const btns=document.getElementById('nw-dialog-btns');
+    btns.innerHTML=`<button class="nw-cancel nw-no">${noLabel||'Cancel'}</button><button class="nw-ok nw-yes">${yesLabel||'OK'}</button>`;
+    overlay.style.display='flex';
+    btns.querySelector('.nw-yes').onclick=()=>{overlay.style.display='none';resolve(true);};
+    btns.querySelector('.nw-no').onclick=()=>{overlay.style.display='none';resolve(false);};
+  });
+}
+function nwAlert(msg,btnLabel){
+  return new Promise(resolve=>{
+    const overlay=document.getElementById('nw-dialog');
+    document.getElementById('nw-dialog-msg').textContent=msg;
+    const btns=document.getElementById('nw-dialog-btns');
+    btns.innerHTML=`<button class="nw-ok">${btnLabel||'OK'}</button>`;
+    overlay.style.display='flex';
+    btns.querySelector('.nw-ok').onclick=()=>{overlay.style.display='none';resolve();};
+  });
+}
 function toggleSidebar(){
   const sb=document.getElementById('sidebar');
   sb.classList.toggle('collapsed');

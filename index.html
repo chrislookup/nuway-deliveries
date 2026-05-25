@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v7_18.html -->
+<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v7_19.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Nuway — Delivery Management System 25.05.2026_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 25.05.2026 6.15pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -493,10 +493,10 @@ tr:hover td{background:var(--bg)}
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
-        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">5:56:18 pm</span>
+        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">6:15:38 pm</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
-        <button class="btn btn-primary" id="top-action" onclick="handleTopAction()" style="">Export PDF</button>
+        <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
       </div>
     </div>
     <div class="content">
@@ -1179,8 +1179,8 @@ Attn: DAVID LOWTH</div>
         <div class="driver-layout">
           <div class="driver-queue">
             <div class="driver-queue-hdr">
-              <div class="dq-name" id="dv-driver-name">RUSSELL — 3.5 ton</div>
-              <div class="dq-sub" id="dv-driver-sub">Today · 5 deliveries</div>
+              <div class="dq-name" id="dv-driver-name">All runs</div>
+              <div class="dq-sub" id="dv-driver-sub">Today · 13 deliveries</div>
               <div id="dv-store-info" style="margin-top:6px;font-size:11px"><a href="https://www.google.com/maps/search/?api=1&amp;query=488%20Loganlea%20Rd%2C%20Slacks%20Creek%2C%20QLD%2C%204127" target="_blank" style="color:var(--blue);text-decoration:none">📍 488 Loganlea Rd, Slacks Creek, QLD, 4127</a><br><a href="tel:+61738088442" style="color:var(--blue);text-decoration:none">📞 0738088442</a></div>
             </div>
             <div class="driver-filter">
@@ -1194,8 +1194,32 @@ Attn: DAVID LOWTH</div>
         
         
         
+      </div></div><div class="dq-item" onclick="selectDelivery(684,this)">
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">BRENTON BRADY (BE LANDSCAPE CONSTRUCTION PL ++)</span></div>
+      <div class="dq-detail">PARK RIDGE · 7–8am</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        <span class="badge badge-done">Delivered</span>
+        
+        
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(571,this)">
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">NUWAY RM CHA DEBTOR ++</span></div>
+      <div class="dq-detail">KURABY · 7–8am</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        <span class="badge badge-done">Delivered</span>
+        
+        
+        
       </div></div><div class="dq-item" onclick="selectDelivery(514,this)">
       <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">MICHAEL O'DONOGHUE (CENTREPOINT PLUMBING ++)</span></div>
+      <div class="dq-detail">PARK RIDGE · 8–9am</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        <span class="badge badge-done">Delivered</span>
+        
+        
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(685,this)">
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">BRENTON BRADY (BE LANDSCAPE CONSTRUCTION PL ++)</span></div>
       <div class="dq-detail">PARK RIDGE · 8–9am</div>
       <div class="dq-badges"><span class="badge badge-acc">Account</span>
         <span class="badge badge-done">Delivered</span>
@@ -1210,6 +1234,14 @@ Attn: DAVID LOWTH</div>
         
         
         
+      </div></div><div class="dq-item" onclick="selectDelivery(594,this)">
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">TERRY LIANG</span></div>
+      <div class="dq-detail">BROWNS PLAINS · 9–10am</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
+        <span class="badge badge-done">Delivered</span>
+        
+        
+        
       </div></div><div class="dq-item" onclick="selectDelivery(689,this)">
       <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">MATT D'ARCY</span></div>
       <div class="dq-detail">TANAH MERAH · 10–11am</div>
@@ -1218,12 +1250,44 @@ Attn: DAVID LOWTH</div>
         
         
         
+      </div></div><div class="dq-item" onclick="selectDelivery(691,this)">
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">TERRY CHI</span></div>
+      <div class="dq-detail">SHAILER PARK · 11am–12pm</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
+        <span class="badge badge-done">Delivered</span>
+        
+        
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(621,this)">
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">LOGAN CITY SPECIAL SCHOOL</span></div>
+      <div class="dq-detail">LOGAN CENTRAL · 11am–12pm</div>
+      <div class="dq-badges"><span class="badge badge-paid">Paid</span>
+        <span class="badge badge-done">Delivered</span>
+        
+        
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(687,this)">
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">NUWAY RM FOR DEBTORS ++</span></div>
+      <div class="dq-detail">SLACKS CREEK · 12–1pm</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        <span class="badge badge-done">Delivered</span>
+        
+        
+        
       </div></div><div class="dq-item" onclick="selectDelivery(697,this)">
-      <div class="dq-row"><span class="dq-num ">5</span><span class="dq-customer">BANKING</span></div>
+      <div class="dq-row"><span class="dq-num ">12</span><span class="dq-customer">BANKING</span></div>
       <div class="dq-detail"> · 1–2pm</div>
       <div class="dq-badges"><span class="badge badge-banking">Banking</span>
         
         <span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span>
+        
+        
+      </div></div><div class="dq-item" onclick="selectDelivery(688,this)">
+      <div class="dq-row"><span class="dq-num done">✓</span><span class="dq-customer">NUWAY RM ORMEAU DEBTORS ++</span></div>
+      <div class="dq-detail">UNDERWOOD · 1–2pm</div>
+      <div class="dq-badges"><span class="badge badge-acc">Account</span>
+        <span class="badge badge-done">Delivered</span>
+        
         
         
       </div></div></div>
@@ -1536,7 +1600,7 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
       <div class="sms-note">On clicking Save, you will be given the option to send an SMS notification to the customer.</div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-danger" id="booking-delete-btn" onclick="deleteDelivery()" style="margin-right: auto; display: none;">Remove</button>
+      <button class="btn btn-danger" id="booking-delete-btn" onclick="deleteDelivery()" style="margin-right:auto;display:none">Remove</button>
       <button class="btn" onclick="printBookingForm()">🖨 Print</button>
       <button class="btn" onclick="closeModal(&#39;booking&#39;)">Cancel</button>
       <button class="btn btn-primary" onclick="saveBooking()">Save</button>
@@ -1597,7 +1661,7 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
   </div>
 </div>
 
-<div class="toast" id="toast">Removed</div>
+<div class="toast" id="toast"></div>
 
 <!-- ============================================================
      SECTION 3-13: JAVASCRIPT
@@ -2220,8 +2284,8 @@ function openEditDelivery(id){
   document.getElementById('book-custid').value=d.customer_id_rm||'';
   document.getElementById('book-salesperson').value=d.sales_person||'';
   document.getElementById('book-address').value=d.delivery_address||'';
+  document.getElementById('book-see-office').checked=(d.notes||'').includes('[SEE OFFICE');
   document.getElementById('book-date').value=d.date||currentDate;
-  document.getElementById('book-see-office').checked=d.see_office==='yes';
   // Load delivery instruction
   const instr=d.unavailable_reason||'';
   if(instr.startsWith('Not B4')){
@@ -2278,8 +2342,12 @@ async function saveBooking(){
     customer_id_rm:document.getElementById('book-custid').value.trim()||null,
     sales_person:document.getElementById('book-salesperson').value.trim()||null,
     delivery_address:document.getElementById('book-address').value.trim()||null,
-    see_office:document.getElementById('book-see-office').checked?'yes':null,
   };
+  // "See office" flag — prepend to notes so driver sees it and it persists in DB
+  if(document.getElementById('book-see-office').checked){
+    if(!row.notes)row.notes='[SEE OFFICE BEFORE LOADING]';
+    else if(!row.notes.includes('[SEE OFFICE'))row.notes='[SEE OFFICE BEFORE LOADING]\n'+row.notes;
+  }
   // If editing and date changed, confirm the move
   if(editingId&&bookDate!==currentDate){
     const d=DELIVERIES.find(x=>x.id===editingId);
@@ -2301,7 +2369,7 @@ async function saveBooking(){
       }
     }
     closeModal('booking');clearBookingForm();await ensureRunsLocked();await loadDeliveries();
-  }catch(e){showToast('Save failed',true);}
+  }catch(e){console.error('Save failed:',e.message||e);showToast('Save failed: '+(e.message||'unknown error'),true);}
 }
 async function deleteDelivery(){
   if(!editingId||!confirm('Remove this entry?'))return;
@@ -3022,7 +3090,7 @@ async function advanceStatus(id,ns){
   const d=DELIVERIES.find(x=>x.id===id);
 
   // Change 9: See office warning on Start loading
-  if(ns==='loading'&&d&&d.see_office==='yes'){
+  if(ns==='loading'&&d&&(d.notes||'').includes('[SEE OFFICE')){
     if(!confirm('⚠ This delivery requires you to SEE THE OFFICE before loading. Have you done this?'))return;
   }
 

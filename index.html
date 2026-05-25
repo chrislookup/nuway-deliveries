@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v7_24.html -->
+<!-- saved from url=(0049)file:///C:/Users/chris/Downloads/nuway_v7_25.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuway — Delivery Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Nuway — Delivery Management System 25.05.26 7.08pm_files/css2" rel="stylesheet">
+<link href="./Nuway — Delivery Management System 25.05.26 7.20pm_files/css2" rel="stylesheet">
 
 <!-- ============================================================
      NUWAY DELIVERY MANAGEMENT SYSTEM — v5
@@ -453,7 +453,7 @@ tr:hover td{background:var(--bg)}
     <div class="sidebar-logo">
       <div class="wordmark">Nuway <span class="db-dot online" id="db-dot" title="Connected"></span></div>
       <div class="tagline">Delivery Management</div>
-      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v8.7 · 25 May 2026</div>
+      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:&#39;DM Mono&#39;,monospace;margin-top:2px">v8.8 · 25 May 2026</div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
@@ -508,7 +508,7 @@ tr:hover td{background:var(--bg)}
       </div>
       <div class="topbar-right">
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
-        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">7:08:20 pm</span>
+        <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:&#39;DM Mono&#39;,monospace;white-space:nowrap">7:20:06 pm</span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
         <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
@@ -521,13 +521,13 @@ tr:hover td{background:var(--bg)}
         <div class="metrics">
           <div class="metric"><div class="metric-label">Total bookings</div><div class="metric-value" id="m-total">14</div><div class="metric-sub" id="m-trucks-sub">across 3 runs</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="m-done">12</div><div class="metric-sub">driver returned</div></div>
-          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">0</div><div class="metric-sub">loading or en route</div></div>
-          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">13</div><div class="metric-sub">today's capacity</div></div>
+          <div class="metric"><div class="metric-label">In progress</div><div class="metric-value mv-blue" id="m-prog">1</div><div class="metric-sub">loading or en route</div></div>
+          <div class="metric"><div class="metric-label">Slots remaining</div><div class="metric-value mv-amber" id="m-remain">14</div><div class="metric-sub">today's capacity</div></div>
         </div>
         <div class="run-sheet-wrap" id="rs-wrap"><div class="rs-header-row"><div class="rs-time-hdr">Time</div><div class="rs-truck-hdr">
       <div class="th-label">Mini 1 — 3.5 ton · RUSSELL</div>
       <div class="th-detail">XB04SH · 0492 877 733</div>
-      <span class="th-status behind">Behind schedule</span>
+      <span class="th-status behind">Behind — t7</span>
       <span class="th-edit" onclick="openTruckEdit(0)">✎</span>
     </div><div class="rs-truck-hdr">
       <div class="th-label">Mini 2 — 3.5 ton · John</div>
@@ -628,8 +628,8 @@ tr:hover td{background:var(--bg)}
               <div class="del-note">PO: 28826-che358054 // Delivery via Logan store for customer.
 Attn: Jack Chen</div>
               <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(687)">Edit</button>
-            </div></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell" style="min-width:200px;min-height:108px"><div class="del-card banking full-width color-next">
-              <div class="del-duration">2hr</div>
+            </div></div></div><div class="rs-row"><div class="rs-time-cell">1–2pm</div><div class="rs-cell" style="min-width:200px"><div class="del-card banking full-width color-next">
+              
               <div class="del-top"><span class="badge badge-banking">Banking</span><span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span></div>
               <div class="del-name">BANKING</div>
               <div class="del-suburb"></div>
@@ -645,14 +645,14 @@ Attn: Jack Chen</div>
               <div class="del-note">6311-LOW80609 // DELIVERY 1-2PM
 Attn: DAVID LOWTH</div>
               <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(688)">Edit</button>
-            </div></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell blocked" style="min-width:200px"></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width ">
+            </div></div></div><div class="rs-row"><div class="rs-time-cell">2–3pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;2–3pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;2–3pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">3–4pm</div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(0,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;3–4pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;3–4pm&#39;)">+</span></div></div><div class="rs-row"><div class="rs-time-cell">4–5pm</div><div class="rs-cell" style="min-width:200px"><div class="del-card paid full-width color-active">
               
-              <div class="del-top"><span class="badge badge-paid">Paid</span></div>
-              <div class="del-name">t3</div>
+              <div class="del-top"><span class="badge badge-paid">Paid</span><span class="badge badge-out">En route</span></div>
+              <div class="del-name">t7</div>
               <div class="del-suburb"></div>
               <div class="del-inv"></div>
               
-              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(718)">Edit</button>
+              <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(720)">Edit</button>
             </div></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(1,&#39;4–5pm&#39;)">+</span></div><div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(2,&#39;4–5pm&#39;)">+</span></div></div></div>
       </div>
 
@@ -662,7 +662,7 @@ Attn: DAVID LOWTH</div>
           <div class="metric"><div class="metric-label">Deliveries today</div><div class="metric-value" id="j-total">14</div></div>
           <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$0</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">12</div></div>
-          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">2</div></div>
+          <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">1</div></div>
         </div>
         <div class="table-wrap">
           <table><thead><tr>
@@ -1153,31 +1153,31 @@ Attn: DAVID LOWTH</div>
       </div>
       
       
-    </td></tr><tr onclick="toggleJournalExpand(697)" style="cursor:pointer;">
-    <td class="mono">697</td>
+    </td></tr><tr onclick="toggleJournalExpand(720)" style="cursor:pointer;background:rgba(29,95,168,0.06)">
+    <td class="mono">720</td>
     <td class="mono">—</td>
-    <td style="font-weight:600">BANKING</td>
+    <td style="font-weight:600">t7</td>
     <td></td>
     <td class="mono"></td>
-    <td><span class="badge badge-banking">Banking</span></td>
+    <td><span class="badge badge-paid">Paid</span></td>
     <td class="mono">—</td>
     <td>—</td>
-    <td>JOSH</td>
+    <td>RUSSELL</td>
     <td>3.5 ton</td>
     <td class="mono">XB04SH</td>
-    <td class="mono">1–2pm</td>
-    <td class="mono">2hr</td>
+    <td class="mono">4–5pm</td>
+    <td class="mono">1hr</td>
+    <td class="mono">7:19 pm</td>
+    <td class="mono">7:20 pm</td>
     <td class="mono">—</td>
     <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td class="mono">—</td>
-    <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
+    <td><span class="status-pill s-out"><span class="status-dot"></span>En route</span></td>
     <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-697" style="display:none;background:var(--surface2)">
+    </tr><tr id="jx-720" style="display:none;background:var(--surface2)">
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>P052730426<br>P052730427<br>P052730428<br>P052730446</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>—</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
@@ -1191,21 +1191,21 @@ Attn: DAVID LOWTH</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>—</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>No</div>
       </div>
+      <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px"><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Elapsed time</strong><br><span style="font-size:14px;font-weight:600;color:var(--blue)">1min</span> <span style="color:var(--text-3);font-size:10px">(in progress)</span></div>
       
-      
-    </td></tr><tr onclick="toggleJournalExpand(718)" style="cursor:pointer;">
-    <td class="mono">718</td>
+    </td></tr><tr onclick="toggleJournalExpand(697)" style="cursor:pointer;">
+    <td class="mono">697</td>
     <td class="mono">—</td>
-    <td style="font-weight:600">t3</td>
+    <td style="font-weight:600">BANKING</td>
     <td></td>
     <td class="mono"></td>
-    <td><span class="badge badge-paid">Paid</span></td>
+    <td><span class="badge badge-banking">Banking</span></td>
     <td class="mono">—</td>
     <td>—</td>
-    <td>RUSSELL</td>
+    <td>JOSH</td>
     <td>3.5 ton</td>
     <td class="mono">XB04SH</td>
-    <td class="mono">4–5pm</td>
+    <td class="mono">1–2pm</td>
     <td class="mono">1hr</td>
     <td class="mono">—</td>
     <td class="mono">—</td>
@@ -1213,11 +1213,11 @@ Attn: DAVID LOWTH</div>
     <td class="mono">—</td>
     <td><span class="status-pill s-pending"><span class="status-dot"></span>Pending</span></td>
     <td style="font-size:10px;color:var(--blue);cursor:pointer">▶</td>
-    </tr><tr id="jx-718" style="display:none;background:var(--surface2)">
+    </tr><tr id="jx-697" style="display:none;background:var(--surface2)">
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>—</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>—</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>P052730426<br>P052730427<br>P052730428<br>P052730446</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>—</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
@@ -1353,12 +1353,12 @@ Attn: DAVID LOWTH</div>
         
         
         
-      </div></div><div class="dq-item" onclick="selectDelivery(718,this)">
-      <div class="dq-row"><span class="dq-num ">14</span><span class="dq-customer">t3</span></div>
+      </div></div><div class="dq-item" onclick="selectDelivery(720,this)">
+      <div class="dq-row"><span class="dq-num enroute">14</span><span class="dq-customer">t7</span></div>
       <div class="dq-detail"> · 4–5pm</div>
       <div class="dq-badges"><span class="badge badge-paid">Paid</span>
-        
-        <span class="badge badge-issue">Behind</span>
+        <span class="badge badge-out">En route</span>
+        <span class="badge badge-out">Current</span>
         
         
       </div></div></div>
@@ -1391,9 +1391,9 @@ Attn: DAVID LOWTH</div>
           </div>
           <div class="tracker-card" id="tracker-card">
     <div class="tracker-title">Delivery — </div><div class="tracker-sub"></div>
-    <div class="tracker-status-msg">Order confirmed.</div>
-    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Loading</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
-    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">1–2pm</div><div class="eta-sub">JOSH · Logan</div></div></div>
+    <div class="tracker-status-msg">On the way!</div>
+    <div class="track-steps"><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Confirmed</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle done">✓</div><div class="t-label done">Loading</div></div><div class="t-connector done"></div><div class="t-step"><div class="t-circle active">→</div><div class="t-label active">On the way</div></div><div class="t-connector "></div><div class="t-step"><div class="t-circle ">○</div><div class="t-label ">Delivered</div></div></div>
+    <div class="eta-box"><div class="eta-label">Delivery window</div><div class="eta-time">4–5pm</div><div class="eta-sub">RUSSELL · Logan</div></div></div>
         </div>
       </div>
 
@@ -3235,9 +3235,7 @@ async function advanceStatus(id,ns){
   }
   try{
     await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify(update)});
-    renderAll();
-    showToast(STATUS_LABEL[ns]||'Updated');
-    // Send SMS notifications at key stages (ask first)
+    // Send SMS notifications at key stages BEFORE re-render
     if(!window._smsSent)window._smsSent={};
     if(!window._smsSent[id])window._smsSent[id]={};
     if(d&&d.customer_phone){
@@ -3247,6 +3245,8 @@ async function advanceStatus(id,ns){
         if(await nwConfirm('📱 Send SMS to customer?\n\n"Your delivery is on its way"','Yes, send','No thanks')){sendEnRouteSMS(d);window._smsSent[id].enroute=true;}
       }
     }
+    renderAll();
+    showToast(STATUS_LABEL[ns]||'Updated');
   }catch(e){
     if(d){d.driver_status=ns==='enroute'?'loading':ns;}
     renderAll();

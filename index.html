@@ -214,6 +214,7 @@ tr:hover td{background:var(--bg)}
 .status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .s-done .status-dot{background:var(--green)}.s-out .status-dot{background:var(--blue)}.s-pending .status-dot{background:var(--amber)}.s-returning .status-dot{background:var(--purple)}
 .s-done{color:var(--green-text)}.s-out{color:var(--blue-text)}.s-pending{color:var(--amber-text)}.s-returning{color:var(--purple-text)}
+.s-notcomplete .status-dot{background:#d32f2f}.s-notcomplete{color:#b71c1c;font-weight:600}
 
 /* --- 1m. Driver View layout --- */
 .driver-layout{display:grid;grid-template-columns:270px 1fr;height:calc(100vh - 54px - 40px);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:var(--surface)}
@@ -453,7 +454,7 @@ tr:hover td{background:var(--bg)}
     <div class="sidebar-logo">
       <div class="wordmark">Nuway <span class="db-dot online" id="db-dot" title="Connected"></span></div>
       <div class="tagline">Delivery Management</div>
-      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:'DM Mono',monospace;margin-top:2px">v9.2 · 11 Jun 2026</div>
+      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:'DM Mono',monospace;margin-top:2px">v9.3 · 11 Jun 2026</div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
@@ -1684,6 +1685,8 @@ function buildRunSheet(){
 
 function statusBadge(d){
   const s=d.driver_status;
+  const isNC=(d.completion_notes||'').includes('[NOT COMPLETED]');
+  if(isNC&&(s==='returning'||s==='delivered'))return'<span class="badge" style="background:#fde2e2;color:#b71c1c;font-weight:600">Not completed</span>';
   if(s==='delivered')return'<span class="badge badge-done">Done</span>';
   if(s==='loading')return'<span class="badge badge-loading">Loading</span>';
   if(s==='enroute')return'<span class="badge badge-out">En route</span>';
@@ -1751,8 +1754,8 @@ async function saveTruckHeader(){
   };
   runs[editingTruckIdx]=newData;
   await saveDailyRuns(runs);
-  // Update existing deliveries on this truck with new driver/truck details
-  const truckDels=DELIVERIES.filter(d=>d.truck===editingTruckIdx&&d.entry_type==='delivery');
+  // Update only deliveries NOT yet started (pending) on this truck — leave started/completed alone
+  const truckDels=DELIVERIES.filter(d=>d.truck===editingTruckIdx&&d.entry_type==='delivery'&&d.driver_status==='pending');
   for(const d of truckDels){
     try{
       await db(`deliveries?id=eq.${d.id}`,{method:'PATCH',body:JSON.stringify({
@@ -1761,7 +1764,7 @@ async function saveTruckHeader(){
       d.driver_name=newData.driver;d.truck_type=newData.type;d.truck_rego=newData.rego;
     }catch(e){console.error('Failed to update delivery',d.id,e);}
   }
-  closeModal('truck');buildRunSheet();buildDriverView();showToast('Run updated for '+currentDate+' — '+truckDels.length+' deliveries updated');
+  closeModal('truck');buildRunSheet();buildDriverView();showToast('Run updated for '+currentDate+' — '+truckDels.length+' pending deliveries updated');
 }
 
 /* ============================================================
@@ -1881,6 +1884,19 @@ async function saveBooking(){
     const d=DELIVERIES.find(x=>x.id===editingId);
     if(d&&d.date===currentDate){
       if(!confirm(`Move this delivery from ${currentDate} to ${bookDate}? It will disappear from today's run sheet.`))return;
+    }
+  }
+  // Change 2: completed deliveries — date or product changes require manager PIN
+  if(editingId){
+    const orig=DELIVERIES.find(x=>x.id===editingId);
+    if(orig&&orig.driver_status==='delivered'){
+      const dateChanged=bookDate!==(orig.date||currentDate);
+      const productsChanged=(row.products||'')!==(orig.products||'');
+      if(dateChanged||productsChanged){
+        const fields=[dateChanged?'delivery date':'',productsChanged?'products':''].filter(Boolean).join(' and ');
+        const pin=prompt(`This delivery is already completed.\n\nChanging the ${fields} requires the manager PIN:`);
+        if(pin!=='4207'){showToast('Incorrect PIN — change blocked',true);return;}
+      }
     }
   }
   try{
@@ -2050,7 +2066,11 @@ function buildJournal(){
     return(SLOT_IDX[a.slot]||0)-(SLOT_IDX[b.slot]||0);
   });
   tbody.innerHTML=dels.map(d=>{
-    const p=d.payment_type||'acc';const s=SM[d.driver_status]||SM.pending;
+    const p=d.payment_type||'acc';let s=SM[d.driver_status]||SM.pending;
+    // Change 3: not-completed deliveries show a distinct red status
+    if((d.completion_notes||'').includes('[NOT COMPLETED]')&&(d.driver_status==='returning'||d.driver_status==='delivered')){
+      s={c:'s-notcomplete',l:'Not completed'};
+    }
     // Main row
     const isActive=['loading','enroute','left_site','returning'].includes(d.driver_status);
     const rowBg=isActive?'background:rgba(29,95,168,0.06)':'';
@@ -2292,7 +2312,7 @@ function renderDriverDetail(d){
   // Pre-dep notes
   const preDepHtml=['loading','enroute','left_site','returning','delivered'].includes(st)?`<div class="section-divider"><span>Pre-departure notes</span></div><div class="detail-section"><textarea style="width:100%;min-height:50px;padding:8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical" placeholder="Notes before leaving..." onchange="saveDriverField(${d.id},'pre_departure_notes',this.value)">${d.pre_departure_notes||''}</textarea></div>`:'';
   // Completion notes
-  const compHtml=['left_site','returning','delivered'].includes(st)?`<div class="section-divider"><span>Completion notes</span></div><div class="detail-section"><textarea style="width:100%;min-height:50px;padding:8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical" placeholder="Delivery notes..." onchange="saveDriverField(${d.id},'completion_notes',this.value)">${d.completion_notes||''}</textarea></div>`:'';
+  const compHtml=['left_site','returning','delivered'].includes(st)?`<div class="section-divider"><span>Completion notes</span></div><div class="detail-section"><textarea style="width:100%;min-height:50px;padding:8px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical" placeholder="Delivery notes..." onchange="saveDriverField(${d.id},'completion_notes',this.value)">${(d.completion_notes||'').replace('[NOT COMPLETED]','').replace(/^\s+/,'')}</textarea></div>`:'';
   // Photo upload — uses Supabase Storage bucket 'delivery-photos'
   const showPhotos=['enroute','left_site','returning','delivered'].includes(st);
   const existingPhotos=d.photo_urls?JSON.parse(typeof d.photo_urls==='string'?d.photo_urls:'[]'):[];
@@ -2360,12 +2380,28 @@ function renderDriverDetail(d){
     body+=`<div class="detail-section"><div class="detail-section-title">Products</div>${prodHtml}</div>`;
     body+=safetyHtml+waiverHtml;
     body+=codHtml+photoHtml+compHtml;
-    body+=`<div class="action-row"><button class="btn" style="background:var(--purple);color:#fff;border-color:var(--purple)" onclick="advanceStatus(${d.id},'returning')">Left site \u2014 returning</button></div>`;
+    // Change 3: "Delivery not completed" checkbox + forced note
+    const isNC=(d.completion_notes||'').includes('[NOT COMPLETED]');
+    body+=`<div class="detail-section" style="background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px;margin-top:8px">
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--red-text)">
+        <input type="checkbox" id="nc-cb-${d.id}" ${isNC?'checked':''} onchange="toggleNotCompleted(${d.id},this.checked)" style="width:20px;height:20px;cursor:pointer">
+        Delivery NOT completed
+      </label>
+      <div id="nc-note-wrap-${d.id}" style="display:${isNC?'block':'none'};margin-top:8px">
+        <textarea id="nc-note-${d.id}" style="width:100%;min-height:54px;padding:8px;border:1px solid var(--red);border-radius:var(--radius-sm);font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical" placeholder="Required: explain why the delivery was not completed..." oninput="checkCanLeaveSite(${d.id})">${(d.completion_notes||'').replace('[NOT COMPLETED]','').replace(/^\s+/,'')}</textarea>
+        <div style="font-size:11px;color:var(--red-text);margin-top:4px;font-weight:600">\u26A0 A reason is required before you can continue</div>
+      </div>
+    </div>`;
+    const ncNoteOk=!isNC||((d.completion_notes||'').replace('[NOT COMPLETED]','').trim().length>0);
+    const btnLabel=isNC?'Left site \u2014 not completed':'Left site \u2014 returning';
+    body+=`<div class="action-row"><button class="btn" id="leavesite-btn-${d.id}" style="background:var(--purple);color:#fff;border-color:var(--purple)" ${ncNoteOk?'':'disabled'} onclick="advanceStatus(${d.id},'returning')">${btnLabel}</button></div>`;
   }else if(st==='returning'){
     body+=codHtml;
-    const nr=d.payment_type==='cod'&&!d.cod_receipt;
+    const isNCr=(d.completion_notes||'').includes('[NOT COMPLETED]');
+    const nr=d.payment_type==='cod'&&!d.cod_receipt&&!isNCr;
     body+=`<div class="action-row"><button class="btn btn-success" ${nr?'disabled':''} onclick="advanceStatus(${d.id},'delivered')">Mark complete (arrived yard)</button></div>`;
     if(nr)body+=`<div style="font-size:11px;color:var(--red-text);margin-top:6px;text-align:center;font-weight:600">\u26A0 Enter COD receipt first</div>`;
+    if(isNCr)body+=`<div style="font-size:12px;color:#b71c1c;margin-top:8px;text-align:center;font-weight:600;background:#fde2e2;padding:8px;border-radius:var(--radius-sm)">This delivery was marked NOT COMPLETED</div>`;
   }else{
     body+=`<div style="background:var(--green-bg);border:1px solid #9fd4b8;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--green-text);font-weight:500;text-align:center;margin-top:8px">Delivery complete \u2713</div>`;
   }
@@ -2399,6 +2435,28 @@ function checkCanLeave(id){
 }
 function toggleSafety(id,qi,val){if(!safetyChecked[id])safetyChecked[id]=SAFETY_QS.map(function(){return false;});safetyChecked[id][qi]=val;var d=DELIVERIES.find(function(x){return x.id===id;});if(d)renderDriverDetail(d);}
 
+// Change 3: "Delivery not completed" toggle — shows/hides the required-reason field live
+function toggleNotCompleted(id,checked){
+  const wrap=document.getElementById('nc-note-wrap-'+id);
+  if(wrap)wrap.style.display=checked?'block':'none';
+  const btn=document.getElementById('leavesite-btn-'+id);
+  if(btn)btn.textContent=checked?'Left site \u2014 not completed':'Left site \u2014 returning';
+  checkCanLeaveSite(id);
+}
+// Enable/disable the Left-site button based on whether a reason is filled when "not completed" is ticked
+function checkCanLeaveSite(id){
+  const cb=document.getElementById('nc-cb-'+id);
+  const note=document.getElementById('nc-note-'+id);
+  const btn=document.getElementById('leavesite-btn-'+id);
+  if(!btn)return;
+  if(cb&&cb.checked){
+    const hasReason=note&&note.value.trim().length>0;
+    btn.disabled=!hasReason;
+  }else{
+    btn.disabled=false;
+  }
+}
+
 // Save COD receipt number immediately when typed
 async function saveCodReceipt(id,val){
   try{await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({cod_receipt:val})});
@@ -2409,9 +2467,15 @@ async function saveCodReceipt(id,val){
 // Save any driver field (pre_departure_notes, completion_notes, etc)
 async function saveDriverField(id,field,val){
   try{
+    const d=DELIVERIES.find(x=>x.id===id);
+    // Preserve the [NOT COMPLETED] tag if it was set, so the regular
+    // completion-notes box never wipes the not-completed flag
+    if(field==='completion_notes'&&d&&(d.completion_notes||'').includes('[NOT COMPLETED]')&&!val.includes('[NOT COMPLETED]')){
+      val='[NOT COMPLETED] '+val;
+    }
     const update={};update[field]=val;
     await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify(update)});
-    const d=DELIVERIES.find(x=>x.id===id);if(d)d[field]=val;
+    if(d)d[field]=val;
   }catch(e){showToast('Failed to save',true);}
 }
 
@@ -2674,16 +2738,34 @@ async function advanceStatus(id,ns){
 
   // Change 10: Safety checklist mandatory before leaving site (returning)
   if(ns==='returning'){
-    const checks=safetyChecked[id]||[];
-    const allDone=checks.length>=10&&checks.every(Boolean);
-    if(!allDone){
-      showToast('Complete all safety checks before leaving site',true);
-      return;
+    // Change 3: check if "delivery not completed" is ticked
+    const ncCb=document.getElementById('nc-cb-'+id);
+    const isNC=ncCb&&ncCb.checked;
+    if(isNC){
+      const ncNote=document.getElementById('nc-note-'+id);
+      const reason=ncNote?ncNote.value.trim():'';
+      if(!reason){
+        showToast('Enter a reason why the delivery was not completed',true);
+        return;
+      }
+      // Merge any text already in the regular completion-notes box so nothing is lost
+      const compEl=document.querySelector(`#driver-detail textarea[onchange*="completion_notes"]`);
+      const extra=compEl?compEl.value.trim().replace('[NOT COMPLETED]','').trim():'';
+      update.completion_notes='[NOT COMPLETED] '+reason+(extra?' | '+extra:'');
+      if(d)d.completion_notes=update.completion_notes;
+    }else{
+      // Normal completion still requires the safety checklist
+      const checks=safetyChecked[id]||[];
+      const allDone=checks.length>=10&&checks.every(Boolean);
+      if(!allDone){
+        showToast('Complete all safety checks before leaving site',true);
+        return;
+      }
     }
   }
 
-  // Change 11: COD receipt required before marking Complete
-  if(ns==='delivered'&&d&&(d.payment_type==='cod')){
+  // Change 11: COD receipt required before marking Complete — UNLESS marked not completed
+  if(ns==='delivered'&&d&&(d.payment_type==='cod')&&!((d.completion_notes||'').includes('[NOT COMPLETED]'))){
     const receiptEl=document.getElementById('cod-receipt-'+id);
     const receipt=receiptEl?receiptEl.value.trim():'';
     if(!receipt){
@@ -2863,8 +2945,9 @@ function renderLookupResults(){
     const p=d.payment_type||'acc';
     const isActive=['loading','enroute','left_site','returning'].includes(d.driver_status);
     const isDone=d.driver_status==='delivered';
-    const sc=isDone?'s-done':isActive?'s-out':d.driver_status==='pending'?'s-pending':'s-pending';
-    const sl=isDone?'Delivered':isActive?STATUS_LABEL[d.driver_status]||d.driver_status:'Pending';
+    const isNC=(d.completion_notes||'').includes('[NOT COMPLETED]')&&(d.driver_status==='returning'||d.driver_status==='delivered');
+    const sc=isNC?'s-notcomplete':isDone?'s-done':isActive?'s-out':d.driver_status==='pending'?'s-pending':'s-pending';
+    const sl=isNC?'Not completed':isDone?'Delivered':isActive?STATUS_LABEL[d.driver_status]||d.driver_status:'Pending';
     const rowBg=isActive?'background:rgba(29,95,168,0.06)':'';
     const dateStr=d.date?new Date(d.date+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short'}):'—';
     // Parse time for total delivery time

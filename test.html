@@ -167,6 +167,8 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .rs-cell.empty{align-items:center;justify-content:center}
 .rs-cell.empty .ea-btn{font-size:16px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0;transition:all 0.15s}
 .rs-cell.empty:hover .ea-btn{opacity:1}
+.rs-cell.empty .ea-btn.ea-tba{font-size:13px;border:1px solid #f0c088;color:#bf5b00;background:#fff8f0}
+.rs-cell.empty .ea-btn.ea-tba:hover{background:#ffe0b2;color:#bf5b00;border-color:#f57c00}
 /* Blocked cells: occupied by a multi-hour delivery from above */
 .rs-cell.blocked{background:repeating-linear-gradient(135deg,#f0efe9,#f0efe9 6px,#ddd9d0 6px,#ddd9d0 12px);cursor:default;min-height:0;opacity:0.7}
 .rs-cell.blocked:hover{background:repeating-linear-gradient(135deg,#f0efe9,#f0efe9 6px,#ddd9d0 6px,#ddd9d0 12px)}
@@ -202,6 +204,8 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .del-duration{position:absolute;top:3px;right:4px;font-size:8px;color:var(--text-3);font-family:'DM Mono',monospace}
 .del-edit-btn{position:absolute;bottom:2px;right:4px;font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface2);color:var(--text-3);cursor:pointer;display:none}
 .del-card:hover .del-edit-btn{display:block}
+.del-swap-btn{position:absolute;bottom:2px;left:4px;font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid var(--teal);background:var(--teal-bg);color:var(--teal-dark);cursor:pointer;display:none;font-weight:600}
+.del-card:hover .del-swap-btn{display:block}
 .rs-break{padding:4px 12px;background:#fdf8ee;border-bottom:1px solid var(--border);font-size:10px;color:var(--amber-text);font-style:italic;border-left:3px solid #e6b84a}
 
 /* --- 1l. Journal table --- */
@@ -1581,6 +1585,34 @@ function firstName(raw){
   const person=raw.replace(/\s*\([^)]*\)\s*/,'').trim();
   return person.split(/[\s,]+/)[0]||'';
 }
+// Stable ordering for deliveries that share a slot: by sort_index, then id.
+// This keeps left/right position fixed regardless of edit order.
+function sortSlotDels(arr){
+  arr.sort((a,b)=>{
+    const ai=(a.sort_index!=null)?a.sort_index:(a.id||0);
+    const bi=(b.sort_index!=null)?b.sort_index:(b.id||0);
+    if(ai!==bi)return ai-bi;
+    return (a.id||0)-(b.id||0);
+  });
+  return arr;
+}
+// Swap the order of two deliveries sharing a slot (with confirmation)
+async function confirmSwapSlot(idLeft,idRight){
+  const dL=DELIVERIES.find(x=>x.id===idLeft);
+  const dR=DELIVERIES.find(x=>x.id===idRight);
+  if(!dL||!dR)return;
+  const ok=await nwConfirm(`Swap delivery order?\n\n"${displayName(dR.customer_name)}" will move to FIRST (scheduled ahead of "${displayName(dL.customer_name)}") on the driver's run.`,'Yes, swap','Cancel');
+  if(!ok)return;
+  // Assign explicit indices: right becomes 0 (first), left becomes 1
+  const newLeftIdx=(dR.sort_index!=null?dR.sort_index:0);
+  try{
+    await db(`deliveries?id=eq.${idRight}`,{method:'PATCH',body:JSON.stringify({sort_index:0})});
+    await db(`deliveries?id=eq.${idLeft}`,{method:'PATCH',body:JSON.stringify({sort_index:1})});
+    dR.sort_index=0;dL.sort_index=1;
+    renderAll();
+    showToast('Order swapped');
+  }catch(e){showToast('Swap failed',true);}
+}
 // SMS tracking — packed into the existing sms_sent field as a string of letters:
 // B=booking, L=loading, D=departure. Backward compatible: old boolean true -> treat as 'B'.
 function smsFlags(d){
@@ -1745,14 +1777,18 @@ function buildRunSheet(){
         continue;
       }
       const slotDels=DELIVERIES.filter(x=>x.slot===slot&&x.truck===t&&x.entry_type!=='run_override');
+      sortSlotDels(slotDels);
       if(slotDels.length===0){
-        html+=`<div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(${t},'${slot}')">+</span></div>`;
+        html+=`<div class="rs-cell empty" style="min-width:200px;display:flex;gap:4px;align-items:center;justify-content:center"><span class="ea-btn" onclick="openBookingWith(${t},'${slot}')" title="Book delivery">+</span><span class="ea-btn ea-tba" onclick="openTbaModalWith(${t},'${slot}')" title="Hold this spot (TBA)">◷</span></div>`;
       }else{
         const maxDur=Math.max(...slotDels.map(d=>d.duration));
         let style='min-width:200px';
         if(maxDur>=2)style+=';min-height:108px';else if(maxDur===1.5)style+=';min-height:81px';
         html+=`<div class="rs-cell" style="${style}">`;
-        slotDels.forEach(d=>{
+        // Two real deliveries sharing this slot → show a swap control
+        const realDels=slotDels.filter(x=>x.entry_type!=='unavailable'&&x.entry_type!=='tba');
+        const showSwap=realDels.length===2;
+        slotDels.forEach((d,slotPos)=>{
           if(d.entry_type==='tba'){
             html+=`<div class="del-card color-tba full-width">
               ${d.duration>1||d.duration===0.5?`<div class="del-duration">${d.duration===0.5?'½hr':d.duration+'hr'}</div>`:''}
@@ -1778,13 +1814,17 @@ function buildRunSheet(){
             // Show side-by-side if 2 deliveries in same slot (regardless of duration)
             const wc=slotDels.length>=2?'half-width':'full-width';
             const cc=getCardColorClass(d,DELIVERIES);
+            // Position badge + swap control when two deliveries share the slot
+            const posBadge=showSwap?`<span class="badge" style="background:var(--surface2);color:var(--text-3);font-weight:600">${slotPos===0?'1st':'2nd'}</span>`:'';
+            const swapBtn=(showSwap&&slotPos===0)?`<button class="del-swap-btn" title="Swap order — put the other delivery first" onclick="event.stopPropagation();confirmSwapSlot(${realDels[0].id},${realDels[1].id})">⇄ Swap</button>`:'';
             html+=`<div class="${cardClass(d)} ${wc} ${cc}">
               ${d.duration>1||d.duration===0.5?`<div class="del-duration">${d.duration===0.5?'½hr':d.duration+'hr'}</div>`:''}
-              <div class="del-top"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>${statusBadge(d)}${cc==='color-next'?'<span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span>':''}${d.entry_type!=='unavailable'&&d.unavailable_reason?instructionBadges(d.unavailable_reason):''}</div>
+              <div class="del-top"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>${statusBadge(d)}${posBadge}${cc==='color-next'?'<span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span>':''}${d.entry_type!=='unavailable'&&d.unavailable_reason?instructionBadges(d.unavailable_reason):''}</div>
               <div class="del-name">${displayName(d.customer_name)}</div>
               <div class="del-suburb">${d.suburb||''}</div>
               <div class="del-inv">${d.invoice||''}${d.cod_amount?' · '+d.cod_amount:''}</div>
               ${d.notes?`<div class="del-note">${d.notes}</div>`:''}
+              ${swapBtn}
               <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(${d.id})">Edit</button>
             </div>`;
           }
@@ -2107,6 +2147,17 @@ async function saveBooking(){
     sales_person:document.getElementById('book-salesperson').value.trim()||null,
     delivery_address:document.getElementById('book-address').value.trim()||null,
   };
+  // Assign a sort_index so a second booking in the same slot goes to the right (schedules second).
+  // Only for NEW bookings; edits keep their existing index (stable position).
+  if(!editingId){
+    const sameSlot=DELIVERIES.filter(x=>x.slot===slot&&x.truck===ti&&x.date===bookDate&&x.entry_type!=='run_override'&&x.entry_type!=='unavailable');
+    if(sameSlot.length>0){
+      const maxIdx=Math.max(...sameSlot.map(x=>x.sort_index!=null?x.sort_index:0));
+      row.sort_index=maxIdx+1;
+    }else{
+      row.sort_index=0;
+    }
+  }
   // "See office" flag — prepend to notes so driver sees it and it persists in DB
   if(document.getElementById('book-see-office').checked){
     if(!row.notes)row.notes='[SEE OFFICE BEFORE LOADING]';
@@ -2438,8 +2489,15 @@ function buildDriverView(){
 function filterDriverView(){
   driverFilterTruck=document.getElementById('driver-filter-select').value;
   let mine=driverFilterTruck==='all'?DELIVERIES.filter(d=>d.entry_type!=='unavailable'&&d.entry_type!=='run_override'&&d.entry_type!=='tba'):DELIVERIES.filter(d=>d.truck===parseInt(driverFilterTruck)&&d.entry_type!=='unavailable'&&d.entry_type!=='run_override'&&d.entry_type!=='tba');
-  // Sort by time slot order
-  mine.sort((a,b)=>(SLOT_IDX[a.slot]||0)-(SLOT_IDX[b.slot]||0));
+  // Sort by time slot, then by sort_index within a slot (respects the office's swap order)
+  mine.sort((a,b)=>{
+    const si=(SLOT_IDX[a.slot]||0)-(SLOT_IDX[b.slot]||0);
+    if(si!==0)return si;
+    const ai=(a.sort_index!=null)?a.sort_index:(a.id||0);
+    const bi=(b.sort_index!=null)?b.sort_index:(b.id||0);
+    if(ai!==bi)return ai-bi;
+    return (a.id||0)-(b.id||0);
+  });
   const runs=getRuns();const run=driverFilterTruck!=='all'?runs[parseInt(driverFilterTruck)]:null;
   document.getElementById('dv-driver-name').textContent=run?`${run.driver||run.label} — ${run.type||''}`:'All runs';
   document.getElementById('dv-driver-sub').textContent=`Today · ${mine.length} deliveries`;

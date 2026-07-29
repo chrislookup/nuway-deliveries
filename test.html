@@ -1584,9 +1584,9 @@ function firstName(raw){
 // SMS tracking — packed into the existing sms_sent field as a string of letters:
 // B=booking, L=loading, D=departure. Backward compatible: old boolean true -> treat as 'B'.
 function smsFlags(d){
-  const v=d.sms_sent;
-  if(v===true||v==='true')return'B';
-  if(typeof v==='string')return v;
+  // Prefer the new text field; fall back to legacy boolean sms_sent
+  if(typeof d.sms_flags==='string'&&d.sms_flags)return d.sms_flags;
+  if(d.sms_sent===true||d.sms_sent==='true')return'B';
   return'';
 }
 function smsHas(d,letter){return smsFlags(d).includes(letter);}
@@ -1603,6 +1603,9 @@ function instructionBadges(reason){
   if(r.includes('[CALL BEFORE]')){out+='<span class="badge" style="background:#fde2e2;color:#b71c1c;font-weight:600">📞 Call before</span>';r=r.replace('[CALL BEFORE]','');}
   else if(r.includes('[CALL IF EARLY]')){out+='<span class="badge" style="background:#fde2e2;color:#b71c1c;font-weight:600">📞 Call if early</span>';r=r.replace('[CALL IF EARLY]','');}
   r=r.trim();
+  // Show "or B4" instead of bare "B4" on the badge
+  if(r==='B4')r='or B4';
+  else if(r.startsWith('B4 '))r='or B4 '+r.slice(3);
   if(r)out='<span class="badge" style="background:#fff3cd;color:#856404">'+r+'</span>'+out;
   return out;
 }
@@ -2138,7 +2141,7 @@ async function saveBooking(){
       if(row.customer_phone){
         sendSms=await nwConfirm('Send SMS notification to customer?','Yes, send SMS','No SMS');
       }
-      row.sms_sent=sendSms?'B':'';
+      row.sms_sent=sendSms;row.sms_flags=sendSms?'B':null;
       await db('deliveries',{method:'POST',body:JSON.stringify(row)});
       if(sendSms&&row.customer_phone){
         await sendBookingSMS(row);
@@ -2222,15 +2225,6 @@ function getInstructionText(){
   else if(callEarly)flag='[CALL IF EARLY]';
   if(flag)base=base?base+' '+flag:flag;
   return base;
-}
-function getInstructionText(){
-  const val=document.getElementById('book-instruction').value;
-  if(!val)return'';
-  if(val==='Not B4'){
-    const t=document.getElementById('book-instruction-time').value.trim();
-    return t?'Not B4 '+t:'Not B4';
-  }
-  return val;
 }
 // Print delivery form
 function printBookingForm(){
@@ -3069,14 +3063,14 @@ async function advanceStatus(id,ns){
       if(ns==='loading'&&!window._smsSent[id].loading){
         if(await nwConfirm('📱 Send SMS to customer?\n\n"Your delivery is being loaded now"','Yes, send','No thanks')){
           sendLoadingSMS(d);window._smsSent[id].loading=true;
-          const nf=smsAdd(d,'L');d.sms_sent=nf;
-          try{await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({sms_sent:nf})});}catch(e){}
+          const nf=smsAdd(d,'L');d.sms_flags=nf;
+          try{await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({sms_flags:nf})});}catch(e){}
         }
       }else if(ns==='enroute'&&!window._smsSent[id].enroute){
         if(await nwConfirm('📱 Send SMS to customer?\n\n"Your delivery is on its way"','Yes, send','No thanks')){
           sendEnRouteSMS(d);window._smsSent[id].enroute=true;
-          const nf=smsAdd(d,'D');d.sms_sent=nf;
-          try{await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({sms_sent:nf})});}catch(e){}
+          const nf=smsAdd(d,'D');d.sms_flags=nf;
+          try{await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({sms_flags:nf})});}catch(e){}
         }
       }
     }
@@ -3681,8 +3675,8 @@ async function resendBookingSMS(){
   if(!await nwConfirm('Resend the booking confirmation SMS to the customer?','Yes, resend','Cancel'))return;
   const result=await sendBookingSMS(d);
   if(result&&result.success!==false){
-    const nf=smsAdd(d,'B');d.sms_sent=nf;
-    try{await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify({sms_sent:nf})});}catch(e){}
+    const nf=smsAdd(d,'B');d.sms_flags=nf;
+    try{await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify({sms_flags:nf})});}catch(e){}
   }
 }
 

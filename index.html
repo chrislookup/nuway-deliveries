@@ -53,6 +53,7 @@
   --border:rgba(0,0,0,0.08);--border-md:rgba(0,0,0,0.13);
   --text:#1a1916;--text-2:#6b6960;--text-3:#a09d94;
   --blue:#1d5fa8;--blue-bg:#e8f0fb;--blue-text:#0f3d74;
+  --teal:#008C95;--teal-dark:#00727a;--teal-bg:#cfeff2;
   --green:#2d7a4f;--green-bg:#e4f3eb;--green-text:#1a5234;
   --amber:#8a5c0a;--amber-bg:#fdf0d8;--amber-text:#6b4207;
   --red:#c0392b;--red-bg:#fcecea;--red-text:#8c1a10;
@@ -80,7 +81,7 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .nav-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);padding:4px 18px 6px}
 .nav-item{display:flex;align-items:center;gap:9px;padding:8px 18px;cursor:pointer;font-size:13px;color:var(--text-2);border-left:2px solid transparent;transition:all 0.15s;user-select:none}
 .nav-item:hover{background:var(--bg);color:var(--text)}
-.nav-item.active{color:var(--blue);border-left-color:var(--blue);background:var(--blue-bg);font-weight:500}
+.nav-item.active{color:var(--teal-dark);border-left-color:var(--teal);background:var(--teal-bg);font-weight:500}
 .nav-icon{width:15px;height:15px;opacity:0.7;flex-shrink:0}
 .nav-item.active .nav-icon{opacity:1}
 .sidebar-footer{margin-top:auto;padding:14px 18px;border-top:1px solid var(--border);font-size:11px;color:var(--text-3)}
@@ -98,8 +99,8 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--radius-sm);border:1px solid var(--border-md);font-size:12px;font-weight:500;cursor:pointer;background:var(--surface);color:var(--text);font-family:'DM Sans',sans-serif;transition:all 0.12s;white-space:nowrap}
 .btn:hover{background:var(--surface2)}
 .btn:disabled{opacity:0.45;cursor:not-allowed}
-.btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
-.btn-primary:hover{background:var(--blue-text);border-color:var(--blue-text)}
+.btn-primary{background:var(--teal);color:#fff;border-color:var(--teal)}
+.btn-primary:hover{background:var(--teal-dark);border-color:var(--teal-dark)}
 .btn-success{background:var(--green);color:#fff;border-color:var(--green)}
 .btn-success:hover{background:var(--green-text)}
 .btn-amber{background:var(--amber);color:#fff;border-color:var(--amber)}
@@ -166,6 +167,12 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .rs-cell.empty{align-items:center;justify-content:center}
 .rs-cell.empty .ea-btn{font-size:16px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0;transition:all 0.15s}
 .rs-cell.empty:hover .ea-btn{opacity:1}
+.rs-cell.empty .ea-btn.ea-tba{font-size:13px;border:1px solid #f0c088;color:#bf5b00;background:#fff8f0}
+.rs-cell.empty .ea-btn.ea-tba:hover{background:#ffe0b2;color:#bf5b00;border-color:#f57c00}
+.rs-add-second{position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:5;opacity:0;transition:opacity 0.15s}
+.rs-cell:hover .rs-add-second{opacity:1}
+.ea-btn.ea-add2{font-size:9px;border:1px dashed var(--teal);color:var(--teal-dark);background:var(--teal-bg);padding:2px 8px;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.15)}
+.ea-btn.ea-add2:hover{background:var(--teal);color:#fff;border-style:solid}
 /* Blocked cells: occupied by a multi-hour delivery from above */
 .rs-cell.blocked{background:repeating-linear-gradient(135deg,#f0efe9,#f0efe9 6px,#ddd9d0 6px,#ddd9d0 12px);cursor:default;min-height:0;opacity:0.7}
 .rs-cell.blocked:hover{background:repeating-linear-gradient(135deg,#f0efe9,#f0efe9 6px,#ddd9d0 6px,#ddd9d0 12px)}
@@ -192,6 +199,7 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .del-card.color-active{background:#e8f8ef;border-color:#a8dfc0}
 .del-card.color-next{background:#dde8f8;border-color:#a0c4e8}
 .del-card.color-unavailable{background:repeating-linear-gradient(135deg,#fcecea,#fcecea 8px,#f5d5d2 8px,#f5d5d2 16px);border-left-color:var(--red);opacity:0.85}
+.del-card.color-tba{background:#fff3e0;border-left-color:#f57c00}
 .del-top{display:flex;align-items:center;gap:3px;margin-bottom:1px;flex-wrap:wrap}
 .del-name{font-size:11px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .del-suburb{font-size:10px;color:var(--text-2)}
@@ -200,6 +208,8 @@ body{background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-h
 .del-duration{position:absolute;top:3px;right:4px;font-size:8px;color:var(--text-3);font-family:'DM Mono',monospace}
 .del-edit-btn{position:absolute;bottom:2px;right:4px;font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid var(--border-md);background:var(--surface2);color:var(--text-3);cursor:pointer;display:none}
 .del-card:hover .del-edit-btn{display:block}
+.del-swap-btn{position:absolute;bottom:2px;left:4px;font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid var(--teal);background:var(--teal-bg);color:var(--teal-dark);cursor:pointer;display:none;font-weight:600}
+.del-card:hover .del-swap-btn{display:block}
 .rs-break{padding:4px 12px;background:#fdf8ee;border-bottom:1px solid var(--border);font-size:10px;color:var(--amber-text);font-style:italic;border-left:3px solid #e6b84a}
 
 /* --- 1l. Journal table --- */
@@ -336,7 +346,7 @@ tr:hover td{background:var(--bg)}
 .nw-dialog-msg{font-size:18px;font-weight:500;color:var(--text);line-height:1.5;margin-bottom:24px;padding:0 8px}
 .nw-dialog-btns{display:flex;gap:12px;justify-content:center}
 .nw-dialog-btns button{flex:1;padding:16px 20px;font-size:16px;font-weight:600;border-radius:var(--radius);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;min-height:54px}
-.nw-dialog-btns .nw-ok{background:var(--blue);color:#fff}
+.nw-dialog-btns .nw-ok{background:var(--teal);color:#fff}
 .nw-dialog-btns .nw-ok:active{background:var(--blue-text)}
 .nw-dialog-btns .nw-cancel{background:var(--surface2);color:var(--text-2);border:1px solid var(--border-md)}
 .nw-dialog-btns .nw-cancel:active{background:var(--border)}
@@ -362,7 +372,7 @@ tr:hover td{background:var(--bg)}
 .store-selector p{font-size:13px;color:var(--text-2);margin-bottom:24px}
 .store-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .store-grid button{padding:12px;border:1px solid var(--border-md);border-radius:var(--radius);background:var(--surface);color:var(--text);font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.12s}
-.store-grid button:hover{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
+.store-grid button:hover{background:var(--teal-bg);border-color:var(--teal);color:var(--teal-dark)}
 
 /* --- 1x2. Collapsible sidebar --- */
 .sidebar{transition:width 0.2s ease,min-width 0.2s ease}
@@ -452,9 +462,12 @@ tr:hover td{background:var(--bg)}
   <aside class="sidebar" id="sidebar">
     <span class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">◀</span>
     <div class="sidebar-logo">
-      <div class="wordmark">Nuway <span class="db-dot online" id="db-dot" title="Connected"></span></div>
-      <div class="tagline">Delivery Management</div>
-      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:'DM Mono',monospace;margin-top:2px">v9.3 · 11 Jun 2026</div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <img src="nuway-logo-teal.png" alt="Nuway Landscape Supplies" style="max-width:150px;height:auto;display:block">
+        <span class="db-dot online" id="db-dot" title="Connected"></span>
+      </div>
+      <div class="tagline" style="margin-top:6px">Delivery Management</div>
+      <div style="font-size:9px;color:var(--text-3);opacity:0.6;font-family:'DM Mono',monospace;margin-top:2px">v9.4 · 29 Jul 2026</div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Operations</div>
@@ -519,6 +532,7 @@ tr:hover td{background:var(--bg)}
         <button class="btn" onclick="manualRefresh()" title="Refresh data" id="refresh-btn">↻ Refresh</button>
         <span id="last-refresh" style="font-size:10px;color:var(--text-3);font-family:'DM Mono',monospace;white-space:nowrap"></span>
         <button class="btn" onclick="openBookingModal()">+ Book delivery</button>
+        <button class="btn" onclick="openTbaModal()" title="Hold a spot without full details">◷ Hold spot (TBA)</button>
         <button class="btn" onclick="openUnavailableModal()">⊘ Mark unavailable</button>
         <button class="btn btn-primary" id="top-action" onclick="handleTopAction()">Export PDF</button>
       </div>
@@ -587,6 +601,13 @@ tr:hover td{background:var(--bg)}
           <div class="metric"><div class="metric-label">COD collected</div><div class="metric-value mv-amber" id="j-cod">$69</div></div>
           <div class="metric"><div class="metric-label">Completed</div><div class="metric-value mv-green" id="j-done">0</div></div>
           <div class="metric"><div class="metric-label">Pending</div><div class="metric-value mv-amber" id="j-pending">1</div></div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:8px">
+          <label style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Sort by</label>
+          <select id="journal-sort" onchange="buildJournal()" class="pill-select" style="padding:6px 10px;font-size:12px">
+            <option value="time">Loading time</option>
+            <option value="driver">Driver</option>
+          </select>
         </div>
         <div class="table-wrap">
           <table><thead><tr>
@@ -862,6 +883,16 @@ tr:hover td{background:var(--bg)}
     </div></div>
           </div>
 
+          <div class="settings-section">
+            <h3>Standard Drivers</h3>
+            <div style="font-size:11px;color:var(--text-3);margin-bottom:12px">Manage the list of drivers for this store. These appear in a dropdown when assigning a driver on the daily run — staff can still type a name manually if needed.</div>
+            <div id="settings-drivers-list" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px"></div>
+            <div style="display:flex;gap:8px;max-width:360px">
+              <input type="text" id="new-driver-name" placeholder="Driver name e.g. Jake T." style="flex:1;padding:8px 10px;border:1px solid var(--border-md);border-radius:var(--radius-sm);font-size:13px" onkeydown="if(event.key==='Enter')addStandardDriver()">
+              <button class="btn btn-primary btn-sm" onclick="addStandardDriver()">Add</button>
+            </div>
+          </div>
+
           <div style="display:flex;gap:8px;justify-content:flex-end">
             <button class="btn" onclick="loadStoreSettings()">Reset changes</button>
             <button class="btn btn-primary" onclick="saveStoreSettings()">Save settings</button>
@@ -878,13 +909,13 @@ tr:hover td{background:var(--bg)}
       <!-- --- User Guide view --- -->
       <div class="view" id="view-guide">
         <div style="max-width:800px;margin:0 auto">
-          <h2 style="margin-bottom:16px;color:var(--blue)">User Guide</h2>
+          <h2 style="margin-bottom:16px;color:var(--teal-dark)">User Guide</h2>
           <div style="display:flex;gap:8px;margin-bottom:20px">
             <button class="btn btn-primary" id="guide-tab-staff" onclick="showGuideTab('staff')">Staff Guide</button>
             <button class="btn" id="guide-tab-driver" onclick="showGuideTab('driver')">Driver Guide</button>
           </div>
           <div id="guide-staff" class="detail-section" style="padding:20px;line-height:1.8">
-            <h3 style="color:var(--blue);margin-bottom:12px">Staff User Guide</h3>
+            <h3 style="color:var(--teal-dark);margin-bottom:12px">Staff User Guide</h3>
             <video controls playsinline style="width:100%;border-radius:var(--radius);margin-bottom:20px;background:#000" preload="metadata">
               <source src="https://nuway.com.au/wp-content/uploads/Video/Delivery%20Management%20Sales%20Guide.mp4" type="video/mp4">
               Your browser does not support video playback.
@@ -936,7 +967,7 @@ tr:hover td{background:var(--bg)}
             • Settings changes only affect future dates without existing bookings</p>
           </div>
           <div id="guide-driver" class="detail-section" style="padding:20px;line-height:1.8;display:none">
-            <h3 style="color:var(--blue);margin-bottom:12px">Driver Guide</h3>
+            <h3 style="color:var(--teal-dark);margin-bottom:12px">Driver Guide</h3>
             <video controls playsinline style="width:100%;border-radius:var(--radius);margin-bottom:20px;background:#000" preload="metadata">
               <source src="https://nuway.com.au/wp-content/uploads/Video/Delivery%20Management%20System%20Driver%20Guide.mp4" type="video/mp4">
               Your browser does not support video playback.
@@ -1036,7 +1067,7 @@ tr:hover td{background:var(--bg)}
     <input type="password" id="pin-input" placeholder="Enter PIN" maxlength="10" 
       style="width:100%;padding:14px;font-size:18px;text-align:center;border:2px solid var(--border-md);border-radius:var(--radius);font-family:'DM Mono',monospace;letter-spacing:4px;outline:none"
       onkeydown="if(event.key==='Enter')verifyPin()">
-    <button onclick="verifyPin()" style="width:100%;margin-top:12px;padding:12px;font-size:14px;font-weight:600;background:var(--blue);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-family:'DM Sans',sans-serif">Unlock</button>
+    <button onclick="verifyPin()" style="width:100%;margin-top:12px;padding:12px;font-size:14px;font-weight:600;background:var(--teal);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-family:'DM Sans',sans-serif">Unlock</button>
     <div id="pin-error" style="display:none;margin-top:10px;font-size:12px;color:var(--red-text);text-align:center"></div>
   </div>
 </div>
@@ -1072,7 +1103,7 @@ tr:hover td{background:var(--bg)}
       <div class="field-row">
         <div class="field"><label>Suburb</label><input type="text" id="book-suburb" placeholder="e.g. Loganholme"></div>
         <div class="field"><label>Payment type</label>
-          <select id="book-pay" onchange="onPaymentTypeChange()"><option value="">— Select —</option><option value="cod">COD</option><option value="acc">Account</option><option value="paid">Paid (EFTPOS/Cash)</option><option value="banking">Banking</option><option value="checkpay">Check Payment</option><option value="pickup">Pick Up</option><option value="tba">TBA</option></select>
+          <select id="book-pay" onchange="onPaymentTypeChange()"><option value="">— Select —</option><option value="cod">COD</option><option value="acc">Account</option><option value="paid">Paid (EFTPOS/Cash)</option><option value="banking">Banking</option><option value="checkpay">Check Payment</option><option value="pickup">Pick Up</option><option value="tba">Other</option></select>
         </div>
       </div>
       <div class="field"><label>Delivery address</label><input type="text" id="book-address" placeholder="e.g. 25 Buenavista St, Logan Village QLD 4127"></div>
@@ -1103,6 +1134,10 @@ tr:hover td{background:var(--bg)}
         <div class="field" id="instruction-time-wrap" style="display:none"><label>Not before time</label><input type="text" id="book-instruction-time" placeholder="e.g. 9am, 10:30am"></div>
         <div class="field"></div>
       </div>
+      <div style="display:flex;gap:20px;margin:-4px 0 10px 0" id="call-checkbox-row">
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12px;color:var(--text-2)"><input type="checkbox" id="book-call-before" onchange="onCallCheckChange('before')"> Must call before</label>
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12px;color:var(--text-2)"><input type="checkbox" id="book-call-early" onchange="onCallCheckChange('early')"> Call if early</label>
+      </div>
       <div class="field"><label>Products (auto-filled from RM — add extra lines below)</label><textarea id="book-products" placeholder="e.g. 2m³ Blue Metal
 1x Cement bag (20kg)
 
@@ -1124,6 +1159,7 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
     </div>
     <div class="modal-footer">
       <button class="btn btn-danger" id="booking-delete-btn" onclick="deleteDelivery()" style="margin-right:auto;display:none">Remove</button>
+      <button class="btn" id="booking-resend-btn" onclick="resendBookingSMS()" style="display:none">📱 Resend SMS</button>
       <button class="btn" onclick="printBookingForm()">🖨 Print</button>
       <button class="btn" onclick="closeModal(&#39;booking&#39;)">Cancel</button>
       <button class="btn btn-primary" onclick="saveBooking()">Save</button>
@@ -1174,12 +1210,44 @@ Products auto-fill from invoice lookup. Add extra items on new lines." style="mi
       <div class="field"><label>Run label</label><input type="text" id="truck-label" placeholder="e.g. Run 1"></div>
       <div class="field"><label>Truck type</label><input type="text" id="truck-type" placeholder="e.g. M1, FUSO, Hino"></div>
       <div class="field"><label>Truck rego</label><input type="text" id="truck-rego" placeholder="e.g. 1AB-234"></div>
-      <div class="field"><label>Driver name</label><input type="text" id="truck-driver" placeholder="e.g. Jake T."></div>
+      <div class="field"><label>Driver name</label><input type="text" id="truck-driver" placeholder="e.g. Jake T." list="truck-driver-options" autocomplete="off"><datalist id="truck-driver-options"></datalist></div>
       <div class="field"><label>Truck mobile</label><input type="text" id="truck-mobile" placeholder="e.g. 0412 345 678"></div>
     </div>
     <div class="modal-footer">
       <button class="btn" onclick="closeModal(&#39;truck&#39;)">Cancel</button>
       <button class="btn btn-primary" onclick="saveTruckHeader()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-tba" onclick="if(event.target===this)closeModal('tba')">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <span class="modal-title" id="tba-modal-title">Hold a spot (TBA)</span>
+      <span class="modal-close" onclick="closeModal(&#39;tba&#39;)">×</span>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:12px;color:var(--text-3);margin-bottom:12px">Reserve a delivery spot without full details. Convert it to a full booking when ready.</div>
+      <div class="field"><label>Customer name</label><input type="text" id="tba-name" placeholder="e.g. Smith, J or company"></div>
+      <div class="field-row" style="grid-template-columns:1fr 1fr 1fr">
+        <div class="field"><label>Booking staff</label><input type="text" id="tba-staff" placeholder="Your name"></div>
+        <div class="field"><label>Booking store (if not ${''}home)</label>
+          <select id="tba-store"><option value="">— Home store —</option></select>
+        </div>
+        <div class="field"><label>Duration</label>
+          <select id="tba-dur"><option value="0.5">½ hr</option><option value="1" selected="">1 hr</option><option value="1.5">1.5 hr</option><option value="2">2 hr</option><option value="2.5">2.5 hr</option><option value="3">3 hr</option><option value="3.5">3.5 hr</option><option value="4">4 hr</option><option value="4.5">4.5 hr</option><option value="5">5 hr</option><option value="5.5">5.5 hr</option><option value="6">6 hr</option></select>
+        </div>
+      </div>
+      <div class="field-row" style="grid-template-columns:1fr 1fr">
+        <div class="field"><label>Run</label><select id="tba-truck"></select></div>
+        <div class="field"><label>Time slot</label><select id="tba-slot"><option>7–8am</option><option>8–9am</option><option>9–10am</option><option>10–11am</option><option>11am–12pm</option><option>12–1pm</option><option>1–2pm</option><option>2–3pm</option><option>3–4pm</option><option>4–5pm</option></select></div>
+      </div>
+      <div class="field"><label>Comments</label><textarea id="tba-comments" placeholder="Anything to note while holding this spot" style="min-height:50px"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger" id="tba-delete-btn" onclick="deleteTba()" style="margin-right:auto;display:none">Remove hold</button>
+      <button class="btn" onclick="closeModal(&#39;tba&#39;)">Cancel</button>
+      <button class="btn btn-primary" onclick="saveTba()">Hold spot</button>
     </div>
   </div>
 </div>
@@ -1213,7 +1281,7 @@ const SMS_ENABLED=true; // AU number active: +61 485 050 508
 const SLOTS=['7–8am','8–9am','9–10am','10–11am','11am–12pm','12–1pm','1–2pm','2–3pm','3–4pm','4–5pm'];
 const SLOT_IDX={};SLOTS.forEach((s,i)=>SLOT_IDX[s]=i);
 const BREAKS={'9–10am':'10-minute paid rest break','12–1pm':'30-minute unpaid lunch break'};
-const PAY_LABEL={cod:'COD',acc:'Account',paid:'Paid',tba:'TBA',banking:'Banking',checkpay:'Check Payment',pickup:'Pick Up'};
+const PAY_LABEL={cod:'COD',acc:'Account',paid:'Paid',tba:'Other',banking:'Banking',checkpay:'Check Payment',pickup:'Pick Up'};
 const PAY_CLASS={cod:'badge-cod',acc:'badge-acc',paid:'badge-paid',tba:'badge-tba',banking:'badge-banking',checkpay:'badge-checkpay',pickup:'badge-pickup'};
 const ALL_STORES=['Logan','Chandler','Ashmore','Redlands','Westerns','Forestdale','Mango Hill','Pine Rivers','Burpengary','Ormeau','Buderim'];
 // Driver workflow states in order
@@ -1496,6 +1564,88 @@ function flashRefreshBtn(){
 }
 function parseCod(d){const a=d.cod_amount?parseFloat(d.cod_amount.replace(/[$,]/g,'')):0;return isNaN(a)?0:a;}
 function now12(){return new Date().toLocaleTimeString('en-AU',{hour:'numeric',minute:'2-digit',hour12:true});}
+
+// Display name: company first, then person, then just name if no company.
+// RM stores names as "PERSON (COMPANY)". We flip to "COMPANY — PERSON".
+function displayName(raw){
+  if(!raw)return'—';
+  const m=raw.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+  if(m){
+    const person=m[1].trim();const company=m[2].trim();
+    if(company&&person)return company+' — '+person;
+    return company||person||raw;
+  }
+  return raw;
+}
+// Trim a quantity of exactly N.0 -> N (but keep 1.5, 0.5 etc). Applies to leading "N.0 x ..." in a product line.
+function trimQty(line){
+  if(!line)return line;
+  return line.replace(/(^|\n)\s*(\d+)\.0(\s*x\b)/gi,'$1$2$3');
+}
+// First name only, for driver-facing SMS
+function firstName(raw){
+  if(!raw)return'';
+  // strip any (company), take first word of the person part
+  const person=raw.replace(/\s*\([^)]*\)\s*/,'').trim();
+  return person.split(/[\s,]+/)[0]||'';
+}
+// Stable ordering for deliveries that share a slot: by sort_index, then id.
+// This keeps left/right position fixed regardless of edit order.
+function sortSlotDels(arr){
+  arr.sort((a,b)=>{
+    const ai=(a.sort_index!=null)?a.sort_index:(a.id||0);
+    const bi=(b.sort_index!=null)?b.sort_index:(b.id||0);
+    if(ai!==bi)return ai-bi;
+    return (a.id||0)-(b.id||0);
+  });
+  return arr;
+}
+// Swap the order of two deliveries sharing a slot (with confirmation)
+async function confirmSwapSlot(idLeft,idRight){
+  const dL=DELIVERIES.find(x=>x.id===idLeft);
+  const dR=DELIVERIES.find(x=>x.id===idRight);
+  if(!dL||!dR)return;
+  const ok=await nwConfirm(`Swap delivery order?\n\n"${displayName(dR.customer_name)}" will move to FIRST (scheduled ahead of "${displayName(dL.customer_name)}") on the driver's run.`,'Yes, swap','Cancel');
+  if(!ok)return;
+  // Assign explicit indices: right becomes 0 (first), left becomes 1
+  const newLeftIdx=(dR.sort_index!=null?dR.sort_index:0);
+  try{
+    await db(`deliveries?id=eq.${idRight}`,{method:'PATCH',body:JSON.stringify({sort_index:0})});
+    await db(`deliveries?id=eq.${idLeft}`,{method:'PATCH',body:JSON.stringify({sort_index:1})});
+    dR.sort_index=0;dL.sort_index=1;
+    renderAll();
+    showToast('Order swapped');
+  }catch(e){showToast('Swap failed',true);}
+}
+// SMS tracking — packed into the existing sms_sent field as a string of letters:
+// B=booking, L=loading, D=departure. Backward compatible: old boolean true -> treat as 'B'.
+function smsFlags(d){
+  // Prefer the new text field; fall back to legacy boolean sms_sent
+  if(typeof d.sms_flags==='string'&&d.sms_flags)return d.sms_flags;
+  if(d.sms_sent===true||d.sms_sent==='true')return'B';
+  return'';
+}
+function smsHas(d,letter){return smsFlags(d).includes(letter);}
+function smsAdd(d,letter){
+  let f=smsFlags(d);
+  if(!f.includes(letter))f+=letter;
+  return f;
+}
+// Render the delivery-instruction text as badges: base instruction (amber) + call flag (red) if present
+function instructionBadges(reason){
+  if(!reason)return'';
+  let r=reason;
+  let out='';
+  if(r.includes('[CALL BEFORE]')){out+='<span class="badge" style="background:#fde2e2;color:#b71c1c;font-weight:600">📞 Call before</span>';r=r.replace('[CALL BEFORE]','');}
+  else if(r.includes('[CALL IF EARLY]')){out+='<span class="badge" style="background:#fde2e2;color:#b71c1c;font-weight:600">📞 Call if early</span>';r=r.replace('[CALL IF EARLY]','');}
+  r=r.trim();
+  // Show "or B4" instead of bare "B4" on the badge
+  if(r==='B4')r='or B4';
+  else if(r.startsWith('B4 '))r='or B4 '+r.slice(3);
+  if(r)out='<span class="badge" style="background:#fff3cd;color:#856404">'+r+'</span>'+out;
+  return out;
+}
+
 // Format phone for display: 0412 345 678 or 07 3000 0000
 function formatPhoneDisplay(ph){
   if(!ph)return'';
@@ -1550,9 +1700,9 @@ function getRunStatus(truckIdx){
   }
   if(active){
     const slotStart=getSlotHour(active.slot)*60;
-    if(nowMins>=slotStart+120)return{status:'behind',text:'Behind — '+active.customer_name};
-    if(nowMins>=slotStart+90)return{status:'warning',text:'Running late — '+active.customer_name};
-    return{status:'on-time',text:'Active — '+active.customer_name};
+    if(nowMins>=slotStart+120)return{status:'behind',text:'Behind — '+displayName(active.customer_name)};
+    if(nowMins>=slotStart+90)return{status:'warning',text:'Running late — '+displayName(active.customer_name)};
+    return{status:'on-time',text:'Active — '+displayName(active.customer_name)};
   }
   return{status:'on-time',text:'On time'};
 }
@@ -1617,8 +1767,8 @@ function buildRunSheet(){
           blockedSlotDels.forEach(bd=>{
             const p=bd.payment_type||'acc';const cc=getCardColorClass(bd,DELIVERIES);
             html+=`<div class="del-card ${cc}" style="width:${blockedSlotDels.length>=2?'48%':'100%'};display:inline-block;vertical-align:top;margin:1px" onclick="openEditDelivery(${bd.id})">
-              <div class="del-top"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>${statusBadge(bd)}${bd.entry_type!=='unavailable'&&bd.unavailable_reason?'<span class="badge" style="background:#fff3cd;color:#856404">'+bd.unavailable_reason+'</span>':''}</div>
-              <div class="del-name">${bd.customer_name||'—'}</div>
+              <div class="del-top"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>${statusBadge(bd)}${bd.entry_type!=='unavailable'&&bd.unavailable_reason?instructionBadges(bd.unavailable_reason):''}</div>
+              <div class="del-name">${displayName(bd.customer_name)}</div>
               <div class="del-suburb">${bd.suburb||''}</div>
               <div class="del-inv">${bd.invoice||''}${bd.cod_amount?' · '+bd.cod_amount:''}</div>
               ${bd.notes?`<div class="del-note">${bd.notes}</div>`:''}
@@ -1631,15 +1781,31 @@ function buildRunSheet(){
         continue;
       }
       const slotDels=DELIVERIES.filter(x=>x.slot===slot&&x.truck===t&&x.entry_type!=='run_override');
+      sortSlotDels(slotDels);
       if(slotDels.length===0){
-        html+=`<div class="rs-cell empty" style="min-width:200px"><span class="ea-btn" onclick="openBookingWith(${t},'${slot}')">+</span></div>`;
+        html+=`<div class="rs-cell empty" style="min-width:200px;display:flex;gap:4px;align-items:center;justify-content:center"><span class="ea-btn" onclick="openBookingWith(${t},'${slot}')" title="Book delivery">+</span><span class="ea-btn ea-tba" onclick="openTbaModalWith(${t},'${slot}')" title="Hold this spot (TBA)">◷</span></div>`;
       }else{
         const maxDur=Math.max(...slotDels.map(d=>d.duration));
         let style='min-width:200px';
         if(maxDur>=2)style+=';min-height:108px';else if(maxDur===1.5)style+=';min-height:81px';
         html+=`<div class="rs-cell" style="${style}">`;
-        slotDels.forEach(d=>{
-          if(d.entry_type==='unavailable'){
+        // Two real deliveries sharing this slot → show a swap control
+        const realDels=slotDels.filter(x=>x.entry_type!=='unavailable'&&x.entry_type!=='tba');
+        const showSwap=realDels.length===2;
+        slotDels.forEach((d,slotPos)=>{
+          if(d.entry_type==='tba'){
+            html+=`<div class="del-card color-tba full-width">
+              ${d.duration>1||d.duration===0.5?`<div class="del-duration">${d.duration===0.5?'½hr':d.duration+'hr'}</div>`:''}
+              <div class="del-top"><span class="badge" style="background:#ffe0b2;color:#bf5b00;font-weight:600">TBA — hold</span></div>
+              <div class="del-name">${d.customer_name||'On hold'}</div>
+              ${d.sales_person?`<div class="del-suburb">By: ${d.sales_person}${d.suburb?' · '+d.suburb:''}</div>`:(d.suburb?`<div class="del-suburb">${d.suburb}</div>`:'')}
+              ${d.comments?`<div class="del-note">${d.comments}</div>`:''}
+              <div style="display:flex;gap:6px;margin-top:6px">
+                <button class="del-edit-btn" style="position:static;background:var(--teal);color:#fff;border-color:var(--teal)" onclick="event.stopPropagation();convertTbaToBooking(${d.id})">+ Add booking</button>
+                <button class="del-edit-btn" style="position:static" onclick="event.stopPropagation();openTbaEdit(${d.id})">Edit</button>
+              </div>
+            </div>`;
+          }else if(d.entry_type==='unavailable'){
             html+=`<div class="del-card color-unavailable full-width">
               ${d.duration>1?`<div class="del-duration">${d.duration}hr</div>`:''}
               <div class="del-top"><span class="badge badge-issue">Unavailable</span></div>
@@ -1652,17 +1818,27 @@ function buildRunSheet(){
             // Show side-by-side if 2 deliveries in same slot (regardless of duration)
             const wc=slotDels.length>=2?'half-width':'full-width';
             const cc=getCardColorClass(d,DELIVERIES);
+            // Position badge + swap control when two deliveries share the slot
+            const posBadge=showSwap?`<span class="badge" style="background:var(--surface2);color:var(--text-3);font-weight:600">${slotPos===0?'1st':'2nd'}</span>`:'';
+            const swapBtn=(showSwap&&slotPos===0)?`<button class="del-swap-btn" title="Swap order — put the other delivery first" onclick="event.stopPropagation();confirmSwapSlot(${realDels[0].id},${realDels[1].id})">⇄ Swap</button>`:'';
             html+=`<div class="${cardClass(d)} ${wc} ${cc}">
               ${d.duration>1||d.duration===0.5?`<div class="del-duration">${d.duration===0.5?'½hr':d.duration+'hr'}</div>`:''}
-              <div class="del-top"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>${statusBadge(d)}${cc==='color-next'?'<span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span>':''}${d.entry_type!=='unavailable'&&d.unavailable_reason?'<span class="badge" style="background:#fff3cd;color:#856404">'+d.unavailable_reason+'</span>':''}</div>
-              <div class="del-name">${d.customer_name||'—'}</div>
+              <div class="del-top"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>${statusBadge(d)}${posBadge}${cc==='color-next'?'<span class="badge" style="background:#dde8f8;color:#1d5fa8">Next up</span>':''}${d.entry_type!=='unavailable'&&d.unavailable_reason?instructionBadges(d.unavailable_reason):''}</div>
+              <div class="del-name">${displayName(d.customer_name)}</div>
               <div class="del-suburb">${d.suburb||''}</div>
               <div class="del-inv">${d.invoice||''}${d.cod_amount?' · '+d.cod_amount:''}</div>
               ${d.notes?`<div class="del-note">${d.notes}</div>`:''}
+              ${swapBtn}
               <button class="del-edit-btn" onclick="event.stopPropagation();openEditDelivery(${d.id})">Edit</button>
             </div>`;
           }
         });
+        // Allow adding a 2nd delivery when the slot has exactly one real delivery (not TBA/unavailable)
+        const realCount=slotDels.filter(x=>x.entry_type!=='unavailable'&&x.entry_type!=='tba').length;
+        const hasBlocker=slotDels.some(x=>x.entry_type==='unavailable');
+        if(realCount===1&&!hasBlocker){
+          html+=`<div class="rs-add-second"><span class="ea-btn ea-add2" onclick="event.stopPropagation();openBookingWith(${t},'${slot}')" title="Add a second delivery to this slot">+ Add 2nd</span></div>`;
+        }
         html+=`</div>`;
       }
     }
@@ -1741,6 +1917,9 @@ function openTruckEdit(idx){
   document.getElementById('truck-rego').value=r.rego||'';
   document.getElementById('truck-driver').value=r.driver||'';
   document.getElementById('truck-mobile').value=r.mobile||'';
+  // Populate the standard-driver dropdown options
+  const dl=document.getElementById('truck-driver-options');
+  if(dl){dl.innerHTML=getStoreDrivers().map(n=>`<option value="${n.replace(/"/g,'&quot;')}">`).join('');}
   showModal('truck');
 }
 async function saveTruckHeader(){
@@ -1778,9 +1957,101 @@ function openBookingModal(){
   editingId=null;
   document.getElementById('booking-modal-title').textContent='Book delivery';
   document.getElementById('booking-delete-btn').style.display='none';
+  document.getElementById('booking-resend-btn').style.display='none';
   clearBookingForm();
   document.getElementById('book-date').value=currentDate;
   showModal('booking');
+}
+
+// ═══ TBA HOLD (item 9) ═══
+let editingTbaId=null;
+function populateTbaSelectors(){
+  // Run dropdown from current runs
+  const runs=getRuns();
+  document.getElementById('tba-truck').innerHTML=runs.map((r,i)=>`<option value="${i}">${r.label||'Run '+(i+1)}</option>`).join('');
+  // Store dropdown (other stores, home excluded)
+  document.getElementById('tba-store').innerHTML='<option value="">— Home store —</option>'+ALL_STORES.filter(s=>s!==currentStore).map(s=>`<option value="${s}">${s}</option>`).join('');
+}
+function openTbaModal(){
+  editingTbaId=null;
+  document.getElementById('tba-modal-title').textContent='Hold a spot (TBA)';
+  document.getElementById('tba-delete-btn').style.display='none';
+  populateTbaSelectors();
+  document.getElementById('tba-name').value='';
+  document.getElementById('tba-staff').value='';
+  document.getElementById('tba-store').value='';
+  document.getElementById('tba-dur').value='1';
+  document.getElementById('tba-truck').value='0';
+  document.getElementById('tba-slot').value='7–8am';
+  document.getElementById('tba-comments').value='';
+  showModal('tba');
+}
+function openTbaModalWith(truck,slot){
+  openTbaModal();
+  document.getElementById('tba-truck').value=truck;
+  document.getElementById('tba-slot').value=slot;
+}
+function openTbaEdit(id){
+  const d=DELIVERIES.find(x=>x.id===id);if(!d)return;
+  editingTbaId=id;
+  document.getElementById('tba-modal-title').textContent='Edit TBA hold';
+  document.getElementById('tba-delete-btn').style.display='block';
+  populateTbaSelectors();
+  document.getElementById('tba-name').value=d.customer_name||'';
+  document.getElementById('tba-staff').value=d.sales_person||'';
+  document.getElementById('tba-store').value=(d.suburb&&ALL_STORES.includes(d.suburb))?d.suburb:'';
+  document.getElementById('tba-dur').value=d.duration||1;
+  document.getElementById('tba-truck').value=d.truck||0;
+  document.getElementById('tba-slot').value=d.slot||'7–8am';
+  document.getElementById('tba-comments').value=d.comments||'';
+  showModal('tba');
+}
+async function saveTba(){
+  const name=document.getElementById('tba-name').value.trim();
+  if(!name){showToast('Enter a customer name',true);return;}
+  const row={
+    store:currentStore,date:currentDate,
+    slot:document.getElementById('tba-slot').value,
+    truck:parseInt(document.getElementById('tba-truck').value),
+    customer_name:name,
+    sales_person:document.getElementById('tba-staff').value.trim()||null,
+    suburb:document.getElementById('tba-store').value||null,  // holds the "booking store" if not home
+    duration:parseFloat(document.getElementById('tba-dur').value),
+    comments:document.getElementById('tba-comments').value.trim()||null,
+    entry_type:'tba',
+    driver_status:'pending',
+    payment_type:'tba'
+  };
+  try{
+    if(editingTbaId){
+      await db(`deliveries?id=eq.${editingTbaId}`,{method:'PATCH',body:JSON.stringify(row)});showToast('TBA hold updated');
+    }else{
+      await db('deliveries',{method:'POST',body:JSON.stringify(row)});showToast('Spot held');
+    }
+    closeModal('tba');await ensureRunsLocked();await loadDeliveries();
+  }catch(e){console.error('TBA save failed:',e.message||e);showToast('Failed to hold spot: '+(e.message||''),true);}
+}
+async function deleteTba(){
+  if(!editingTbaId)return;
+  if(!await nwConfirm('Remove this TBA hold?','Yes, remove','Cancel'))return;
+  try{await db(`deliveries?id=eq.${editingTbaId}`,{method:'DELETE'});closeModal('tba');editingTbaId=null;await loadDeliveries();showToast('Hold removed');}catch(e){showToast('Delete failed',true);}
+}
+// Convert a TBA hold into a real booking: delete the hold, open a fresh booking form
+// pre-set to the same slot/truck. New booking sends SMS normally (fixes the edit-suppresses-SMS bug).
+async function convertTbaToBooking(id){
+  const d=DELIVERIES.find(x=>x.id===id);if(!d)return;
+  const truck=d.truck||0;const slot=d.slot||'7–8am';const dur=d.duration||1;
+  try{
+    // Remove the TBA hold first
+    await db(`deliveries?id=eq.${id}`,{method:'DELETE'});
+    await loadDeliveries();
+  }catch(e){showToast('Could not clear hold',true);return;}
+  // Open a fresh full booking form on that slot (invoice lookup fills the rest)
+  openBookingModal();
+  document.getElementById('book-truck').value=truck;
+  document.getElementById('book-slot').value=slot;
+  document.getElementById('book-dur').value=dur;
+  showToast('TBA cleared — enter the booking (SMS will send)');
 }
 function openBookingWith(truck,slot){
   openBookingModal();
@@ -1797,6 +2068,7 @@ function openEditDelivery(id){
   const isUnavail=d.entry_type==='unavailable';
   document.getElementById('booking-modal-title').textContent=isUnavail?'Edit — Unavailable':'Edit — '+(d.customer_name||'Delivery');
   document.getElementById('booking-delete-btn').style.display='block';
+  document.getElementById('booking-resend-btn').style.display=(!isUnavail&&d.customer_phone)?'inline-flex':'none';
   document.getElementById('book-name').value=d.customer_name||'';
   document.getElementById('book-phone').value=d.customer_phone||'';
   document.getElementById('book-inv').value=d.invoice||'';
@@ -1817,14 +2089,25 @@ function openEditDelivery(id){
   document.getElementById('book-address').value=d.delivery_address||'';
   document.getElementById('book-see-office').checked=(d.notes||'').includes('[SEE OFFICE');
   document.getElementById('book-date').value=d.date||currentDate;
-  // Load delivery instruction
-  const instr=d.unavailable_reason||'';
+  // Load delivery instruction (may include call flags)
+  let instr=d.unavailable_reason||'';
+  // Extract call flags first
+  const callBefore=instr.includes('[CALL BEFORE]');
+  const callEarly=instr.includes('[CALL IF EARLY]');
+  document.getElementById('book-call-before').checked=callBefore;
+  document.getElementById('book-call-early').checked=callEarly;
+  instr=instr.replace('[CALL BEFORE]','').replace('[CALL IF EARLY]','').trim();
+  // Parse the base instruction
   if(instr.startsWith('Not B4')){
     document.getElementById('book-instruction').value='Not B4';
     document.getElementById('book-instruction-time').value=instr.replace('Not B4','').trim();
     document.getElementById('instruction-time-wrap').style.display='block';
-  }else if(instr==='B4'||instr==='ASAP'){
-    document.getElementById('book-instruction').value=instr;
+  }else if(instr.startsWith('B4')){
+    document.getElementById('book-instruction').value='B4';
+    document.getElementById('book-instruction-time').value=instr.replace('B4','').trim();
+    document.getElementById('instruction-time-wrap').style.display='block';
+  }else if(instr==='ASAP'){
+    document.getElementById('book-instruction').value='ASAP';
     document.getElementById('book-instruction-time').value='';
     document.getElementById('instruction-time-wrap').style.display='none';
   }else{
@@ -1874,6 +2157,17 @@ async function saveBooking(){
     sales_person:document.getElementById('book-salesperson').value.trim()||null,
     delivery_address:document.getElementById('book-address').value.trim()||null,
   };
+  // Assign a sort_index so a second booking in the same slot goes to the right (schedules second).
+  // Only for NEW bookings; edits keep their existing index (stable position).
+  if(!editingId){
+    const sameSlot=DELIVERIES.filter(x=>x.slot===slot&&x.truck===ti&&x.date===bookDate&&x.entry_type!=='run_override'&&x.entry_type!=='unavailable');
+    if(sameSlot.length>0){
+      const maxIdx=Math.max(...sameSlot.map(x=>x.sort_index!=null?x.sort_index:0));
+      row.sort_index=maxIdx+1;
+    }else{
+      row.sort_index=0;
+    }
+  }
   // "See office" flag — prepend to notes so driver sees it and it persists in DB
   if(document.getElementById('book-see-office').checked){
     if(!row.notes)row.notes='[SEE OFFICE BEFORE LOADING]';
@@ -1903,13 +2197,17 @@ async function saveBooking(){
     if(editingId){
       await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify(row)});showToast(bookDate!==currentDate?'Moved to '+bookDate:'Updated');
     }else{
-      const sendSms=await nwConfirm('Send SMS notification to customer?','Yes, send SMS','No SMS');
-      row.sms_sent=sendSms;
+      // Only offer SMS if a phone number was entered
+      let sendSms=false;
+      if(row.customer_phone){
+        sendSms=await nwConfirm('Send SMS notification to customer?','Yes, send SMS','No SMS');
+      }
+      row.sms_sent=sendSms;row.sms_flags=sendSms?'B':null;
       await db('deliveries',{method:'POST',body:JSON.stringify(row)});
       if(sendSms&&row.customer_phone){
         await sendBookingSMS(row);
       }else{
-        showToast(sendSms?'Booked — no phone number for SMS':'Booked — no SMS');
+        showToast('Booked');
       }
     }
     closeModal('booking');clearBookingForm();await ensureRunsLocked();await loadDeliveries();
@@ -1935,6 +2233,8 @@ function clearBookingForm(){
   document.getElementById('book-instruction-time').value='';
   document.getElementById('instruction-time-wrap').style.display='none';
   document.getElementById('book-see-office').checked=false;
+  document.getElementById('book-call-before').checked=false;
+  document.getElementById('book-call-early').checked=false;
   document.getElementById('book-date').value=currentDate;
 }
 // Banking payment type handler
@@ -1956,17 +2256,36 @@ function onDurationChange(){
 // Delivery instruction handler
 function onInstructionChange(){
   const val=document.getElementById('book-instruction').value;
-  document.getElementById('instruction-time-wrap').style.display=(val==='Not B4')?'block':'none';
-  if(val!=='Not B4')document.getElementById('book-instruction-time').value='';
+  // Show the "not before time" field for every instruction except ASAP and None
+  const showTime=(val!==''&&val!=='ASAP');
+  document.getElementById('instruction-time-wrap').style.display=showTime?'block':'none';
+  if(!showTime)document.getElementById('book-instruction-time').value='';
+}
+// Mutually-exclusive: ticking one unticks the other
+function onCallCheckChange(which){
+  const b=document.getElementById('book-call-before');
+  const e=document.getElementById('book-call-early');
+  if(which==='before'&&b.checked)e.checked=false;
+  if(which==='early'&&e.checked)b.checked=false;
 }
 function getInstructionText(){
   const val=document.getElementById('book-instruction').value;
-  if(!val)return'';
-  if(val==='Not B4'){
-    const t=document.getElementById('book-instruction-time').value.trim();
-    return t?'Not B4 '+t:'Not B4';
+  let base='';
+  if(val){
+    if(val==='ASAP'){base='ASAP';}
+    else{
+      const t=document.getElementById('book-instruction-time').value.trim();
+      base=t?val+' '+t:val;
+    }
   }
-  return val;
+  // Append call flags (mutually exclusive)
+  const callBefore=document.getElementById('book-call-before').checked;
+  const callEarly=document.getElementById('book-call-early').checked;
+  let flag='';
+  if(callBefore)flag='[CALL BEFORE]';
+  else if(callEarly)flag='[CALL IF EARLY]';
+  if(flag)base=base?base+' '+flag:flag;
+  return base;
 }
 // Print delivery form
 function printBookingForm(){
@@ -2046,7 +2365,7 @@ async function saveUnavailable(){
 function buildJournal(){
   const SM={delivered:{c:'s-done',l:'Delivered'},enroute:{c:'s-out',l:'En route'},loading:{c:'s-out',l:'Loading'},left_site:{c:'s-returning',l:'Left site'},returning:{c:'s-returning',l:'Returning'},pending:{c:'s-pending',l:'Pending'}};
   const tbody=document.getElementById('journal-body');
-  const dels=DELIVERIES.filter(d=>d.entry_type!=='unavailable'&&d.entry_type!=='run_override');
+  const dels=DELIVERIES.filter(d=>d.entry_type!=='unavailable'&&d.entry_type!=='run_override'&&d.entry_type!=='tba');
   // Sort: deliveries with time_loading first (by that time), then pending by slot
   function parseTime12(t){
     if(!t)return 9999;
@@ -2056,7 +2375,17 @@ function buildJournal(){
     if(ampm==='pm'&&h<12)h+=12;if(ampm==='am'&&h===12)h=0;
     return h*60+min;
   }
+  const sortMode=(document.getElementById('journal-sort')||{}).value||'time';
   dels.sort((a,b)=>{
+    if(sortMode==='driver'){
+      const ad=(a.driver_name||'zzz').toLowerCase();const bd=(b.driver_name||'zzz').toLowerCase();
+      if(ad!==bd)return ad<bd?-1:1;
+      // within same driver, keep loading-time order
+      const as=a.time_loading?1:0;const bs=b.time_loading?1:0;
+      if(as!==bs)return bs-as;
+      if(as&&bs)return parseTime12(a.time_loading)-parseTime12(b.time_loading);
+      return(SLOT_IDX[a.slot]||0)-(SLOT_IDX[b.slot]||0);
+    }
     const aStarted=a.time_loading?1:0;const bStarted=b.time_loading?1:0;
     if(aStarted!==bStarted)return bStarted-aStarted; // started first
     if(aStarted&&bStarted){
@@ -2077,7 +2406,7 @@ function buildJournal(){
     const mainRow=`<tr onclick="toggleJournalExpand(${d.id})" style="cursor:pointer;${rowBg}">
     <td class="mono">${d.id}</td>
     <td class="mono">${d.customer_id_rm||'—'}</td>
-    <td style="font-weight:600">${d.customer_name||'—'}</td>
+    <td style="font-weight:600">${displayName(d.customer_name)}</td>
     <td>${d.suburb||''}</td>
     <td class="mono">${d.invoice||''}</td>
     <td><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span></td>
@@ -2100,7 +2429,7 @@ function buildJournal(){
     <td colspan="19" style="padding:12px 16px;font-size:11px;line-height:1.8">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery address</strong><br>${d.delivery_address||d.notes||'—'}</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>${(d.products||'—').replace(/\n/g,'<br>')}</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>${trimQty(d.products||'—').replace(/\n/g,'<br>')}</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Notes</strong><br>${d.notes||'—'}</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
@@ -2112,7 +2441,7 @@ function buildJournal(){
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">COD receipt</strong><br>${d.cod_receipt||'—'}</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Created by</strong><br>${d.created_by||'—'}</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Phone</strong><br>${d.customer_phone||'—'}</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>${d.sms_sent?'Yes':'No'}</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">SMS sent</strong><br>Booking: ${smsHas(d,'B')?'Yes':'No'} · Loading: ${smsHas(d,'L')?'Yes':'No'} · On way: ${smsHas(d,'D')?'Yes':'No'}</div>
       </div>
       ${(()=>{
         if(!d.time_loading)return'';
@@ -2169,9 +2498,16 @@ function buildDriverView(){
 }
 function filterDriverView(){
   driverFilterTruck=document.getElementById('driver-filter-select').value;
-  let mine=driverFilterTruck==='all'?DELIVERIES.filter(d=>d.entry_type!=='unavailable'&&d.entry_type!=='run_override'):DELIVERIES.filter(d=>d.truck===parseInt(driverFilterTruck)&&d.entry_type!=='unavailable'&&d.entry_type!=='run_override');
-  // Sort by time slot order
-  mine.sort((a,b)=>(SLOT_IDX[a.slot]||0)-(SLOT_IDX[b.slot]||0));
+  let mine=driverFilterTruck==='all'?DELIVERIES.filter(d=>d.entry_type!=='unavailable'&&d.entry_type!=='run_override'&&d.entry_type!=='tba'):DELIVERIES.filter(d=>d.truck===parseInt(driverFilterTruck)&&d.entry_type!=='unavailable'&&d.entry_type!=='run_override'&&d.entry_type!=='tba');
+  // Sort by time slot, then by sort_index within a slot (respects the office's swap order)
+  mine.sort((a,b)=>{
+    const si=(SLOT_IDX[a.slot]||0)-(SLOT_IDX[b.slot]||0);
+    if(si!==0)return si;
+    const ai=(a.sort_index!=null)?a.sort_index:(a.id||0);
+    const bi=(b.sort_index!=null)?b.sort_index:(b.id||0);
+    if(ai!==bi)return ai-bi;
+    return (a.id||0)-(b.id||0);
+  });
   const runs=getRuns();const run=driverFilterTruck!=='all'?runs[parseInt(driverFilterTruck)]:null;
   document.getElementById('dv-driver-name').textContent=run?`${run.driver||run.label} — ${run.type||''}`:'All runs';
   document.getElementById('dv-driver-sub').textContent=`Today · ${mine.length} deliveries`;
@@ -2211,13 +2547,13 @@ function filterDriverView(){
       else schedLabel='<span class="badge badge-yes">On time</span>';
     }
     return`<div class="dq-item${sel}" onclick="selectDelivery(${d.id},this)">
-      <div class="dq-row"><span class="dq-num ${nc}">${ni}</span><span class="dq-customer">${d.customer_name||'—'}</span></div>
+      <div class="dq-row"><span class="dq-num ${nc}">${ni}</span><span class="dq-customer">${displayName(d.customer_name)}</span></div>
       <div class="dq-detail">${d.suburb||''} · ${d.slot||''}</div>
       <div class="dq-badges"><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span>
         ${d.driver_status!=='pending'?`<span class="badge badge-${d.driver_status==='delivered'?'done':'out'}">${STATUS_LABEL[d.driver_status]||d.driver_status}</span>`:''}
         ${schedLabel}
         ${d.cod_amount?`<span class="badge badge-cod">${d.cod_amount}</span>`:''}
-        ${d.entry_type!=='unavailable'&&d.unavailable_reason?`<span class="badge" style="background:#fff3cd;color:#856404">${d.unavailable_reason}</span>`:''}
+        ${d.entry_type!=='unavailable'&&d.unavailable_reason?instructionBadges(d.unavailable_reason):''}
       </div></div>`;
   }).join('');
   if(mine.length===0){
@@ -2237,7 +2573,7 @@ function renderDriverDetail(d){
   // Clear signature state so canvases re-init after re-render
   sigState={};
   const st=d.driver_status||'pending';
-  const products=d.products?d.products.split('\n').filter(Boolean).map(p=>{const ps=p.split(' - ');return{name:ps[0]||p,qty:ps[1]||''};}):[]; 
+  const products=d.products?d.products.split('\n').filter(Boolean).map(p=>{const pt=trimQty(p);const ps=pt.split(' - ');return{name:ps[0]||pt,qty:ps[1]||''};}):[]; 
   if(!prodChecked[d.id])prodChecked[d.id]=products.map(()=>false);
   if(!safetyChecked[d.id])safetyChecked[d.id]=SAFETY_QS.map(()=>false);
   const runs=getRuns();const run=runs[d.truck]||{};
@@ -2350,7 +2686,7 @@ function renderDriverDetail(d){
   try{var dd=new Date(currentDate+'T00:00:00');delDateStr=dd.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}catch(e){delDateStr=currentDate;}
   let body=progHtml+undoHtml;
   body+=`<div style="background:var(--blue);color:#fff;border-radius:var(--radius);padding:12px 16px;margin-bottom:12px;font-size:16px;font-weight:700;text-align:center;letter-spacing:-0.3px">Delivery for ${delDateStr}</div>`;
-  body+=`<div class="detail-section"><div class="detail-section-title">Customer & invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">${d.customer_name||'\u2014'}</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">${d.invoice||'\u2014'}</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">${d.slot||'\u2014'}</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv">${pay?`<span class="badge ${PAY_CLASS[pay]||''}">${PAY_LABEL[pay]||pay}</span>`:'\u2014'}</div></div>${d.sales_person?`<div class="detail-item"><div class="dl">Sales</div><div class="dv">${d.sales_person}</div></div>`:''}</div>${times}</div>`;
+  body+=`<div class="detail-section"><div class="detail-section-title">Customer & invoice</div><div class="detail-grid"><div class="detail-item"><div class="dl">Name</div><div class="dv">${displayName(d.customer_name)}</div></div><div class="detail-item"><div class="dl">Invoice</div><div class="dv mono">${d.invoice||'\u2014'}</div></div><div class="detail-item"><div class="dl">Window</div><div class="dv">${d.slot||'\u2014'}</div></div><div class="detail-item"><div class="dl">Payment</div><div class="dv">${pay?`<span class="badge ${PAY_CLASS[pay]||''}">${PAY_LABEL[pay]||pay}</span>`:'\u2014'}</div></div>${d.sales_person?`<div class="detail-item"><div class="dl">Sales</div><div class="dv">${d.sales_person}</div></div>`:''}</div>${times}</div>`;
   // Format address as Google Maps link
   const addrText=d.delivery_address||(d.suburb?d.suburb+', QLD':'');
   const mapsUrl=addrText?`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addrText)}`:'';
@@ -2793,9 +3129,17 @@ async function advanceStatus(id,ns){
     if(!window._smsSent[id])window._smsSent[id]={};
     if(d&&d.customer_phone){
       if(ns==='loading'&&!window._smsSent[id].loading){
-        if(await nwConfirm('📱 Send SMS to customer?\n\n"Your delivery is being loaded now"','Yes, send','No thanks')){sendLoadingSMS(d);window._smsSent[id].loading=true;}
+        if(await nwConfirm('📱 Send SMS to customer?\n\n"Your delivery is being loaded now"','Yes, send','No thanks')){
+          sendLoadingSMS(d);window._smsSent[id].loading=true;
+          const nf=smsAdd(d,'L');d.sms_flags=nf;
+          try{await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({sms_flags:nf})});}catch(e){}
+        }
       }else if(ns==='enroute'&&!window._smsSent[id].enroute){
-        if(await nwConfirm('📱 Send SMS to customer?\n\n"Your delivery is on its way"','Yes, send','No thanks')){sendEnRouteSMS(d);window._smsSent[id].enroute=true;}
+        if(await nwConfirm('📱 Send SMS to customer?\n\n"Your delivery is on its way"','Yes, send','No thanks')){
+          sendEnRouteSMS(d);window._smsSent[id].enroute=true;
+          const nf=smsAdd(d,'D');d.sms_flags=nf;
+          try{await db(`deliveries?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({sms_flags:nf})});}catch(e){}
+        }
       }
     }
     renderAll();
@@ -2814,7 +3158,7 @@ async function advanceStatus(id,ns){
    most relevant active delivery.
    ============================================================ */
 function updateCustomerTracker(){
-  const dels=DELIVERIES.filter(d=>d.entry_type!=='unavailable'&&d.entry_type!=='run_override');
+  const dels=DELIVERIES.filter(d=>d.entry_type!=='unavailable'&&d.entry_type!=='run_override'&&d.entry_type!=='tba');
   const d=dels.find(x=>['enroute','left_site'].includes(x.driver_status))||dels.find(x=>x.driver_status==='loading')||dels.find(x=>x.driver_status!=='delivered')||dels[dels.length-1];
   if(!d){document.getElementById('tracker-card').innerHTML='<div style="text-align:center;padding:30px;color:var(--text-3)">No deliveries to track</div>';return;}
   const st=d.driver_status||'pending';
@@ -2960,7 +3304,7 @@ function renderLookupResults(){
     const mainRow=`<tr onclick="toggleLookupExpand(${d.id})" style="cursor:pointer;${rowBg}">
     <td class="mono" style="font-size:11px">${dateStr}</td>
     <td class="mono">${d.customer_id_rm||'—'}</td>
-    <td style="font-weight:600">${d.customer_name||'—'}</td>
+    <td style="font-weight:600">${displayName(d.customer_name)}</td>
     <td>${d.suburb||''}</td>
     <td class="mono">${d.invoice||''}</td>
     <td><span class="badge ${PAY_CLASS[p]||'badge-acc'}">${PAY_LABEL[p]||p}</span></td>
@@ -2979,7 +3323,7 @@ function renderLookupResults(){
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Address</strong><br>${d.delivery_address||'—'}</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Delivery notes</strong><br>${d.notes||'—'}</div>
-        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>${(d.products||'—').replace(/\\n/g,'<br>')}</div>
+        <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Products</strong><br>${trimQty(d.products||'—').replace(/\\n/g,'<br>')}</div>
         <div><strong style="color:var(--text-3);text-transform:uppercase;font-size:9px;letter-spacing:0.05em">Sales person</strong><br>${d.sales_person||'—'}</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
@@ -3068,7 +3412,49 @@ function renderSettingsPage(){
   document.getElementById('set-email').value=s.email||'';
   document.getElementById('set-rm-path').value=s.rm_db_path||'';
   renderSettingsRuns();
+  renderSettingsDrivers();
 }
+
+// Standard drivers (per store, stored in store_settings.drivers)
+function getStoreDrivers(){
+  const d=storeSettings&&storeSettings.drivers;
+  if(Array.isArray(d))return d;
+  if(typeof d==='string'){try{const p=JSON.parse(d);return Array.isArray(p)?p:[];}catch(e){return[];}}
+  return[];
+}
+function renderSettingsDrivers(){
+  const list=document.getElementById('settings-drivers-list');
+  if(!list)return;
+  const drivers=getStoreDrivers();
+  if(drivers.length===0){list.innerHTML='<span style="font-size:12px;color:var(--text-3)">No drivers added yet.</span>';return;}
+  list.innerHTML=drivers.map((name,i)=>`<span style="display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border-md);border-radius:20px;padding:5px 6px 5px 12px;font-size:13px">${name}<button onclick="removeStandardDriver(${i})" title="Remove" style="border:none;background:var(--border);color:var(--text-2);border-radius:50%;width:18px;height:18px;cursor:pointer;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center">×</button></span>`).join('');
+}
+async function addStandardDriver(){
+  const inp=document.getElementById('new-driver-name');
+  const name=inp.value.trim();
+  if(!name)return;
+  const drivers=getStoreDrivers();
+  if(drivers.some(d=>d.toLowerCase()===name.toLowerCase())){showToast('Driver already in list',true);return;}
+  drivers.push(name);
+  if(storeSettings)storeSettings.drivers=drivers;
+  inp.value='';
+  renderSettingsDrivers();
+  await saveDriversList(drivers);
+}
+async function removeStandardDriver(idx){
+  const drivers=getStoreDrivers();
+  drivers.splice(idx,1);
+  if(storeSettings)storeSettings.drivers=drivers;
+  renderSettingsDrivers();
+  await saveDriversList(drivers);
+}
+async function saveDriversList(drivers){
+  try{
+    await db(`store_settings?store=eq.${encodeURIComponent(currentStore)}`,{method:'PATCH',body:JSON.stringify({drivers:drivers,updated_at:new Date().toISOString()})});
+    showToast('Driver list updated');
+  }catch(e){showToast('Failed to save driver list',true);}
+}
+
 
 function renderSettingsRuns(){
   const runs=getDefaultRuns();
@@ -3079,13 +3465,13 @@ function renderSettingsRuns(){
         <span>${r.label||'Run '+(i+1)}</span>
         ${runs.length>1?`<span class="remove-run" onclick="removeSettingsRun(${i})">Remove</span>`:''}
       </div>
-      <div class="settings-row-4">
+      <div class="settings-row-4" style="grid-template-columns:1fr 1fr 1fr 1fr">
         <div><label>Label</label><input type="text" id="srun-label-${i}" value="${r.label||''}" placeholder="Run ${i+1}"></div>
         <div><label>Truck type</label><input type="text" id="srun-type-${i}" value="${r.type||''}" placeholder="M1, FUSO..."></div>
         <div><label>Rego</label><input type="text" id="srun-rego-${i}" value="${r.rego||''}" placeholder="1AB-234"></div>
-        <div><label>Driver</label><input type="text" id="srun-driver-${i}" value="${r.driver||''}" placeholder="Jake T."></div>
         <div><label>Truck mobile</label><input type="text" id="srun-mobile-${i}" value="${r.mobile||''}" placeholder="04XX XXX XXX"></div>
       </div>
+      <input type="hidden" id="srun-driver-${i}" value="${r.driver||''}">
     </div>`).join('');
 }
 
@@ -3348,14 +3734,28 @@ function formatDateForSMS(dateStr){
 }
 
 // SMS 1: Booking confirmation
+// Manually resend the booking SMS (edits don't auto-resend)
+async function resendBookingSMS(){
+  if(!editingId)return;
+  const d=DELIVERIES.find(x=>x.id===editingId);
+  if(!d){showToast('Save the booking first',true);return;}
+  if(!d.customer_phone){showToast('No phone number on this booking',true);return;}
+  if(!await nwConfirm('Resend the booking confirmation SMS to the customer?','Yes, resend','Cancel'))return;
+  const result=await sendBookingSMS(d);
+  if(result&&result.success!==false){
+    const nf=smsAdd(d,'B');d.sms_flags=nf;
+    try{await db(`deliveries?id=eq.${editingId}`,{method:'PATCH',body:JSON.stringify({sms_flags:nf})});}catch(e){}
+  }
+}
+
 async function sendBookingSMS(delivery){
   const s=storeSettings||{};
   const storeName=currentStore;
   const storePhone=s.phone||'';
   const date=formatDateForSMS(delivery.date||currentDate);
-  const products=(delivery.products||'').split('\n').filter(Boolean).slice(0,10).join(', ');
+  const products=trimQty(delivery.products||'').split('\n').filter(Boolean).slice(0,10).join(', ');
   const addr=delivery.delivery_address||delivery.suburb||'';
-  let msg=`Hi${delivery.customer_name?' '+delivery.customer_name.split(' ')[0]:''}! Your Nuway delivery is booked for ${date}, ${delivery.slot||'TBD'}.`;
+  let msg=`Hi${firstName(delivery.customer_name)?' '+firstName(delivery.customer_name):''}! Your Nuway delivery is booked for ${date}, ${delivery.slot||'TBD'}.`;
   if(products)msg+=` Products: ${products}.`;
   if(addr)msg+=` Delivery to: ${addr}.`;
   if(storePhone)msg+=` Questions? Call ${storeName}: ${storePhone}`;
@@ -3372,7 +3772,7 @@ async function sendLoadingSMS(delivery){
   const s=storeSettings||{};
   const storeName=currentStore;
   const storePhone=s.phone||'';
-  let msg=`Hi${delivery.customer_name?' '+delivery.customer_name.split(' ')[0]:''}! Your Nuway delivery is being loaded now. We'll let you know when it's on its way.`;
+  let msg=`Hi${firstName(delivery.customer_name)?' '+firstName(delivery.customer_name):''}! Your Nuway delivery is being loaded now. We'll let you know when it's on its way.`;
   if(storePhone)msg+=` Contact us: ${storePhone}`;
   msg+=` - Nuway ${storeName}`;
   return await sendSMS(delivery.customer_phone,msg);
@@ -3383,8 +3783,8 @@ async function sendEnRouteSMS(delivery){
   const s=storeSettings||{};
   const storeName=currentStore;
   const storePhone=s.phone||'';
-  const driver=delivery.driver_name||'Your driver';
-  let msg=`Hi${delivery.customer_name?' '+delivery.customer_name.split(' ')[0]:''}! Your delivery is on its way. Driver: ${driver}.`;
+  const driver=firstName(delivery.driver_name)||'Your driver';
+  let msg=`Hi${firstName(delivery.customer_name)?' '+firstName(delivery.customer_name):''}! Your delivery is on its way. Driver: ${driver}.`;
   if(storePhone)msg+=` Contact us: ${storePhone}`;
   msg+=` - Nuway ${storeName}`;
   return await sendSMS(delivery.customer_phone,msg);
@@ -3405,7 +3805,7 @@ function handleTopAction(){
 // Journal CSV export with simple/detailed option
 function exportJournal(){
   const mode=confirm('OK = Simple view (key fields only)\nCancel = Detailed view (all fields)');
-  const dels=DELIVERIES.filter(d=>d.entry_type!=='unavailable'&&d.entry_type!=='run_override');
+  const dels=DELIVERIES.filter(d=>d.entry_type!=='unavailable'&&d.entry_type!=='run_override'&&d.entry_type!=='tba');
   let csv='';
   if(mode){
     // Simple
@@ -3418,7 +3818,7 @@ function exportJournal(){
     csv='ID,Customer,Customer ID,Suburb,Invoice,Payment,COD,Sales Person,Driver,Truck Type,Rego,Slot,Duration,Loading,Out,Left Site,In,COD Receipt,Created By,Delivery Address,Products,Notes,Pre-Departure Notes,Completion Notes,Comments,Status,SMS Sent\n';
     dels.forEach(d=>{
       const esc=v=>`"${(v||'').toString().replace(/"/g,'""').replace(/\n/g,' | ')}"`;
-      csv+=`${d.id},${esc(d.customer_name)},${d.customer_id_rm||''},${esc(d.suburb)},${esc(d.invoice)},${d.payment_type||''},${d.cod_amount||''},${esc(d.sales_person)},${esc(d.driver_name)},${esc(d.truck_type)},${d.truck_rego||''},${d.slot||''},${d.duration}hr,${d.time_loading||''},${d.time_out||''},${d.time_left_site||''},${d.time_in||''},${d.cod_receipt||''},${esc(d.created_by)},${esc(d.delivery_address)},${esc(d.products)},${esc(d.notes)},${esc(d.pre_departure_notes)},${esc(d.completion_notes)},${esc(d.comments)},${d.driver_status||''},${d.sms_sent?'Yes':'No'}\n`;
+      csv+=`${d.id},${esc(d.customer_name)},${d.customer_id_rm||''},${esc(d.suburb)},${esc(d.invoice)},${d.payment_type||''},${d.cod_amount||''},${esc(d.sales_person)},${esc(d.driver_name)},${esc(d.truck_type)},${d.truck_rego||''},${d.slot||''},${d.duration}hr,${d.time_loading||''},${d.time_out||''},${d.time_left_site||''},${d.time_in||''},${d.cod_receipt||''},${esc(d.created_by)},${esc(d.delivery_address)},${esc(d.products)},${esc(d.notes)},${esc(d.pre_departure_notes)},${esc(d.completion_notes)},${esc(d.comments)},${d.driver_status||''},${smsFlags(d)||'None'}\n`;
     });
   }
   const blob=new Blob([csv],{type:'text/csv'});
